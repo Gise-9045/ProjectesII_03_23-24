@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
 
-    [SerializeField] private InputActionReference move, jump;
+    [SerializeField] private InputActionReference move;
 
     private Vector2 movementInput;
     private Rigidbody2D rb;
