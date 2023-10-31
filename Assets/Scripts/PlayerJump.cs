@@ -21,10 +21,10 @@ public class PlayerJump : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(isGrounded);
+        //Debug.Log(isGrounded);
         isGrounded = Physics2D.OverlapCapsule(groundCheck.position, new Vector2(1f, 0.3f), CapsuleDirection2D.Horizontal, 0, groundLayer);
 
-        Debug.Log(isJumping);
+        //Debug.Log(isJumping);
         isJumping = jumps.action.ReadValue<float>();
        
     }
@@ -33,7 +33,7 @@ public class PlayerJump : MonoBehaviour
         
         if ( isJumping == 1 && isGrounded == false)
         {
-            Debug.Log("salto");
+            //Debug.Log("salto");
             rb.velocity = new Vector2(rb.velocity.x, jumpPower);
         }
     }
