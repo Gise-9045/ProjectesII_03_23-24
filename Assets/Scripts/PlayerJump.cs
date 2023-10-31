@@ -1,43 +1,46 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class PlayerJump : MonoBehaviour
 {
-    // Start is called before the first frame update
-
     [SerializeField] private InputActionReference jumps;
     [SerializeField] private float jumpPower;
 
     public Transform groundCheck;
     public LayerMask groundLayer;
-    
-    private bool isGrounded; 
-    private bool isJumping;
-    private Rigidbody2D rb; 
+
+    private bool isGrounded;
+    private float isJumping; 
+    private Rigidbody2D rb;
 
     void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();   
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        isGrounded = Physics2D.OverlapCapsule(groundCheck.position, new Vector2(1.01f, 0.3f), CapsuleDirection2D.Horizontal, 0, groundLayer);
+        Debug.Log(isGrounded);
+        isGrounded = Physics2D.OverlapCapsule(groundCheck.position, new Vector2(1f, 0.3f), CapsuleDirection2D.Horizontal, 0, groundLayer);
 
-        Debug.Log(Input.GetButtonDown("Jump"));
-        //isJumping = jumps.action.ReadValue<bool>(); 
-    }
+        Debug.Log(isJumping);
+        isJumping = jumps.action.ReadValue<float>();
 
-    private void FixedUpdate()
-    {
-        if (Input.GetButtonDown("Jump") == true && !isGrounded)
+        if (isJumping == 1 && isGrounded == false)
         {
             Debug.Log("salto");
-            rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * jumpPower);
         }
     }
+
+    //private void FixedUpdate()
+    //{
+        
+    //    if ( isJumping == 1 && isGrounded == false)
+    //    {
+    //        Debug.Log("salto");
+    //        rb.velocity = new Vector2(rb.velocity.x,rb jumpPower);
+    //    }
+    //}
 }
