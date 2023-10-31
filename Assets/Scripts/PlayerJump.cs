@@ -26,21 +26,15 @@ public class PlayerJump : MonoBehaviour
 
         Debug.Log(isJumping);
         isJumping = jumps.action.ReadValue<float>();
-
-        if (isJumping == 1 && isGrounded == false)
+       
+    }
+    private void FixedUpdate()
+    {
+        
+        if ( isJumping == 1 && isGrounded == false)
         {
             Debug.Log("salto");
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * jumpPower);
+            rb.velocity = new Vector2(rb.velocity.x, jumpPower);
         }
     }
-
-    //private void FixedUpdate()
-    //{
-        
-    //    if ( isJumping == 1 && isGrounded == false)
-    //    {
-    //        Debug.Log("salto");
-    //        rb.velocity = new Vector2(rb.velocity.x,rb jumpPower);
-    //    }
-    //}
 }
