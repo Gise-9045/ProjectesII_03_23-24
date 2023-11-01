@@ -158,23 +158,27 @@ Transform:
   m_Father: {fileID: 724459655}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!111 &213294309
-Animation:
+--- !u!95 &213294309
+Animator:
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 213294307}
   m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 6c9ece9d829658447a640796bb7a9b2b, type: 2}
-  m_Animations:
-  - {fileID: 7400000, guid: 6c9ece9d829658447a640796bb7a9b2b, type: 2}
-  - {fileID: 7400000, guid: 8194a8309263d374ab3af5da8e6fbc98, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a6b3a85cf993a9f4f9e3a20eabe4820e, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &399898564
 GameObject:
   m_ObjectHideFlags: 0
@@ -776,6 +780,7 @@ GameObject:
   - component: {fileID: 724459652}
   - component: {fileID: 724459651}
   - component: {fileID: 724459656}
+  - component: {fileID: 724459657}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -795,6 +800,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a3fd57aa99c246747b837ccfa698276a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isMoving: 0
   move: {fileID: 7166945924870577955, guid: 45ac6d5744795c5498f12a10fd396418, type: 3}
   currentSpeed: 0
   acceleration: 10
@@ -898,6 +904,21 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &724459657
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 724459650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d672c5f434811149b1e7eec273c18a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 724459651}
+  controllerJump: {fileID: 724459656}
+  anim: {fileID: 0}
 --- !u!1 &1014516760
 GameObject:
   m_ObjectHideFlags: 0
@@ -1083,7 +1104,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1109425413}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.87, y: 0.49, z: 0}
+  m_LocalPosition: {x: 1.66, y: 1.07, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

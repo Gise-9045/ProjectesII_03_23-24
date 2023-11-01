@@ -6,6 +6,8 @@ using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class PlayerController : MonoBehaviour
 {
+    public bool isMoving; 
+
     [SerializeField] private InputActionReference move;
 
     private Vector2 movementInput;
@@ -35,10 +37,12 @@ public class PlayerController : MonoBehaviour
         {
             oldMovementInput = movementInput;
             currentSpeed += acceleration * maxSpeed * Time.fixedDeltaTime;
+            isMoving = true;
         }
         else
         {
             currentSpeed -= deacceleration * maxSpeed * Time.fixedDeltaTime;
+            isMoving = false;
         }
         currentSpeed = Mathf.Clamp(currentSpeed, 0, maxSpeed);
         rb.velocity = new Vector2(oldMovementInput.x * currentSpeed,rb.velocity.y);
