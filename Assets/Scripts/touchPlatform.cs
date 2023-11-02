@@ -1,11 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
+using System.Windows;
+using UnityEngine.UI;
 using UnityEngine;
+using TMPro;
 
 public class touchPlatform : MonoBehaviour
 {
 
-    private float fallDelay = 1f;
+    private float fallDelay = 0.5f;
     private float destroyDelay = 1f;
     private float respawnDelay = 3.5f;
    
@@ -13,28 +17,33 @@ public class touchPlatform : MonoBehaviour
     [SerializeField] private float numOfTouches = 4f;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private GameObject platformPrefab; // Assign the platform prefab in the Inspector
-    [SerializeField] private PlatformEffector2D effector;
-    [SerializeField] private Collider2D collider;
+    [SerializeField] private GameObject player;
     private Vector3 initialPosition;
+    public TextMeshProUGUI touchCounterText;
 
     private void Start()
     {
         usedNumTouches = numOfTouches;
         initialPosition = transform.position;
+        touchCounterText.text = usedNumTouches.ToString();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        
+        if (collision.gameObject.CompareTag("Player")&& player.transform.position.y>platformPrefab.transform.position.y)
         {
             usedNumTouches--;
+            touchCounterText.text = usedNumTouches.ToString();
+          
             Debug.Log(usedNumTouches);
             if(usedNumTouches == 0)
             {
                 StartCoroutine(Fall());
-                usedNumTouches = numOfTouches;
+                
             }
             
+
         }
     }
 
@@ -42,14 +51,13 @@ public class touchPlatform : MonoBehaviour
     {
         yield return new WaitForSeconds(fallDelay);
         rb.bodyType = RigidbodyType2D.Dynamic;
-        yield return new WaitForSeconds(destroyDelay);
-
-        // Disable the renderer and collider instead of destroying the object
         GetComponent<Renderer>().enabled = false;
         GetComponent<Collider2D>().enabled = false;
+        yield return new WaitForSeconds(destroyDelay);
 
         yield return new WaitForSeconds(respawnDelay);
         RespawnPlatform();
+        usedNumTouches = numOfTouches;
     }
 
     private void RespawnPlatform()

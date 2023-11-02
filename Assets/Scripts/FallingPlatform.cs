@@ -6,9 +6,10 @@ public class FallingPlatform : MonoBehaviour
     private float fallDelay = 1f;
     private float destroyDelay = 2f;
     private float respawnDelay = 5f; // Time to respawn the platform
-
-    [SerializeField] private Rigidbody2D rb;
     [SerializeField] private GameObject platformPrefab; // Assign the platform prefab in the Inspector
+    [SerializeField] private PlatformEffector2D effector;
+    [SerializeField] private Rigidbody2D rb;
+     // Assign the platform prefab in the Inspector
     private Vector3 initialPosition;
 
     private void Start()
@@ -28,11 +29,12 @@ public class FallingPlatform : MonoBehaviour
     {
         yield return new WaitForSeconds(fallDelay);
         rb.bodyType = RigidbodyType2D.Dynamic;
+        GetComponent<Renderer>().enabled = false;
+        GetComponent<Collider2D>().enabled = false;
         yield return new WaitForSeconds(destroyDelay);
 
         // Disable the renderer and collider instead of destroying the object
-        GetComponent<Renderer>().enabled = false;
-        GetComponent<Collider2D>().enabled = false;
+       
 
         yield return new WaitForSeconds(respawnDelay);
         RespawnPlatform();
