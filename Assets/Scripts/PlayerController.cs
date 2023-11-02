@@ -10,11 +10,11 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private InputActionReference move;
 
-    private Vector2 movementInput;
+    public Vector2 movementInput;
     private Rigidbody2D rb;
     private Vector2 oldMovementInput = Vector2.zero;
 
-    [SerializeField] private float currentSpeed;
+    public float currentSpeed;
     [SerializeField] private float acceleration;
     [SerializeField] private float deacceleration;
     [SerializeField] private float maxSpeed;
@@ -42,9 +42,17 @@ public class PlayerController : MonoBehaviour
         else
         {
             currentSpeed -= deacceleration * maxSpeed * Time.fixedDeltaTime;
-            isMoving = false;
+            isMoving = true;
+        }
+
+        if(currentSpeed <= 0 )
+        {
+            isMoving = false; 
         }
         currentSpeed = Mathf.Clamp(currentSpeed, 0, maxSpeed);
         rb.velocity = new Vector2(oldMovementInput.x * currentSpeed,rb.velocity.y);
+
+
+        Debug.Log(isMoving); 
     }
 }
