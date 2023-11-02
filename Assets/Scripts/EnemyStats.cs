@@ -12,13 +12,19 @@ public class Enemy : MonoBehaviour
     [SerializeField] public Transform pointA;
     [SerializeField] public Transform pointB;
     [SerializeField] SpriteRenderer sr;
+    GameObject detectPlayer;
+
+    [SerializeField] private string detectionTag = "Player";
 
     //Posición actual del Enemigo
     private Transform currentPoint;
 
+    public PlayerController playerController;
+
     private void Start()
     {
         currentPoint = GetComponent<Transform>();
+        detectPlayer = GameObject.Find("EnemyDetection");
     }
 
     private void Update()
@@ -53,6 +59,15 @@ public class Enemy : MonoBehaviour
     {
         health -= damage;
         Debug.Log("Damage recieved");
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag(detectionTag))
+        {
+            playerController.TakeDamage(1);
+        }
     }
 
     private void OnDrawGizmos()

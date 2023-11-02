@@ -8,6 +8,12 @@ public class PlayerController : MonoBehaviour
 {
     public bool isMoving; 
 
+    int health = 3;
+    int maxHealh = 3;
+
+
+
+
     [SerializeField] private InputActionReference move;
 
     public Vector2 movementInput;
@@ -54,5 +60,20 @@ public class PlayerController : MonoBehaviour
 
 
         Debug.Log(isMoving); 
+    }
+
+
+
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+
+        Debug.Log(health);
+
+        if (health < 0)
+        {
+            Debug.Log("MUERTO");
+        }
     }
 }
