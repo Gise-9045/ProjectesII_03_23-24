@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 414777257959114217}
   - component: {fileID: 9200944224342813629}
   - component: {fileID: 2390357395354966423}
+  - component: {fileID: 4504293901601783638}
   m_Layer: 7
   m_Name: Espada
   m_TagString: Untagged
@@ -120,6 +121,27 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.00000047683716}
   serializedVersion: 2
   m_Radius: 0.5000001
+--- !u!95 &4504293901601783638
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 95120923935279423}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ce0732ca6a948364d811fcb932685429, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &951400299287673348
 GameObject:
   m_ObjectHideFlags: 0
@@ -247,6 +269,8 @@ MonoBehaviour:
   pointA: {fileID: 0}
   pointB: {fileID: 0}
   sr: {fileID: 0}
+  detectionTag: Player
+  playerController: {fileID: 0}
 --- !u!1 &3923995262616468646
 GameObject:
   m_ObjectHideFlags: 0
