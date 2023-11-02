@@ -10,7 +10,9 @@ public class PlayerAnimationController : MonoBehaviour
     [SerializeField] private PlayerController controller;
     [SerializeField] private PlayerJump controllerJump;
 
-    //[SerializeField] private GameObject model;
+    [SerializeField] private GameObject model;
+
+    private bool facingRight; 
 
     // Start is called before the first frame update
     void Awake()
@@ -32,20 +34,24 @@ public class PlayerAnimationController : MonoBehaviour
             Debug.Log("is True , moving "); 
             animator.SetBool("Moving", true);
 
-           // Flip();
-
+        }
+        if (controller.movementInput.x < 0 && facingRight)
+        {
+            Flip();
+        }
+        else if (controller.movementInput.x > 0 && !facingRight)
+        {
+            Flip();
         }
     }
 
-    //private void Flip ()
-    //{
-    //    if (controller.movementInput.x < 0)
-    //    {
-    //        model.transform.localScale = new Vector2(1, 1);
-    //    }
-    //    else if (controller.movementInput.x > 0)
-    //    {
-    //        model.transform.localScale = new Vector2(-1, 1);
-    //    }
-    //}
+    private void Flip ()
+    {
+        Vector2 currentScale = model.transform.localScale;
+        currentScale.x *= -1; 
+
+        model.transform.localScale = currentScale;
+
+        facingRight = !facingRight; 
+    }
 }
