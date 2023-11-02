@@ -40,7 +40,7 @@ public class touchPlatform : MonoBehaviour
             if(usedNumTouches == 0)
             {
                 StartCoroutine(Fall());
-                
+              
             }
             
 
@@ -50,6 +50,7 @@ public class touchPlatform : MonoBehaviour
     private IEnumerator Fall()
     {
         yield return new WaitForSeconds(fallDelay);
+        touchCounterText.text = " ";
         rb.bodyType = RigidbodyType2D.Dynamic;
         GetComponent<Renderer>().enabled = false;
         GetComponent<Collider2D>().enabled = false;
@@ -58,6 +59,7 @@ public class touchPlatform : MonoBehaviour
         yield return new WaitForSeconds(respawnDelay);
         RespawnPlatform();
         usedNumTouches = numOfTouches;
+
     }
 
     private void RespawnPlatform()
@@ -70,5 +72,6 @@ public class touchPlatform : MonoBehaviour
         GetComponent<Collider2D>().enabled = true;
 
         rb.bodyType = RigidbodyType2D.Static;
+        touchCounterText.text = numOfTouches.ToString();
     }
 }
