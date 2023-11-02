@@ -22,7 +22,7 @@ public class PlayerJump : MonoBehaviour
     void Update()
     {
         //Debug.Log(isGrounded);
-        isGrounded = Physics2D.OverlapCapsule(groundCheck.position, new Vector2(1f, 0.3f), CapsuleDirection2D.Horizontal, 0, groundLayer);
+        isGrounded = Physics2D.OverlapCapsule(groundCheck.position, new Vector2(1.7f, -3.75f), CapsuleDirection2D.Horizontal, 0, groundLayer);
 
         //Debug.Log(isJumping);
         isJumping = jumps.action.ReadValue<float>();
