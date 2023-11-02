@@ -13,6 +13,8 @@ public class PlayerJump : MonoBehaviour
     private float isJumping; 
     private Rigidbody2D rb;
 
+    [SerializeField] private float MaxJump; 
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -30,11 +32,11 @@ public class PlayerJump : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        
         if ( isJumping == 1 && isGrounded == false)
         {
             //Debug.Log("salto");
-            rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+            rb.velocity = new Vector2(rb.velocity.x, jumpPower); 
+            
         }
     }
 }
