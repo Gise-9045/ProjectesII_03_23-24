@@ -8,35 +8,58 @@ public class PlayerJump : MonoBehaviour
 
     public Transform groundCheck;
     public LayerMask groundLayer;
-
-    private bool isGrounded;
-    private float isJumping; 
     private Rigidbody2D rb;
 
-    [SerializeField] private float MaxJump; 
+    [SerializeField] int maxJumps = 2;
+    [SerializeField] int jumpsRemeaning; 
+
+
 
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        //Debug.Log(isGrounded);
-        isGrounded = Physics2D.OverlapCapsule(groundCheck.position, new Vector2(1.7f, -3.75f), CapsuleDirection2D.Horizontal, 0, groundLayer);
+        GroundCheck(); 
+    }
 
-        //Debug.Log(isJumping);
-        isJumping = jumps.action.ReadValue<float>();
-       
-    }
-    private void FixedUpdate()
+    #region collision
+    private bool GroundCheck()
     {
-        if ( isJumping == 1 && isGrounded == false)
+        if (Physics2D.OverlapCapsule(groundCheck.position, groundCheck.localScale, CapsuleDirection2D.Horizontal, 0, groundLayer))
         {
-            //Debug.Log("salto");
-            rb.velocity = new Vector2(rb.velocity.x, jumpPower); 
-            
+            jumpsRemeaning = maxJumps;
+            return true;
+
         }
+        return false;
     }
+
+    #endregion collision
+
+    #region jump
+    public void Jump(InputAction.CallbackContext context)
+    {
+        if (jumpsRemeaning > 0)
+        {
+            if (context.performed)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+                jumpsRemeaning--;
+            }
+            else if (context.canceled)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.1f);
+                jumpsRemeaning--;
+            }
+        }
+
+
+    }
+    #endregion jump
+
+
+
 }

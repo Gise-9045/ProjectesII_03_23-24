@@ -364,7 +364,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: 45ac6d5744795c5498f12a10fd396418, type: 3}
-  m_NotificationBehavior: 0
+  m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -375,7 +375,27 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a6766863-ef4b-40d4-9932-469c5df59478
+    m_ActionName: Player/Move[/XInputControllerWindows/leftStick/left,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 6714887214655106452}
+        m_TargetAssemblyTypeName: PlayerJump, Assembly-CSharp
+        m_MethodName: Jump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 77d0dcf2-a76b-4c46-b411-4af22ad4507b
+    m_ActionName: Player/Jump[/Keyboard/space,/XInputControllerWindows/buttonWest]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -856,7 +876,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 2.33
   m_GravityScale: 10
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 909ffddb2a62efb4093539dbf071a6fc, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -899,12 +919,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumps: {fileID: 1935530299882758764, guid: 45ac6d5744795c5498f12a10fd396418, type: 3}
-  jumpPower: 20
+  jumpPower: 39.4
   groundCheck: {fileID: 2484171021305129863}
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
-  MaxJump: 1
+  maxJumps: 2
 --- !u!114 &8081345811934998298
 MonoBehaviour:
   m_ObjectHideFlags: 0
