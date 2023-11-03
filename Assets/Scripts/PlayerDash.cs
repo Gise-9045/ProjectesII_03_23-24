@@ -28,7 +28,7 @@ public class PlayerDash : MonoBehaviour
     {
         if(isDashing == 1)
         {
-            rb.velocity = new Vector2(10, rb.velocity.y);
+            rb.velocity = new Vector2(45, rb.velocity.y);
         }
     }
 }

@@ -31,7 +31,7 @@ public class touchPlatform : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         
-        if (collision.gameObject.CompareTag("Player")&& player.transform.position.y>platformPrefab.transform.position.y)
+        if (collision.gameObject.CompareTag("Player"))
         {
             usedNumTouches--;
             touchCounterText.text = usedNumTouches.ToString();
