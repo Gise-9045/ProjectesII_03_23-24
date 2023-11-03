@@ -839,6 +839,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4989989836475196957}
   - component: {fileID: 1907750386170396998}
+  - component: {fileID: 4095166569100144937}
   m_Layer: 0
   m_Name: Weapon-Sword
   m_TagString: Untagged
@@ -913,6 +914,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4095166569100144937
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8792108692529949328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8da6972ac9843654fbd778e4fbd79576, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8966324309986080453
 GameObject:
   m_ObjectHideFlags: 0
@@ -927,6 +940,7 @@ GameObject:
   - component: {fileID: 2964083082103925751}
   - component: {fileID: 6714887214655106452}
   - component: {fileID: 8081345811934998298}
+  - component: {fileID: 1979970023840430464}
   m_Layer: 0
   m_Name: -----PLAYER
   m_TagString: Player
@@ -1081,3 +1095,15 @@ MonoBehaviour:
   controller: {fileID: 2964083082103925751}
   controllerJump: {fileID: 6714887214655106452}
   model: {fileID: 6303293879820917154}
+--- !u!114 &1979970023840430464
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8966324309986080453}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54bc0176c0069b442b2074a4ed25fa99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
