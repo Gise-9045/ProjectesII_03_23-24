@@ -4,8 +4,13 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    int health = 3;
-    int maxHealh = 3;
+    private int health = 3;
+    private int maxHealh = 3;
+
+    public int GetHealth()
+    {
+        return health;
+    }
 
     public void TakeDamage(int damage)
     {
