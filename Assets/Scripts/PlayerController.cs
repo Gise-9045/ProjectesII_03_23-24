@@ -53,6 +53,6 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector2(oldMovementInput.x * currentSpeed,rb.velocity.y);
 
 
-        Debug.Log(isMoving); 
+        //Debug.Log(isMoving); 
     }
 }
