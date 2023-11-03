@@ -31,7 +31,7 @@ public class PlayerAnimationController : MonoBehaviour
         else if (controller.isMoving == true)
         {
 
-            Debug.Log("is True , moving "); 
+            //Debug.Log("is True , moving "); 
             animator.SetBool("Moving", true);
 
         }
