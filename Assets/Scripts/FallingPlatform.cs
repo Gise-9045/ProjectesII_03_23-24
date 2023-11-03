@@ -6,7 +6,7 @@ public class FallingPlatform : MonoBehaviour
 {
     private float fallDelay = 1f;
     private float destroyDelay = 2f;
-    private float respawnDelay = 5f; // Time to respawn the platform
+    private float respawnDelay = 3f; // Time to respawn the platform
     [SerializeField] private GameObject platformPrefab; // Assign the platform prefab in the Inspector
     [SerializeField] private PlatformEffector2D effector;
     [SerializeField] private Rigidbody2D rb;
