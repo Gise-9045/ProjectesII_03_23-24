@@ -9,7 +9,7 @@ public class PlayerJump : MonoBehaviour
     public Transform groundCheck;
     public LayerMask groundLayer;
     private Rigidbody2D rb;
-
+    public bool isJumping;
     [SerializeField] int maxJumps = 2;
     [SerializeField] int jumpsRemeaning; 
 
@@ -26,14 +26,16 @@ public class PlayerJump : MonoBehaviour
     }
 
     #region collision
-    private bool GroundCheck()
+    public bool GroundCheck()
     {
         if (Physics2D.OverlapCapsule(groundCheck.position, groundCheck.localScale, CapsuleDirection2D.Horizontal, 0, groundLayer))
         {
+            isJumping = false;
             jumpsRemeaning = maxJumps;
             return true;
 
         }
+        isJumping = true;
         return false;
     }
 
@@ -51,7 +53,7 @@ public class PlayerJump : MonoBehaviour
             }
             else if (context.canceled)
             {
-                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.1f);
+                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.3f);
                 jumpsRemeaning--;
             }
         }
