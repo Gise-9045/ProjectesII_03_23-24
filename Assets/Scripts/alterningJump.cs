@@ -7,29 +7,21 @@ public class alternatingJump : MonoBehaviour
     [SerializeField] private PlayerJump controllerJump;
     public TextMeshProUGUI touchCounterText;
 
-    void FixedUpdate()
+    public void Start()
     {
-        if (controllerJump != null)
-        {
-            bool isPlayerJumping = controllerJump.isJumping;
-            if (isPlayerJumping == true)
-            {
-                isActive = !isActive;
-                Debug.Log("CAMBIO: " + isActive);
-            }
-            
+        controllerJump.onJump += Toggle;//add toggle to the onjump action
+        
+    }
 
+    public void OnDestroy()
+    {
+        controllerJump.onJump -= Toggle;
+    }
 
-                if (isActive == true)
-            {
-                GetComponent<Collider2D>().enabled = true;
-                touchCounterText.text = ":)";
-            }
-            else
-            {
-                GetComponent<Collider2D>().enabled = false;
-                touchCounterText.text = ":(";
-            }
-        }
+    public void Toggle()
+    {
+        isActive = !isActive;
+        GetComponent<Collider2D>().enabled = isActive;
+        touchCounterText.text = isActive ? ":)" : " :(";
     }
 }

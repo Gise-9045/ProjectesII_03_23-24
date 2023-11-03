@@ -12,6 +12,7 @@ public class touchPlatform : MonoBehaviour
     private float fallDelay = 0.5f;
     private float destroyDelay = 1f;
     private float respawnDelay = 3.5f;
+    private float restartDelay = 5f;
    
     public float usedNumTouches;
     [SerializeField] private float numOfTouches = 4f;
@@ -33,18 +34,20 @@ public class touchPlatform : MonoBehaviour
         
         if (collision.gameObject.CompareTag("Player"))
         {
+            
             usedNumTouches--;
             touchCounterText.text = usedNumTouches.ToString();
-          
+         
             Debug.Log(usedNumTouches);
             if(usedNumTouches == 0)
             {
                 StartCoroutine(Fall());
               
             }
-            
+
 
         }
+       
     }
 
     private IEnumerator Fall()
