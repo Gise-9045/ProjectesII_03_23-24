@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class Enemy : MonoBehaviour
 {
+    public EnemyAttack enemyAttack;
+
     public int health = 50;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float speed;
@@ -16,10 +20,9 @@ public class Enemy : MonoBehaviour
 
     [SerializeField] private string detectionTag = "Player";
 
+
     //Posición actual del Enemigo
     private Transform currentPoint;
-
-    public PlayerController playerController;
 
     private void Start()
     {
@@ -36,21 +39,31 @@ public class Enemy : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        
         if (currentPoint.position.x < pointA.position.x)
         {
             direction = 1;
-            sr.flipX = false;
+
         }
         else if(currentPoint.position.x > pointB.position.x)
         {
             direction = -1;
-            sr.flipX = true;
+
         }
 
         Move();
+        Flip();
 
     }
+
+    void Flip()
+    {
+        Vector3 currentScale = gameObject.transform.localScale;
+        currentScale.x = direction;
+        gameObject.transform.localScale = currentScale;
+
+    }
+
+
     private void Move()
     {
         rb.velocity = new Vector2(direction * speed, rb.velocity.y);
@@ -66,9 +79,11 @@ public class Enemy : MonoBehaviour
     {
         if (collision.CompareTag(detectionTag))
         {
-            playerController.TakeDamage(1);
+            enemyAttack.StartAttacking();
         }
     }
+
+
 
     private void OnDrawGizmos()
     {
