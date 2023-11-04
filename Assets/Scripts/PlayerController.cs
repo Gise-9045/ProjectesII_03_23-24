@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using static UnityEditor.Searcher.SearcherWindow.Alignment;
+//using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class PlayerController : MonoBehaviour
 {
@@ -53,6 +53,6 @@ public class PlayerController : MonoBehaviour
         rb.velocity = new Vector2(oldMovementInput.x * currentSpeed,rb.velocity.y);
 
 
-        Debug.Log(isMoving); 
+        //Debug.Log(isMoving); 
     }
 }
