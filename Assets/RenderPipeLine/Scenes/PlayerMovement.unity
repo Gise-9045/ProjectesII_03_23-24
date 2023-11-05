@@ -444,12 +444,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   positionPlayer: {x: -8.4, y: -1.21}
-  move: {fileID: 0}
   physics: {fileID: 372558061}
+  move: {fileID: 7166945924870577955, guid: 45ac6d5744795c5498f12a10fd396418, type: 3}
   currentSpeed: 0
   acceleraiton: 10
-  deacceleraiton: 5
-  maxSpeed: 1
+  deacceleraiton: 10
+  maxSpeed: 3
 --- !u!114 &372558068
 MonoBehaviour:
   m_ObjectHideFlags: 0
