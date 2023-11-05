@@ -174,6 +174,7 @@ GameObject:
   - component: {fileID: 372558068}
   - component: {fileID: 372558067}
   - component: {fileID: 372558066}
+  - component: {fileID: 372558070}
   m_Layer: 7
   m_Name: Cuadradito Player
   m_TagString: Player
@@ -189,7 +190,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 372558058}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.4, y: -1.21, z: -0.07998894}
+  m_LocalPosition: {x: -5.41, y: -1.21, z: -0.07998894}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -344,7 +345,19 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: a6766863-ef4b-40d4-9932-469c5df59478
+    m_ActionName: Player/Move[/XInputControllerWindows/leftStick,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 77d0dcf2-a76b-4c46-b411-4af22ad4507b
+    m_ActionName: Player/Jump[/Keyboard/space,/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 132f08b5-51f0-4aaa-b5fc-cbbaf52730de
+    m_ActionName: Player/Dash[/Keyboard/shift]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -392,16 +405,20 @@ MonoBehaviour:
   _jump: {fileID: 372558068}
   _move: {fileID: 372558067}
   _wall: {fileID: 372558066}
+  _playerMoveInput: {fileID: 7166945924870577955, guid: 45ac6d5744795c5498f12a10fd396418, type: 3}
+  _playerJumpInput: {fileID: 1935530299882758764, guid: 45ac6d5744795c5498f12a10fd396418, type: 3}
+  _playerDashInput: {fileID: 6964419200310921693, guid: 45ac6d5744795c5498f12a10fd396418, type: 3}
   _speed: 10
   _jumpForce: 50
   _slideSpeed: 5
   _wallJumpLerp: 10
-  _dashSpeed: 20
-  canMove: 0
+  canMove: 1
   wallJumped: 0
   wallSlide: 0
   isDashing: 0
   sidePlayer: 1
+  aux: {x: 0, y: 0}
+  move: {x: 0, y: 0}
 --- !u!114 &372558066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -426,6 +443,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04827cad357ce224da0c10ac259736d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  positionPlayer: {x: -8.4, y: -1.21}
+  move: {fileID: 0}
+  physics: {fileID: 372558061}
+  currentSpeed: 0
+  acceleraiton: 10
+  deacceleraiton: 5
+  maxSpeed: 1
 --- !u!114 &372558068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -438,6 +462,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49586ae73dbc07f4d81e1856c830532a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  physics: {fileID: 372558061}
+  jumpForce: 13
 --- !u!114 &372558069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -450,6 +476,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76efbf97ce1a13049addbe18970286fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _secondTime: 0.15
+  _dashSpeed: 20
+--- !u!114 &372558070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 372558058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a17262e7f4578743be83a671e842c93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fallMultiplier: 2.5
+  lowJumpMultiplier: 2
+  jumpPlayer: {fileID: 1935530299882758764, guid: 45ac6d5744795c5498f12a10fd396418, type: 3}
 --- !u!4 &701010662 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3639653851961855796, guid: ccd7cbf4b57adf546baf1d8b0f625478, type: 3}
