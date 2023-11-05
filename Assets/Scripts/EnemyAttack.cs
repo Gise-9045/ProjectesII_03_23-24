@@ -26,6 +26,7 @@ public class EnemyAttack : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
         if (collision.CompareTag(detectionTag))
         {
             StartCoroutine(Hit());
@@ -38,6 +39,8 @@ public class EnemyAttack : MonoBehaviour
         player.TakeDamage(1);
         yield return new WaitForSecondsRealtime(0.25f);
         Time.timeScale = 1;
+        col.enabled = false;
+
     }
 
 

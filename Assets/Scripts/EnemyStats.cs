@@ -16,7 +16,6 @@ public class Enemy : MonoBehaviour
     [SerializeField] public Transform pointA;
     [SerializeField] public Transform pointB;
     [SerializeField] SpriteRenderer sr;
-    GameObject detectPlayer;
 
     [SerializeField] private string detectionTag = "Player";
 
@@ -27,7 +26,6 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         currentPoint = GetComponent<Transform>();
-        detectPlayer = GameObject.Find("EnemyDetection");
     }
 
     private void Update()

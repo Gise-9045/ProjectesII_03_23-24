@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Tilemaps;
+//using UnityEditor.Tilemaps;
 using UnityEngine;
 
 public class PlayerAnimationController : MonoBehaviour
@@ -31,7 +31,7 @@ public class PlayerAnimationController : MonoBehaviour
         else if (controller.isMoving == true)
         {
 
-            Debug.Log("is True , moving "); 
+            //Debug.Log("is True , moving "); 
             animator.SetBool("Moving", true);
 
         }
