@@ -51,8 +51,5 @@ public class PlayerController : MonoBehaviour
         }
         currentSpeed = Mathf.Clamp(currentSpeed, 0, maxSpeed);
         rb.velocity = new Vector2(oldMovementInput.x * currentSpeed,rb.velocity.y);
-
-
-        //Debug.Log(isMoving); 
     }
 }
