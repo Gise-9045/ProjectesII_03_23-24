@@ -6,12 +6,14 @@ public class Jump : MonoBehaviour
 {
 
     [SerializeField] private Rigidbody2D physics;
+
     [SerializeField] private float jumpForce;
 
     public void Jump_player()
     {
-        physics.velocity = new Vector2(physics.velocity.x, 0);
-        physics.velocity += Vector2.up * jumpForce; 
-    }
+        // physics.velocity = new Vector2(physics.velocity.x, 0);
+        // physics.velocity += Vector2.up * jumpForce; 
 
+        physics.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+    }
 }
