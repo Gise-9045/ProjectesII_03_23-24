@@ -542,8 +542,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isAttacking: 0
-  attack: {fileID: 6888892483691168519, guid: 45ac6d5744795c5498f12a10fd396418, type: 3}
-  col: {fileID: 1432797744252734803}
+  isHitting: 0
+  attack: {fileID: 9011313330024176719, guid: 45ac6d5744795c5498f12a10fd396418, type: 3}
+  sword: {fileID: 4989989836475196957}
+  enemyStats: {fileID: 0}
 --- !u!1 &7411174226351889529
 GameObject:
   m_ObjectHideFlags: 0

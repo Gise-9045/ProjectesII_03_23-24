@@ -11,7 +11,7 @@ public class Wall : MonoBehaviour
 
         Vector2 wallDir = _collision.onRightWall ? Vector2.left : Vector2.right;
 
-        _jump.Jump_player((Vector2.up / 1.5f + wallDir / 1.5f),physics,jumpForce);
+        _jump.Jump_player();
 
         wallJumped = true; 
 

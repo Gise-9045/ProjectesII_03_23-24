@@ -19,9 +19,9 @@ public class InputManager : MonoBehaviour
 
     [Space]
     [Header("Inputs")]
-    [SerializeField] private InputActionReference _playerMove;
-    [SerializeField] private InputActionReference _playerJump;
-    [SerializeField] private InputActionReference _playerDash;
+    [SerializeField] private InputActionReference _playerMoveInput;
+    [SerializeField] private InputActionReference _playerJumpInput;
+    [SerializeField] private InputActionReference _playerDashInput;
 
     // Animaciones Luego 
 
@@ -50,9 +50,20 @@ public class InputManager : MonoBehaviour
 
     //Particulas De momento nope
 
+    public Vector2 aux; 
+    public Vector2 move; 
+
     #endregion VARIABLES 
 
     #region METODOS DEFAULT
+
+    private void OnEnable()
+    {
+        _playerJumpInput.action.performed += PlayerJump;
+        _playerDashInput.action.performed += PlayerDash;
+        _playerMoveInput.action.performed += PlayerMove;
+    }
+
     void Awake()
     {
         _collision = GetComponent<Collisions>();
@@ -70,12 +81,9 @@ public class InputManager : MonoBehaviour
     // Update is called once per frame
     void Update() //FixedUpdate ??
     {
-        Debug.Log(_playerMove.action.ReadValue<Vector2>());
 
-        Vector2 aux = _playerMove.action.ReadValue<Vector2>();
-        Vector2 move = new Vector2(aux.x, aux.y);
-
-        _move.Walk(move, canMove, wallJumped, _physyics, _speed, _wallJumpLerp);
+        aux = _playerMoveInput.action.ReadValue<Vector2>();
+        move = new Vector2(aux.x, aux.y);
 
         #region Wall
 
@@ -101,34 +109,6 @@ public class InputManager : MonoBehaviour
 
         #endregion Wall
 
-        #region Jump
-
-        if (_playerJump.action.ReadValue<bool>())
-        {
-            //activar animacion salto
-
-            if (_collision.onGround)
-            {
-                _jump.Jump_player(aux, _physyics, _jumpForce); 
-            }
-            if (_collision.onWall && !_collision.onGround)
-            {
-                _wall.WallJump(canMove, _collision, _jump, wallJumped, _physyics, _jumpForce); 
-            }
-        }
-
-        #endregion Jump
-
-        #region Dash
-        if (_playerDash.action.ReadValue<bool>() && !_hasDashed)
-        {
-            if (aux.x != 0 || aux.y != 0) // GetAxisRaw ??
-            {
-                _dash.Dash_player(_hasDashed, _physyics, move, _jump, wallJumped, isDashing); 
-            }
-        }
-        #endregion Dash
-
         #region Ground
 
         if (_collision.onGround && !_groundTouch)
@@ -149,6 +129,11 @@ public class InputManager : MonoBehaviour
             return;
         }
 
+        if (!_collision.onWall && _collision.onGround && !isDashing)
+        {
+            canMove = true;
+        }
+
         if (aux.x > 0)
         {
             sidePlayer = 1;
@@ -160,10 +145,8 @@ public class InputManager : MonoBehaviour
             //metodo Flip -> script Animation
 
         }
-        canMove = false ; 
     }
     #endregion METODOS DEFAULT
-    // Start is called before the first frame update
 
     #region METODOS
     private void GroundTouch()
@@ -174,6 +157,44 @@ public class InputManager : MonoBehaviour
         //animation parte 
 
         //particulas
+    }
+
+    private void PlayerJump(InputAction.CallbackContext obj)
+    {
+        if (_collision.onGround)
+        {
+            _jump.Jump_player();
+        }
+        if (_collision.onWall && !_collision.onGround)
+        {
+            _wall.WallJump(canMove, _collision, _jump, wallJumped, _physyics, _jumpForce);
+        }
+    }
+
+    private void PlayerDash(InputAction.CallbackContext obj)
+    {
+        if (aux.x != 0 || aux.y != 0) // GetAxisRaw ??
+        {
+            _dash.Dash_player(_hasDashed, _physyics, move, _jump, wallJumped, isDashing);
+        }
+    }
+
+    private void PlayerMove(InputAction.CallbackContext obj) 
+    {
+
+        if (canMove == false)
+            return;
+
+        if (!wallJumped)
+        {
+            _physyics.velocity = new Vector2(move.x * 0.5f, _physyics.velocity.y);
+        }
+
+        if (canMove == true)
+        {
+            Debug.Log("puede moverse"); 
+            _move.Walk(_playerMoveInput);
+        }
     }
 
     #endregion METODOS
