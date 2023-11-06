@@ -19,11 +19,13 @@ public class Move : MonoBehaviour
     [SerializeField] private float deacceleraiton; 
     [SerializeField] private float maxSpeed;
 
-    private void Update() {
+    private void Update() 
+    {
         Walk();
     }
 
-    private void Walk() {
+    private void Walk() 
+    {
         Debug.Log("dentro de la funcion");
         Debug.Log(_direction);
         

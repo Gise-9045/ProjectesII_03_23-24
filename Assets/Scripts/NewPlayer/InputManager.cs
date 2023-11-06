@@ -31,7 +31,6 @@ public class InputManager : MonoBehaviour
     public int sidePlayer = 1;
 
     private bool _groundTouch;
-    private bool _hasDashed;
 
     //Particulas De momento nope
 
@@ -113,7 +112,6 @@ public class InputManager : MonoBehaviour
             _groundTouch = false;
         }
 
-
         if (wallJumped || !canMove)
         {
             return;
@@ -140,13 +138,10 @@ public class InputManager : MonoBehaviour
     {
         _hasDashed = false;
         isDashing = false;
-
-        //animation parte 
-
-        //particulas
     }
 
-    private void PlayerJump(InputAction.CallbackContext obj) {
+    private void PlayerJump(InputAction.CallbackContext obj) 
+    {
         if (!canMove) return;
         
         if (_collision.onGround)
@@ -163,7 +158,7 @@ public class InputManager : MonoBehaviour
     {
         if (move != Vector2.zero) // GetAxisRaw ??
         {
-            _dash.Dash_player();
+            _dash.PlayerDashing();
         }
     }
 
