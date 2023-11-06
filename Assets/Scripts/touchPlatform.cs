@@ -17,10 +17,12 @@ public class touchPlatform : MonoBehaviour
     private Vector3 initialPosition;
     private bool playerOnPlatform;
     public TextMeshProUGUI touchCounterText;
+   
 
     private void Start()
     {
-        usedNumTouches = numOfTouches;
+          
+    usedNumTouches = numOfTouches;
         initialPosition = transform.position;
         touchCounterText.text = usedNumTouches.ToString();
 
@@ -41,13 +43,31 @@ public class touchPlatform : MonoBehaviour
                 StartCoroutine(Fall());
             }
         }
-        else
+       
+    }
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
         {
-            playerOnPlatform = false;
+            playerOnPlatform = false; // Player is not colliding anymore
+        }
+    }
+    private IEnumerator ResetTouchesPeriodically()
+    {
+        while (true)
+        {
+            // Check if the player is not colliding before resetting touches
+            if (!playerOnPlatform)
+            {
+                usedNumTouches = numOfTouches;
+                touchCounterText.text = usedNumTouches.ToString();
+            }
+
+            yield return new WaitForSeconds(restartDelay);
         }
     }
 
-    private IEnumerator Fall()
+private IEnumerator Fall()
     {
         yield return new WaitForSeconds(fallDelay);
         touchCounterText.text = " ";
@@ -73,14 +93,4 @@ public class touchPlatform : MonoBehaviour
         touchCounterText.text = numOfTouches.ToString();
     }
 
-    private IEnumerator ResetTouchesPeriodically()
-    {
-        while(true) { 
-      
-            yield return new WaitForSeconds(restartDelay);
-            usedNumTouches = numOfTouches;
-            touchCounterText.text = usedNumTouches.ToString();
-        
-        }
-    }
 }
