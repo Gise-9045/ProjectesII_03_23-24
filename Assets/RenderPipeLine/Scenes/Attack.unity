@@ -607,7 +607,11 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  waterLayer:
+    serializedVersion: 2
+    m_Bits: 0
   isJumping: 0
+  inWater: 0
   maxJumps: 2
   jumpsRemeaning: 0
 --- !u!114 &1011511599
@@ -1513,6 +1517,38 @@ PrefabInstance:
     - target: {fileID: 4213870841556097822, guid: 90877c543b25da74f8d321d10bf81583, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6032821228707485265, guid: 90877c543b25da74f8d321d10bf81583, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6032821228707485265, guid: 90877c543b25da74f8d321d10bf81583, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6032821228707485265, guid: 90877c543b25da74f8d321d10bf81583, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6032821228707485265, guid: 90877c543b25da74f8d321d10bf81583, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6032821228707485265, guid: 90877c543b25da74f8d321d10bf81583, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -1820
+      objectReference: {fileID: 0}
+    - target: {fileID: 6032821228707485265, guid: 90877c543b25da74f8d321d10bf81583, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -980
+      objectReference: {fileID: 0}
+    - target: {fileID: 6032821228707485265, guid: 90877c543b25da74f8d321d10bf81583, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -399
+      objectReference: {fileID: 0}
+    - target: {fileID: 6032821228707485265, guid: 90877c543b25da74f8d321d10bf81583, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 282
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
