@@ -1,3 +1,4 @@
+using System;
     using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,12 +9,14 @@ public class PlayerJump : MonoBehaviour
 
     public Transform groundCheck;
     public LayerMask groundLayer;
+    public LayerMask waterLayer;
     private Rigidbody2D rb;
     public bool isJumping;
+    public bool inWater;
     [SerializeField] int maxJumps = 2;
-    [SerializeField] int jumpsRemeaning; 
+    [SerializeField] int jumpsRemeaning;
 
-
+    public Action onJump;
 
     void Awake()
     {
@@ -22,18 +25,26 @@ public class PlayerJump : MonoBehaviour
 
     private void Update()
     {
+        inWater = false;
         GroundCheck(); 
     }
 
     #region collision
     public bool GroundCheck()
     {
+       
         if (Physics2D.OverlapCapsule(groundCheck.position, groundCheck.localScale, CapsuleDirection2D.Horizontal, 0, groundLayer))
         {
             isJumping = false;
             jumpsRemeaning = maxJumps;
+            
             return true;
 
+        }
+        else if(Physics2D.OverlapCapsule(groundCheck.position, groundCheck.localScale, CapsuleDirection2D.Horizontal, 0, waterLayer))
+        {
+            inWater = true;
+            return true;
         }
         isJumping = true;
         return false;
@@ -49,6 +60,8 @@ public class PlayerJump : MonoBehaviour
             if (context.performed)
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpPower);
+                if(onJump != null)
+                    onJump();
                 jumpsRemeaning--;
             }
             else if (context.canceled)
@@ -57,7 +70,24 @@ public class PlayerJump : MonoBehaviour
                 jumpsRemeaning--;
             }
         }
-
+        else if (inWater)
+        {
+           
+            if (context.performed)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpPower*1f);
+                jumpsRemeaning=0;
+                GroundCheck();
+            }
+            else if (context.canceled)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 1f);
+                jumpsRemeaning=0;
+                GroundCheck();
+            }
+            
+        }
+        
 
     }
     #endregion jump

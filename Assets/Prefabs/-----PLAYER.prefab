@@ -697,7 +697,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 9.123819
+  orthographic size: 12.048867
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1108,9 +1108,9 @@ MonoBehaviour:
   move: {fileID: 7166945924870577955, guid: 45ac6d5744795c5498f12a10fd396418, type: 3}
   movementInput: {x: 0, y: 0}
   currentSpeed: 0
-  acceleration: 2.41
+  acceleration: 3
   deacceleration: 4.5
-  maxSpeed: 11
+  maxSpeed: 15
 --- !u!114 &6714887214655106452
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1129,7 +1129,11 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 64
+  waterLayer:
+    serializedVersion: 2
+    m_Bits: 16
   isJumping: 0
+  inWater: 0
   maxJumps: 2
   jumpsRemeaning: 0
 --- !u!114 &8081345811934998298

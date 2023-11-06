@@ -17,7 +17,7 @@ public class FallingPlatform : MonoBehaviour
     private void Start()
     {
         initialPosition = transform.position;
-        touchCounterText.text = "ABLE";
+        touchCounterText.text = "Fall";
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -25,12 +25,13 @@ public class FallingPlatform : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             StartCoroutine(Fall());
+            touchCounterText.text = "X(";
         }
     }
 
     private IEnumerator Fall()
     {
-        touchCounterText.text = fallDelay.ToString();
+        
         yield return new WaitForSeconds(fallDelay);
         touchCounterText.text = "DESTROYED";
         
@@ -55,7 +56,7 @@ public class FallingPlatform : MonoBehaviour
         // Enable the renderer and collider
         GetComponent<Renderer>().enabled = true;
         GetComponent<Collider2D>().enabled = true;
-        touchCounterText.text = "ABLE";
+        touchCounterText.text = "Fall";
 
         rb.bodyType = RigidbodyType2D.Static;
     }
