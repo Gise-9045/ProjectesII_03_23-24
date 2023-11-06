@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class Jump : MonoBehaviour
 {
-    public void Jump_player(Vector2 dir, Rigidbody2D physics, float jumpForce)
+
+    [SerializeField] private Rigidbody2D physics;
+    [SerializeField] private float jumpForce;
+
+    public void Jump_player()
     {
         physics.velocity = new Vector2(physics.velocity.x, 0);
-        physics.velocity += dir * jumpForce; 
-
+        physics.velocity += Vector2.up * jumpForce; 
     }
 
 }
