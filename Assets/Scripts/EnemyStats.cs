@@ -8,13 +8,13 @@ public class Enemy : MonoBehaviour
 {
     public EnemyAttack enemyAttack;
 
-    public int health = 50;
+    public int health = 3;
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private float speed;
     private int direction = 1;
 
-    [SerializeField] public Transform pointA;
-    [SerializeField] public Transform pointB;
+    [SerializeField] private Transform pointA;
+    [SerializeField] private Transform pointB;
     [SerializeField] SpriteRenderer sr;
 
     [SerializeField] private string detectionTag = "Player";
@@ -66,10 +66,12 @@ public class Enemy : MonoBehaviour
     {
         rb.velocity = new Vector2(direction * speed, rb.velocity.y);
     }
-    public void TakeDamage(int damage)
+
+
+    public void TakeDamage(int damage, Vector2 knockback)
     {
         health -= damage;
-        Debug.Log("Damage recieved");
+        rb.AddForce(knockback, ForceMode2D.Impulse);
     }
 
 

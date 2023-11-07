@@ -10,7 +10,7 @@ public class alternatingJump : MonoBehaviour
     public void Start()
     {
         controllerJump.onJump += Toggle;//add toggle to the onjump action
-        
+        touchCounterText.text = isActive ? ":)" : ":(";
     }
 
     public void OnDestroy()
