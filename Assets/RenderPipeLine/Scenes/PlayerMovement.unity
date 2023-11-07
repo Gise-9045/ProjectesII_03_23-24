@@ -173,7 +173,6 @@ GameObject:
   - component: {fileID: 372558068}
   - component: {fileID: 372558067}
   - component: {fileID: 372558066}
-  - component: {fileID: 372558070}
   - component: {fileID: 372558069}
   - component: {fileID: 372558071}
   m_Layer: 7
@@ -265,7 +264,7 @@ Rigidbody2D:
   m_Mass: 3
   m_LinearDrag: 2
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 3
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -409,6 +408,7 @@ MonoBehaviour:
   isDashing: 1
   sidePlayer: 1
   move: {x: 0, y: 0}
+  _physics: {fileID: 372558061}
 --- !u!114 &372558066
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -451,9 +451,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49586ae73dbc07f4d81e1856c830532a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 13
-  fallMultiplier: 2.5
-  lowJumpMultiplier: 2
+  jumpForce: 30
+  gravityScale: 10
+  fallingGravityScale: 10
 --- !u!114 &372558069
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -470,18 +470,6 @@ MonoBehaviour:
   _dashingCooldown: 1
   _dashSpeed: 50
   _trailRenderer: {fileID: 0}
---- !u!114 &372558070
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 372558058}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a17262e7f4578743be83a671e842c93, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!96 &372558071
 TrailRenderer:
   serializedVersion: 3
@@ -490,7 +478,7 @@ TrailRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 372558058}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

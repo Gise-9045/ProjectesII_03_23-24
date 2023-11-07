@@ -34,7 +34,8 @@ public class InputManager : MonoBehaviour
 
     //Particulas De momento nope
 
-    public Vector2 move; 
+    public Vector2 move;
+    public Rigidbody2D _physics; 
 
     #endregion VARIABLES 
 
@@ -145,6 +146,8 @@ public class InputManager : MonoBehaviour
     {
         if (!canMove) return;
         
+        float massScale = _physics.mass;
+
         if (_collision.onGround)
         {
             _jump.Jump_player();
@@ -153,6 +156,8 @@ public class InputManager : MonoBehaviour
         {
             _wall.WallJump();
         }
+
+        _physics.mass = massScale;
     }
 
     private void PlayerDash(InputAction.CallbackContext obj)
