@@ -13,8 +13,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float speed;
     private int direction = 1;
 
-    [SerializeField] public Transform pointA;
-    [SerializeField] public Transform pointB;
+    [SerializeField] private Transform pointA;
+    [SerializeField] private Transform pointB;
     [SerializeField] SpriteRenderer sr;
 
     [SerializeField] private string detectionTag = "Player";
