@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Collections;
@@ -12,13 +11,16 @@ public class PlayerAttack : MonoBehaviour
     public bool isHitting = false;
     [SerializeField] private InputActionReference attack;
     [SerializeField] private Transform sword;
+    [SerializeField] private leverActivation leverLogic;
+    private bool leverToggled = false; // Flag to prevent repeated toggles
 
     public Enemy enemyStats;
 
     void Start()
     {
-
+        isHitting = false;
     }
+
     void Update()
     {
         isAttacking = attack.action.ReadValue<float>();
@@ -31,13 +33,22 @@ public class PlayerAttack : MonoBehaviour
             CapsuleDirection2D.Vertical,
             sword.rotation.eulerAngles.z);
 
+        bool leverDetected = false; // Flag to track lever detection in this frame
+
         foreach (Collider2D collider in collidersHit)
         {
+            if (collider.CompareTag("Lever") && !leverToggled && !leverDetected)
+            {
+                leverLogic.Toggle();
+                leverDetected = true;
+                StartCoroutine(ResetLeverToggle());
+            }
             Enemy e = collider.GetComponent<Enemy>();
             if (e != null)
             {
                 bool valid = true;
-                foreach (GameObject obj in hitObjects) {
+                foreach (GameObject obj in hitObjects)
+                {
                     valid &= !obj.Equals(e.gameObject);
                 }
                 if (valid)
@@ -46,15 +57,25 @@ public class PlayerAttack : MonoBehaviour
                     e.TakeDamage(10, (Vector2)(e.transform.position - sword.transform.position) * 5f + Vector2.up * 2f);
                 }
             }
+            // Additional code for handling enemy collisions if needed
+            isHitting = false;
+            leverDetected = false;
         }
+    }
+
+    IEnumerator ResetLeverToggle()
+    {
+        leverToggled = true;
+        yield return new WaitForSeconds(0.5f); // Adjust this cooldown duration as needed
+        leverToggled = false;
     }
 
     public void StartHit()
     {
         hitObjects.Clear();
-
         isHitting = true;
     }
+
     public void StopHit()
     {
         isHitting = false;
@@ -66,5 +87,11 @@ public class PlayerAttack : MonoBehaviour
             new Vector2(0.4f, 1.5f),
             CapsuleDirection2D.Vertical,
             sword.rotation.eulerAngles.z);
+    }
+    IEnumerator ResetCooldown()
+    {
+        leverToggled = true;
+        yield return new WaitForSeconds(0.5f); // Adjust this cooldown duration as needed
+        leverToggled = false;
     }
 }
