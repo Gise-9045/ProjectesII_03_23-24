@@ -5,13 +5,17 @@ using UnityEngine;
 public class Jump : MonoBehaviour
 {
 
-    [SerializeField] private Rigidbody2D physics;
+    private Rigidbody2D _physics;
+
     [SerializeField] private float jumpForce;
+
+    private void Update()
+    {
+        _physics = GetComponent<Rigidbody2D>();
+    }
 
     public void Jump_player()
     {
-        physics.velocity = new Vector2(physics.velocity.x, 0);
-        physics.velocity += Vector2.up * jumpForce; 
+        _physics.velocity = new Vector2(_physics.velocity.x, jumpForce); 
     }
-
 }
