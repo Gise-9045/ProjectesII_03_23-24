@@ -1,42 +1,43 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Wall : MonoBehaviour
 {
-    public void WallJump(bool canMove , Collisions _collision , Jump _jump , bool wallJumped, Rigidbody2D physics, float jumpForce)
+    [SerializeField] private float _wallSlideSpeed = 5f;
+    
+    private Rigidbody2D _physics;
+    private Collisions _collision;
+    private Jump _jump;
+
+    private void Awake() {
+        _physics = GetComponent<Rigidbody2D>();
+        _collision = GetComponent<Collisions>();
+        _jump = GetComponent<Jump>();
+    }
+
+    public void WallJump()
     {
-        StopCoroutine(DisableMovement(0 , canMove)); 
-        StartCoroutine(DisableMovement(.1f , canMove));
+        StopCoroutine(DisableMovement(0 )); 
+        StartCoroutine(DisableMovement(.1f));
 
         Vector2 wallDir = _collision.onRightWall ? Vector2.left : Vector2.right;
 
         _jump.Jump_player();
-
-        wallJumped = true; 
-
     }
-    public void WallSlide(/* , int side*/ bool canMove,  Rigidbody2D physics, Collisions _collision, float slideSpeed)
+    public void WallSlide()
     {
-        if(!canMove)
-        { return; }
+        bool pushingWall = (_physics.velocity.x > 0 && _collision.onRightWall) || 
+                           (_physics.velocity.x < 0 && _collision.onLeftWall );
 
-        bool pushingWall = false; 
-        
-        if((physics.velocity.x > 0 && _collision.onRightWall) || (physics.velocity.x < 0 && _collision.onLeftWall ))
-        {
-            pushingWall = true;
-        }
+        float push = pushingWall ? 0 : _physics.velocity.x;
 
-        float push = pushingWall ? 0 : physics.velocity.x;
-
-        physics.velocity = new Vector2(push, -slideSpeed);
+        _physics.velocity = new Vector2(push, -_wallSlideSpeed);
     }
 
-    private IEnumerator DisableMovement(float time, bool canMove)
+    private IEnumerator DisableMovement(float time)
     {
-        canMove = false; 
         yield return new WaitForSeconds(time);
-        canMove = true;
     }
 }
