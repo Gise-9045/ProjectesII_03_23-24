@@ -42,7 +42,6 @@ public class Dash : MonoBehaviour
 
         _physics.velocity = new Vector2(transform.localScale.x * _dashSpeed, 0f);
 
-        _trailRenderer.emitting = true;
 
         yield return new WaitForSeconds(_dashingTime);
         _trailRenderer.emitting = false;

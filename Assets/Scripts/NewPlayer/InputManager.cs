@@ -100,7 +100,6 @@ public class InputManager : MonoBehaviour
             wallSlide = false;
         }
 
-
         if (_collision.onGround && !_groundTouch)
         {
             GroundTouch();
@@ -112,15 +111,17 @@ public class InputManager : MonoBehaviour
             _groundTouch = false;
         }
 
-        if (wallJumped || !canMove)
-        {
-            return;
-        }
 
         if (!_collision.onWall && _collision.onGround && !isDashing)
         {
             canMove = true;
         }
+
+        if (wallJumped || !canMove)
+        {
+            return;
+        }
+
 
         if (move.x > 0)
         {
@@ -136,7 +137,7 @@ public class InputManager : MonoBehaviour
     }
     private void GroundTouch()
     {
-        _hasDashed = false;
+
         isDashing = false;
     }
 
