@@ -15,6 +15,8 @@ public class GroundEnemy : MonoBehaviour
 
     public int direction = 1;
     public int health = 3;
+    bool knockback = false;
+    float knockbackVel;
 
 
     private void Start()
@@ -24,7 +26,16 @@ public class GroundEnemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Move();
+        if(knockback)
+        {
+            rb.velocity = new Vector2(-direction * knockbackVel, rb.velocity.y);
+        }
+        else 
+        {
+            rb.velocity = new Vector2(direction * speed, rb.velocity.y);
+
+        }
+
 
         //HEALTH
         if (health <= 0)
@@ -40,19 +51,25 @@ public class GroundEnemy : MonoBehaviour
         Vector3 currentScale = gameObject.transform.localScale;
         currentScale.x = direction;
         gameObject.transform.localScale = currentScale;
+
+        knockback = false;
     }
 
-    private void Move()
+    public void TakeDamage(int damage, float k)
     {
-        rb.velocity = new Vector2(direction * speed, rb.velocity.y);
+        //health -= damage;
+
+        //Vector 2D de la fuerza y el como le actua al objeto
+        //rb.AddForce(new Vector2(knockback, 0f));
+
+        knockbackVel = k;
+        StartCoroutine(KnockBack());
     }
 
-    public void TakeDamage(int damage, Vector2 knockback)
+    private IEnumerator KnockBack()
     {
-        health -= damage;
-        rb.AddForce(knockback, ForceMode2D.Impulse);
+        knockback = true;
+        yield return new WaitForSeconds(0.1f);
+        knockback = false;
     }
-
-
-
 }
