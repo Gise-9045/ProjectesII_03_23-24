@@ -16,8 +16,6 @@ public class Jump : MonoBehaviour
 
     float oldVelocity;
 
-    bool isFalling; 
-
     private void Update()
     {
         _physics = GetComponent<Rigidbody2D>();
@@ -27,18 +25,17 @@ public class Jump : MonoBehaviour
     {
         _physics.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
 
-        if (_physics.velocity.y >= 0 && !isFalling)
+        if (_physics.velocity.y >= 0f )
         {
-            _physics.mass = massScale;
-            Debug.Log(_physics.mass);
+            _physics.gravityScale = massScale;
+            Debug.Log(_physics.gravityScale);
+            Debug.Log(_physics.velocity.y); 
         }
         if(oldVelocity <= _physics.velocity.y)
         {
-            _physics.mass = fallingMassScale;
-            Debug.Log(_physics.mass);
-            isFalling = false; 
+            _physics.gravityScale = fallingMassScale;
+            Debug.Log(_physics.gravityScale);
         }
-
         oldVelocity = _physics.velocity.y; 
          
     }

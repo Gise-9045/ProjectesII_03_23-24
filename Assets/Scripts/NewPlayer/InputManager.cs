@@ -146,7 +146,7 @@ public class InputManager : MonoBehaviour
     {
         if (!canMove) return;
         
-        float massScale = _physics.mass;
+        float massScale = _physics.gravityScale;
 
         if (_collision.onGround)
         {
@@ -157,7 +157,7 @@ public class InputManager : MonoBehaviour
             _wall.WallJump();
         }
 
-        _physics.mass = massScale;
+        _physics.gravityScale = massScale;
     }
 
     private void PlayerDash(InputAction.CallbackContext obj)
