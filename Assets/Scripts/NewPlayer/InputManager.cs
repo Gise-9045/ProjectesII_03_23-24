@@ -35,7 +35,8 @@ public class InputManager : MonoBehaviour
     private bool _groundTouch;
 
     [Header("Habilities")]
-    public bool canDoubleJump = false; 
+    public bool canDoubleJump = false;
+    public bool canDash = false;
 
     //Particulas De momento nope
 
@@ -90,7 +91,10 @@ public class InputManager : MonoBehaviour
         {
             canDoubleJump = true; 
         }
-
+        if (_collision.collectingDash)
+        {
+            canDash = true;
+        }
         if (_collision.onGround && !isDashing)
         {
             wallJumped = false;
@@ -180,6 +184,10 @@ public class InputManager : MonoBehaviour
 
     private void PlayerDash(InputAction.CallbackContext obj)
     {
+        if (!canDash)
+        {
+            return;
+        }
         if (move != Vector2.zero) // GetAxisRaw ??
         {
             _dash.PlayerDashing();

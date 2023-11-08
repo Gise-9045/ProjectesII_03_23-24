@@ -14,10 +14,10 @@ public class Move : MonoBehaviour
     [Space]
     [Header("Velocity")]
 
-    [SerializeField] private float currentSpeed;
+    [SerializeField] public float currentSpeed;
     [SerializeField] private float acceleraiton; 
     [SerializeField] private float deacceleraiton; 
-    [SerializeField] private float maxSpeed;
+    [SerializeField] public float maxSpeed;
 
     private void Update() 
     {
