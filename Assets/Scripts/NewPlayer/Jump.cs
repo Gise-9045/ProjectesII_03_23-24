@@ -21,22 +21,26 @@ public class Jump : MonoBehaviour
         _physics = GetComponent<Rigidbody2D>();
     }
 
-    public void Jump_player()
+    public void Jump_player(int jumpCount , int maxJump)
     {
-        _physics.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-
+        if(jumpCount != maxJump)
+        {
+            _physics.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            jumpCount++; 
+        }
+       
         if (_physics.velocity.y >= 0f )
         {
-            _physics.gravityScale = massScale;
-            Debug.Log(_physics.gravityScale);
-            Debug.Log(_physics.velocity.y); 
+            _physics.mass = massScale;
+
         }
-        if(oldVelocity <= _physics.velocity.y)
+        if (oldVelocity <= _physics.velocity.y )
         {
-            _physics.gravityScale = fallingMassScale;
-            Debug.Log(_physics.gravityScale);
+            _physics.mass = fallingMassScale;
         }
-        oldVelocity = _physics.velocity.y; 
-         
+        oldVelocity = _physics.velocity.y;
+
+
+        Debug.Log(jumpCount); 
     }
 }
