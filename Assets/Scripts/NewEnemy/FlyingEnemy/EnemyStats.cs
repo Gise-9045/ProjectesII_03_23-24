@@ -45,16 +45,11 @@ public class FlyingEnemy : MonoBehaviour
 
         if(direction == 0)
         {
-            //movement = Mathf.Lerp(currentPoint.position.y, pointB.position.y, (((currentPoint.position.y - pointB.position.y) / speed) * Time.deltaTime) * acceleration);
-
-            movement = Mathf.Lerp(currentPoint.position.y, pointB.position.y, speed);
-
+            movement = Mathf.Lerp(currentPoint.position.y, pointB.position.y, (((currentPoint.position.y - pointB.position.y) / speed) * Time.deltaTime) * acceleration);
         }
         else
         {
-            //movement = Mathf.Lerp(currentPoint.position.y, pointA.position.y, (((pointA.position.y - currentPoint.position.y) / speed) * Time.deltaTime) * acceleration);
-
-            movement = Mathf.Lerp(currentPoint.position.y, pointA.position.y, speed);
+            movement = Mathf.Lerp(currentPoint.position.y, pointA.position.y, (((pointA.position.y - currentPoint.position.y) / speed) * Time.deltaTime) * acceleration);
 
         }
 
@@ -83,10 +78,11 @@ public class FlyingEnemy : MonoBehaviour
         rb.position = new Vector2(rb.position.x, movement);
     }
 
-    public void TakeDamage(int damage, Vector2 knockback)
+    public void TakeDamage(int damage, float k)
     {
         health -= damage;
-        rb.AddForce(knockback, ForceMode2D.Impulse);
+
+        Debug.Log(health);
     }
 
 

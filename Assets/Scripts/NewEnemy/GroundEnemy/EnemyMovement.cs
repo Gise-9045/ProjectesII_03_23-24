@@ -6,6 +6,9 @@ using UnityEngine;
 public class GroundEnemy : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Transform player;
+
+    [SerializeField] private EnemyDamage enemyDamage;
 
 
     private Transform currentPoint;
@@ -14,9 +17,8 @@ public class GroundEnemy : MonoBehaviour
     [SerializeField] private float speed;
 
     public int direction = 1;
-    public int health = 3;
-    bool knockback = false;
-    float knockbackVel;
+    public int health;
+
 
 
     private void Start()
@@ -26,9 +28,10 @@ public class GroundEnemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(knockback)
+
+        if(enemyDamage.GetKnockback())
         {
-            rb.velocity = new Vector2(-direction * knockbackVel, rb.velocity.y);
+            rb.velocity = new Vector2(-Mathf.Sign(player.position.x - currentPoint.position.x) * enemyDamage.GetKnockbackVel(), rb.velocity.y);
         }
         else 
         {
@@ -38,7 +41,7 @@ public class GroundEnemy : MonoBehaviour
 
 
         //HEALTH
-        if (health <= 0)
+        if (health <= 0 && Time.timeScale == 1)
         {
             Destroy(gameObject);
         }
@@ -51,25 +54,5 @@ public class GroundEnemy : MonoBehaviour
         Vector3 currentScale = gameObject.transform.localScale;
         currentScale.x = direction;
         gameObject.transform.localScale = currentScale;
-
-        knockback = false;
-    }
-
-    public void TakeDamage(int damage, float k)
-    {
-        //health -= damage;
-
-        //Vector 2D de la fuerza y el como le actua al objeto
-        //rb.AddForce(new Vector2(knockback, 0f));
-
-        knockbackVel = k;
-        StartCoroutine(KnockBack());
-    }
-
-    private IEnumerator KnockBack()
-    {
-        knockback = true;
-        yield return new WaitForSeconds(0.1f);
-        knockback = false;
     }
 }
