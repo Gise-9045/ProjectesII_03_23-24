@@ -37,9 +37,9 @@ public class Dash : MonoBehaviour
             float originalGravity = _physics.gravityScale;
             
             if(_physics.gravityScale!=00.2f) {
-                playermove.maxSpeed = 30f;
-                playermove.currentSpeed = 30f;
-                _physics.velocity = new Vector2(30, 0f);
+                playermove.maxSpeed = 50f;
+                playermove.currentSpeed = 50f;
+                _physics.velocity = new Vector2(50, 5f);
                 _physics.velocity.Normalize();
 
             }
