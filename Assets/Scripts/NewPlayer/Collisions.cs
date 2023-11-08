@@ -97,17 +97,17 @@ public class Collisions : MonoBehaviour
             dialogText.gameObject.SetActive(true); // Show the popup
             itemContainer.gameObject.SetActive(true);
             // You can modify this duration as needed
-           HidePopup(2f); // Hide after 2 seconds
+           StartCoroutine(HidePopup(2f)); // Hide after 2 seconds
         }
     }
 
     IEnumerator HidePopup(float delay)
     {
-        yield return new WaitForSeconds(delay);
-        if (currentDialogBox != null)
-        {
+        yield return new WaitForSecondsRealtime(delay);
+        
+        
             Destroy(currentDialogBox); // Destroy the dialog box after the delay
             itemContainer.gameObject.SetActive(false);
-        }
+        
     }
 }
