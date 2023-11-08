@@ -240,11 +240,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5286946954381672334}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -31.4, y: 3.0099998, z: -10.0799885}
+  m_LocalPosition: {x: -7.311222, y: -1.1218934, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2162837740978201818}
+  m_Father: {fileID: 4571219453651282387}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &490281796918748970
@@ -418,10 +418,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6503421941141198410}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -13.45, y: -2.17, z: -0.07998894}
+  m_LocalPosition: {x: -26.8, y: 2.9, z: -0.07998894}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 4905686525161926280}
   m_Father: {fileID: 2162837740978201818}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -657,9 +658,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForce: 55
+  groundCheck: {fileID: 0}
   waterLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 16
   inWater: 0
   massScale: 2.31
   fallingMassScale: 10
@@ -739,7 +741,6 @@ Transform:
   m_Children:
   - {fileID: 4571219453651282387}
   - {fileID: 6511875654066766961}
-  - {fileID: 4905686525161926280}
   - {fileID: 6294146462580894295}
   m_Father: {fileID: 0}
   m_RootOrder: 0
