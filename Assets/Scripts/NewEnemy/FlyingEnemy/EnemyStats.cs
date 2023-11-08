@@ -78,13 +78,6 @@ public class FlyingEnemy : MonoBehaviour
         rb.position = new Vector2(rb.position.x, movement);
     }
 
-    public void TakeDamage(int damage, float k)
-    {
-        health -= damage;
-
-        Debug.Log(health);
-    }
-
 
     private void OnDrawGizmos()
     {

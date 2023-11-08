@@ -12,7 +12,8 @@ public class PlayerAttack : MonoBehaviour
     public float isAttacking;
 
     [SerializeField] private Collider2D weapon;
-    public GroundEnemy groundEnemy;
+    private GroundEnemyDamage groundEnemy;
+    private FlyingEnemyDamage flyingEnemy;
 
 
     private void Update()
@@ -22,15 +23,16 @@ public class PlayerAttack : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Enemy")
+
+        if(collision.tag == "GroundEnemy")
         {
-            collision.GetComponent<EnemyDamage>().TakeDamage(1, 20.0f);
+            collision.GetComponent<GroundEnemyDamage>().TakeDamage(1, 20.0f);
         }
 
-        //if (collision.tag == "FlyingEnemy")
-        //{
-        //    collision.GetComponent<FlyingEnemy>().TakeDamage(1, 20.0f);
+        if (collision.tag == "FlyingEnemy")
+        {
+            collision.GetComponent<FlyingEnemyDamage>().TakeDamage(1, 20.0f);
 
-        //}
+        }
     }
 }

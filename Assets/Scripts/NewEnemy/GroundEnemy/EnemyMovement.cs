@@ -8,7 +8,7 @@ public class GroundEnemy : MonoBehaviour
     [SerializeField] private Rigidbody2D rb;
     [SerializeField] private Transform player;
 
-    [SerializeField] private EnemyDamage enemyDamage;
+    [SerializeField] private GroundEnemyDamage groundEnemyDamage;
 
 
     private Transform currentPoint;
@@ -18,6 +18,7 @@ public class GroundEnemy : MonoBehaviour
 
     public int direction = 1;
     public int health;
+    public bool followPlayer;
 
 
 
@@ -29,9 +30,16 @@ public class GroundEnemy : MonoBehaviour
     private void FixedUpdate()
     {
 
-        if(enemyDamage.GetKnockback())
+        if(groundEnemyDamage.GetKnockback())
         {
-            rb.velocity = new Vector2(-Mathf.Sign(player.position.x - currentPoint.position.x) * enemyDamage.GetKnockbackVel(), rb.velocity.y);
+            rb.velocity = new Vector2(-Mathf.Sign(player.position.x - currentPoint.position.x) * groundEnemyDamage.GetKnockbackVel(), rb.velocity.y);
+        }
+        else if(followPlayer)
+        {
+            rb.velocity = new Vector2(Mathf.Sign(player.position.x - currentPoint.position.x) * speed, rb.velocity.y);
+
+            direction = (int)Mathf.Sign(player.position.x - currentPoint.position.x);
+
         }
         else 
         {
@@ -39,6 +47,7 @@ public class GroundEnemy : MonoBehaviour
 
         }
 
+        Direction();
 
         //HEALTH
         if (health <= 0 && Time.timeScale == 1)
@@ -51,6 +60,14 @@ public class GroundEnemy : MonoBehaviour
     {
         direction = -1 * direction;
 
+        Vector3 currentScale = gameObject.transform.localScale;
+        currentScale.x = direction;
+        gameObject.transform.localScale = currentScale;
+    }
+
+
+    public void Direction()
+    {
         Vector3 currentScale = gameObject.transform.localScale;
         currentScale.x = direction;
         gameObject.transform.localScale = currentScale;
