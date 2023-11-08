@@ -29,8 +29,13 @@ public class InputManager : MonoBehaviour
     [SerializeField] private bool isDashing;
     
     public int sidePlayer = 1;
+    private int jumpCount;
+    private int maxJump; 
 
     private bool _groundTouch;
+
+    [Header("Habilities")]
+    public bool canDoubleJump = false; 
 
     //Particulas De momento nope
 
@@ -60,7 +65,6 @@ public class InputManager : MonoBehaviour
     void Awake()
     {
         _collision = GetComponent<Collisions>();
-
         // Scripts
 
         _move = GetComponent<Move>();
@@ -82,9 +86,26 @@ public class InputManager : MonoBehaviour
 
     private void CambioEstados() 
     {
+        if(_collision.collectingJump)
+        {
+            canDoubleJump = true; 
+        }
+
         if (_collision.onGround && !isDashing)
         {
             wallJumped = false;
+
+            jumpCount = 0; 
+
+            if (canDoubleJump == true)
+            {
+                maxJump = 2;
+            }
+
+            if (canDoubleJump == false)
+            {
+                maxJump = 1;
+            }
         }
 
         if (_collision.onWall && !_collision.onGround)
@@ -138,7 +159,6 @@ public class InputManager : MonoBehaviour
     }
     private void GroundTouch()
     {
-
         isDashing = false;
     }
 
@@ -146,18 +166,16 @@ public class InputManager : MonoBehaviour
     {
         if (!canMove) return;
         
-        float massScale = _physics.gravityScale;
+        float massScale = _physics.mass;
 
-        if (_collision.onGround)
-        {
-            _jump.Jump_player();
-        }
+        _jump.Jump_player(jumpCount ,maxJump);
+
         if (_collision.onWall && !_collision.onGround)
         {
-            _wall.WallJump();
+            _wall.WallJump(jumpCount, maxJump);
         }
 
-        _physics.gravityScale = massScale;
+         _physics.mass = massScale;
     }
 
     private void PlayerDash(InputAction.CallbackContext obj)
