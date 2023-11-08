@@ -411,6 +411,7 @@ MonoBehaviour:
   isDashing: 1
   sidePlayer: 1
   canDoubleJump: 0
+  canDash: 0
   move: {x: 0, y: 0}
   _physics: {fileID: 372558061}
 --- !u!114 &372558066
@@ -456,7 +457,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForce: 55
-  massScale: 2.31
+  massScale: 1.01
   fallingMassScale: 10
 --- !u!114 &372558069
 MonoBehaviour:
@@ -470,10 +471,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76efbf97ce1a13049addbe18970286fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dashingTime: 1
-  _dashingCooldown: 1
-  _dashSpeed: 50
-  _trailRenderer: {fileID: 0}
+  velocityDash: 10000
+  timeDash: 0.4
 --- !u!96 &372558071
 TrailRenderer:
   serializedVersion: 3
@@ -654,7 +653,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 7.105461
+  orthographic size: 12.232826
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -773,8 +772,8 @@ GameObject:
   - component: {fileID: 1674494155}
   - component: {fileID: 1674494156}
   m_Layer: 0
-  m_Name: Item Habilitie
-  m_TagString: ItemJump
+  m_Name: Item
+  m_TagString: ItemDash
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

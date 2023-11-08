@@ -13,7 +13,7 @@ public class InputManager : MonoBehaviour
     private Jump _jump;
     private Move _move;
     private Wall _wall;
-
+    private SpriteRenderer _spriteRenderer; 
     [Space]
     [Header("Input References")]
     [SerializeField] private InputActionReference _playerMoveInput;
@@ -22,7 +22,7 @@ public class InputManager : MonoBehaviour
 
     [Space]
     [Header("Booleans")]
-    [SerializeField] private bool canMove;
+    [SerializeField] private bool canMove = true;
     // public bool wallGrab;
     [SerializeField] private bool wallJumped;
     [SerializeField] private bool wallSlide;
@@ -35,7 +35,8 @@ public class InputManager : MonoBehaviour
     private bool _groundTouch;
 
     [Header("Habilities")]
-    public bool canDoubleJump = false; 
+    public bool canDoubleJump = false;
+    public bool canDash = false;
 
     //Particulas De momento nope
 
@@ -65,6 +66,7 @@ public class InputManager : MonoBehaviour
     void Awake()
     {
         _collision = GetComponent<Collisions>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
         // Scripts
 
         _move = GetComponent<Move>();
@@ -86,9 +88,14 @@ public class InputManager : MonoBehaviour
 
     private void CambioEstados() 
     {
-        if(_collision.collectingJump)
+        if(_collision.collectingJump) //REVISAR
         {
             canDoubleJump = true; 
+        }
+
+        if(_collision.collectingDash)
+        {
+            canDash = true; 
         }
 
         if (_collision.onGround && !isDashing)
@@ -148,12 +155,13 @@ public class InputManager : MonoBehaviour
         if (move.x > 0)
         {
             sidePlayer = 1;
-            //metodo Flip ->script Animation
+
+            _spriteRenderer.flipX = false; 
         }
         if (move.x < 0)
         {
             sidePlayer = -1;
-            //metodo Flip -> script Animation
+            _spriteRenderer.flipX = true; 
 
         }    
     }
@@ -166,7 +174,7 @@ public class InputManager : MonoBehaviour
     {
         if (!canMove) return;
         
-        float massScale = _physics.mass;
+       // float gravityScale = _physics.gravityScale;
 
         _jump.Jump_player(jumpCount ,maxJump);
 
@@ -175,15 +183,17 @@ public class InputManager : MonoBehaviour
             _wall.WallJump(jumpCount, maxJump);
         }
 
-         _physics.mass = massScale;
+        // _physics.gravityScale = gravityScale;
     }
 
     private void PlayerDash(InputAction.CallbackContext obj)
     {
-        if (move != Vector2.zero) // GetAxisRaw ??
-        {
-            _dash.PlayerDashing();
-        }
+        if (!canDash) return; 
+
+        canMove = false; 
+        _dash.Dashing();
+        canMove = true; 
+
     }
 
     private void PlayerMove(InputAction.CallbackContext obj) 
