@@ -29,8 +29,8 @@ public class InputManager : MonoBehaviour
     [SerializeField] private bool isDashing;
     
     public int sidePlayer = 1;
-    private int jumpCount;
-    private int maxJump; 
+    private int jumpCount = 0;
+    private int maxJump = 2; 
 
     private bool _groundTouch;
 
@@ -49,7 +49,7 @@ public class InputManager : MonoBehaviour
 
     private void OnEnable()
     {
-        _playerJumpInput.action.performed += PlayerJump;
+        _playerJumpInput.action.started += PlayerJump;
         _playerDashInput.action.performed += PlayerDash;
         _playerMoveInput.action.started += PlayerMove;
         _playerMoveInput.action.canceled += PlayerMove;
@@ -57,7 +57,7 @@ public class InputManager : MonoBehaviour
 
     private void OnDisable() 
     {
-        _playerJumpInput.action.performed -= PlayerJump;
+        _playerJumpInput.action.started -= PlayerJump;
         _playerDashInput.action.performed -= PlayerDash;
         _playerMoveInput.action.started -= PlayerMove;
         _playerMoveInput.action.canceled -= PlayerMove;
@@ -92,13 +92,11 @@ public class InputManager : MonoBehaviour
         {
             canDoubleJump = true; 
         }
-
-        if(_collision.collectingDash)
+        if (_collision.collectingDash)
         {
-            canDash = true; 
+            canDash = true;
         }
-
-        if (_collision.onGround && !isDashing)
+        if (_collision.onGround && !isDashing && _physics.velocity.y < 0.2f)
         {
             wallJumped = false;
 
@@ -176,8 +174,18 @@ public class InputManager : MonoBehaviour
         
        // float gravityScale = _physics.gravityScale;
 
-        _jump.Jump_player(jumpCount ,maxJump);
-
+        if (_jump.inWater == false)
+        {
+            _jump.Jump_player(jumpCount, maxJump);
+            jumpCount++;
+        } else if(_jump.inWater == true)
+        {
+            _jump.Jump_player(jumpCount, maxJump);
+            jumpCount = 0;
+        }
+           
+        
+       
         if (_collision.onWall && !_collision.onGround)
         {
             _wall.WallJump(jumpCount, maxJump);
@@ -188,12 +196,14 @@ public class InputManager : MonoBehaviour
 
     private void PlayerDash(InputAction.CallbackContext obj)
     {
-        if (!canDash) return; 
-
-        canMove = false; 
-        _dash.Dashing();
-        canMove = true; 
-
+        if (!canDash)
+        {
+            return;
+        }
+        if (move != Vector2.zero) // GetAxisRaw ??
+        {
+            _dash.PlayerDashing();
+        }
     }
 
     private void PlayerMove(InputAction.CallbackContext obj) 

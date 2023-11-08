@@ -1,5 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Jump : MonoBehaviour
@@ -12,28 +15,46 @@ public class Jump : MonoBehaviour
 
     [Space]
     [Header("Jump Variables")]
-    [SerializeField] private float gravityScale;
-    [SerializeField] private float fallingGravityScale;
-    [SerializeField] private float airResistance = 5.0f; // Ajusta este valor según sea necesario
+    public Transform groundCheck;
+    public LayerMask waterLayer;
+    public bool inWater;
+    public Action isJumping;
+    [SerializeField] private float massScale = 10f;
+    [SerializeField] private float fallingMassScale = 10f;
 
     float oldVelocity;
 
     private void Update()
     {
         _physics = GetComponent<Rigidbody2D>();
-        _collisions = GetComponent<Collisions>();   
+       
     }
-
-    public void Jump_player(int jumpCount, int maxJump)
+    
+    public void Jump_player(int jumpCount , int maxJump)
     {
-        if (jumpCount != maxJump)
+        if (Physics2D.OverlapCapsule(_physics.position, groundCheck.localScale, CapsuleDirection2D.Horizontal, 0, waterLayer))
         {
-            _physics.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            jumpCount++;
+            inWater = true;
         }
-
-        // Aplicar resistencia al aire
-        if (!_collisions.onGround)
+        else
+        {
+            inWater = false;
+        }
+        if (jumpCount < maxJump && inWater == false)
+        {
+            isJumping();
+            Debug.Log(jumpCount + " | " + maxJump);
+            _physics.velocity = new Vector2(_physics.velocity.x, 0);
+            _physics.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        } 
+        if(inWater == true)
+        {
+            _physics.velocity = new Vector2(_physics.velocity.x, 0);
+            _physics.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        }
+        
+       
+        if (_physics.velocity.y >= 0f )
         {
             Vector2 resistanceForce = -_physics.velocity.normalized * airResistance;
             _physics.AddForce(resistanceForce);
@@ -49,6 +70,6 @@ public class Jump : MonoBehaviour
         }
         oldVelocity = _physics.velocity.y;
 
-        Debug.Log(jumpCount);
+        
     }
 }
