@@ -18,6 +18,11 @@ public class Collisions : MonoBehaviour
 
     [Space]
 
+    public bool collectingJump;
+    public bool collectingDash;
+
+    [Space]
+
     [Header("Collision")]
 
     public float collisionRadius = 0.25f;
@@ -52,5 +57,21 @@ public class Collisions : MonoBehaviour
         Gizmos.DrawWireSphere((Vector2)transform.position + bottomOffset, collisionRadius);
         Gizmos.DrawWireSphere((Vector2)transform.position + rightOffset, collisionRadius);
         Gizmos.DrawWireSphere((Vector2)transform.position + leftOffset, collisionRadius);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("ItemJump"))
+        {
+            collectingJump = true; 
+
+            Destroy(collision.gameObject);
+        }
+        if(collision.CompareTag("ItemDash"))
+        {
+            collectingDash = true;
+
+            Destroy(collision.gameObject);
+        }
     }
 }

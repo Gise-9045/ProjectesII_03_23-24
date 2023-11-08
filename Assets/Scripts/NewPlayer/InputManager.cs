@@ -35,7 +35,7 @@ public class InputManager : MonoBehaviour
     private bool _groundTouch;
 
     [Header("Habilities")]
-    public bool canDoubleJump; 
+    public bool canDoubleJump = false; 
 
     //Particulas De momento nope
 
@@ -65,8 +65,6 @@ public class InputManager : MonoBehaviour
     void Awake()
     {
         _collision = GetComponent<Collisions>();
-
-        canDoubleJump = true; 
         // Scripts
 
         _move = GetComponent<Move>();
@@ -88,6 +86,11 @@ public class InputManager : MonoBehaviour
 
     private void CambioEstados() 
     {
+        if(_collision.collectingJump)
+        {
+            canDoubleJump = true; 
+        }
+
         if (_collision.onGround && !isDashing)
         {
             wallJumped = false;
