@@ -37,6 +37,8 @@ public class Collisions : MonoBehaviour
     public TextMeshProUGUI dialogText;
     public GameObject itemContainer;
 
+    private Rigidbody2D _physics; 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -54,6 +56,7 @@ public class Collisions : MonoBehaviour
     void Update()
     {
         onGround = Physics2D.OverlapCircle((Vector2)transform.position + bottomOffset, collisionRadius, groundLayer);
+
         onWall = Physics2D.OverlapCircle((Vector2)transform.position + rightOffset, collisionRadius, groundLayer)
             || Physics2D.OverlapCircle((Vector2)transform.position + leftOffset, collisionRadius, groundLayer);
 
