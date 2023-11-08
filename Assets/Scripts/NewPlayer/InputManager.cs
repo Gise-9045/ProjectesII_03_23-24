@@ -171,9 +171,12 @@ public class InputManager : MonoBehaviour
         if (!canMove) return;
         
         float massScale = _physics.mass;
-
-        _jump.Jump_player(jumpCount ,maxJump);
-        jumpCount++;
+        
+        
+            _jump.Jump_player(jumpCount, maxJump);
+            jumpCount++;
+        
+       
         if (_collision.onWall && !_collision.onGround)
         {
             _wall.WallJump(jumpCount, maxJump);
