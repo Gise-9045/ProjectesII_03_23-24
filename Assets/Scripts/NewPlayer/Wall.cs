@@ -17,14 +17,14 @@ public class Wall : MonoBehaviour
         _jump = GetComponent<Jump>();
     }
 
-    public void WallJump()
+    public void WallJump(int jumpCount,  int maxJump)
     {
         StopCoroutine(DisableMovement(0 )); 
         StartCoroutine(DisableMovement(.1f));
 
         Vector2 wallDir = _collision.onRightWall ? Vector2.left : Vector2.right;
 
-        _jump.Jump_player();
+        _jump.Jump_player(jumpCount, maxJump);
     }
     public void WallSlide()
     {

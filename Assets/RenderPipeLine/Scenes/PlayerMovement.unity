@@ -407,6 +407,7 @@ MonoBehaviour:
   wallSlide: 0
   isDashing: 1
   sidePlayer: 1
+  canDoubleJump: 0
   move: {x: 0, y: 0}
   _physics: {fileID: 372558061}
 --- !u!114 &372558066
@@ -451,9 +452,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49586ae73dbc07f4d81e1856c830532a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 30
-  gravityScale: 10
-  fallingGravityScale: 10
+  jumpForce: 55
+  massScale: 2.31
+  fallingMassScale: 10
 --- !u!114 &372558069
 MonoBehaviour:
   m_ObjectHideFlags: 0
