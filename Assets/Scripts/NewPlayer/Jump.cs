@@ -23,11 +23,13 @@ public class Jump : MonoBehaviour
 
     public void Jump_player(int jumpCount , int maxJump)
     {
-        if(jumpCount != maxJump)
+        if(jumpCount < maxJump)
         {
+            Debug.Log(jumpCount + " | " + maxJump);
+            _physics.velocity = new Vector2(_physics.velocity.x, 0);
             _physics.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            jumpCount++; 
         }
+        
        
         if (_physics.velocity.y >= 0f )
         {
@@ -40,7 +42,5 @@ public class Jump : MonoBehaviour
         }
         oldVelocity = _physics.velocity.y;
 
-
-        Debug.Log(jumpCount); 
     }
 }
