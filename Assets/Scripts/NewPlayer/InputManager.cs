@@ -54,7 +54,6 @@ public class InputManager : MonoBehaviour
     {
         _playerJumpInput.action.started += PlayerJump;
         _playerDashInput.action.performed += PlayerDash;
-        _playerAttackInput.action.started += PlayerAttack;
         _playerMoveInput.action.started += PlayerMove;
         _playerMoveInput.action.canceled += PlayerMove;
     }
@@ -63,7 +62,6 @@ public class InputManager : MonoBehaviour
     {
         _playerJumpInput.action.started -= PlayerJump;
         _playerDashInput.action.performed -= PlayerDash;
-        _playerAttackInput.action.started -= PlayerAttack;
         _playerMoveInput.action.started -= PlayerMove;
         _playerMoveInput.action.canceled -= PlayerMove;
     }
@@ -92,6 +90,7 @@ public class InputManager : MonoBehaviour
 
     private void CambioEstados() 
     {
+        _attack.StartAttack(_playerAttackInput.action.ReadValue<float>());
 
         if (_collision.collectingJump)
         {
@@ -215,12 +214,6 @@ public class InputManager : MonoBehaviour
         if (!canMove) return;
         move = _playerMoveInput.action.ReadValue<Vector2>();
         _move.SetDirection(move);
-    }
-
-    private void PlayerAttack(InputAction.CallbackContext obj)
-    {
-        _attack.StartAttack(true);
-
     }
 
     #endregion METODOS

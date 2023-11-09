@@ -13,9 +13,9 @@ public class Attack : MonoBehaviour
     private FlyingEnemyDamage flyingEnemy;
     private Bullet bullet;
 
-    public void StartAttack(bool attack)
+    public void StartAttack(float attack)
     {
-        anim.SetBool("isAttacking", attack);
+        anim.SetBool("isAttacking", attack > 0);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
