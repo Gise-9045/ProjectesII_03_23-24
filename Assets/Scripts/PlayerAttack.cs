@@ -11,9 +11,10 @@ public class PlayerAttack : MonoBehaviour
 
     public float isAttacking;
 
-    [SerializeField] private Collider2D weapon;
+    //[SerializeField] private Collider2D weapon;
     private GroundEnemyDamage groundEnemy;
     private FlyingEnemyDamage flyingEnemy;
+    private Bullet bullet;
 
 
     private void Update()

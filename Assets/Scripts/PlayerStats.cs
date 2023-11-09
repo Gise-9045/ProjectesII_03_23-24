@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    Rigidbody2D movement;
 
     private int health = 3;
     private int maxHealh = 3;
@@ -12,10 +11,6 @@ public class PlayerStats : MonoBehaviour
     bool knockback = false;
     float knockbackVel;
 
-    private void Start()
-    {
-        movement = GetComponent<Rigidbody2D>();
-    }
     //EN EL CONTROLLER TIENE QUE COMPROBAR SI knockback == TRUE Y PONER ESTA LINEA
 
     //ARREGLAR

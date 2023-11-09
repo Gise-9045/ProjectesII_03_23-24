@@ -27,6 +27,7 @@ public class FlyingEnemyDamage : MonoBehaviour
 
         knockbackVel = k;
         StartCoroutine(HitStop());
+
     }
 
     private IEnumerator KnockBack()

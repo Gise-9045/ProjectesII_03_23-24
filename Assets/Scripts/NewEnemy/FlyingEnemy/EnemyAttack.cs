@@ -8,7 +8,6 @@ public class FlyingEnemyAttack : MonoBehaviour
     Quaternion rotation = Quaternion.Euler(0, 0, 0);
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
         if(collision.tag == "Player")
         {
             Instantiate(bullet, new Vector2(gameObject.transform.position.x + 1, gameObject.transform.position.y), rotation);
