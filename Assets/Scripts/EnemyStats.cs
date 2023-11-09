@@ -68,10 +68,11 @@ public class Enemy : MonoBehaviour
     }
 
 
-    public void TakeDamage(int damage, Vector2 knockback)
+    public void TakeDamage(int damage, float knockback)
     {
         health -= damage;
-        rb.AddForce(knockback, ForceMode2D.Impulse);
+
+        rb.AddForce(new Vector2(knockback, 1), ForceMode2D.Impulse);
     }
 
 

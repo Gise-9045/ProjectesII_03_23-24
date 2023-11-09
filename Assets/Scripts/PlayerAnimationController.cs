@@ -9,7 +9,7 @@ public class PlayerAnimationController : MonoBehaviour
 
     [SerializeField] private PlayerController controller;
     [SerializeField] private PlayerJump controllerJump;
-    [SerializeField] private PlayerAttack controllerAttack;
+    [SerializeField] private Attack controllerAttack;
 
     [SerializeField] private GameObject model;
 
@@ -21,7 +21,7 @@ public class PlayerAnimationController : MonoBehaviour
         controller = GetComponent<PlayerController>();
         controllerJump = GetComponent<PlayerJump>();
     }
-    // Update is called once per frame
+
     void FixedUpdate()
     {
         animator.SetBool("Moving", controller.isMoving);
@@ -35,11 +35,7 @@ public class PlayerAnimationController : MonoBehaviour
             Flip();
         }
 
-        //Debug.Log(controllerAttack.isAttacking);
-
-        //print(controllerAttack.isAttacking);
-
-        animator.SetBool("Attack", controllerAttack.isAttacking == 1.0f);
+        //animator.SetBool("Attack", controllerAttack.isAttacking == 1.0f);
     }
 
     private void Flip ()
