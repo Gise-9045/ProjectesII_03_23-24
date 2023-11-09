@@ -1066,13 +1066,33 @@ PrefabInstance:
       propertyPath: m_Name
       value: wind (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 2691650518002499376, guid: d5bd42762dc0c7c44a0fddf54ad1154c, type: 3}
+      propertyPath: m_text
+      value: "\xCE"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691650518002499376, guid: d5bd42762dc0c7c44a0fddf54ad1154c, type: 3}
+      propertyPath: m_fontSize
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2709292859588904021, guid: d5bd42762dc0c7c44a0fddf54ad1154c, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2709292859588904021, guid: d5bd42762dc0c7c44a0fddf54ad1154c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.00000038041003
+      objectReference: {fileID: 0}
+    - target: {fileID: 3622818712025550937, guid: d5bd42762dc0c7c44a0fddf54ad1154c, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7260205450426943663, guid: d5bd42762dc0c7c44a0fddf54ad1154c, type: 3}
       propertyPath: m_Drag
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7260205450426943663, guid: d5bd42762dc0c7c44a0fddf54ad1154c, type: 3}
       propertyPath: m_ForceMagnitude
-      value: 750
+      value: 1000
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1525,13 +1545,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: wind (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 2691650518002499376, guid: d5bd42762dc0c7c44a0fddf54ad1154c, type: 3}
+      propertyPath: m_text
+      value: "\xCE"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691650518002499376, guid: d5bd42762dc0c7c44a0fddf54ad1154c, type: 3}
+      propertyPath: m_fontSize
+      value: 2.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691650518002499376, guid: d5bd42762dc0c7c44a0fddf54ad1154c, type: 3}
+      propertyPath: m_margin.w
+      value: -0.8130731
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691650518002499376, guid: d5bd42762dc0c7c44a0fddf54ad1154c, type: 3}
+      propertyPath: m_margin.y
+      value: -0.81487215
+      objectReference: {fileID: 0}
     - target: {fileID: 7260205450426943663, guid: d5bd42762dc0c7c44a0fddf54ad1154c, type: 3}
       propertyPath: m_Drag
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7260205450426943663, guid: d5bd42762dc0c7c44a0fddf54ad1154c, type: 3}
       propertyPath: m_ForceMagnitude
-      value: 750
+      value: 850
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3396,6 +3432,30 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2691650518002499376, guid: d5bd42762dc0c7c44a0fddf54ad1154c, type: 3}
+      propertyPath: m_text
+      value: <-
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691650518002499376, guid: d5bd42762dc0c7c44a0fddf54ad1154c, type: 3}
+      propertyPath: m_fontSize
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691650518002499376, guid: d5bd42762dc0c7c44a0fddf54ad1154c, type: 3}
+      propertyPath: m_margin.w
+      value: -0.83491325
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691650518002499376, guid: d5bd42762dc0c7c44a0fddf54ad1154c, type: 3}
+      propertyPath: m_margin.y
+      value: -0.7884161
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691650518002499376, guid: d5bd42762dc0c7c44a0fddf54ad1154c, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 3622818712025550937, guid: d5bd42762dc0c7c44a0fddf54ad1154c, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7260205450426943663, guid: d5bd42762dc0c7c44a0fddf54ad1154c, type: 3}
       propertyPath: m_Drag
       value: 0
@@ -3410,7 +3470,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7260205450426943663, guid: d5bd42762dc0c7c44a0fddf54ad1154c, type: 3}
       propertyPath: m_ForceMagnitude
-      value: 2000
+      value: 2250
       objectReference: {fileID: 0}
     - target: {fileID: 7260205450426943663, guid: d5bd42762dc0c7c44a0fddf54ad1154c, type: 3}
       propertyPath: m_UseGlobalAngle
@@ -3577,8 +3637,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 700806149}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -17.5531, y: 20, z: 8.673}
-  m_LocalScale: {x: 65.70409, y: 1.9962717, z: 0.75259644}
+  m_LocalPosition: {x: -17.4855, y: 20, z: 8.673}
+  m_LocalScale: {x: 65.842064, y: 1.9962717, z: 0.75259644}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 898142562}
@@ -6897,7 +6957,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4559407345416992342, guid: fb6eb95d1139d7543b32d8a2d0740966, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 71.2
+      value: 70.81
       objectReference: {fileID: 0}
     - target: {fileID: 4559407345416992342, guid: fb6eb95d1139d7543b32d8a2d0740966, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7169,6 +7229,26 @@ PrefabInstance:
     - target: {fileID: 628348957876671160, guid: d5bd42762dc0c7c44a0fddf54ad1154c, type: 3}
       propertyPath: m_Name
       value: wind
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691650518002499376, guid: d5bd42762dc0c7c44a0fddf54ad1154c, type: 3}
+      propertyPath: m_text
+      value: "\xCE"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691650518002499376, guid: d5bd42762dc0c7c44a0fddf54ad1154c, type: 3}
+      propertyPath: m_fontSize
+      value: 2.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691650518002499376, guid: d5bd42762dc0c7c44a0fddf54ad1154c, type: 3}
+      propertyPath: m_margin.w
+      value: -0.8192305
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691650518002499376, guid: d5bd42762dc0c7c44a0fddf54ad1154c, type: 3}
+      propertyPath: m_margin.y
+      value: -0.8192146
+      objectReference: {fileID: 0}
+    - target: {fileID: 3622818712025550937, guid: d5bd42762dc0c7c44a0fddf54ad1154c, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7260205450426943663, guid: d5bd42762dc0c7c44a0fddf54ad1154c, type: 3}
       propertyPath: m_Drag
@@ -7938,13 +8018,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: wind (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 2691650518002499376, guid: d5bd42762dc0c7c44a0fddf54ad1154c, type: 3}
+      propertyPath: m_text
+      value: "\xCE"
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691650518002499376, guid: d5bd42762dc0c7c44a0fddf54ad1154c, type: 3}
+      propertyPath: m_fontSize
+      value: 2.65
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691650518002499376, guid: d5bd42762dc0c7c44a0fddf54ad1154c, type: 3}
+      propertyPath: m_margin.w
+      value: -0.82894266
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691650518002499376, guid: d5bd42762dc0c7c44a0fddf54ad1154c, type: 3}
+      propertyPath: m_margin.y
+      value: -0.80833954
+      objectReference: {fileID: 0}
     - target: {fileID: 7260205450426943663, guid: d5bd42762dc0c7c44a0fddf54ad1154c, type: 3}
       propertyPath: m_Drag
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7260205450426943663, guid: d5bd42762dc0c7c44a0fddf54ad1154c, type: 3}
       propertyPath: m_ForceMagnitude
-      value: 1500
+      value: 1450
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8189,6 +8285,50 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2691650518002499376, guid: d5bd42762dc0c7c44a0fddf54ad1154c, type: 3}
+      propertyPath: m_text
+      value: ->
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691650518002499376, guid: d5bd42762dc0c7c44a0fddf54ad1154c, type: 3}
+      propertyPath: m_fontSize
+      value: 2.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691650518002499376, guid: d5bd42762dc0c7c44a0fddf54ad1154c, type: 3}
+      propertyPath: m_margin.w
+      value: -0.584788
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691650518002499376, guid: d5bd42762dc0c7c44a0fddf54ad1154c, type: 3}
+      propertyPath: m_margin.x
+      value: 0.8638446
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691650518002499376, guid: d5bd42762dc0c7c44a0fddf54ad1154c, type: 3}
+      propertyPath: m_margin.y
+      value: -0.6326589
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691650518002499376, guid: d5bd42762dc0c7c44a0fddf54ad1154c, type: 3}
+      propertyPath: m_margin.z
+      value: 0.8477101
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691650518002499376, guid: d5bd42762dc0c7c44a0fddf54ad1154c, type: 3}
+      propertyPath: m_wordSpacing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691650518002499376, guid: d5bd42762dc0c7c44a0fddf54ad1154c, type: 3}
+      propertyPath: m_characterSpacing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691650518002499376, guid: d5bd42762dc0c7c44a0fddf54ad1154c, type: 3}
+      propertyPath: m_paragraphSpacing
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2691650518002499376, guid: d5bd42762dc0c7c44a0fddf54ad1154c, type: 3}
+      propertyPath: m_VerticalAlignment
+      value: 512
+      objectReference: {fileID: 0}
+    - target: {fileID: 3622818712025550937, guid: d5bd42762dc0c7c44a0fddf54ad1154c, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7260205450426943663, guid: d5bd42762dc0c7c44a0fddf54ad1154c, type: 3}
       propertyPath: m_Drag
       value: 0
@@ -8203,7 +8343,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7260205450426943663, guid: d5bd42762dc0c7c44a0fddf54ad1154c, type: 3}
       propertyPath: m_ForceMagnitude
-      value: 1000
+      value: 1500
       objectReference: {fileID: 0}
     - target: {fileID: 7260205450426943663, guid: d5bd42762dc0c7c44a0fddf54ad1154c, type: 3}
       propertyPath: m_UseGlobalAngle
