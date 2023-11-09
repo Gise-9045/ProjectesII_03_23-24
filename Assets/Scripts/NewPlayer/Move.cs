@@ -43,6 +43,11 @@ public class Move : MonoBehaviour
         physics.velocity = new Vector2(oldPosition.x * currentSpeed, physics.velocity.y);
     }
 
+    public void KnocbackPlayer()
+    {
+
+    }
+
     public void SetDirection(Vector2 direction)
     {
         _direction = direction;

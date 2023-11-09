@@ -8,7 +8,7 @@ public class PlayerStats : MonoBehaviour
     private int health = 3;
     private int maxHealh = 3;
 
-    bool knockback = false;
+    public bool knockback = false;
     float knockbackVel;
 
     //EN EL CONTROLLER TIENE QUE COMPROBAR SI knockback == TRUE Y PONER ESTA LINEA

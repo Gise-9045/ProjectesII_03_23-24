@@ -14,6 +14,7 @@ public class InputManager : MonoBehaviour
     private Move _move;
     private Wall _wall;
     [SerializeField] private Attack _attack;
+    public PlayerStats _playerStats; 
 
     [Space]
     [Header("Input References")]
@@ -188,6 +189,10 @@ public class InputManager : MonoBehaviour
 
     private void PlayerMove(InputAction.CallbackContext obj) 
     {
+        if(_playerStats.knockback)
+        {
+            _move.KnocbackPlayer(); 
+        }
         if (!canMove) return;
         move = _playerMoveInput.action.ReadValue<Vector2>();
         _move.SetDirection(move);
