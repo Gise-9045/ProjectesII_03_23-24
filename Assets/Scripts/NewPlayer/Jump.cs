@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Jump : MonoBehaviour
@@ -14,6 +13,8 @@ public class Jump : MonoBehaviour
 
     [Space]
     [Header("Jump Variables")]
+    public Transform groundCheck;
+    public LayerMask waterLayer;
     public bool inWater;
     public Action isJumping;
     [SerializeField] private float massScale = 10f;
@@ -24,19 +25,19 @@ public class Jump : MonoBehaviour
     private void Update()
     {
         _physics = GetComponent<Rigidbody2D>();
+       
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    
+    public void Jump_player(int jumpCount , int maxJump)
     {
-        if (collision.gameObject.CompareTag("water"))
+        if (Physics2D.OverlapCapsule(_physics.position, groundCheck.localScale, CapsuleDirection2D.Horizontal, 0, waterLayer))
         {
             inWater = true;
         }
-        else {
+        else
+        {
             inWater = false;
         }
-    }
-    public void Jump_player(int jumpCount , int maxJump)
-    {
         if (jumpCount < maxJump && inWater == false)
         {
             isJumping();

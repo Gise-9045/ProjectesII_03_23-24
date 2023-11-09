@@ -13,12 +13,14 @@ public class InputManager : MonoBehaviour
     private Jump _jump;
     private Move _move;
     private Wall _wall;
+    [SerializeField] private Attack _attack;
 
     [Space]
     [Header("Input References")]
     [SerializeField] private InputActionReference _playerMoveInput;
     [SerializeField] private InputActionReference _playerJumpInput;
     [SerializeField] private InputActionReference _playerDashInput;
+    [SerializeField] private InputActionReference _playerAttackInput;
 
     [Space]
     [Header("Booleans")]
@@ -27,6 +29,7 @@ public class InputManager : MonoBehaviour
     [SerializeField] private bool wallJumped;
     [SerializeField] private bool wallSlide;
     [SerializeField] private bool isDashing;
+    [SerializeField] private bool isAttacking;
     
     public int sidePlayer = 1;
     private int jumpCount = 0;
@@ -87,7 +90,9 @@ public class InputManager : MonoBehaviour
 
     private void CambioEstados() 
     {
-        if(_collision.collectingJump)
+        _attack.StartAttack(_playerAttackInput.action.ReadValue<float>());
+
+        if (_collision.collectingJump)
         {
             canDoubleJump = true; 
         }
@@ -171,10 +176,17 @@ public class InputManager : MonoBehaviour
         if (!canMove) return;
         
         float massScale = _physics.mass;
-        
-        
+
+        if (_jump.inWater == false)
+        {
             _jump.Jump_player(jumpCount, maxJump);
             jumpCount++;
+        } else if(_jump.inWater == true)
+        {
+            _jump.Jump_player(jumpCount, maxJump);
+            jumpCount = 0;
+        }
+           
         
        
         if (_collision.onWall && !_collision.onGround)

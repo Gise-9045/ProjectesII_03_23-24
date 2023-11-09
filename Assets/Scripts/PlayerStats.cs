@@ -4,24 +4,52 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
+
     private int health = 3;
     private int maxHealh = 3;
+
+    bool knockback = false;
+    float knockbackVel;
+
+    //EN EL CONTROLLER TIENE QUE COMPROBAR SI knockback == TRUE Y PONER ESTA LINEA
+
+    //ARREGLAR
+    //rb.velocity = new Vector2(-direction* knockbackVel, rb.velocity.y);
+
 
     public int GetHealth()
     {
         return health;
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage, float k, float direction)
     {
         health -= damage;
 
-        Debug.Log(health);
+        knockbackVel = k;
+
+        StartCoroutine(HitStop());
+
 
         if (health < 0)
         {
-            Debug.Log("MUERTO");
             health = 0;
         }
+    }
+
+    private IEnumerator KnockBack()
+    {
+        knockback = true;
+        yield return new WaitForSecondsRealtime(0.1f);
+        knockback = false;
+    }
+
+    private IEnumerator HitStop()
+    {
+        Time.timeScale = 0;
+        yield return new WaitForSecondsRealtime(0.25f);
+        Time.timeScale = 1;
+
+        StartCoroutine(KnockBack());
     }
 }

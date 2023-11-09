@@ -12,7 +12,9 @@ public class Dash : MonoBehaviour
     public bool canDash = true;
     private bool isDashing;
     private float dashtime = 0.2f;
-    private float dashingCooldown = 0.5f;
+    private float dashLimit = 3f;
+    private float timesIDash = 0;
+    private float dashingCooldown = 2f;
     
     [SerializeField] private TrailRenderer tr;
 
@@ -37,11 +39,16 @@ public class Dash : MonoBehaviour
             float originalGravity = _physics.gravityScale;
             
             if(_physics.gravityScale!=00.2f) {
-                playermove.maxSpeed = 30f;
-                playermove.currentSpeed = 30f;
-                _physics.velocity = new Vector2(30, 0f);
+                playermove.maxSpeed = 50f;
+                playermove.currentSpeed = 50f;
+                _physics.velocity = new Vector2(50, 5f);
                 _physics.velocity.Normalize();
-
+                timesIDash++;
+                if(timesIDash >= dashLimit)
+                {
+                    canDash = false;
+                    isDashing = false;
+                }
             }
             
             tr.emitting = true;
