@@ -13,12 +13,14 @@ public class InputManager : MonoBehaviour
     private Jump _jump;
     private Move _move;
     private Wall _wall;
+    [SerializeField] private Attack _attack;
 
     [Space]
     [Header("Input References")]
     [SerializeField] private InputActionReference _playerMoveInput;
     [SerializeField] private InputActionReference _playerJumpInput;
     [SerializeField] private InputActionReference _playerDashInput;
+    [SerializeField] private InputActionReference _playerAttackInput;
 
     [Space]
     [Header("Booleans")]
@@ -27,6 +29,7 @@ public class InputManager : MonoBehaviour
     [SerializeField] private bool wallJumped;
     [SerializeField] private bool wallSlide;
     [SerializeField] private bool isDashing;
+    [SerializeField] private bool isAttacking;
     
     public int sidePlayer = 1;
     private int jumpCount = 0;
@@ -51,6 +54,7 @@ public class InputManager : MonoBehaviour
     {
         _playerJumpInput.action.started += PlayerJump;
         _playerDashInput.action.performed += PlayerDash;
+        _playerAttackInput.action.started += PlayerAttack;
         _playerMoveInput.action.started += PlayerMove;
         _playerMoveInput.action.canceled += PlayerMove;
     }
@@ -59,6 +63,7 @@ public class InputManager : MonoBehaviour
     {
         _playerJumpInput.action.started -= PlayerJump;
         _playerDashInput.action.performed -= PlayerDash;
+        _playerAttackInput.action.started -= PlayerAttack;
         _playerMoveInput.action.started -= PlayerMove;
         _playerMoveInput.action.canceled -= PlayerMove;
     }
@@ -87,7 +92,8 @@ public class InputManager : MonoBehaviour
 
     private void CambioEstados() 
     {
-        if(_collision.collectingJump)
+
+        if (_collision.collectingJump)
         {
             canDoubleJump = true; 
         }
@@ -209,6 +215,12 @@ public class InputManager : MonoBehaviour
         if (!canMove) return;
         move = _playerMoveInput.action.ReadValue<Vector2>();
         _move.SetDirection(move);
+    }
+
+    private void PlayerAttack(InputAction.CallbackContext obj)
+    {
+        _attack.StartAttack(true);
+
     }
 
     #endregion METODOS

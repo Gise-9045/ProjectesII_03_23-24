@@ -4,21 +4,18 @@ using Unity.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerAttack : MonoBehaviour
+public class Attack : MonoBehaviour
 {
-    [SerializeField] private InputActionReference attack;
 
-    public float isAttacking;
+    [SerializeField] Animator anim;
 
-    //[SerializeField] private Collider2D weapon;
     private GroundEnemyDamage groundEnemy;
     private FlyingEnemyDamage flyingEnemy;
     private Bullet bullet;
 
-
-    private void Update()
+    public void StartAttack(bool attack)
     {
-        isAttacking = attack.action.ReadValue<float>();
+        anim.SetBool("isAttacking", attack);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

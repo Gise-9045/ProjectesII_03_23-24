@@ -26,8 +26,8 @@ public class Move : MonoBehaviour
 
     private void Walk() 
     {
-        Debug.Log("dentro de la funcion");
-        Debug.Log(_direction);
+        //Debug.Log("dentro de la funcion");
+        //Debug.Log(_direction);
         
         if(_direction.magnitude > 0 && currentSpeed >= 0)
         {
