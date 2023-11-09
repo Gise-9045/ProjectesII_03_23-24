@@ -189,10 +189,6 @@ public class InputManager : MonoBehaviour
 
     private void PlayerMove(InputAction.CallbackContext obj) 
     {
-        if(_playerStats.knockback)
-        {
-            _move.KnocbackPlayer(); 
-        }
         if (!canMove) return;
         move = _playerMoveInput.action.ReadValue<Vector2>();
         _move.SetDirection(move);
