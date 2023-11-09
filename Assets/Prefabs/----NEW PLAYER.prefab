@@ -751,6 +751,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54bc0176c0069b442b2074a4ed25fa99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  knockback: 0
 --- !u!114 &1319215318493518553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -764,6 +765,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attack: {fileID: 6509692174906454992}
+  _playerStats: {fileID: 3651648430274574112}
   _playerMoveInput: {fileID: 7166945924870577955, guid: 45ac6d5744795c5498f12a10fd396418, type: 3}
   _playerJumpInput: {fileID: 1935530299882758764, guid: 45ac6d5744795c5498f12a10fd396418, type: 3}
   _playerDashInput: {fileID: 6964419200310921693, guid: 45ac6d5744795c5498f12a10fd396418, type: 3}
