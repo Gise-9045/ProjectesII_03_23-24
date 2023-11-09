@@ -3539,17 +3539,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &690322653 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6509692174906454992, guid: 21e541372428f44429ebdc6a9683f20b, type: 3}
-  m_PrefabInstance: {fileID: 1115335373}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8da6972ac9843654fbd778e4fbd79576, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &700806149
 GameObject:
   m_ObjectHideFlags: 0
@@ -4200,7 +4189,7 @@ PrefabInstance:
     - target: {fileID: 5678007072697077956, guid: 3a498233c205a9241a06223365735955, type: 3}
       propertyPath: controllerAtk
       value: 
-      objectReference: {fileID: 1688603921}
+      objectReference: {fileID: 0}
     - target: {fileID: 7051897812800139678, guid: 3a498233c205a9241a06223365735955, type: 3}
       propertyPath: m_Name
       value: lever
@@ -4681,7 +4670,6 @@ Transform:
   - {fileID: 458080335}
   - {fileID: 463903283}
   - {fileID: 1677117191}
-  - {fileID: 1680859544}
   - {fileID: 1825826377}
   - {fileID: 1444669619}
   - {fileID: 2058542331}
@@ -5887,20 +5875,40 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2866283476323232485, guid: 21e541372428f44429ebdc6a9683f20b, type: 3}
+      propertyPath: massScale
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2866283476323232485, guid: 21e541372428f44429ebdc6a9683f20b, type: 3}
       propertyPath: groundCheck
       value: 
       objectReference: {fileID: 1278560245}
+    - target: {fileID: 2866283476323232485, guid: 21e541372428f44429ebdc6a9683f20b, type: 3}
+      propertyPath: fallingMassScale
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 4190629166080253889, guid: 21e541372428f44429ebdc6a9683f20b, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4571219453651282387, guid: 21e541372428f44429ebdc6a9683f20b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 96.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4571219453651282387, guid: 21e541372428f44429ebdc6a9683f20b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 75.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4905686525161926280, guid: 21e541372428f44429ebdc6a9683f20b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.5600014
+      value: 98.259995
       objectReference: {fileID: 0}
     - target: {fileID: 4905686525161926280, guid: 21e541372428f44429ebdc6a9683f20b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.8019999
+      value: 73.698006
+      objectReference: {fileID: 0}
+    - target: {fileID: 7922130519519717653, guid: 21e541372428f44429ebdc6a9683f20b, type: 3}
+      propertyPath: maxSpeed
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 8232809312758218470, guid: 21e541372428f44429ebdc6a9683f20b, type: 3}
       propertyPath: m_VolumeTrigger
@@ -7691,17 +7699,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1688603921 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6509692174906454992, guid: 21e541372428f44429ebdc6a9683f20b, type: 3}
-  m_PrefabInstance: {fileID: 1115335373}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8da6972ac9843654fbd778e4fbd79576, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1718834951
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9400,7 +9397,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2075871523}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -37.34, y: -1.3019999, z: -9.9200115}
+  m_LocalPosition: {x: 59.359997, y: 74.198006, z: -9.9200115}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
