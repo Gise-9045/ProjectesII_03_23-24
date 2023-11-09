@@ -10,6 +10,7 @@ public class FlyingEnemyAttack : MonoBehaviour
     {
         if(collision.tag == "Player")
         {
+            //Instantiate(bullet, new Vector2(gameObject.transform.position.x + Mathf.Sign(collision.gameObject.transform.position.x - gameObject.transform.position.x), gameObject.transform.position.y), rotation);
             Instantiate(bullet, new Vector2(gameObject.transform.position.x + 1, gameObject.transform.position.y), rotation);
         }
     }
