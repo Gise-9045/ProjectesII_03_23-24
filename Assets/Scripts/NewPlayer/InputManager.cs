@@ -171,10 +171,17 @@ public class InputManager : MonoBehaviour
         if (!canMove) return;
         
         float massScale = _physics.mass;
-        
-        
+
+        if (_jump.inWater == false)
+        {
             _jump.Jump_player(jumpCount, maxJump);
             jumpCount++;
+        } else if(_jump.inWater == true)
+        {
+            _jump.Jump_player(jumpCount, maxJump);
+            jumpCount = 0;
+        }
+           
         
        
         if (_collision.onWall && !_collision.onGround)
