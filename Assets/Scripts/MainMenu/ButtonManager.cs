@@ -158,7 +158,7 @@ public class ButtonManager : MonoBehaviour
         options.SetActive(true);
 
 
-        for (int i = 0; i < mainMenuAnim.LongLength; i++)
+        for (int i = 0; i < optionsAnim.LongLength; i++)
         {
             optionsAnim[i].SetBool("isActive", true);
         }
