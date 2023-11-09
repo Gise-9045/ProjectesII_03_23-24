@@ -31,5 +31,9 @@ public class Attack : MonoBehaviour
             collision.GetComponent<FlyingEnemyDamage>().TakeDamage(1, 20.0f);
 
         }
+        if(collision.tag == "Lever")
+        {
+            collision.GetComponent<leverActivation>().Toggle();
+        }
     }
 }

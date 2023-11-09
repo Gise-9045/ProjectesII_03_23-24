@@ -77,6 +77,7 @@ private IEnumerator Fall()
         yield return new WaitForSeconds(destroyDelay);
         yield return new WaitForSeconds(respawnDelay);
         RespawnPlatform();
+        touchCounterText.text = " ";
         usedNumTouches = numOfTouches;
     }
 
