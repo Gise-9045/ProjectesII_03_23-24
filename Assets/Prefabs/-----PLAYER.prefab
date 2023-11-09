@@ -482,7 +482,6 @@ GameObject:
   m_Component:
   - component: {fileID: 715932177309809606}
   - component: {fileID: 6897443561043998296}
-  - component: {fileID: 6506716408621083570}
   m_Layer: 0
   m_Name: 'Model '
   m_TagString: Untagged
@@ -529,23 +528,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &6506716408621083570
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6303293879820917154}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8da6972ac9843654fbd778e4fbd79576, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isAttacking: 0
-  isHitting: 0
-  attack: {fileID: 9011313330024176719, guid: 45ac6d5744795c5498f12a10fd396418, type: 3}
-  sword: {fileID: 4989989836475196957}
-  enemyStats: {fileID: 0}
 --- !u!1 &7411174226351889529
 GameObject:
   m_ObjectHideFlags: 0
@@ -642,6 +624,7 @@ GameObject:
   - component: {fileID: 3969661481421668269}
   - component: {fileID: 5700036371797148055}
   - component: {fileID: 4958099528576071523}
+  - component: {fileID: 1654204581775218736}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -657,7 +640,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7426620453343808879}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.59, y: -1.77, z: -10}
+  m_LocalPosition: {x: 1.5599995, y: -1.6899999, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -695,11 +678,11 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
-  far clip plane: 1000
+  near clip plane: 0.1
+  far clip plane: 5000
   field of view: 60
   orthographic: 1
-  orthographic size: 12.048867
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -767,6 +750,40 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!114 &1654204581775218736
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7426620453343808879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShowDebugText: 0
+  m_ShowCameraFrustum: 1
+  m_IgnoreTimeScale: 0
+  m_WorldUpOverride: {fileID: 0}
+  m_UpdateMethod: 2
+  m_BlendUpdateMethod: 1
+  m_DefaultBlend:
+    m_Style: 1
+    m_Time: 2
+    m_CustomCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  m_CustomBlends: {fileID: 0}
+  m_CameraCutEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_CameraActivatedEvent:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!1 &7436366125454103715
 GameObject:
   m_ObjectHideFlags: 0
@@ -862,6 +879,7 @@ GameObject:
   - component: {fileID: 4989989836475196957}
   - component: {fileID: 1907750386170396998}
   - component: {fileID: 1432797744252734803}
+  - component: {fileID: 7224306689816775521}
   m_Layer: 0
   m_Name: Weapon-Sword
   m_TagString: Untagged
@@ -981,6 +999,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.51666665, y: 1.8333334}
   m_EdgeRadius: 0
+--- !u!114 &7224306689816775521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8792108692529949328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8da6972ac9843654fbd778e4fbd79576, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attack: {fileID: 9011313330024176719, guid: 45ac6d5744795c5498f12a10fd396418, type: 3}
+  isAttacking: 0
+  weapon: {fileID: 1432797744252734803}
+  groundEnemy: {fileID: 0}
 --- !u!1 &8966324309986080453
 GameObject:
   m_ObjectHideFlags: 0
@@ -1153,7 +1187,7 @@ MonoBehaviour:
   animator: {fileID: 6897443561043998296}
   controller: {fileID: 2964083082103925751}
   controllerJump: {fileID: 6714887214655106452}
-  controllerAttack: {fileID: 6506716408621083570}
+  controllerAttack: {fileID: 0}
   model: {fileID: 6303293879820917154}
 --- !u!114 &1979970023840430464
 MonoBehaviour:

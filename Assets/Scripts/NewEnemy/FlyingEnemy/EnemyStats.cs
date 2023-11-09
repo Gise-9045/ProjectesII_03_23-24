@@ -5,10 +5,14 @@ using UnityEngine;
 
 public class FlyingEnemy : MonoBehaviour
 {
+    [SerializeField] private FlyingEnemyDamage flyingEnemyDamage;
+
     [SerializeField] private Rigidbody2D rb;
 
     [SerializeField] private Transform pointA;
     [SerializeField] private Transform pointB;
+
+    [SerializeField] private Transform player;
 
     private Transform currentPoint;
 
@@ -30,6 +34,8 @@ public class FlyingEnemy : MonoBehaviour
 
     private void FixedUpdate()
     {
+        //Debug.Log(health);
+
         if (currentPoint.position.y + 2.0f >= Mathf.Round(pointA.position.y))
         {
 
@@ -43,27 +49,34 @@ public class FlyingEnemy : MonoBehaviour
 
 
 
-        if(direction == 0)
+
+
+
+        if(flyingEnemyDamage.GetKnockback())
         {
-            //movement = Mathf.Lerp(currentPoint.position.y, pointB.position.y, (((currentPoint.position.y - pointB.position.y) / speed) * Time.deltaTime) * acceleration);
-
-            movement = Mathf.Lerp(currentPoint.position.y, pointB.position.y, speed);
-
+            rb.velocity = new Vector2(-Mathf.Sign(player.position.x - currentPoint.position.x) * flyingEnemyDamage.GetKnockbackVel(), rb.velocity.y);
         }
-        else
+        else 
         {
-            //movement = Mathf.Lerp(currentPoint.position.y, pointA.position.y, (((pointA.position.y - currentPoint.position.y) / speed) * Time.deltaTime) * acceleration);
+            if (direction == 0)
+            {
+                movement = Mathf.Lerp(currentPoint.position.y, pointB.position.y, (((currentPoint.position.y - pointB.position.y) / speed) * Time.deltaTime) * acceleration);
+            }
+            else
+            {
+                movement = Mathf.Lerp(currentPoint.position.y, pointA.position.y, (((pointA.position.y - currentPoint.position.y) / speed) * Time.deltaTime) * acceleration);
 
-            movement = Mathf.Lerp(currentPoint.position.y, pointA.position.y, speed);
+            }
 
+
+            rb.position = new Vector2(rb.position.x, movement);
         }
 
 
-        Move();
-        //Flip();
+
 
         //HEALTH
-        if (health <= 0)
+        if (health <= 0 && Time.timeScale == 1)
         {
             Destroy(gameObject);
         }
@@ -75,18 +88,6 @@ public class FlyingEnemy : MonoBehaviour
         currentScale.x = direction;
         gameObject.transform.localScale = currentScale;
 
-    }
-
-    private void Move()
-    {
-        //rb.velocity = new Vector2(rb.velocity.x, movement);
-        rb.position = new Vector2(rb.position.x, movement);
-    }
-
-    public void TakeDamage(int damage, Vector2 knockback)
-    {
-        health -= damage;
-        rb.AddForce(knockback, ForceMode2D.Impulse);
     }
 
 

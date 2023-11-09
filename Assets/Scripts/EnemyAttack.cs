@@ -29,28 +29,16 @@ public class EnemyAttack : MonoBehaviour
 
         if (collision.CompareTag(detectionTag))
         {
-            StartCoroutine(Hit());
+            //StartCoroutine(Hit());
         }
     }
 
     IEnumerator Hit()
     {
         Time.timeScale = 0;
-        player.TakeDamage(1);
+        //player.TakeDamage(1);
         yield return new WaitForSecondsRealtime(0.25f);
         Time.timeScale = 1;
-        col.enabled = false;
-
-    }
-
-
-    public void Attack()
-    {
-        col.enabled = true;
-    }
-
-    public void DisableAttack()
-    {
         col.enabled = false;
     }
 
