@@ -388,7 +388,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 4571219453651282387}
+  m_Father: {fileID: 2162837740978201818}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &490281796918748970
@@ -570,7 +570,6 @@ Transform:
   m_Children:
   - {fileID: 6511875654066766961}
   - {fileID: 5311185046990569033}
-  - {fileID: 4905686525161926280}
   m_Father: {fileID: 2162837740978201818}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -642,7 +641,7 @@ Rigidbody2D:
   m_LinearDrag: 2
   m_AngularDrag: 0.05
   m_GravityScale: 3
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 909ffddb2a62efb4093539dbf071a6fc, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -779,6 +778,8 @@ MonoBehaviour:
   canDash: 0
   move: {x: 0, y: 0}
   _physics: {fileID: 7298559274747491072}
+  model: {fileID: 6503421941141198410}
+  facingRight: 1
 --- !u!114 &1246403694502309791
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -927,6 +928,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4571219453651282387}
+  - {fileID: 4905686525161926280}
   - {fileID: 6294146462580894295}
   m_Father: {fileID: 0}
   m_RootOrder: 0
