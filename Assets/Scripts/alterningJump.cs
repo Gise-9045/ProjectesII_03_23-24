@@ -4,18 +4,18 @@ using UnityEngine;
 public class alternatingJump : MonoBehaviour
 {
     [SerializeField] private bool isActive;
-    [SerializeField] private PlayerJump controllerJump;
+    [SerializeField] private Jump controllerJump;
     public TextMeshProUGUI touchCounterText;
 
     public void Start()
     {
-        controllerJump.onJump += Toggle;//add toggle to the onjump action
-        
+        controllerJump.isJumping += Toggle;//add toggle to the onjump action
+        touchCounterText.text = isActive ? ":)" : ":(";
     }
 
     public void OnDestroy()
     {
-        controllerJump.onJump -= Toggle;
+        controllerJump.isJumping -= Toggle;
     }
 
     public void Toggle()
