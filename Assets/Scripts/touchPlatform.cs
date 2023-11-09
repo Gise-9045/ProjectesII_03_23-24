@@ -71,7 +71,7 @@ private IEnumerator Fall()
     {
         yield return new WaitForSeconds(fallDelay);
         touchCounterText.text = " ";
-        rb.bodyType = RigidbodyType2D.Dynamic;
+        //rb.bodyType = RigidbodyType2D.Dynamic;
         GetComponent<Renderer>().enabled = false;
         GetComponent<Collider2D>().enabled = false;
         yield return new WaitForSeconds(destroyDelay);
@@ -79,10 +79,12 @@ private IEnumerator Fall()
         RespawnPlatform();
         touchCounterText.text = " ";
         usedNumTouches = numOfTouches;
+        
     }
 
     private void RespawnPlatform()
     {
+        touchCounterText.text = usedNumTouches.ToString();
         // Reset the position
         transform.position = initialPosition;
 
