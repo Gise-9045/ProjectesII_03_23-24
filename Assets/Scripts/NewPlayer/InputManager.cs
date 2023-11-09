@@ -44,7 +44,9 @@ public class InputManager : MonoBehaviour
     //Particulas De momento nope
 
     public Vector2 move;
-    public Rigidbody2D _physics; 
+    public Rigidbody2D _physics;
+    [SerializeField] private GameObject model;
+    public bool facingRight; 
 
     #endregion VARIABLES 
 
@@ -102,8 +104,6 @@ public class InputManager : MonoBehaviour
         }
         if (_collision.onGround && !isDashing && _physics.velocity.y < 0.2f)
         {
-            wallJumped = false;
-
             jumpCount = 0; 
 
             if (canDoubleJump == true)
@@ -115,20 +115,6 @@ public class InputManager : MonoBehaviour
             {
                 maxJump = 1;
             }
-        }
-
-        if (_collision.onWall && !_collision.onGround)
-        {
-            if (move != Vector2.zero)
-            {
-                wallSlide = true;
-                _wall.WallSlide(); 
-            }
-        }
-
-        if (!_collision.onWall || _collision.onGround)
-        {
-            wallSlide = false;
         }
 
         if (_collision.onGround && !_groundTouch)
@@ -143,27 +129,25 @@ public class InputManager : MonoBehaviour
         }
 
 
-        if (!_collision.onWall && _collision.onGround && !isDashing)
+        if (_collision.onGround && !isDashing)
         {
             canMove = true;
         }
 
-        if (wallJumped || !canMove)
+        if (!canMove)
         {
             return;
         }
 
-
-        if (move.x > 0)
+        if (move.x > 0 && facingRight)
         {
             sidePlayer = 1;
-            //metodo Flip ->script Animation
+            Flip(); 
         }
-        if (move.x < 0)
+        if (move.x < 0 && !facingRight)
         {
             sidePlayer = -1;
-            //metodo Flip -> script Animation
-
+            Flip();
         }    
     }
     private void GroundTouch()
@@ -186,13 +170,6 @@ public class InputManager : MonoBehaviour
             _jump.Jump_player(jumpCount, maxJump);
             jumpCount = 0;
         }
-           
-        
-       
-        if (_collision.onWall && !_collision.onGround)
-        {
-            _wall.WallJump(jumpCount, maxJump);
-        }
 
          _physics.mass = massScale;
     }
@@ -214,6 +191,16 @@ public class InputManager : MonoBehaviour
         if (!canMove) return;
         move = _playerMoveInput.action.ReadValue<Vector2>();
         _move.SetDirection(move);
+    }
+
+    private void Flip()
+    {
+        Vector2 currentScale = model.transform.localScale;
+        currentScale.x *= -1;
+
+        model.transform.localScale = currentScale;
+
+        facingRight = !facingRight;
     }
 
     #endregion METODOS
