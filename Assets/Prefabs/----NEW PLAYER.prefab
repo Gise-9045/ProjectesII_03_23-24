@@ -142,8 +142,8 @@ TrailRenderer:
     generateLightingData: 0
   m_MinVertexDistance: 0.1
   m_MaskInteraction: 0
-  m_Autodestruct: 0
-  m_Emitting: 0
+  m_Autodestruct: 1
+  m_Emitting: 1
   m_ApplyActiveColorSpace: 1
 --- !u!1 &4190629166080253889
 GameObject:
@@ -240,7 +240,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5286946954381672334}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.311222, y: -1.1218934, z: -10}
+  m_LocalPosition: {x: -10.251221, y: -3.001893, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -282,7 +282,7 @@ Camera:
   far clip plane: 5000
   field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 15
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -643,8 +643,11 @@ MonoBehaviour:
   rightOffset: {x: -0.63, y: 0.01}
   leftOffset: {x: 0.66, y: 0.01}
   dialogBoxPrefab: {fileID: 0}
+  dialogBoxPrefab2: {fileID: 0}
   dialogText: {fileID: 0}
+  dialogText2: {fileID: 0}
   itemContainer: {fileID: 0}
+  itemContainer2: {fileID: 0}
 --- !u!114 &2866283476323232485
 MonoBehaviour:
   m_ObjectHideFlags: 0
