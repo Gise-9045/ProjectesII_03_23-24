@@ -28,6 +28,7 @@ public class GroundEnemyWallDetection : MonoBehaviour
             Debug.DrawRay(new Vector2(gameObject.transform.position.x + groundEnemy.direction, gameObject.transform.position.y - (scale.localScale.y/2) - 0.1f), Vector2.down * distance, Color.red);
             groundEnemy.Flip();
 
+
         }
     }
 

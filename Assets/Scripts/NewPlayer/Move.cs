@@ -19,6 +19,8 @@ public class Move : MonoBehaviour
     [SerializeField] private float deacceleraiton; 
     [SerializeField] public float maxSpeed;
 
+    [SerializeField] private PlayerStats playerStats;
+
     private void Update() 
     {
         Walk();
@@ -26,21 +28,25 @@ public class Move : MonoBehaviour
 
     private void Walk() 
     {
-        Debug.Log("dentro de la funcion");
-        Debug.Log(_direction);
-        
-        if(_direction.magnitude > 0 && currentSpeed >= 0)
+        if(playerStats.knockback)
         {
-            oldPosition = _direction;
-            currentSpeed += acceleraiton * maxSpeed * Time.fixedDeltaTime;
+            physics.velocity = new Vector2(playerStats.knockbackVel, physics.velocity.y);
         }
         else
         {
-            currentSpeed -= deacceleraiton * maxSpeed * Time.fixedDeltaTime;
+            if (_direction.magnitude > 0 && currentSpeed >= 0)
+            {
+                oldPosition = _direction;
+                currentSpeed += acceleraiton * maxSpeed * Time.fixedDeltaTime;
+            }
+            else
+            {
+                currentSpeed -= deacceleraiton * maxSpeed * Time.fixedDeltaTime;
+            }
+
+            currentSpeed = Mathf.Clamp(currentSpeed, 0, maxSpeed);
+            physics.velocity = new Vector2(oldPosition.x * currentSpeed, physics.velocity.y);
         }
-        
-        currentSpeed = Mathf.Clamp(currentSpeed, 0, maxSpeed); 
-        physics.velocity = new Vector2(oldPosition.x * currentSpeed, physics.velocity.y);
     }
 
     public void SetDirection(Vector2 direction)

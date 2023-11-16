@@ -13,12 +13,15 @@ public class InputManager : MonoBehaviour
     private Jump _jump;
     private Move _move;
     private Wall _wall;
-    private SpriteRenderer _spriteRenderer; 
+    [SerializeField] private Attack _attack;
+    public PlayerStats _playerStats; 
+
     [Space]
     [Header("Input References")]
     [SerializeField] private InputActionReference _playerMoveInput;
     [SerializeField] private InputActionReference _playerJumpInput;
     [SerializeField] private InputActionReference _playerDashInput;
+    [SerializeField] private InputActionReference _playerAttackInput;
 
     [Space]
     [Header("Booleans")]
@@ -27,6 +30,7 @@ public class InputManager : MonoBehaviour
     [SerializeField] private bool wallJumped;
     [SerializeField] private bool wallSlide;
     [SerializeField] private bool isDashing;
+    [SerializeField] private bool isAttacking;
     
     public int sidePlayer = 1;
     private int jumpCount = 0;
@@ -41,7 +45,9 @@ public class InputManager : MonoBehaviour
     //Particulas De momento nope
 
     public Vector2 move;
-    public Rigidbody2D _physics; 
+    public Rigidbody2D _physics;
+    [SerializeField] private GameObject model;
+    public bool facingRight; 
 
     #endregion VARIABLES 
 
@@ -88,7 +94,9 @@ public class InputManager : MonoBehaviour
 
     private void CambioEstados() 
     {
-        if(_collision.collectingJump) //REVISAR
+        _attack.StartAttack(_playerAttackInput.action.ReadValue<float>());
+
+        if (_collision.collectingJump)
         {
             canDoubleJump = true; 
         }
@@ -98,8 +106,6 @@ public class InputManager : MonoBehaviour
         }
         if (_collision.onGround && !isDashing && _physics.velocity.y < 0.2f)
         {
-            wallJumped = false;
-
             jumpCount = 0; 
 
             if (canDoubleJump == true)
@@ -111,20 +117,6 @@ public class InputManager : MonoBehaviour
             {
                 maxJump = 1;
             }
-        }
-
-        if (_collision.onWall && !_collision.onGround)
-        {
-            if (move != Vector2.zero)
-            {
-                wallSlide = true;
-                _wall.WallSlide(); 
-            }
-        }
-
-        if (!_collision.onWall || _collision.onGround)
-        {
-            wallSlide = false;
         }
 
         if (_collision.onGround && !_groundTouch)
@@ -139,28 +131,25 @@ public class InputManager : MonoBehaviour
         }
 
 
-        if (!_collision.onWall && _collision.onGround && !isDashing)
+        if (_collision.onGround && !isDashing)
         {
             canMove = true;
         }
 
-        if (wallJumped || !canMove)
+        if (!canMove)
         {
             return;
         }
 
-
-        if (move.x > 0)
+        if (move.x > 0 && facingRight)
         {
             sidePlayer = 1;
-
-            _spriteRenderer.flipX = false; 
+            Flip(); 
         }
-        if (move.x < 0)
+        if (move.x < 0 && !facingRight)
         {
             sidePlayer = -1;
-            _spriteRenderer.flipX = true; 
-
+            Flip();
         }    
     }
     private void GroundTouch()
@@ -183,13 +172,6 @@ public class InputManager : MonoBehaviour
             _jump.Jump_player(jumpCount, maxJump);
             jumpCount = 0;
         }
-           
-        
-       
-        if (_collision.onWall && !_collision.onGround)
-        {
-            _wall.WallJump(jumpCount, maxJump);
-        }
 
         // _physics.gravityScale = gravityScale;
     }
@@ -211,6 +193,16 @@ public class InputManager : MonoBehaviour
         if (!canMove) return;
         move = _playerMoveInput.action.ReadValue<Vector2>();
         _move.SetDirection(move);
+    }
+
+    private void Flip()
+    {
+        Vector2 currentScale = model.transform.localScale;
+        currentScale.x *= -1;
+
+        model.transform.localScale = currentScale;
+
+        facingRight = !facingRight;
     }
 
     #endregion METODOS
