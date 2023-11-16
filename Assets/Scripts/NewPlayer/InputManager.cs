@@ -72,7 +72,7 @@ public class InputManager : MonoBehaviour
     void Awake()
     {
         _collision = GetComponent<Collisions>();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
+       // _spriteRenderer = GetComponent<SpriteRenderer>();
         // Scripts
 
         _move = GetComponent<Move>();
