@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerStats : MonoBehaviour
 {
@@ -8,8 +9,8 @@ public class PlayerStats : MonoBehaviour
     private int health = 3;
     private int maxHealh = 3;
 
-    bool knockback = false;
-    float knockbackVel;
+    public bool knockback = false;
+    public float knockbackVel;
 
     //EN EL CONTROLLER TIENE QUE COMPROBAR SI knockback == TRUE Y PONER ESTA LINEA
 
@@ -27,6 +28,8 @@ public class PlayerStats : MonoBehaviour
         health -= damage;
 
         knockbackVel = k;
+        knockbackVel *= direction;
+
 
         StartCoroutine(HitStop());
 
@@ -34,6 +37,10 @@ public class PlayerStats : MonoBehaviour
         if (health < 0)
         {
             health = 0;
+            Time.timeScale = 1;
+            SceneManager.LoadScene("MainMenu");
+
+
         }
     }
 

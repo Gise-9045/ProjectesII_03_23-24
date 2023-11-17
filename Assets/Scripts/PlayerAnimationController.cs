@@ -9,7 +9,7 @@ public class PlayerAnimationController : MonoBehaviour
 
     [SerializeField] private PlayerController controller;
     [SerializeField] private PlayerJump controllerJump;
-    [SerializeField] private PlayerAttack controllerAttack;
+    [SerializeField] private Attack controllerAttack;
 
     [SerializeField] private GameObject model;
 
@@ -35,7 +35,7 @@ public class PlayerAnimationController : MonoBehaviour
             Flip();
         }
 
-        animator.SetBool("Attack", controllerAttack.isAttacking == 1.0f);
+        //animator.SetBool("Attack", controllerAttack.isAttacking == 1.0f);
     }
 
     private void Flip ()

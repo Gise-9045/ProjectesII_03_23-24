@@ -8,15 +8,10 @@ public class HudManager : MonoBehaviour
     [SerializeField] private GameObject[] hearts;
     [SerializeField] private Sprite Heart0;
     [SerializeField] private Sprite Heart1;
-    [SerializeField] private Sprite s;
+    //[SerializeField] private Sprite s;
 
-    PlayerStats playerStats;
+    [SerializeField] private PlayerStats playerStats;
     private int health;
-
-    void Start()
-    {
-        playerStats = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerStats>();
-    }
 
     // Update is called once per frame
     void Update()

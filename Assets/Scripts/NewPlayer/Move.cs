@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,38 +6,53 @@ using UnityEngine.InputSystem;
 
 public class Move : MonoBehaviour
 {
-    [SerializeField] private Vector2 positionPlayer;
-
+    private Vector2 _direction;
     private Vector2 oldPosition = Vector2.zero; 
 
     [SerializeField] private Rigidbody2D physics;
-    [SerializeField] private InputActionReference move;
 
     [Space]
     [Header("Velocity")]
 
-    [SerializeField] private float currentSpeed;
+    [SerializeField] public float currentSpeed;
     [SerializeField] private float acceleraiton; 
     [SerializeField] private float deacceleraiton; 
-    [SerializeField] private float maxSpeed;
+    [SerializeField] public float maxSpeed;
 
-    public void Walk(InputActionReference movePlayer) //solo se hace UNA VEZ!!
+    [SerializeField] private PlayerStats playerStats;
+
+    private void Update() 
     {
-        Debug.Log("dentro de la funcion");
-        Debug.Log(positionPlayer.magnitude); 
-        Debug.Log(move.action.ReadValue<Vector2>());
+        Walk();
+    }
 
-        if(move.action.ReadValue<Vector2>().magnitude > 0 && currentSpeed >= 0)
+    private void Walk() 
+    {
+        if(playerStats.knockback)
         {
-            oldPosition = move.action.ReadValue<Vector2>();
-            currentSpeed += acceleraiton * maxSpeed * Time.fixedDeltaTime;
+            physics.velocity = new Vector2(playerStats.knockbackVel, physics.velocity.y);
         }
         else
         {
-            currentSpeed -= deacceleraiton * maxSpeed * Time.fixedDeltaTime;
-        }
+            if (_direction.magnitude > 0 && currentSpeed >= 0)
+            {
+                oldPosition = _direction;
+                currentSpeed += acceleraiton * maxSpeed * Time.fixedDeltaTime;
+            }
+            else
+            {
+                currentSpeed -= deacceleraiton * maxSpeed * Time.fixedDeltaTime;
+            }
 
-        currentSpeed = Mathf.Clamp(currentSpeed, 0, maxSpeed); 
-        physics.velocity = new Vector2(oldPosition.x * currentSpeed, physics.velocity.y);
+            currentSpeed = Mathf.Clamp(currentSpeed, 0, maxSpeed);
+            physics.velocity = new Vector2(oldPosition.x * currentSpeed, physics.velocity.y);
+        }
     }
+
+    public void SetDirection(Vector2 direction)
+    {
+        _direction = direction;
+    }
+
+    
 }
