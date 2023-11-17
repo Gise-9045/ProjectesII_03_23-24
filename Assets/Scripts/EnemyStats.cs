@@ -4,7 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.PlayerLoop;
 
-public class Enemy : MonoBehaviour
+public class EnemyOld : MonoBehaviour
 {
     public EnemyAttack enemyAttack;
 
