@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Tilemaps;
+//using UnityEditor.Tilemaps;
 using UnityEngine;
 
 public class PlayerAnimationController : MonoBehaviour
@@ -9,6 +9,7 @@ public class PlayerAnimationController : MonoBehaviour
 
     [SerializeField] private PlayerController controller;
     [SerializeField] private PlayerJump controllerJump;
+    [SerializeField] private Attack controllerAttack;
 
     [SerializeField] private GameObject model;
 
@@ -20,21 +21,11 @@ public class PlayerAnimationController : MonoBehaviour
         controller = GetComponent<PlayerController>();
         controllerJump = GetComponent<PlayerJump>();
     }
-    // Update is called once per frame
+
     void FixedUpdate()
     {
-    
-        if (controller.isMoving == false)
-        {
-            animator.SetBool("Moving", false);
-        }
-        else if (controller.isMoving == true)
-        {
+        animator.SetBool("Moving", controller.isMoving);
 
-            Debug.Log("is True , moving "); 
-            animator.SetBool("Moving", true);
-
-        }
         if (controller.movementInput.x < 0 && facingRight)
         {
             Flip();
@@ -43,6 +34,8 @@ public class PlayerAnimationController : MonoBehaviour
         {
             Flip();
         }
+
+        //animator.SetBool("Attack", controllerAttack.isAttacking == 1.0f);
     }
 
     private void Flip ()
