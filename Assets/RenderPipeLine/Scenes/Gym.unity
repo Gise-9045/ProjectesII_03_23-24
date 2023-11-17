@@ -3525,6 +3525,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6032821228707485265, guid: 90877c543b25da74f8d321d10bf81583, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8472405583535436937, guid: 90877c543b25da74f8d321d10bf81583, type: 3}
       propertyPath: playerStats
       value: 
@@ -6382,7 +6386,7 @@ PrefabInstance:
       objectReference: {fileID: 1278560245}
     - target: {fileID: 2866283476323232485, guid: 21e541372428f44429ebdc6a9683f20b, type: 3}
       propertyPath: gravityOnFall
-      value: 5.5
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 2866283476323232485, guid: 21e541372428f44429ebdc6a9683f20b, type: 3}
       propertyPath: gravityOnJump
