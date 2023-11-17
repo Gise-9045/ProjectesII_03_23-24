@@ -49,7 +49,7 @@ public class Jump : MonoBehaviour
         }
         else
         {
-            if (jumpCount > maxJump) return;
+            if (jumpCount >= maxJump) return;
             
             isJumping();
             Debug.Log(jumpCount + " | " + maxJump);
