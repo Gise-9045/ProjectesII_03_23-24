@@ -7,7 +7,8 @@ public class WallDetection : MonoBehaviour
     RaycastHit2D rcGround;
 
     [SerializeField] private Transform scale;
-    [SerializeField] private float distance;
+    [SerializeField] private float distanceY;
+    [SerializeField] private float distanceX;
 
     [SerializeField] private Enemy enemy;
 
@@ -15,17 +16,17 @@ public class WallDetection : MonoBehaviour
     private void Update()
     {
         //Arreglar para que sea ajustable por el programador
-        rcGround = Physics2D.Raycast(new Vector2(gameObject.transform.position.x + enemy.GetDirection(), gameObject.transform.position.y - (scale.localScale.y / 2) - 0.1f), Vector2.down, distance);
+        rcGround = Physics2D.Raycast(new Vector2(gameObject.transform.position.x + enemy.GetDirection() * distanceX, gameObject.transform.position.y - (scale.localScale.y / 2) - 0.1f), Vector2.down, distanceY);
 
         if (rcGround.collider != null)
         {
-            Debug.DrawRay(new Vector2(gameObject.transform.position.x + enemy.GetDirection(), gameObject.transform.position.y - (scale.localScale.y / 2) - 0.1f), Vector2.down * distance, Color.green);
+            Debug.DrawRay(new Vector2(gameObject.transform.position.x + enemy.GetDirection() * distanceX, gameObject.transform.position.y - (scale.localScale.y / 2) - 0.1f), Vector2.down * distanceY, Color.green);
         }
 
 
         if (rcGround.collider == null)
         {
-            Debug.DrawRay(new Vector2(gameObject.transform.position.x + enemy.GetDirection(), gameObject.transform.position.y - (scale.localScale.y / 2) - 0.1f), Vector2.down * distance, Color.red);
+            Debug.DrawRay(new Vector2(gameObject.transform.position.x + enemy.GetDirection() * distanceX, gameObject.transform.position.y - (scale.localScale.y / 2) - 0.1f), Vector2.down * distanceY, Color.red);
             enemy.SetDirection(enemy.GetDirection() * -1);
 
 

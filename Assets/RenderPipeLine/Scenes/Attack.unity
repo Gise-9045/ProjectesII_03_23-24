@@ -584,7 +584,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scale: {fileID: 743730561}
-  distance: 0
+  distanceY: 0.5
+  distanceX: 0.5
   enemy: {fileID: 743730563}
 --- !u!1 &619245178
 GameObject:
@@ -827,7 +828,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 743730558}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.935124, y: -0.101946324, z: 0.013102227}
+  m_LocalPosition: {x: -6.9, y: -2.18, z: 0.013102227}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1528,8 +1529,8 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 3.8458848, y: 1.019561}
+  m_Offset: {x: 0.000000003891053, y: 0}
+  m_Size: {x: 3.8458853, y: 0.95428085}
   m_Direction: 1
 --- !u!1 &1920059299
 GameObject:
@@ -1641,8 +1642,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1932668687}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 4.8575, y: -4.01, z: 0}
-  m_LocalScale: {x: 31.710848, y: 2, z: 1}
+  m_LocalPosition: {x: -4.5363, y: -4.01, z: 0}
+  m_LocalScale: {x: 8.812615, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2108808101}
