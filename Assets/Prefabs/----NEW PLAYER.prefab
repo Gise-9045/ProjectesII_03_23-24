@@ -637,10 +637,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 3
-  m_LinearDrag: 2
+  m_Mass: 2
+  m_LinearDrag: 0.5
   m_AngularDrag: 0.05
-  m_GravityScale: 3
+  m_GravityScale: 5.5
   m_Material: {fileID: 6200000, guid: 909ffddb2a62efb4093539dbf071a6fc, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
@@ -752,6 +752,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   knockback: 0
+  knockbackVel: 0
 --- !u!114 &1319215318493518553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -826,14 +827,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49586ae73dbc07f4d81e1856c830532a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 55
-  groundCheck: {fileID: 0}
+  jumpForce: 60
+  groundCheck: {fileID: 6294146462580894295}
   waterLayer:
     serializedVersion: 2
     m_Bits: 16
   inWater: 0
-  massScale: 2.31
-  fallingMassScale: 10
+  gravityOnFall: 5.5
+  gravityOnJump: 14
 --- !u!114 &7922130519519717653
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -851,6 +852,7 @@ MonoBehaviour:
   acceleraiton: 66
   deacceleraiton: 69
   maxSpeed: 12
+  playerStats: {fileID: 3651648430274574112}
 --- !u!114 &324981704852434081
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -933,5 +935,5 @@ Transform:
   - {fileID: 4905686525161926280}
   - {fileID: 6294146462580894295}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

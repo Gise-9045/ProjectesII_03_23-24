@@ -17,7 +17,7 @@ public class Jump : MonoBehaviour
     public Transform groundCheck;
     public LayerMask waterLayer;
     public bool inWater;
-    public Action isJumping;
+   // public Action isJumping;
     [SerializeField] private float gravityOnFall;
     [SerializeField] private float gravityOnJump;
 
@@ -51,7 +51,7 @@ public class Jump : MonoBehaviour
         {
             if (jumpCount >= maxJump) return;
             
-            isJumping();
+            //isJumping();
             Debug.Log(jumpCount + " | " + maxJump);
             _physics.velocity = new Vector2(_physics.velocity.x, 0);
             _physics.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
