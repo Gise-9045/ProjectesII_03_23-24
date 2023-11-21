@@ -8,14 +8,29 @@ public class Enemy : MonoBehaviour
     private int direction;
     [SerializeField] int speed;
 
+    private bool knockback;
+    private float knockbackVel;
+
+    public bool GetKnockback()
+    {
+        return knockback;
+    }
+
+    public float GetKnockbackVel()
+    {
+        return knockbackVel;
+    }
+
+
+
     private void Start()
     {
         direction = 1;
     }
 
-    public void AddLife(int l)
+    public void SetLife(int l)
     {
-        life += l;
+        life = l;
     }
     public int GetLife()
     {
@@ -41,6 +56,24 @@ public class Enemy : MonoBehaviour
     {
         return direction;
     }
+
+
+    public void TakeDamage(int life, bool knockback, float knockbackVel)
+    {
+        this.life -= life;
+
+        this.knockback = knockback;
+        this.knockbackVel = knockbackVel;
+
+        if(this.life <= 0)
+        {
+            //HITSTOP
+            CinemachineShake.Instance.ShakeCamera(5f, 0.1f);
+            Destroy(gameObject);
+        }
+    }
+
+
 
     private void Update()
     {
