@@ -58,19 +58,30 @@ public class Enemy : MonoBehaviour
     }
 
 
-    public void TakeDamage(int life, bool knockback, float knockbackVel)
+    public void TakeDamage(int subtractLife, bool knock, float knockVel)
     {
-        this.life -= life;
+        life -= subtractLife;
 
-        this.knockback = knockback;
-        this.knockbackVel = knockbackVel;
+        knockback = knock;
+        knockbackVel = knockVel;
 
-        if(this.life <= 0)
+        if(knockback)
         {
-            //HITSTOP
-            CinemachineShake.Instance.ShakeCamera(5f, 0.1f);
+            StartCoroutine(KnockBack());
+        }
+
+        if (life <= 0 )
+        {
+            CinemachineShake.Instance.ShakeCamera(3f, 0.125f);
+            HitStop.Instance.StopTime(0f, 0.25f);
             Destroy(gameObject);
         }
+    }
+
+    private IEnumerator KnockBack()
+    {
+        yield return new WaitForSecondsRealtime(0.1f);
+        knockback = false;
     }
 
 

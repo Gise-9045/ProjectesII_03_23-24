@@ -24,7 +24,7 @@ public class Attack : MonoBehaviour
 
         if(collision.tag == "Enemy")
         {
-            collision.GetComponent<Enemy>().TakeDamage(1, true, 5.0f);
+            collision.GetComponent<Enemy>().TakeDamage(1, true, 20.0f);
         }
 
         if(collision.tag == "Lever")
