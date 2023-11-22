@@ -9,6 +9,8 @@ public class PlayerController : MonoBehaviour
     public bool isMoving; 
 
     [SerializeField] private InputActionReference move;
+    [SerializeField] private PlayerStats playerStats;
+
 
     public Vector2 movementInput;
     private Rigidbody2D rb;
@@ -33,23 +35,30 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (movementInput.magnitude > 0 && currentSpeed >= 0)
+        if (playerStats.knockback)
         {
-            oldMovementInput = movementInput;
-            currentSpeed += acceleration * maxSpeed * Time.fixedDeltaTime;
-            isMoving = true;
+            rb.velocity = new Vector2(playerStats.knockbackVel, rb.velocity.y);
         }
         else
         {
-            currentSpeed -= deacceleration * maxSpeed * Time.fixedDeltaTime;
-            isMoving = true;
-        }
+            if (movementInput.magnitude > 0 && currentSpeed >= 0)
+            {
+                oldMovementInput = movementInput;
+                currentSpeed += acceleration * maxSpeed * Time.fixedDeltaTime;
+                isMoving = true;
+            }
+            else
+            {
+                currentSpeed -= deacceleration * maxSpeed * Time.fixedDeltaTime;
+                isMoving = true;
+            }
 
-        if(currentSpeed <= 0 )
-        {
-            isMoving = false; 
+            if (currentSpeed <= 0)
+            {
+                isMoving = false;
+            }
+            currentSpeed = Mathf.Clamp(currentSpeed, 0, maxSpeed);
+            rb.velocity = new Vector2(oldMovementInput.x * currentSpeed, rb.velocity.y);
         }
-        currentSpeed = Mathf.Clamp(currentSpeed, 0, maxSpeed);
-        rb.velocity = new Vector2(oldMovementInput.x * currentSpeed,rb.velocity.y);
     }
 }

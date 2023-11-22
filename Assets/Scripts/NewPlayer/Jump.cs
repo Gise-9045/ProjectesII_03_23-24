@@ -8,6 +8,7 @@ public class Jump : MonoBehaviour
 {
 
     private Rigidbody2D _physics;
+ 
 
     [SerializeField] private float jumpForce ;
 
@@ -16,53 +17,51 @@ public class Jump : MonoBehaviour
     public Transform groundCheck;
     public LayerMask waterLayer;
     public bool inWater;
-    public Action isJumping;
-    [SerializeField] private float massScale = 10f;
-    [SerializeField] private float fallingMassScale = 10f;
+   // public Action isJumping;
+    [SerializeField] private float gravityOnFall;
+    [SerializeField] private float gravityOnJump;
 
     float oldVelocity;
 
-    private void Update()
+    private void Awake()
     {
         _physics = GetComponent<Rigidbody2D>();
        
     }
-    
+
+    private void Update()
+    {
+        if (_physics.velocity.y >= 0f)
+        {
+            _physics.gravityScale = gravityOnJump;
+        }
+        else
+        {
+            _physics.gravityScale = gravityOnFall;
+        }
+        oldVelocity = _physics.velocity.y;
+    }
     public void Jump_player(int jumpCount , int maxJump)
     {
         if (Physics2D.OverlapCapsule(_physics.position, groundCheck.localScale, CapsuleDirection2D.Horizontal, 0, waterLayer))
         {
-            inWater = true;
+            ControlOnWater(); 
         }
         else
         {
-            inWater = false;
-        }
-        if (jumpCount < maxJump && inWater == false)
-        {
-            isJumping();
+            if (jumpCount >= maxJump) return;
+            
+            //isJumping();
             Debug.Log(jumpCount + " | " + maxJump);
             _physics.velocity = new Vector2(_physics.velocity.x, 0);
             _physics.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-        } 
-        if(inWater == true)
-        {
-            _physics.velocity = new Vector2(_physics.velocity.x, 0);
-            _physics.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            
         }
-        
-       
-        if (_physics.velocity.y >= 0f )
-        {
-            _physics.mass = massScale;
+    }
 
-        }
-        if (oldVelocity <= _physics.velocity.y )
-        {
-            _physics.mass = fallingMassScale;
-        }
-        oldVelocity = _physics.velocity.y;
-
-        
+    private void ControlOnWater()
+    {
+        _physics.velocity = new Vector2(_physics.velocity.x, 0);
+        _physics.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
     }
 }

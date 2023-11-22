@@ -8,12 +8,14 @@ public class InputManager : MonoBehaviour
 {
     #region VARIABLES 
 
+
     private Collisions _collision;
     private Dash _dash;
     private Jump _jump;
     private Move _move;
     private Wall _wall;
     [SerializeField] private Attack _attack;
+    public PlayerStats _playerStats; 
 
     [Space]
     [Header("Input References")]
@@ -24,7 +26,7 @@ public class InputManager : MonoBehaviour
 
     [Space]
     [Header("Booleans")]
-    [SerializeField] private bool canMove;
+    [SerializeField] private bool canMove = true;
     // public bool wallGrab;
     [SerializeField] private bool wallJumped;
     [SerializeField] private bool wallSlide;
@@ -71,6 +73,7 @@ public class InputManager : MonoBehaviour
     void Awake()
     {
         _collision = GetComponent<Collisions>();
+       // _spriteRenderer = GetComponent<SpriteRenderer>();
         // Scripts
 
         _move = GetComponent<Move>();
@@ -92,7 +95,7 @@ public class InputManager : MonoBehaviour
 
     private void CambioEstados() 
     {
-        _attack.StartAttack(_playerAttackInput.action.ReadValue<float>());
+        //_attack.StartAttack(_playerAttackInput.action.ReadValue<float>());
 
         if (_collision.collectingJump)
         {
@@ -159,7 +162,7 @@ public class InputManager : MonoBehaviour
     {
         if (!canMove) return;
         
-        float massScale = _physics.mass;
+       // float gravityScale = _physics.gravityScale;
 
         if (_jump.inWater == false)
         {
@@ -171,7 +174,7 @@ public class InputManager : MonoBehaviour
             jumpCount = 0;
         }
 
-         _physics.mass = massScale;
+        // _physics.gravityScale = gravityScale;
     }
 
     private void PlayerDash(InputAction.CallbackContext obj)
@@ -188,9 +191,11 @@ public class InputManager : MonoBehaviour
 
     private void PlayerMove(InputAction.CallbackContext obj) 
     {
+
         if (!canMove) return;
         move = _playerMoveInput.action.ReadValue<Vector2>();
         _move.SetDirection(move);
+  
     }
 
     private void Flip()
