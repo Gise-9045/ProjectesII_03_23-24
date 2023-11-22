@@ -16,6 +16,7 @@ public class Attack : MonoBehaviour
     public void StartAttack(float attack)
     {
         anim.SetBool("isAttacking", attack > 0);
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
