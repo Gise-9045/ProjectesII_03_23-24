@@ -15,11 +15,14 @@ public class UIManager : MonoBehaviour
         if(!pauseMenu.activeSelf && pauseController.action.WasPressedThisFrame())
         {
             pauseMenu.SetActive(true);
+            Time.timeScale = 0f;
 
         }
         else if(pauseMenu.activeSelf && pauseController.action.WasPressedThisFrame())
         {
             pauseMenu.SetActive(false);
+            Time.timeScale = 1f;
+
 
         }
 
@@ -29,6 +32,8 @@ public class UIManager : MonoBehaviour
     public void ContinueGame()
     {
         pauseMenu.SetActive(false);
+        Time.timeScale = 1f;
+
     }
 
     public void ExitGame()
