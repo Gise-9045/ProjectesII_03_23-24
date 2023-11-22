@@ -15,7 +15,7 @@ public class Attack : MonoBehaviour
     private Bullet bullet;
     private void Update()
     {
-        anim.SetBool("isAttacking", attack > 0);
+        anim.SetBool("isAttacking", attack.action.ReadValue<float>() > 0);
         
     }
 
