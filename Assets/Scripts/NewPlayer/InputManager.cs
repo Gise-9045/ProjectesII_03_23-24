@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,57 +8,71 @@ public class InputManager : MonoBehaviour
 {
     #region VARIABLES 
 
-    public Rigidbody2D _physyics;
+    private Collisions _collision;
+    private Dash _dash;
+    private Jump _jump;
+    private Move _move;
+    private Wall _wall;
+    [SerializeField] private Attack _attack;
+    public PlayerStats _playerStats; 
 
     [Space]
-    [Header("Scripts")]
-    [SerializeField] private Collisions _collision;
-    [SerializeField] private Dash _dash;
-    [SerializeField] private Jump _jump;
-    [SerializeField] private Move _move;
-    [SerializeField] private Wall _wall;
-
-    [Space]
-    [Header("Inputs")]
-    [SerializeField] private InputActionReference _playerMove;
-    [SerializeField] private InputActionReference _playerJump;
-    [SerializeField] private InputActionReference _playerDash;
-
-    // Animaciones Luego 
-
-    [Space]
-    [Header("Stats")]
-    [SerializeField] private float _speed = 10f;
-    [SerializeField] private float _jumpForce = 50f;
-    [SerializeField] private float _slideSpeed = 5f;
-    [SerializeField] private float _wallJumpLerp = 10f;
-
+    [Header("Input References")]
+    [SerializeField] private InputActionReference _playerMoveInput;
+    [SerializeField] private InputActionReference _playerJumpInput;
+    [SerializeField] private InputActionReference _playerDashInput;
+    [SerializeField] private InputActionReference _playerAttackInput;
 
     [Space]
     [Header("Booleans")]
-    public bool canMove;
+    [SerializeField] private bool canMove = true;
     // public bool wallGrab;
-    public bool wallJumped;
-    public bool wallSlide;
-    public bool isDashing;
-
-    [Space]
-
+    [SerializeField] private bool wallJumped;
+    [SerializeField] private bool wallSlide;
+    [SerializeField] private bool isDashing;
+    [SerializeField] private bool isAttacking;
+    
     public int sidePlayer = 1;
+    private int jumpCount = 0;
+    private int maxJump = 2; 
 
     private bool _groundTouch;
-    private bool _hasDashed;
+
+    [Header("Habilities")]
+    public bool canDoubleJump = false;
+    public bool canDash = false;
 
     //Particulas De momento nope
+
+    public Vector2 move;
+    public Rigidbody2D _physics;
+    [SerializeField] private GameObject model;
+    public bool facingRight; 
 
     #endregion VARIABLES 
 
     #region METODOS DEFAULT
+
+    private void OnEnable()
+    {
+        _playerJumpInput.action.started += PlayerJump;
+        _playerDashInput.action.performed += PlayerDash;
+        _playerMoveInput.action.started += PlayerMove;
+        _playerMoveInput.action.canceled += PlayerMove;
+    }
+
+    private void OnDisable() 
+    {
+        _playerJumpInput.action.started -= PlayerJump;
+        _playerDashInput.action.performed -= PlayerDash;
+        _playerMoveInput.action.started -= PlayerMove;
+        _playerMoveInput.action.canceled -= PlayerMove;
+    }
+
     void Awake()
     {
         _collision = GetComponent<Collisions>();
-        _physyics = GetComponent<Rigidbody2D>();
-
+       // _spriteRenderer = GetComponent<SpriteRenderer>();
         // Scripts
 
         _move = GetComponent<Move>();
@@ -70,66 +85,39 @@ public class InputManager : MonoBehaviour
     // Update is called once per frame
     void Update() //FixedUpdate ??
     {
-        Debug.Log(_playerMove.action.ReadValue<Vector2>());
+        CambioEstados();
+    }
+    
+    #endregion METODOS DEFAULT
 
-        Vector2 aux = _playerMove.action.ReadValue<Vector2>();
-        Vector2 move = new Vector2(aux.x, aux.y);
+    #region METODOS
 
-        _move.Walk(move, canMove, wallJumped, _physyics, _speed, _wallJumpLerp);
+    private void CambioEstados() 
+    {
+        _attack.StartAttack(_playerAttackInput.action.ReadValue<float>());
 
-        #region Wall
-
-        if (_collision.onGround && !isDashing)
+        if (_collision.collectingJump)
         {
-            wallJumped = false;
-            GetComponent<BetterJumping>().enabled = true; 
+            canDoubleJump = true; 
         }
-
-        if (_collision.onWall && !_collision.onGround)
+        if (_collision.collectingDash)
         {
-            if (aux.x != 0 && aux.y != 0)
+            canDash = true;
+        }
+        if (_collision.onGround && !isDashing && _physics.velocity.y < 0.2f)
+        {
+            jumpCount = 0; 
+
+            if (canDoubleJump == true)
             {
-                wallSlide = true;
-                _wall.WallSlide(canMove, _physyics, _collision, _slideSpeed); 
+                maxJump = 2;
+            }
+
+            if (canDoubleJump == false)
+            {
+                maxJump = 1;
             }
         }
-
-        if (!_collision.onWall || _collision.onGround)
-        {
-            wallSlide = false;
-        }
-
-        #endregion Wall
-
-        #region Jump
-
-        if (_playerJump.action.ReadValue<bool>())
-        {
-            //activar animacion salto
-
-            if (_collision.onGround)
-            {
-                _jump.Jump_player(aux, _physyics, _jumpForce); 
-            }
-            if (_collision.onWall && !_collision.onGround)
-            {
-                _wall.WallJump(canMove, _collision, _jump, wallJumped, _physyics, _jumpForce); 
-            }
-        }
-
-        #endregion Jump
-
-        #region Dash
-        if (_playerDash.action.ReadValue<bool>() && !_hasDashed)
-        {
-            if (aux.x != 0 || aux.y != 0) // GetAxisRaw ??
-            {
-                _dash.Dash_player(_hasDashed, _physyics, move, _jump, wallJumped, isDashing); 
-            }
-        }
-        #endregion Dash
-
-        #region Ground
 
         if (_collision.onGround && !_groundTouch)
         {
@@ -142,38 +130,79 @@ public class InputManager : MonoBehaviour
             _groundTouch = false;
         }
 
-        #endregion Ground
 
-        if (wallJumped || !canMove)
+        if (_collision.onGround && !isDashing)
+        {
+            canMove = true;
+        }
+
+        if (!canMove)
         {
             return;
         }
 
-        if (aux.x > 0)
+        if (move.x > 0 && facingRight)
         {
             sidePlayer = 1;
-            //metodo Flip ->script Animation
+            Flip(); 
         }
-        if (aux.x < 0)
+        if (move.x < 0 && !facingRight)
         {
             sidePlayer = -1;
-            //metodo Flip -> script Animation
-
-        }
-        canMove = false ; 
+            Flip();
+        }    
     }
-    #endregion METODOS DEFAULT
-    // Start is called before the first frame update
-
-    #region METODOS
     private void GroundTouch()
     {
-        _hasDashed = false;
         isDashing = false;
+    }
 
-        //animation parte 
+    private void PlayerJump(InputAction.CallbackContext obj) 
+    {
+        if (!canMove) return;
+        
+       // float gravityScale = _physics.gravityScale;
 
-        //particulas
+        if (_jump.inWater == false)
+        {
+            _jump.Jump_player(jumpCount, maxJump);
+            jumpCount++;
+        } else if(_jump.inWater == true)
+        {
+            _jump.Jump_player(jumpCount, maxJump);
+            jumpCount = 0;
+        }
+
+        // _physics.gravityScale = gravityScale;
+    }
+
+    private void PlayerDash(InputAction.CallbackContext obj)
+    {
+        if (!canDash)
+        {
+            return;
+        }
+        if (move != Vector2.zero) // GetAxisRaw ??
+        {
+            _dash.PlayerDashing();
+        }
+    }
+
+    private void PlayerMove(InputAction.CallbackContext obj) 
+    {
+        if (!canMove) return;
+        move = _playerMoveInput.action.ReadValue<Vector2>();
+        _move.SetDirection(move);
+    }
+
+    private void Flip()
+    {
+        Vector2 currentScale = model.transform.localScale;
+        currentScale.x *= -1;
+
+        model.transform.localScale = currentScale;
+
+        facingRight = !facingRight;
     }
 
     #endregion METODOS
