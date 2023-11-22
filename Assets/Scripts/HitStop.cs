@@ -13,8 +13,7 @@ public class HitStop : MonoBehaviour
 
     public void StopTime(float scale, float delay)
     {
-            StartCoroutine(HitTime(scale, delay));
-
+        StartCoroutine(HitTime(scale, delay));
     }
 
 

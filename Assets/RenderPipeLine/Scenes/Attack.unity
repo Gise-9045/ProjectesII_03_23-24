@@ -641,9 +641,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f38d65123baf0c448981943deb638e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scale: {fileID: 743730561}
-  distanceY: 0.5
-  distanceX: 0.5
+  parent: {fileID: 589643536}
+  distanceX: 0.68
+  distanceY: -1.15
   enemy: {fileID: 743730563}
 --- !u!61 &589643538
 BoxCollider2D:
@@ -843,6 +843,7 @@ GameObject:
   - component: {fileID: 743730560}
   - component: {fileID: 743730559}
   - component: {fileID: 743730563}
+  - component: {fileID: 743730565}
   - component: {fileID: 743730564}
   m_Layer: 0
   m_Name: Enemy
@@ -931,7 +932,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 743730558}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.9, y: -1.48, z: 0.013102227}
+  m_LocalPosition: {x: -3.51, y: -0.73, z: 0.013102227}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -953,7 +954,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d7a2779bda327040bf9ad5a4b8195b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 2
+  life: 3
   speed: 3
 --- !u!114 &743730564
 MonoBehaviour:
@@ -968,6 +969,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 743730563}
+--- !u!114 &743730565
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 743730558}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c06983c228a4f5f4d869d9767c44ee76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerStats: {fileID: 687085787}
+  substrackLife: 1
+  knockback: 20
 --- !u!114 &911552391 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6573170882364399992, guid: 88d9cf3c74469d54da2f953973b97459, type: 3}
@@ -1295,6 +1311,10 @@ PrefabInstance:
       propertyPath: m_FlipY
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2964083082103925751, guid: 5b6679eb41e81694d9fd8eff925a41d1, type: 3}
+      propertyPath: playerStats
+      value: 
+      objectReference: {fileID: 687085787}
     - target: {fileID: 3558169588648499404, guid: 5b6679eb41e81694d9fd8eff925a41d1, type: 3}
       propertyPath: m_Layer
       value: 0
@@ -1801,8 +1821,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1932668687}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.7931, y: -4.01, z: 0}
-  m_LocalScale: {x: 35.47166, y: 2, z: 1}
+  m_LocalPosition: {x: 7.1249, y: -4.01, z: 0}
+  m_LocalScale: {x: 32.13432, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2108808101}
