@@ -18,6 +18,13 @@ public class CinemachineShake : MonoBehaviour
         cinemachineVirtualCamera = GetComponent<CinemachineVirtualCamera>();
     }
 
+    private void Start()
+    {
+        //CinemachineImpulseManager.Instance.IgnoreTimeScale = true;
+        //Camera.main.GetComponent<CinemachineBrain>().m_UpdateMethod = CinemachineBrain.UpdateMethod.LateUpdate;
+        //Camera.main.GetComponent<CinemachineBrain>().m_IgnoreTimeScale = true;
+    }
+
     public void ShakeCamera(float intensity, float time)
     {
         CinemachineBasicMultiChannelPerlin cinemachineMultiChannelPerlin = cinemachineVirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
