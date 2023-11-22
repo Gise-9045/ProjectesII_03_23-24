@@ -8,29 +8,25 @@ public class Attack : MonoBehaviour
 {
 
     [SerializeField] Animator anim;
+    [SerializeField] InputActionReference attack;
 
-    private GroundEnemyDamage groundEnemy;
+    private Enemy enemy;
     private FlyingEnemyDamage flyingEnemy;
     private Bullet bullet;
-
-    public void StartAttack(float attack)
+    private void Update()
     {
-        anim.SetBool("isAttacking", attack > 0);
+        anim.SetBool("Attack", attack.action.ReadValue<float>() > 0);
+
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if(collision.tag == "GroundEnemy")
+        if(collision.tag == "Enemy")
         {
-            collision.GetComponent<GroundEnemyDamage>().TakeDamage(1, 20.0f);
+            collision.GetComponent<Enemy>().TakeDamage(1, true, 20.0f);
         }
 
-        if (collision.tag == "FlyingEnemy")
-        {
-            collision.GetComponent<FlyingEnemyDamage>().TakeDamage(1, 20.0f);
-
-        }
         if(collision.tag == "Lever")
         {
             collision.GetComponent<leverActivation>().Toggle();

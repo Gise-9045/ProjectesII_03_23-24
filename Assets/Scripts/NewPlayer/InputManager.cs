@@ -94,7 +94,7 @@ public class InputManager : MonoBehaviour
 
     private void CambioEstados() 
     {
-        _attack.StartAttack(_playerAttackInput.action.ReadValue<float>());
+        //_attack.StartAttack(_playerAttackInput.action.ReadValue<float>());
 
         if (_collision.collectingJump)
         {

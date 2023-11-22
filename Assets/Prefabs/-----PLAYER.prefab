@@ -764,9 +764,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ShowDebugText: 0
   m_ShowCameraFrustum: 1
-  m_IgnoreTimeScale: 0
+  m_IgnoreTimeScale: 1
   m_WorldUpOverride: {fileID: 0}
-  m_UpdateMethod: 2
+  m_UpdateMethod: 1
   m_BlendUpdateMethod: 1
   m_DefaultBlend:
     m_Style: 1
@@ -1011,10 +1011,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8da6972ac9843654fbd778e4fbd79576, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 0}
   attack: {fileID: 9011313330024176719, guid: 45ac6d5744795c5498f12a10fd396418, type: 3}
-  isAttacking: 0
-  weapon: {fileID: 1432797744252734803}
-  groundEnemy: {fileID: 0}
 --- !u!1 &8966324309986080453
 GameObject:
   m_ObjectHideFlags: 0
@@ -1201,3 +1199,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54bc0176c0069b442b2074a4ed25fa99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  knockback: 0
+  knockbackVel: 0
