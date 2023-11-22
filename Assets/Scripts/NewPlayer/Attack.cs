@@ -15,8 +15,8 @@ public class Attack : MonoBehaviour
     private Bullet bullet;
     private void Update()
     {
-        anim.SetBool("Attack", attack.action.ReadValue<float>() > 0);
-
+        anim.SetBool("isAttacking", attack > 0);
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
