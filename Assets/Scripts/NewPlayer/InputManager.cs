@@ -8,6 +8,7 @@ public class InputManager : MonoBehaviour
 {
     #region VARIABLES 
 
+
     private Collisions _collision;
     private Dash _dash;
     private Jump _jump;
@@ -190,9 +191,11 @@ public class InputManager : MonoBehaviour
 
     private void PlayerMove(InputAction.CallbackContext obj) 
     {
+
         if (!canMove) return;
         move = _playerMoveInput.action.ReadValue<Vector2>();
         _move.SetDirection(move);
+  
     }
 
     private void Flip()

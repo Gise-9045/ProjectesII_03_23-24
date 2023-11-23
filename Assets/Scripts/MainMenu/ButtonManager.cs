@@ -28,7 +28,7 @@ public class ButtonManager : MonoBehaviour
 
     public void PlayButton()
     {
-        SceneManager.LoadScene("Gym");
+        SceneManager.LoadScene("Tutorial");
     }
 
     public void SettingsButton()
