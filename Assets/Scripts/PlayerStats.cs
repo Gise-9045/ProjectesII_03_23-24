@@ -41,7 +41,7 @@ public class PlayerStats : MonoBehaviour
 
 
         knockback = true;
-        CinemachineShake.Instance.ShakeCamera(3f, 0.125f);
+        CinemachineShake.Instance.ShakeCamera(5f, 0.125f);
         HitStop.Instance.StopTime(0f, 0.25f);
 
 
