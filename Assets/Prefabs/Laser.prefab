@@ -117,7 +117,7 @@ Transform:
   m_Children:
   - {fileID: 292632738610310697}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &7611916660334960158
 BoxCollider2D:
@@ -176,8 +176,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b72592fa46c6d094bb9c83cee010a08f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Speed: 4.5
-  LaunchOffset: {fileID: 0}
+  Speed: 100
+  laser: {fileID: 0}
 --- !u!50 &2528989358659339555
 Rigidbody2D:
   serializedVersion: 4
