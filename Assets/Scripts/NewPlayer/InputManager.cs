@@ -49,6 +49,7 @@ public class InputManager : MonoBehaviour
 
     public Vector2 move;
     public Vector2 shoot;
+    public Vector2 currentScale;
     public Rigidbody2D _physics;
     [SerializeField] private GameObject model;
     public bool facingRight; 
@@ -64,7 +65,7 @@ public class InputManager : MonoBehaviour
         _playerMoveInput.action.started += PlayerMove;
         _playerMoveInput.action.canceled += PlayerMove;
 
-        //_playerLaserInput.action.performed += PlayerLaser;
+        _playerLaserInput.action.performed += PlayerLaser;
     }
 
     private void OnDisable() 
@@ -73,7 +74,7 @@ public class InputManager : MonoBehaviour
         _playerDashInput.action.performed -= PlayerDash;
         _playerMoveInput.action.started -= PlayerMove;
         _playerMoveInput.action.canceled -= PlayerMove;
-        //_playerLaserInput.action.canceled -= PlayerLaser;
+        _playerLaserInput.action.performed -= PlayerLaser;
     }
 
     void Awake()
@@ -212,7 +213,7 @@ public class InputManager : MonoBehaviour
 
     private void Flip()
     {
-        Vector2 currentScale = model.transform.localScale;
+         currentScale = model.transform.localScale;
         currentScale.x *= -1;
 
         model.transform.localScale = currentScale;
