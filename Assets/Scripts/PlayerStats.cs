@@ -33,8 +33,8 @@ public class PlayerStats : MonoBehaviour
         knockbackVel = k;
         knockbackVel *= direction;
 
-        HitParticles.Instance.Disable();
-        HitParticles.Instance.Enable(gameObject.transform.position.x, gameObject.transform.position.y);
+        HitParticles.Instance.DisablePlayer();
+        HitParticles.Instance.EnablePlayer(gameObject.transform.position.x, gameObject.transform.position.y);
 
         knockback = true;
         CinemachineShake.Instance.ShakeCamera(5f, 0.5f);
