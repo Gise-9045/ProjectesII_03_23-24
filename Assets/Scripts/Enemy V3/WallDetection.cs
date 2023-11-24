@@ -19,19 +19,16 @@ public class WallDetection : MonoBehaviour
 
     private void Update()
     {
-        //Arreglar para que sea ajustable por el programador
-        rcGround = Physics2D.Raycast(new Vector2(parent.transform.position.x + (enemy.GetDirection() * distanceX), parent.transform.position.y + distanceY) , Vector2.down);
+        rcGround = Physics2D.Raycast(new Vector2(parent.transform.position.x + (enemy.GetDirection() * distanceX), parent.transform.position.y + distanceY) , Vector2.down, distanceY);
 
-        if (rcGround.collider != null)
+        if (rcGround.collider.tag == "Ground")
         {
             Debug.DrawRay(new Vector2(parent.transform.position.x + (enemy.GetDirection() * distanceX), parent.transform.position.y + distanceY), Vector2.down, Color.green);
         }
-
-
-        if (rcGround.collider == null)
+        else
         {
             Debug.DrawRay(new Vector2(parent.transform.position.x + (enemy.GetDirection() * distanceX), parent.transform.position.y + distanceY), Vector2.down, Color.red);
-            
+
             enemy.SetDirection(enemy.GetDirection() * -1);
         }
 
@@ -39,15 +36,15 @@ public class WallDetection : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Ground"))
+        if (collision.CompareTag("Ground") || collision.CompareTag("Lever"))
         {
             enemy.SetDirection(enemy.GetDirection() * -1);
         }
     }
-    private void OnDrawGizmos()
-    {
-        parent = GetComponentInParent<Transform>();
+    //private void OnDrawGizmos()
+    //{
+    //    parent = GetComponentInParent<Transform>();
 
-        Debug.DrawRay(new Vector2(parent.transform.position.x + (1 * distanceX), parent.transform.position.y + distanceY), Vector2.down, Color.blue);
-    }
+    //    Debug.DrawRay(new Vector2(parent.transform.position.x + (1 * distanceX), parent.transform.position.y + distanceY), Vector2.down, Color.blue);
+    //}
 }

@@ -8,7 +8,6 @@ public class laserBehaviour : MonoBehaviour
 {
     public float Speed = 4.5f;
     private Enemy enemy;
-    private FlyingEnemyDamage flyingEnemy;
     [SerializeField] InputActionReference laser;
     // Update is called once per frame
     void Update()

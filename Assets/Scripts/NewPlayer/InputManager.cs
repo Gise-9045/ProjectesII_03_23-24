@@ -64,7 +64,7 @@ public class InputManager : MonoBehaviour
         _playerMoveInput.action.started += PlayerMove;
         _playerMoveInput.action.canceled += PlayerMove;
 
-        _playerLaserInput.action.performed += PlayerLaser;
+        //_playerLaserInput.action.performed += PlayerLaser;
     }
 
     private void OnDisable() 
@@ -73,7 +73,7 @@ public class InputManager : MonoBehaviour
         _playerDashInput.action.performed -= PlayerDash;
         _playerMoveInput.action.started -= PlayerMove;
         _playerMoveInput.action.canceled -= PlayerMove;
-        _playerLaserInput.action.canceled -= PlayerLaser;
+        //_playerLaserInput.action.canceled -= PlayerLaser;
     }
 
     void Awake()
