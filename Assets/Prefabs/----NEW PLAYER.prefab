@@ -93,7 +93,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 852800113937103735}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -118,7 +118,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0033559501, y: 0.6980292}
+  m_Offset: {x: -0.0033559501, y: 2.1484313}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5064954, y: 0.11925681}
@@ -129,7 +129,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.51666665, y: 1.8333334}
+  m_Size: {x: 0.51666665, y: 4.117056}
   m_EdgeRadius: 0
 --- !u!114 &6509692174906454992
 MonoBehaviour:
@@ -144,6 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 2148947533604604273}
+  attack: {fileID: 0}
 --- !u!1 &3067829219104081428
 GameObject:
   m_ObjectHideFlags: 0
@@ -756,11 +757,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attack: {fileID: 6509692174906454992}
+  laser: {fileID: 0}
   _playerStats: {fileID: 3651648430274574112}
+  LaunchOffset: {fileID: 0}
   _playerMoveInput: {fileID: 7166945924870577955, guid: 45ac6d5744795c5498f12a10fd396418, type: 3}
   _playerJumpInput: {fileID: 1935530299882758764, guid: 45ac6d5744795c5498f12a10fd396418, type: 3}
   _playerDashInput: {fileID: 6964419200310921693, guid: 45ac6d5744795c5498f12a10fd396418, type: 3}
   _playerAttackInput: {fileID: 9011313330024176719, guid: 45ac6d5744795c5498f12a10fd396418, type: 3}
+  _playerLaserInput: {fileID: 0}
   canMove: 1
   wallJumped: 0
   wallSlide: 0
@@ -770,6 +774,7 @@ MonoBehaviour:
   canDoubleJump: 0
   canDash: 0
   move: {x: 0, y: 0}
+  shoot: {x: 0, y: 0}
   _physics: {fileID: 7298559274747491072}
   model: {fileID: 6503421941141198410}
   facingRight: 1
@@ -838,6 +843,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   physics: {fileID: 7298559274747491072}
+  anim: {fileID: 0}
   currentSpeed: 0
   acceleraiton: 66
   deacceleraiton: 69
