@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.ParticleSystem;
 
 public class Enemy : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         direction = 1;
+
     }
 
     public void SetLife(int l)
@@ -65,15 +67,18 @@ public class Enemy : MonoBehaviour
         knockback = knock;
         knockbackVel = knockVel;
 
-        if(knockback)
+        HitParticles.Instance.Disable();
+        HitParticles.Instance.Enable(gameObject.transform.position.x, gameObject.transform.position.y);
+
+        if (knockback)
         {
             StartCoroutine(KnockBack());
         }
 
         if (life <= 0 )
         {
-            CinemachineShake.Instance.ShakeCamera(5f, 0.125f);
-            HitStop.Instance.StopTime(0f, 0.25f);
+            CinemachineShake.Instance.ShakeCamera(5f, 0.5f);
+            HitStop.Instance.StopTime(0f, 0.5f);
             Destroy(gameObject);
         }
     }

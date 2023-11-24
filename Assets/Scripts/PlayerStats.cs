@@ -1,22 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class PlayerStats : MonoBehaviour
 {
-
     private int health = 3;
     private int maxHealh = 3;
 
     public bool knockback = false;
     public float knockbackVel;
-
-    //EN EL CONTROLLER TIENE QUE COMPROBAR SI knockback == TRUE Y PONER ESTA LINEA
-
-    //ARREGLAR
-    //rb.velocity = new Vector2(-direction* knockbackVel, rb.velocity.y);
-
 
     public int GetHealth()
     {
@@ -39,15 +33,17 @@ public class PlayerStats : MonoBehaviour
         knockbackVel = k;
         knockbackVel *= direction;
 
+        HitParticles.Instance.Disable();
+        HitParticles.Instance.Enable(gameObject.transform.position.x, gameObject.transform.position.y);
 
         knockback = true;
-        CinemachineShake.Instance.ShakeCamera(5f, 0.125f);
-        HitStop.Instance.StopTime(0f, 0.25f);
+        CinemachineShake.Instance.ShakeCamera(5f, 0.5f);
+        HitStop.Instance.StopTime(0f, 0.5f);
 
 
 
 
-        if (health < 0)
+        if (health <= 0)
         {
             health = 0;
             Time.timeScale = 1;
