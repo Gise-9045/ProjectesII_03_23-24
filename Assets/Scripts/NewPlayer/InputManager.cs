@@ -14,15 +14,18 @@ public class InputManager : MonoBehaviour
     private Jump _jump;
     private Move _move;
     private Wall _wall;
+    private laserBehaviour _laser;
     [SerializeField] private Attack _attack;
-    public PlayerStats _playerStats; 
-
+    [SerializeField] private GameObject laser;
+    public PlayerStats _playerStats;
+    public Transform LaunchOffset;
     [Space]
     [Header("Input References")]
     [SerializeField] private InputActionReference _playerMoveInput;
     [SerializeField] private InputActionReference _playerJumpInput;
     [SerializeField] private InputActionReference _playerDashInput;
     [SerializeField] private InputActionReference _playerAttackInput;
+    [SerializeField] private InputActionReference _playerLaserInput;
 
     [Space]
     [Header("Booleans")]
@@ -35,8 +38,7 @@ public class InputManager : MonoBehaviour
     
     public int sidePlayer = 1;
     private int jumpCount = 0;
-    private int maxJump = 2; 
-
+    private int maxJump = 2;
     private bool _groundTouch;
 
     [Header("Habilities")]
@@ -46,6 +48,7 @@ public class InputManager : MonoBehaviour
     //Particulas De momento nope
 
     public Vector2 move;
+    public Vector2 shoot;
     public Rigidbody2D _physics;
     [SerializeField] private GameObject model;
     public bool facingRight; 
@@ -60,6 +63,8 @@ public class InputManager : MonoBehaviour
         _playerDashInput.action.performed += PlayerDash;
         _playerMoveInput.action.started += PlayerMove;
         _playerMoveInput.action.canceled += PlayerMove;
+
+        //_playerLaserInput.action.performed += PlayerLaser;
     }
 
     private void OnDisable() 
@@ -68,6 +73,7 @@ public class InputManager : MonoBehaviour
         _playerDashInput.action.performed -= PlayerDash;
         _playerMoveInput.action.started -= PlayerMove;
         _playerMoveInput.action.canceled -= PlayerMove;
+        //_playerLaserInput.action.canceled -= PlayerLaser;
     }
 
     void Awake()
@@ -80,7 +86,7 @@ public class InputManager : MonoBehaviour
         _wall = GetComponent<Wall>();
         _jump = GetComponent<Jump>();
         _dash = GetComponent<Dash>();
-
+        _laser = GetComponent<laserBehaviour>();
     }
 
     // Update is called once per frame
@@ -198,6 +204,12 @@ public class InputManager : MonoBehaviour
   
     }
 
+    private void PlayerLaser(InputAction.CallbackContext obj)
+    {
+        Instantiate(laser, LaunchOffset.position, transform.rotation);
+        _laser.Shoot();
+    }
+
     private void Flip()
     {
         Vector2 currentScale = model.transform.localScale;
@@ -208,6 +220,7 @@ public class InputManager : MonoBehaviour
         facingRight = !facingRight;
     }
 
+   
     #endregion METODOS
 
 

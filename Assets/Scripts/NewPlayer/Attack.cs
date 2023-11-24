@@ -11,7 +11,6 @@ public class Attack : MonoBehaviour
     [SerializeField] InputActionReference attack;
 
     private Enemy enemy;
-    private FlyingEnemyDamage flyingEnemy;
     private Bullet bullet;
     private void Update()
     {
