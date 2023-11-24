@@ -29,8 +29,6 @@ public class Move : MonoBehaviour
 
     private void Walk() 
     {
-       
-
         if(playerStats.knockback)
         {
             physics.velocity = new Vector2(playerStats.knockbackVel, physics.velocity.y);
