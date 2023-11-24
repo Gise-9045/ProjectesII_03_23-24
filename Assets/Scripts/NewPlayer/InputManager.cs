@@ -39,7 +39,6 @@ public class InputManager : MonoBehaviour
     public int sidePlayer = 1;
     private int jumpCount = 0;
     private int maxJump = 2;
-    private bool _groundTouch;
 
     [Header("Habilities")]
     public bool canDoubleJump = false;
@@ -127,18 +126,6 @@ public class InputManager : MonoBehaviour
             }
         }
 
-        if (_collision.onGround && !_groundTouch)
-        {
-            GroundTouch();
-            _groundTouch = true;
-        }
-
-        if (!_collision.onGround && _groundTouch)
-        {
-            _groundTouch = false;
-        }
-
-
         if (_collision.onGround && !isDashing)
         {
             canMove = true;
@@ -160,10 +147,7 @@ public class InputManager : MonoBehaviour
             Flip();
         }    
     }
-    private void GroundTouch()
-    {
-        isDashing = false;
-    }
+
 
     private void PlayerJump(InputAction.CallbackContext obj) 
     {
