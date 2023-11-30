@@ -67,8 +67,8 @@ public class Enemy : MonoBehaviour
         knockback = knock;
         knockbackVel = knockVel;
 
-        HitParticles.Instance.Disable();
-        HitParticles.Instance.Enable(gameObject.transform.position.x, gameObject.transform.position.y);
+        HitParticles.Instance.DisableEnemy();
+        HitParticles.Instance.EnableEnemy(gameObject.transform.position.x, gameObject.transform.position.y);
 
         if (knockback)
         {
