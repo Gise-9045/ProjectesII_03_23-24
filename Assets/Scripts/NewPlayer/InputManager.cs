@@ -39,7 +39,6 @@ public class InputManager : MonoBehaviour
     public int sidePlayer = 1;
     private int jumpCount = 0;
     private int maxJump = 2;
-    private bool _groundTouch;
 
     [Header("Habilities")]
     public bool canDoubleJump = false;
@@ -49,6 +48,7 @@ public class InputManager : MonoBehaviour
 
     public Vector2 move;
     public Vector2 shoot;
+    public Vector2 currentScale;
     public Rigidbody2D _physics;
     [SerializeField] private GameObject model;
     public bool facingRight; 
@@ -64,7 +64,7 @@ public class InputManager : MonoBehaviour
         _playerMoveInput.action.started += PlayerMove;
         _playerMoveInput.action.canceled += PlayerMove;
 
-        //_playerLaserInput.action.performed += PlayerLaser;
+        _playerLaserInput.action.performed += PlayerLaser;
     }
 
     private void OnDisable() 
@@ -73,7 +73,7 @@ public class InputManager : MonoBehaviour
         _playerDashInput.action.performed -= PlayerDash;
         _playerMoveInput.action.started -= PlayerMove;
         _playerMoveInput.action.canceled -= PlayerMove;
-        //_playerLaserInput.action.canceled -= PlayerLaser;
+        _playerLaserInput.action.performed -= PlayerLaser;
     }
 
     void Awake()
@@ -126,18 +126,6 @@ public class InputManager : MonoBehaviour
             }
         }
 
-        if (_collision.onGround && !_groundTouch)
-        {
-            GroundTouch();
-            _groundTouch = true;
-        }
-
-        if (!_collision.onGround && _groundTouch)
-        {
-            _groundTouch = false;
-        }
-
-
         if (_collision.onGround && !isDashing)
         {
             canMove = true;
@@ -159,10 +147,7 @@ public class InputManager : MonoBehaviour
             Flip();
         }    
     }
-    private void GroundTouch()
-    {
-        isDashing = false;
-    }
+
 
     private void PlayerJump(InputAction.CallbackContext obj) 
     {
@@ -212,7 +197,7 @@ public class InputManager : MonoBehaviour
 
     private void Flip()
     {
-        Vector2 currentScale = model.transform.localScale;
+         currentScale = model.transform.localScale;
         currentScale.x *= -1;
 
         model.transform.localScale = currentScale;

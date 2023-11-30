@@ -9,6 +9,7 @@ public class Dash : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D _physics;
     [SerializeField] private Move playermove;
+    [SerializeField] private Jump jump;
     public bool canDash = true;
     private bool isDashing;
     private float dashtime = 0.2f;
@@ -17,6 +18,11 @@ public class Dash : MonoBehaviour
     private float dashingCooldown = 2f;
     
     [SerializeField] private TrailRenderer tr;
+
+    private void Awake()
+    {
+        jump.OnLand += OnGroundTouch;
+    }
 
     private void FixedUpdate()
     {
@@ -64,5 +70,9 @@ public class Dash : MonoBehaviour
     public void PlayerDashing()
     {
         StartCoroutine(Dashing());
+    }
+    private void OnGroundTouch()
+    {
+        isDashing = false;
     }
 }
