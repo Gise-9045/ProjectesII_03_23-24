@@ -6,7 +6,7 @@ public class WallDetection : MonoBehaviour
 {
     RaycastHit2D rcGround;
 
-    [SerializeField] private Transform parent;
+    private Transform parent;
     [SerializeField] private float distanceX;
     [SerializeField] private float distanceY;
 
@@ -17,9 +17,9 @@ public class WallDetection : MonoBehaviour
         parent = GetComponentInParent<Transform>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        rcGround = Physics2D.Raycast(new Vector2(parent.transform.position.x + (enemy.GetDirection() * distanceX), parent.transform.position.y + distanceY) , Vector2.down, distanceY);
+        rcGround = Physics2D.Raycast(new Vector2(parent.transform.position.x + (enemy.GetDirection() * distanceX), parent.transform.position.y + distanceY) , Vector2.down);
 
         if (rcGround.collider.tag == "Ground")
         {
@@ -31,6 +31,8 @@ public class WallDetection : MonoBehaviour
 
             enemy.SetDirection(enemy.GetDirection() * -1);
         }
+
+        Debug.Log(rcGround.collider.tag);
 
     }
 

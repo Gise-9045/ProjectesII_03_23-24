@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4827416116615842446}
   - component: {fileID: 4334571838798814731}
+  - component: {fileID: 2458028525878264890}
   m_Layer: 0
   m_Name: Spikes-n-Type
   m_TagString: Hazards
@@ -31,7 +32,7 @@ Transform:
   m_Children:
   - {fileID: 6729098311832632894}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &4334571838798814731
 CircleCollider2D:
@@ -68,6 +69,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.85
+--- !u!114 &2458028525878264890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2362693541093163184}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b15694b464152b249bf227feceafc5b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2366090320138404050
 GameObject:
   m_ObjectHideFlags: 0
