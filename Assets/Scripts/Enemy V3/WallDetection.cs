@@ -19,15 +19,16 @@ public class WallDetection : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rcGround = Physics2D.Raycast(new Vector2(parent.transform.position.x + (enemy.GetDirection() * distanceX), parent.transform.position.y + distanceY) , Vector2.down);
+        Vector2 pos = new Vector2(parent.transform.position.x + (enemy.GetDirection() * distanceX), parent.transform.position.y + distanceY);
+        rcGround = Physics2D.Raycast(pos , Vector2.down, distanceY);
 
         if (rcGround.collider.tag == "Ground")
         {
-            Debug.DrawRay(new Vector2(parent.transform.position.x + (enemy.GetDirection() * distanceX), parent.transform.position.y + distanceY), Vector2.down, Color.green);
+            Debug.DrawRay(pos, Vector2.down, Color.green);
         }
         else
         {
-            Debug.DrawRay(new Vector2(parent.transform.position.x + (enemy.GetDirection() * distanceX), parent.transform.position.y + distanceY), Vector2.down, Color.red);
+            Debug.DrawRay(pos, Vector2.down, Color.red);
 
             enemy.SetDirection(enemy.GetDirection() * -1);
         }
