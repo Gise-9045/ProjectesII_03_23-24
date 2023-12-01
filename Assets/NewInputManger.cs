@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 public class NewInputManger : MonoBehaviour
 {
     
-    public static NewInputManger _instance;
+    public static NewInputManger _newInputManager;
 
     [Header("Ingame Actions")]
     public InputActionReference _playerMoveInput;
@@ -21,13 +21,13 @@ public class NewInputManger : MonoBehaviour
 
     private void Awake()
     {
-        if(_instance == null)
+        if (_newInputManager != null)
         {
-            if(_instance = this)
+            if (_newInputManager != this)
             {
-                Destroy(_instance.gameObject);
-                Debug.LogWarning("There is more than one InputManager in the scene");
+                Destroy(_newInputManager.gameObject);
             }
         }
+        _newInputManager = this;
     }
 }

@@ -6,36 +6,41 @@ using UnityEngine.InputSystem;
 public class PlayerInput : MonoBehaviour
 {
 
-    private float playerMovement;
-    public float _playerMovement => playerMovement;
-    //Variable que recibira el valor de player Movement y
-    //la haremos publica para que asi no pueda editarse desde fuera
+    [SerializeField] private PlayerController _playerController;
 
-    private void Awake()
+    private void Start()
     {
-        
+        NewInputManger._newInputManager._playerMoveInput.action.performed += MoveAction;
+        NewInputManger._newInputManager._playerMoveInput.action.canceled += MoveAction;
+
+        // te hará falta saber cuando empieza y cuando acaba para el salto largo
+        NewInputManger._newInputManager._playerJumpInput.action.performed += JumpAction;   
+
+        NewInputManger._newInputManager._playerAttackInput.action.started += AttackAction;
+
     }
 
-    // Start is called before the first frame update
-    void Start()
+    private void OnDestroy()
     {
-       // NewInputManger._instance._playerMoveInput.action.performed+= 
-    }
+        NewInputManger._newInputManager._playerMoveInput.action.performed -= MoveAction;
+        NewInputManger._newInputManager._playerMoveInput.action.canceled -= MoveAction;
+        NewInputManger._newInputManager._playerJumpInput.action.performed -= JumpAction;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        NewInputManger._newInputManager._playerAttackInput.action.started -= AttackAction;
+
     }
 
     #region Actions
 
     private void MoveAction(InputAction.CallbackContext context)
     {
-        playerMovement = NewInputManger._instance._playerMoveInput.action.ReadValue<float>();
+        _playerController.SetPlayerMoveDirection(context.ReadValue<Vector2>());
+        
     }
+
     private void JumpAction(InputAction.CallbackContext context)
     {
+        Debug.Log("WAAAAAAAAAAAAA");
         //switch (playerController.playerState)
         //{
         //    case PlayerController.PlayerStates.WALL_SLIDE:

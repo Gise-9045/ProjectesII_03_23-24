@@ -9,8 +9,8 @@ public class PlayerMovementController : MonoBehaviour
     private Vector2 _direction;
     private Vector2 oldPosition = Vector2.zero; 
 
-    [SerializeField] private Rigidbody2D physics;
-    [SerializeField] private Animator anim; 
+    private Rigidbody2D physics;
+    private Animator anim; 
 
     [Space]
     [Header("Velocity")]
@@ -21,6 +21,12 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] public float maxSpeed;
 
     [SerializeField] private PlayerStats playerStats;
+
+    private void Awake()
+    {
+        physics = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+    }
 
     private void Update() 
     {
@@ -35,17 +41,7 @@ public class PlayerMovementController : MonoBehaviour
         }
         else
         {
-            if (_direction.magnitude > 0 && currentSpeed >= 0)
-            {
-                anim.SetBool("isMoving", true);
-                oldPosition = _direction;
-                currentSpeed += acceleraiton * maxSpeed * Time.fixedDeltaTime;
-            }
-            else
-            {
-                anim.SetBool("isMoving", false);
-                currentSpeed -= deacceleraiton * maxSpeed * Time.fixedDeltaTime;
-            }
+           
 
             currentSpeed = Mathf.Clamp(currentSpeed, 0, maxSpeed);
             physics.velocity = new Vector2(oldPosition.x * currentSpeed, physics.velocity.y);
@@ -55,7 +51,17 @@ public class PlayerMovementController : MonoBehaviour
 
     public void SetDirection(Vector2 direction)
     {
-        _direction = direction;
+        if (direction.magnitude > 0 && currentSpeed >= 0)
+        {
+            anim.SetBool("isMoving", true);
+            oldPosition = _direction;
+            currentSpeed += acceleraiton * maxSpeed * Time.fixedDeltaTime;
+        }
+        else
+        {
+            anim.SetBool("isMoving", false);
+            currentSpeed -= deacceleraiton * maxSpeed * Time.fixedDeltaTime;
+        }
     }
 
     
