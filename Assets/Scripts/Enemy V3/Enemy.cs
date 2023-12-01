@@ -78,7 +78,7 @@ public class Enemy : MonoBehaviour
         if (life <= 0 )
         {
             CinemachineShake.Instance.ShakeCamera(5f, 0.5f);
-            HitStop.Instance.StopTime(0f, 0.5f);
+            HitStop.Instance.StopTime(0.15f, 0.5f);
             Destroy(gameObject);
         }
     }
