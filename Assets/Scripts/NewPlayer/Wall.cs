@@ -9,12 +9,12 @@ public class Wall : MonoBehaviour
     
     private Rigidbody2D _physics;
     private Collisions _collision;
-    private Jump _jump;
+    private PlayerJumpController _jump;
 
     private void Awake() {
         _physics = GetComponent<Rigidbody2D>();
         _collision = GetComponent<Collisions>();
-        _jump = GetComponent<Jump>();
+        _jump = GetComponent<PlayerJumpController>();
     }
 
     public void WallJump(int jumpCount,  int maxJump)

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Move : MonoBehaviour
+public class PlayerMovementController : MonoBehaviour
 {
     private Vector2 _direction;
     private Vector2 oldPosition = Vector2.zero; 
@@ -51,6 +51,7 @@ public class Move : MonoBehaviour
             physics.velocity = new Vector2(oldPosition.x * currentSpeed, physics.velocity.y);
         }
     }
+
 
     public void SetDirection(Vector2 direction)
     {

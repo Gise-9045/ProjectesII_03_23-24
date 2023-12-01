@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class Jump : MonoBehaviour
+public class PlayerJumpController : MonoBehaviour
 {
     [Header("Physics")]
     private Rigidbody2D _physics;

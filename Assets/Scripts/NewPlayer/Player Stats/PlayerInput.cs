@@ -19,7 +19,7 @@ public class PlayerInput : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        NewInputManger._instance._playerMoveInput.action.performed+= 
+       // NewInputManger._instance._playerMoveInput.action.performed+= 
     }
 
     // Update is called once per frame

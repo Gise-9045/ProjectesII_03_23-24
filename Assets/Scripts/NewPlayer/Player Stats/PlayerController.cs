@@ -2,32 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerControler : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
 
     public enum PlayerStates { NONE, MOVING, DASH , ATTACK, AIR, DEAD};
     public PlayerStates playerState;
 
-    private PlayerInput playerInput; 
-    private PlayerMovementController _movementController;
-    private PlayerRespawn playerRespawn;
-    private PlayerDashController playerDashController;
-    private PlayerInteractionController playerIntereactionController;
-    private PlayerAttackController playerAttackControlller; 
-
-    public PlayerInput _playerInput => playerInput;
-    public PlayerMovementController _movementController => movementController;
-    public PlayerInteractionController _interactionController => interactionController;
-    public PlayerDashController _playerDashController => dashController;
-    public PlayerRespawn _playerRespawn => playerRespawn;
-    public PlayerAttackController _playerAttackController => playerAttackController;
-
+    [HideInInspector]
+    public PlayerInput playerInput;
+    public PlayerMovementController playerMovementController;
+    public PlayerDashController playerDashController; 
+    public PlayerJumpController playerJumpController;
+    public Attack playerAttackControlller;
+    public PlayerStats playerStats; 
+    public PlayerRespawn playerRespawn;
 
     private Animator anim;
 
-    public Rigidbody rb { get; private set; };
+    public Rigidbody2D rb2d { get; private set; }
 
-    [SerializeField] public bool _canDash { get; private set; };
+    [SerializeField] public bool _canDash { get; private set; }
 
 
     private void Awake()
@@ -38,13 +32,15 @@ public class PlayerControler : MonoBehaviour
     private void AllGetComponents()
     {
         playerInput = GetComponent<PlayerInput>();
-        _movementController = GetComponent<PlayerMovementController>();
         playerRespawn = GetComponent<PlayerRespawn>();
-        anim = GetComponent<Animator>();
+        PlayerStats playerStats = GetComponent<PlayerStats>();
+        playerMovementController = GetComponent<PlayerMovementController>();
         playerDashController = GetComponent<PlayerDashController>();
-        playerIntereactionController = GetComponent<PlayerInteractionController>();
-        playerAttackControlller = GetComponent<PlayerAttackController>();   
-        rb = GetComponent<Rigidbody>();
+        playerJumpController = GetComponent<PlayerJumpController>();
+        playerAttackControlller = GetComponent<Attack>();
+        anim = GetComponent<Animator>();
+        rb2d = GetComponent<Rigidbody2D>();
+
     }
     
     void Update()
@@ -59,33 +55,55 @@ public class PlayerControler : MonoBehaviour
         {
             case PlayerStates.NONE:
             case PlayerStates.MOVING:
-                _movementController.CheckGrounded();
+                //movementController.CheckGrounded();
                 CheckMovementStates();
-                _movementController.FloorMovement();
-                _movementController.CheckJumpin();
-                _movementController.CheckSlope();
-                _movementController.ApplyForces();
+                //movementController.FloorMovement();
+                //movementController.CheckJumping();
+                //movementController.CheckSlope();
+                //movementController.ApplyForces();
                 break; 
             case PlayerStates.AIR:
-                _movementController.CheckGrounded();
+                //movementController.CheckGrounded();
                 CheckMovementStates();
-                _movementController.AirMovement();
-                _movementController.CheckJumpin();
-                _movementController.CheckSlope();
-                _movementController.ApplyForces();
+                //movementController.AirMovement();
+                //movementController.CheckJumping();
+                //movementController.CheckSlope();
+                //movementController.ApplyForces();
                 break;
             case PlayerStates.DASH:
-                playerDashController.Dash(); 
-                playerDashController.DashTimer();
-                _movementController.CheckGrounded();
+                //playerDashController.Dash(); 
+                //playerDashController.DashTimer();
+               // movementController.CheckGrounded();
                 break; 
             case PlayerStates.DEAD:
-                playerRespawn.Respawn();
+                //playerRespawn.Respawn();
                 break;       
             case PlayerStates.ATTACK:
-                playerAttackControlller.Attack(); 
+                //playerAttackControlller.Attack(); 
                 break; 
+        }
+        Debug.Log(playerState);
+    }
 
+    private void CheckMovementStates()
+    {
+        if (playerJumpController.isOnGround)
+        {
+            //Si esta en el suelo
+            if (playerInput._playerMovement != 0)
+            {
+                ChangeState(PlayerStates.MOVING);
+            }
+            else
+            {
+                ChangeState(PlayerStates.NONE);
+            }
+
+        }
+        else
+        {
+            //Si esta en el aire
+            ChangeState(PlayerStates.AIR);
         }
     }
 
@@ -94,23 +112,23 @@ public class PlayerControler : MonoBehaviour
         if (playerState == PlayerStates.MOVING)
         {
             anim.SetBool("isMoving", true);
-            anim.SetBool("isJumping", false);
+            //anim.SetBool("isJumping", false);
         }
         if (playerState == PlayerStates.ATTACK)
         {
             anim.SetBool("isAttacking", true);
-            anim.SetBool("isMoving", false);
+            //anim.SetBool("isMoving", false);
             anim.SetBool("isJumping", false);
         }
         if (playerState == PlayerStates.NONE)
         {
             anim.SetBool("isMoving", false);
-            anim.SetBool("isJumping", false);
+            //anim.SetBool("isJumping", false);
             anim.SetBool("isAttacking", false);
         }
         if (playerState == PlayerStates.AIR)
         {
-            anim.SetBool("isJumping", true);
+            //anim.SetBool("isJumping", true);
             anim.SetBool("isMoving", false);
             anim.SetBool("isAttacking", false);
         }
@@ -131,7 +149,7 @@ public class PlayerControler : MonoBehaviour
             case PlayerStates.ATTACK:
                 break;  
             case PlayerStates.DEAD:
-                playerRespawn.Die();
+                //playerRespawn.Die();
                 break;
             default:
                 break;

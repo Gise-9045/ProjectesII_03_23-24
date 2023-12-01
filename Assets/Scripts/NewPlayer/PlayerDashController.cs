@@ -5,11 +5,11 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 
 
-public class Dash : MonoBehaviour
+public class PlayerDashController : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D _physics;
-    [SerializeField] private Move playermove;
-    [SerializeField] private Jump jump;
+    [SerializeField] private PlayerMovementController playermove;
+    [SerializeField] private PlayerJumpController jump;
     public bool canDash = true;
     private bool isDashing;
     private float dashtime = 0.2f;
@@ -21,7 +21,7 @@ public class Dash : MonoBehaviour
 
     private void Awake()
     {
-        jump.OnLand += OnGroundTouch;
+       // jump.OnLand += OnGroundTouch;
     }
 
     private void FixedUpdate()

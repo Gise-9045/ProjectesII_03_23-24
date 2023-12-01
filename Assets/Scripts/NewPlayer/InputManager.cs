@@ -10,9 +10,9 @@ public class InputManager : MonoBehaviour
 
 
     private Collisions _collision;
-    private Dash _dash;
-    private Jump _jump;
-    private Move _move;
+    private PlayerDashController _dash;
+    private PlayerJumpController _jump;
+    private PlayerMovementController _move;
     private Wall _wall;
     private laserBehaviour _laser;
     [SerializeField] private Attack _attack;
@@ -82,10 +82,10 @@ public class InputManager : MonoBehaviour
        // _spriteRenderer = GetComponent<SpriteRenderer>();
         // Scripts
 
-        _move = GetComponent<Move>();
+        _move = GetComponent<PlayerMovementController>();
         _wall = GetComponent<Wall>();
-        _jump = GetComponent<Jump>();
-        _dash = GetComponent<Dash>();
+        _jump = GetComponent<PlayerJumpController>();
+        _dash = GetComponent<PlayerDashController>();
         _laser = GetComponent<laserBehaviour>();
     }
 
@@ -111,30 +111,30 @@ public class InputManager : MonoBehaviour
         {
             canDash = true;
         }
-        if (_collision.onGround && !isDashing && _physics.velocity.y < 0.2f)
-        {
-            jumpCount = 0; 
+        //if (_collision.onGround && !isDashing && _physics.velocity.y < 0.2f)
+        //{
+        //    jumpCount = 0; 
 
-            if (canDoubleJump == true)
-            {
-                maxJump = 2;
-            }
+        //    if (canDoubleJump == true)
+        //    {
+        //        maxJump = 2;
+        //    }
 
-            if (canDoubleJump == false)
-            {
-                maxJump = 1;
-            }
-        }
+        //    if (canDoubleJump == false)
+        //    {
+        //        maxJump = 1;
+        //    }
+        //}
 
-        if (_collision.onGround && !isDashing)
-        {
-            canMove = true;
-        }
+        //if (_collision.onGround && !isDashing)
+        //{
+        //    canMove = true;
+        //}
 
-        if (!canMove)
-        {
-            return;
-        }
+        //if (!canMove)
+        //{
+        //    return;
+        //}
 
         if (move.x > 0 && facingRight)
         {

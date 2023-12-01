@@ -11,7 +11,7 @@ public class laserBehaviour : MonoBehaviour
     public float speed = 4.5f;
     private Enemy enemy;
     [SerializeField] private Rigidbody2D physics;
-    [SerializeField] private Move player;
+    [SerializeField] private PlayerMovementController player;
     [SerializeField] InputActionReference laser;
 
     // Update is called once per frame
