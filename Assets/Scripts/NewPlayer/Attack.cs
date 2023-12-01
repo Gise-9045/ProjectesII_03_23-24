@@ -8,13 +8,12 @@ public class Attack : MonoBehaviour
 {
 
     [SerializeField] Animator anim;
-    [SerializeField] InputActionReference attack;
 
     private Enemy enemy;
     private Bullet bullet;
     private void Update()
     {
-        anim.SetBool("isAttacking", attack.action.ReadValue<float>() > 0);
+        //anim.SetBool("isAttacking"); // NewInputManger._instance._playerAttackInput.action.ReadValue<float>() > 0);
         
     }
 

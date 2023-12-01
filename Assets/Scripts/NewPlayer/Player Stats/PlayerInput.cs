@@ -72,12 +72,12 @@ public class PlayerInput : MonoBehaviour
         //}
     }
 
-    private void InteractingAction()
+    private void InteractingAction(InputAction.CallbackContext context)
     {
         // playerController._interactionController.Interact();
     }
 
-    private void AttackAction()
+    private void AttackAction(InputAction.CallbackContext context)
     {
         //playerController._attackController.Attack();
     }

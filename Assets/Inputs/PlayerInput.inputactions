@@ -58,6 +58,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "GodMode",
+                    "type": "Button",
+                    "id": "d4387726-5527-43d5-a582-c7d3e43291f0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -190,6 +199,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Laser",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a75d13f9-d5e6-48e4-8437-cbcce95581fe",
+                    "path": "<Keyboard>/8",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GodMode",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c5e2b7d8-e844-4f7d-93ac-668584446e54",
+                    "path": "<Gamepad>/rightStickPress",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "GodMode",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

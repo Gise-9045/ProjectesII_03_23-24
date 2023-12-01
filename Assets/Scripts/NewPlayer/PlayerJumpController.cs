@@ -30,8 +30,6 @@ public class PlayerJumpController : MonoBehaviour
     [SerializeField] private float gravityOnFall;
     [SerializeField] private float gravityOnJump;
 
-
-
     private void Awake()
     {
         _physics = GetComponent<Rigidbody2D>();

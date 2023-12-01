@@ -13,13 +13,13 @@ public class PlayerController : MonoBehaviour
     public PlayerMovementController playerMovementController;
     public PlayerDashController playerDashController; 
     public PlayerJumpController playerJumpController;
-    public Attack playerAttackControlller;
+    //public Attack playerAttackControlller;
     public PlayerStats playerStats; 
     public PlayerRespawn playerRespawn;
 
     private Animator anim;
 
-    public Rigidbody2D rb2d { get; private set; }
+    public Rigidbody2D rb2d; /* {get; private set; }*/
 
     [SerializeField] public bool _canDash { get; private set; }
 
@@ -33,11 +33,12 @@ public class PlayerController : MonoBehaviour
     {
         playerInput = GetComponent<PlayerInput>();
         playerRespawn = GetComponent<PlayerRespawn>();
-        PlayerStats playerStats = GetComponent<PlayerStats>();
+        playerStats = GetComponent<PlayerStats>();
         playerMovementController = GetComponent<PlayerMovementController>();
         playerDashController = GetComponent<PlayerDashController>();
         playerJumpController = GetComponent<PlayerJumpController>();
-        playerAttackControlller = GetComponent<Attack>();
+        //playerAttackControlller = GetComponent<Attack>();
+
         anim = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
 
@@ -82,12 +83,11 @@ public class PlayerController : MonoBehaviour
                 //playerAttackControlller.Attack(); 
                 break; 
         }
-        Debug.Log(playerState);
     }
 
     private void CheckMovementStates()
     {
-        if (playerJumpController.isOnGround)
+        if (!playerJumpController.isOnGround)
         {
             //Si esta en el suelo
             if (playerInput._playerMovement != 0)
@@ -100,11 +100,13 @@ public class PlayerController : MonoBehaviour
             }
 
         }
-        else
+        else if(playerJumpController.isOnGround)
         {
             //Si esta en el aire
             ChangeState(PlayerStates.AIR);
         }
+
+        Debug.Log(playerJumpController.isOnGround | playerStats);
     }
 
     private void AnimateCharacter()

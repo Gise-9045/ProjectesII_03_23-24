@@ -8,7 +8,6 @@ public class NewInputManger : MonoBehaviour
     
     public static NewInputManger _instance;
 
-
     [Header("Ingame Actions")]
     public InputActionReference _playerMoveInput;
     public InputActionReference _playerJumpInput;

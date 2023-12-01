@@ -15,10 +15,10 @@ public class laserBehaviour : MonoBehaviour
     [SerializeField] InputActionReference laser;
 
     // Update is called once per frame
-    void Update()
-    {
-        Shoot();
-    }
+    //void Update()
+    //{
+    //    Shoot();
+    //}
     public void Shoot()
     {
 
