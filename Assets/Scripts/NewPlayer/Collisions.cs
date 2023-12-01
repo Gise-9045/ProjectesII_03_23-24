@@ -49,18 +49,12 @@ public class Collisions : MonoBehaviour
         if (dialogText != null)
         {
             dialogText.gameObject.SetActive(false);
-            if (itemContainer != null)
-            {
-                itemContainer.SetActive(false);
-            }
+           
         }
         if (dialogText2 != null)
         {
             dialogText2.gameObject.SetActive(false);
-            if (itemContainer2 != null)
-            {
-                itemContainer2.SetActive(false);
-            }
+            
         }
     }
 
@@ -101,25 +95,24 @@ public class Collisions : MonoBehaviour
         {
             collectingDash = true;
             DisplayPopup("Dash Power-Up Acquired");
-            Destroy(collision.gameObject);
+           
         }
     }
     void DisplayPopup(string message)
     {
-        if (dialogText != null)
-        {
+        if(dialogText != null) { 
             dialogText.text = message;
             dialogText.gameObject.SetActive(true); // Show the popup
             itemContainer.gameObject.SetActive(true);
             // You can modify this duration as needed
            StartCoroutine(HidePopup(2f)); // Hide after 2 seconds
         }
+
         if (dialogText2 != null)
         {
             dialogText2.text = message;
             dialogText2.gameObject.SetActive(true); // Show the popup
             itemContainer2.gameObject.SetActive(true);
-            // You can modify this duration as needed
             StartCoroutine(HidePopup(2f)); // Hide after 2 seconds
         }
     }
@@ -130,9 +123,9 @@ public class Collisions : MonoBehaviour
         
         
             Destroy(currentDialogBox); // Destroy the dialog box after the delay
-            itemContainer.gameObject.SetActive(false);
-            Destroy(currentDialogBox2); // Destroy the dialog box after the delay
-            itemContainer2.gameObject.SetActive(false);
+            //itemContainer.gameObject.SetActive(false);
+            //Destroy(currentDialogBox2); // Destroy the dialog box after the delay
+            //itemContainer2.gameObject.SetActive(false);
         
     }
 }
