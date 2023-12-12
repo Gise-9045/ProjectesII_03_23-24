@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
 
     }
     
-    void Update()
+    void FixedUpdate()
     {
         StatesFunction();
         AnimateCharacter(); 

@@ -102,18 +102,22 @@ public class PlayerJumpController : MonoBehaviour
         Debug.Log("1");
         isOnGround = false;
         //onTouchGround?.Invoke();
+        CancelInvoke("onTouchGround");
     }
 
     private void WhileJumping()
     {
         Debug.Log("2");
         //onJump?.Invoke();
+        CancelInvoke("onJump"); 
     }
 
     private void BeforeTouchGround()
     {
         Debug.Log("3");
         isOnGround = true;
-        //onLeaveGround?.Invoke();
+        // onLeaveGround?.Invoke();
+
+        CancelInvoke("onLeaveGround"); 
     }
 }
