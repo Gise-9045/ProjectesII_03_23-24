@@ -139,6 +139,7 @@ GameObject:
   - component: {fileID: 184847447}
   - component: {fileID: 184847446}
   - component: {fileID: 184847448}
+  - component: {fileID: 184847449}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -320,6 +321,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentState: 0
   playerMovementController: {fileID: 0}
+  playerJumpController: {fileID: 184847449}
 --- !u!114 &184847447
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -346,10 +348,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentSpeed: 0
-  acceleraiton: 0
-  deacceleraiton: 0
-  maxSpeed: 0
-  playerStats: {fileID: 0}
+  acceleraiton: 15
+  deacceleraiton: 5
+  maxSpeed: 16
+  currentScale: {x: 0, y: 0}
+  model: {fileID: 184847440}
+--- !u!114 &184847449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 184847440}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49586ae73dbc07f4d81e1856c830532a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lastIsOnGround: 0
+  collisionRadius: 0.25
+  bottomOffset: {x: 0, y: 0}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  jumpForce: 5
+  groundCheck: {fileID: 184847441}
+  waterLayer:
+    serializedVersion: 2
+    m_Bits: 16
+  inWater: 0
+  gravityOnFall: 5
+  gravityOnJump: 2
 --- !u!1 &1824263745
 GameObject:
   m_ObjectHideFlags: 0
@@ -644,7 +673,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2909897175820645623}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3.69, y: 5.6844, z: -10.0799885}
+  m_LocalPosition: {x: 2.34, y: 2.19, z: -10.0799885}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -786,13 +815,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1936583711083653587}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.1, y: -1.49, z: 0.07998894}
+  m_LocalPosition: {x: -2.73, y: 2.72, z: 0.07998894}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2201856502558653562}
-  - {fileID: 2677800959668741617}
   - {fileID: 184847441}
+  - {fileID: 2677800959668741617}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
