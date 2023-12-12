@@ -11,7 +11,7 @@ public class PlayerInput : MonoBehaviour
     private void Start()
     {
         NewInputManger._newInputManager._playerMoveInput.action.started += MoveAction;
-        NewInputManger._newInputManager._playerMoveInput.action.canceled += MoveAction;
+        NewInputManger._newInputManager._playerMoveInput.action.canceled += CanceledMoveAction;
 
         // te hará falta saber cuando empieza y cuando acaba para el salto largo
         //NewInputManger._newInputManager._playerJumpInput.action.performed += JumpAction;   
@@ -24,7 +24,7 @@ public class PlayerInput : MonoBehaviour
     private void OnDestroy()
     {
         NewInputManger._newInputManager._playerMoveInput.action.started -= MoveAction;
-        NewInputManger._newInputManager._playerMoveInput.action.canceled -= MoveAction;
+        NewInputManger._newInputManager._playerMoveInput.action.canceled -= CanceledMoveAction;
         
         //NewInputManger._newInputManager._playerJumpInput.action.performed -= JumpAction;
         NewInputManger._newInputManager._playerJumpInput.action.started -= JumpAction;
@@ -37,7 +37,13 @@ public class PlayerInput : MonoBehaviour
 
     private void MoveAction(InputAction.CallbackContext context)
     {
+        
         _playerController.SetPlayerMoveDirection(context.ReadValue<Vector2>());    
+    }
+
+    private void CanceledMoveAction(InputAction.CallbackContext context)
+    {
+        _playerController.SetPlayerMoveDirection(Vector2.zero);
     }
 
     private void JumpAction(InputAction.CallbackContext context)

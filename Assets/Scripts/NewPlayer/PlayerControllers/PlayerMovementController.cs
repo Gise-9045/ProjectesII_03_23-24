@@ -29,10 +29,36 @@ public class PlayerMovementController : MonoBehaviour
         controller = GetComponent<PlayerController>();
     }
 
-    private void Update() 
+    private void FixedUpdate() 
     {
-        Walk();
        
+
+        if (currentSpeed < 0)
+        {
+            controller.ChangeState(PlayerController.PlayerStates.NONE);
+        }
+
+        //else   
+        //controller.ChangeState(PlayerController.PlayerStates.MOVING);
+
+        if (_direction.magnitude > 0 && currentSpeed >= 0)
+        {
+            oldPosition = _direction;
+            currentSpeed += acceleraiton * maxSpeed * Time.deltaTime;
+        }
+        else
+        {
+            currentSpeed -= deacceleraiton * maxSpeed * Time.deltaTime;
+        }
+
+        if (_direction.normalized.x == 1)
+        {
+            Flip(_direction.normalized.x);
+        }
+        else if (_direction.normalized.x == -1) { Flip(_direction.normalized.x); }
+
+        Walk();
+
     }
 
     private void Walk() 
@@ -53,32 +79,13 @@ public class PlayerMovementController : MonoBehaviour
 
     public void SetDirection(Vector2 direction) // FALTA EL FLIP 
     {
-        if (currentSpeed < 0)
-        {
-            controller.ChangeState(PlayerController.PlayerStates.NONE);
-        }
+        _direction = direction;
 
-        //else   
-        //controller.ChangeState(PlayerController.PlayerStates.MOVING);
-
-        if (direction.magnitude > 0 && currentSpeed >= 0) 
-        {
-            oldPosition = direction;
-            currentSpeed += acceleraiton * maxSpeed * Time.fixedDeltaTime;
-        }
-        else
-        {
-            currentSpeed -= deacceleraiton * maxSpeed * Time.fixedDeltaTime;
-        }
-
+        
 
         //FUNKA 
 
-        if(direction.normalized.x == 1)
-        {
-            Flip(direction.normalized.x);
-        }
-        else if(direction.normalized.x == -1) { Flip(direction.normalized.x); }
+        
        
     }
 
