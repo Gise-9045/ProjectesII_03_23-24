@@ -13,8 +13,8 @@ public class PlayerJumpController : MonoBehaviour
     private bool isOnGround;
     public bool lastIsOnGround;
     public Action onLeaveGround;
-    public Action OnJump;
-    public Action OnJumpApex;
+    public Action onJump;
+    //public Action OnJumpApex;
     public Action onTouchGround;
     public float collisionRadius = 0.25f;
     public Vector2 bottomOffset;
@@ -33,14 +33,19 @@ public class PlayerJumpController : MonoBehaviour
     private void Awake()
     {
         _physics = GetComponent<Rigidbody2D>();
-       
+        onLeaveGround += BeforeTouchGround;  // metodo que ctive la animacion de saltar del suelo 
+        onJump += WhileJumping; //Metodo que active la animacion de salto en el aire 
+        onTouchGround += StartJump; // metodo que ctive la animacion de llegar al suelo 
+
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         UpdateGroundCheck();
         UpdateGravity();
     }
+
+
     public void Jump_player(int jumpCount , int maxJump)
     {
         if (Physics2D.OverlapCapsule(_physics.position, groundCheck.localScale, CapsuleDirection2D.Horizontal, 0, waterLayer))
@@ -53,7 +58,7 @@ public class PlayerJumpController : MonoBehaviour
             _physics.velocity = new Vector2(_physics.velocity.x, 0);
             _physics.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
-        OnJump?.Invoke();
+        onJump?.Invoke();
     }
 
     private void ControlOnWater()
@@ -64,14 +69,20 @@ public class PlayerJumpController : MonoBehaviour
 
     private void UpdateGroundCheck()
     {
-        isOnGround = Physics2D.OverlapCircle((Vector2)transform.position + bottomOffset, collisionRadius, groundLayer);
+        isOnGround = Physics2D.OverlapCapsule(_physics.position, groundCheck.localScale, CapsuleDirection2D.Horizontal, 0, groundLayer);
 
-        if (isOnGround && !lastIsOnGround)
-            onTouchGround?.Invoke();
-        else if (!isOnGround && lastIsOnGround)
+        if (!isOnGround && !lastIsOnGround)
+        {
             onLeaveGround?.Invoke();
+        }
+        else if (isOnGround && lastIsOnGround)
+        {
+            onTouchGround?.Invoke();
+        }
 
         lastIsOnGround = isOnGround;
+
+        Debug.Log(isOnGround);
     }
 
     private void UpdateGravity()
@@ -84,5 +95,25 @@ public class PlayerJumpController : MonoBehaviour
         {
             _physics.gravityScale = gravityOnFall;
         }
+    }
+
+    private void StartJump()
+    {
+        Debug.Log("1");
+        isOnGround = false;
+        //onTouchGround?.Invoke();
+    }
+
+    private void WhileJumping()
+    {
+        Debug.Log("2");
+        //onJump?.Invoke();
+    }
+
+    private void BeforeTouchGround()
+    {
+        Debug.Log("3");
+        isOnGround = true;
+        //onLeaveGround?.Invoke();
     }
 }

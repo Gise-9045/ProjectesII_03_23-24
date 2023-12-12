@@ -51,13 +51,9 @@ public class PlayerMovementController : MonoBehaviour
             currentSpeed -= deacceleraiton * maxSpeed * Time.deltaTime;
         }
 
-        if (_direction.normalized.x == 1)
-        {
-            Flip(_direction.normalized.x);
-        }
-        else if (_direction.normalized.x == -1) { Flip(_direction.normalized.x); }
-
         Walk();
+
+        //FLIP PLAYER
 
     }
 
@@ -81,12 +77,6 @@ public class PlayerMovementController : MonoBehaviour
     {
         _direction = direction;
 
-        
-
-        //FUNKA 
-
-        
-       
     }
 
     public Vector2 currentScale;

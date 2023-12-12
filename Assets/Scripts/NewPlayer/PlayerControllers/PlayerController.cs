@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
 
     }
     
-    void FixedUpdate()
+    void Update()
     {
         StatesFunction();
         AnimateCharacter(); 
@@ -92,7 +92,9 @@ public class PlayerController : MonoBehaviour
 
     private void CheckMovementStates()
     {
-        if (!playerJumpController.lastIsOnGround)
+        bool isJumping = playerJumpController.lastIsOnGround; 
+
+        if (!isJumping)
         {
             //si esta en el suelo
             if (playerMovementController.currentSpeed != 0)
@@ -105,13 +107,14 @@ public class PlayerController : MonoBehaviour
             }
 
         }
-        else if (playerJumpController.lastIsOnGround)
+
+        else if (isJumping)
         {
             //si esta en el aire
             ChangeState(PlayerStates.AIR);
         }
 
-        Debug.Log(playerJumpController.lastIsOnGround + " " + currentState);
+        Debug.Log(isJumping + " " + currentState);
     }
 
     private void AnimateCharacter()
