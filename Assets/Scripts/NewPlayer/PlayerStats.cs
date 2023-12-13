@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class PlayerStats : MonoBehaviour
 {
-    private int health = 3;
+    public int health = 0;
     private int maxHealh = 3;
 
     public bool knockback = false;
@@ -16,11 +16,17 @@ public class PlayerStats : MonoBehaviour
     public bool hasDashPowerUp;
     public bool hasShoutPowerUp;
 
+    private Vector2 respawnPoint; 
+
     private void Awake()
     {
         hasJumpPowerUp = false;
         hasDashPowerUp = false;
         hasShoutPowerUp = false;
+
+        respawnPoint = transform.position;
+
+        health = maxHealh; 
     }
 
     public int GetHealth()
@@ -59,7 +65,6 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-
     private IEnumerator KnockBack()
     {
         yield return new WaitForSecondsRealtime(0.1f);
@@ -71,5 +76,32 @@ public class PlayerStats : MonoBehaviour
         hasJumpPowerUp = !hasJumpPowerUp; 
         hasDashPowerUp = !hasDashPowerUp;
         hasShoutPowerUp = !hasShoutPowerUp;
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collision) //colisionar con hazards
+    {
+        Debug.Log("colision tag on:" + collision.tag); 
+
+        if (collision.CompareTag("Respawn"))
+        {
+            respawnPoint = transform.position;
+        }
+
+        if (collision.CompareTag("Hazards"))
+        {
+            health--;
+            if (health == 0)
+            {
+                Die();
+            }
+        }
+    }
+
+    private void Die()
+    {
+        //poner una pantalla en negro 
+        transform.position = respawnPoint;
+        health = maxHealh; 
     }
 }
