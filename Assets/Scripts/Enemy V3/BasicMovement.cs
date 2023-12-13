@@ -5,6 +5,8 @@ using UnityEngine;
 public class BasicMovement : MonoBehaviour
 {
     [SerializeField] private Enemy enemy;
+    [SerializeField] private PlayerDetection detection;
+
     private Rigidbody2D rb;
     private Transform tr;
     private Transform player;
@@ -21,16 +23,20 @@ public class BasicMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(enemy.GetKnockback())
+        if (enemy.GetKnockback())
         {
             rb.velocity = new Vector2(-Mathf.Sign(player.position.x - tr.position.x) * enemy.GetKnockbackVel(), rb.velocity.y);
 
         }
+        else if(detection.GetPlayerDetection())
+        {
+            enemy.SetDirection((int)Mathf.Sign(player.position.x - tr.position.x));
+        }
         else
         {
             rb.velocity = new Vector2(enemy.GetDirection() * enemy.GetSpeed(), rb.velocity.y);
-
         }
+
     }
 
 }

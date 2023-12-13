@@ -39,7 +39,7 @@ public class WallDetection : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Ground") || collision.CompareTag("Lever"))
+        if (collision.CompareTag("Ground") || collision.CompareTag("Lever") || collision.CompareTag("Enemy"))
         {
             enemy.SetDirection(enemy.GetDirection() * -1);
         }

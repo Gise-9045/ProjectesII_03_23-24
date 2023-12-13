@@ -8,6 +8,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 380297731777720684, guid: bef583e4ca8b0c64b9f1917cd9e62f50, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 6f5e5b334a7554348bebdcd147a74647, type: 3}
+    - target: {fileID: 380297731777720684, guid: bef583e4ca8b0c64b9f1917cd9e62f50, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 380297731777720684, guid: bef583e4ca8b0c64b9f1917cd9e62f50, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 380297731777720684, guid: bef583e4ca8b0c64b9f1917cd9e62f50, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 715059079047054257, guid: bef583e4ca8b0c64b9f1917cd9e62f50, type: 3}
+      propertyPath: m_BodyType
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 791483282030506657, guid: bef583e4ca8b0c64b9f1917cd9e62f50, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -52,9 +72,33 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1633211469474895318, guid: bef583e4ca8b0c64b9f1917cd9e62f50, type: 3}
+      propertyPath: m_Size.x
+      value: 1.6981897
+      objectReference: {fileID: 0}
+    - target: {fileID: 1633211469474895318, guid: bef583e4ca8b0c64b9f1917cd9e62f50, type: 3}
+      propertyPath: m_Size.y
+      value: 1.1005802
+      objectReference: {fileID: 0}
+    - target: {fileID: 1633211469474895318, guid: bef583e4ca8b0c64b9f1917cd9e62f50, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.0035176277
+      objectReference: {fileID: 0}
+    - target: {fileID: 1633211469474895318, guid: bef583e4ca8b0c64b9f1917cd9e62f50, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.0035171509
+      objectReference: {fileID: 0}
     - target: {fileID: 6781657298616795778, guid: bef583e4ca8b0c64b9f1917cd9e62f50, type: 3}
       propertyPath: m_Name
       value: Droolant
+      objectReference: {fileID: 0}
+    - target: {fileID: 7752688627961387053, guid: bef583e4ca8b0c64b9f1917cd9e62f50, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7752688627961387053, guid: bef583e4ca8b0c64b9f1917cd9e62f50, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 8520020047002560693, guid: bef583e4ca8b0c64b9f1917cd9e62f50, type: 3}
       propertyPath: m_Size.x
