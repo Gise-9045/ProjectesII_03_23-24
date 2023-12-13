@@ -48,7 +48,7 @@ public class PlayerInput : MonoBehaviour
 
     private void JumpAction(InputAction.CallbackContext context)
     {
-        _playerController.playerJumpController.Jump_player(0,2); 
+        //_playerController.playerJumpController.Jump_player(0,2); 
         //switch (playerController.playerState)
         //{
         //    case PlayerController.PlayerStates.WALL_SLIDE:
@@ -94,7 +94,7 @@ public class PlayerInput : MonoBehaviour
 
     private void AttackAction(InputAction.CallbackContext context)
     {
-        //playerController._attackController.Attack();
+        _playerController.playerAttackControlller.Attack(); 
     }
 
 

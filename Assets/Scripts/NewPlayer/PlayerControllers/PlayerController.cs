@@ -12,8 +12,8 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public PlayerMovementController playerMovementController;
     //public PlayerDashController playerDashController; 
-    public PlayerJumpController playerJumpController;
-    //public Attack playerAttackControlller;
+    //public PlayerJumpController playerJumpController;
+    public PlayerAttackController playerAttackControlller;
     //public PlayerStats playerStats; 
     //public PlayerRespawn playerRespawn;
 
@@ -36,8 +36,8 @@ public class PlayerController : MonoBehaviour
         //playerRespawn = GetComponent<PlayerRespawn>();
         //playerStats = GetComponent<PlayerStats>();
         //playerDashController = GetComponent<PlayerDashController>();
-        playerJumpController = GetComponent<PlayerJumpController>();
-        //playerAttackControlller = GetComponent<Attack>();
+        //playerJumpController = GetComponent<PlayerJumpController>();
+        playerAttackControlller = GetComponent<PlayerAttackController>();
 
         anim = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
@@ -61,16 +61,16 @@ public class PlayerController : MonoBehaviour
         {
             case PlayerStates.NONE:
             case PlayerStates.MOVING:
-                //movementController.CheckGrounded();
-                CheckMovementStates();
+                //playerJumpController.UpdateGroundCheck(); 
+                //CheckMovementStates();
                 //movementController.FloorMovement();
                 //movementController.CheckJumping();
                 //movementController.CheckSlope();
                 //movementController.ApplyForces();
                 break;
             case PlayerStates.AIR:
-                //movementController.CheckGrounded();
-                CheckMovementStates();
+                //playerJumpController.UpdateGroundCheck();
+                //CheckMovementStates();
                 //movementController.AirMovement();
                 //movementController.CheckJumping();
                 //movementController.CheckSlope();
@@ -90,32 +90,34 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void CheckMovementStates()
-    {
-        bool isJumping = playerJumpController.lastIsOnGround; 
+    //private void CheckMovementStates()
+    //{
+    //    // cada frame esta modificando a falso o a verdadera la variable isJumping, no se queda en uno hasta que no detecta el suelo 
 
-        if (!isJumping)
-        {
-            //si esta en el suelo
-            if (playerMovementController.currentSpeed != 0)
-            {
-                ChangeState(PlayerStates.MOVING);
-            }
-            else
-            {
-                ChangeState(PlayerStates.NONE);
-            }
+    //    bool isJumping = playerJumpController.lastIsOnGround; 
 
-        }
+    //    if (!isJumping)
+    //    {
+    //        //si esta en el suelo
+    //        if (playerMovementController.currentSpeed != 0)
+    //        {
+    //            ChangeState(PlayerStates.MOVING);
+    //        }
+    //        else
+    //        {
+    //            ChangeState(PlayerStates.NONE);
+    //        }
 
-        else if (isJumping)
-        {
-            //si esta en el aire
-            ChangeState(PlayerStates.AIR);
-        }
+    //    }
+           
+    //    if (isJumping)
+    //    {
+    //        //si esta en el aire
+    //        ChangeState(PlayerStates.AIR);
+    //    }
 
-        Debug.Log(isJumping + " " + currentState);
-    }
+    //    Debug.Log(isJumping + " " + currentState);
+    //}
 
     private void AnimateCharacter()
     {

@@ -14,7 +14,7 @@ public class InputManager : MonoBehaviour
     private PlayerJumpController _jump;
     private PlayerMovementController _move;
  
-    [SerializeField] private Attack _attack;
+    [SerializeField] private PlayerAttackController _attack;
     [SerializeField] private GameObject laser;
     public PlayerStats _playerStats;
     public Transform LaunchOffset;

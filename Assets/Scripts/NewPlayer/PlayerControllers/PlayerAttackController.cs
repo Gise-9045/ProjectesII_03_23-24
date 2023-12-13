@@ -4,17 +4,17 @@ using Unity.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class Attack : MonoBehaviour
+public class PlayerAttackController : MonoBehaviour
 {
 
     [SerializeField] Animator anim;
+    [SerializeField] private ParticleSystem attackParticles; 
 
     private Enemy enemy;
     private Bullet bullet;
     private void Update()
     {
-        //anim.SetBool("isAttacking"); // NewInputManger._instance._playerAttackInput.action.ReadValue<float>() > 0);
-        
+        // NewInputManger._instance._playerAttackInput.action.ReadValue<float>() > 0); 
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -29,5 +29,11 @@ public class Attack : MonoBehaviour
         {
             collision.GetComponent<leverActivation>().Toggle();
         }
+    }
+
+    public void Attack()
+    {
+        attackParticles.Play(); 
+        anim.SetBool("isAttacking",true);
     }
 }

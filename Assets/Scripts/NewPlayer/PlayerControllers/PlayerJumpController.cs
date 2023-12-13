@@ -41,7 +41,7 @@ public class PlayerJumpController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        UpdateGroundCheck();
+        //UpdateGroundCheck();
         UpdateGravity();
     }
 
@@ -67,7 +67,7 @@ public class PlayerJumpController : MonoBehaviour
         _physics.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
     }
 
-    private void UpdateGroundCheck()
+    public void UpdateGroundCheck()
     {
         isOnGround = Physics2D.OverlapCapsule(_physics.position, groundCheck.localScale, CapsuleDirection2D.Horizontal, 0, groundLayer);
 
