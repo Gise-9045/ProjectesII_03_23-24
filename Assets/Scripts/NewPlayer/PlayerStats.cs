@@ -12,6 +12,17 @@ public class PlayerStats : MonoBehaviour
     public bool knockback = false;
     public float knockbackVel;
 
+    public bool hasJumpPowerUp;
+    public bool hasDashPowerUp;
+    public bool hasShoutPowerUp;
+
+    private void Awake()
+    {
+        hasJumpPowerUp = false;
+        hasDashPowerUp = false;
+        hasShoutPowerUp = false;
+    }
+
     public int GetHealth()
     {
         return health;
@@ -40,9 +51,6 @@ public class PlayerStats : MonoBehaviour
         CinemachineShake.Instance.ShakeCamera(5f, 0.5f);
         HitStop.Instance.StopTime(0f, 0.5f);
 
-
-
-
         if (health <= 0)
         {
             health = 0;
@@ -56,5 +64,12 @@ public class PlayerStats : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(0.1f);
         knockback = false;
+    }
+
+    public void GodModeActivated()
+    {
+        hasJumpPowerUp = !hasJumpPowerUp; 
+        hasDashPowerUp = !hasDashPowerUp;
+        hasShoutPowerUp = !hasShoutPowerUp;
     }
 }

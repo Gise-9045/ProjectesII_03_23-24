@@ -19,6 +19,10 @@ public class PlayerInput : MonoBehaviour
 
         NewInputManger._newInputManager._playerAttackInput.action.started += AttackAction;
 
+        NewInputManger._newInputManager._playerInteractInput.action.started += InteractingAction;
+
+        NewInputManger._newInputManager._playerGodModeInput.action.started += GodModeAction; 
+
     }
 
     private void OnDestroy()
@@ -30,6 +34,8 @@ public class PlayerInput : MonoBehaviour
         NewInputManger._newInputManager._playerJumpInput.action.started -= JumpAction;
 
         NewInputManger._newInputManager._playerAttackInput.action.started -= AttackAction;
+
+        NewInputManger._newInputManager._playerInteractInput.action.started -= InteractingAction;
 
     }
 
@@ -48,7 +54,7 @@ public class PlayerInput : MonoBehaviour
 
     private void JumpAction(InputAction.CallbackContext context)
     {
-        //_playerController.playerJumpController.Jump_player(0,2); 
+        _playerController.playerJumpController.Jump_player(0,2); 
         //switch (playerController.playerState)
         //{
         //    case PlayerController.PlayerStates.WALL_SLIDE:
@@ -97,6 +103,11 @@ public class PlayerInput : MonoBehaviour
         _playerController.playerAttackControlller.Attack(); 
     }
 
+    private void GodModeAction(InputAction.CallbackContext context)
+    {
+        _playerController.playerStats.GodModeActivated();
+        Debug.Log("GOD MODE ACTIVE"); 
+    }
 
     #endregion Actions
 }

@@ -15,6 +15,7 @@ public class NewInputManger : MonoBehaviour
     public InputActionReference _playerAttackInput;
     public InputActionReference _playerLaserInput;
     public InputActionReference _playerInteractInput;
+    public InputActionReference _playerGodModeInput; 
 
     [Header("Menu Actions")]
     public InputActionReference _playerPauseInput;

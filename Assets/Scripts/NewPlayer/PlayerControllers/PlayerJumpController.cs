@@ -58,7 +58,6 @@ public class PlayerJumpController : MonoBehaviour
             _physics.velocity = new Vector2(_physics.velocity.x, 0);
             _physics.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
-        onJump?.Invoke();
     }
 
     private void ControlOnWater()
@@ -73,11 +72,11 @@ public class PlayerJumpController : MonoBehaviour
 
         if (!isOnGround && !lastIsOnGround)
         {
-            onLeaveGround?.Invoke();
+            //onLeaveGround?.Invoke();
         }
         else if (isOnGround && lastIsOnGround)
         {
-            onTouchGround?.Invoke();
+            //onTouchGround?.Invoke();
         }
 
         lastIsOnGround = isOnGround;
@@ -96,6 +95,8 @@ public class PlayerJumpController : MonoBehaviour
             _physics.gravityScale = gravityOnFall;
         }
     }
+
+    //NO SE PUEDEN PONER EN UN UPDATE
 
     private void StartJump()
     {

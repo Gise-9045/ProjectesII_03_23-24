@@ -33,7 +33,7 @@ public class PlayerAttackController : MonoBehaviour
 
     public void Attack()
     {
-        attackParticles.Play(); 
+        attackParticles.Play();
         anim.SetBool("isAttacking",true);
     }
 }
