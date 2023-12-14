@@ -71,19 +71,6 @@ public class PlayerJumpController : MonoBehaviour
         isOnGround = Physics2D.OverlapCapsule(_physics.position,groundCheck.localScale, CapsuleDirection2D.Horizontal, 0, groundLayer);
 
         return isOnGround; 
-
-        if (!isOnGround && !lastIsOnGround)
-        {
-            //onLeaveGround?.Invoke();
-        }
-        else if (isOnGround && lastIsOnGround)
-        {
-            //onTouchGround?.Invoke();
-        }
-
-        lastIsOnGround = isOnGround;
-
-        Debug.Log(isOnGround);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
