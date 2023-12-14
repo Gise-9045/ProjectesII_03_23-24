@@ -455,6 +455,7 @@ MonoBehaviour:
   maxSpeed: 16
   currentScale: {x: 0, y: 0}
   model: {fileID: 184847440}
+  particleAttackModel: {fileID: 832335542}
 --- !u!114 &184847449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -574,7 +575,7 @@ GameObject:
   - component: {fileID: 832335544}
   - component: {fileID: 832335546}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: BasicAttackParticle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -676,7 +677,7 @@ ParticleSystem:
   m_GameObject: {fileID: 832335542}
   serializedVersion: 8
   lengthInSec: 0.5
-  simulationSpeed: 1
+  simulationSpeed: 3
   stopAction: 3
   cullingMode: 0
   ringBufferMode: 0
@@ -750,7 +751,7 @@ ParticleSystem:
     startLifetime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 1
+      scalar: 0.34
       minScalar: 5
       maxCurve:
         serializedVersion: 2
@@ -857,7 +858,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 1, b: 1, a: 1}
+      maxColor: {r: 0.7960785, g: 0.454902, b: 0, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -921,7 +922,7 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 0.5
+      scalar: 1
       minScalar: 1
       maxCurve:
         serializedVersion: 2
@@ -1238,7 +1239,7 @@ ParticleSystem:
         m_RotationOrder: 4
     randomizeRotationDirection: 0
     gravitySource: 0
-    maxNumParticles: 1
+    maxNumParticles: 4
     customEmitterVelocity: {x: 0, y: 0, z: 0}
     size3D: 0
     rotation3D: 0

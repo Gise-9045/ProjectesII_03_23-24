@@ -21,6 +21,12 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private float deacceleraiton; 
     [SerializeField] public float maxSpeed;
 
+    public Vector2 currentScale;
+    private int sidePlayer;
+    [SerializeField] private GameObject model;
+    [SerializeField] private GameObject particleAttackModel;
+    bool facingRight;
+
     //[SerializeField] private PlayerStats playerStats;
 
     private void Awake()
@@ -53,7 +59,16 @@ public class PlayerMovementController : MonoBehaviour
 
         Walk();
 
-        //FLIP PLAYER
+        if (_direction.x > 0 && facingRight)
+        {
+            sidePlayer = 1;
+            Flip();
+        }
+        if (_direction.x < 0 && !facingRight)
+        {
+            sidePlayer = -1;
+            Flip();
+        }
 
     }
 
@@ -77,17 +92,16 @@ public class PlayerMovementController : MonoBehaviour
     {
         _direction = direction;
 
+       
     }
 
-    public Vector2 currentScale;
-    [SerializeField] private GameObject model;
-    bool facingRight; 
-    private void Flip(float a)
+    private void Flip()
     {
         currentScale = model.transform.localScale;
-        currentScale.x *= a;
+        currentScale.x *= -1;
 
         model.transform.localScale = currentScale;
+        particleAttackModel.transform.localScale = currentScale;
 
         facingRight = !facingRight;
     }

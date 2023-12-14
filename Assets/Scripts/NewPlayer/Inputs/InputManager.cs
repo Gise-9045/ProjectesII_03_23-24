@@ -189,7 +189,7 @@ public class InputManager : MonoBehaviour
 
     private void Flip()
     {
-         currentScale = model.transform.localScale;
+        currentScale = model.transform.localScale;
         currentScale.x *= -1;
 
         model.transform.localScale = currentScale;
