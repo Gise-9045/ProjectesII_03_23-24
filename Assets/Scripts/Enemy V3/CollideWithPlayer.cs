@@ -8,7 +8,7 @@ public class CollideWithPlayer : MonoBehaviour
     private Transform tr;
 
     [SerializeField] private int substrackLife;
-    [SerializeField] private int knockback;
+    //[SerializeField] private int knockback;
 
     private void Start()
     {

@@ -44,10 +44,4 @@ public class WallDetection : MonoBehaviour
             enemy.SetDirection(enemy.GetDirection() * -1);
         }
     }
-    //private void OnDrawGizmos()
-    //{
-    //    parent = GetComponentInParent<Transform>();
-
-    //    Debug.DrawRay(new Vector2(parent.transform.position.x + (1 * distanceX), parent.transform.position.y + distanceY), Vector2.down, Color.blue);
-    //}
 }

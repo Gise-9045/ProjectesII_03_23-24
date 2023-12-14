@@ -28,15 +28,16 @@ public class BasicMovement : MonoBehaviour
             rb.velocity = new Vector2(-Mathf.Sign(player.position.x - tr.position.x) * enemy.GetKnockbackVel(), rb.velocity.y);
 
         }
-        else if(detection.GetPlayerDetection())
-        {
-            enemy.SetDirection((int)Mathf.Sign(player.position.x - tr.position.x));
-        }
         else
         {
-            rb.velocity = new Vector2(enemy.GetDirection() * enemy.GetSpeed(), rb.velocity.y);
-        }
+            if (detection.GetPlayerDetection())
+            {
+                enemy.SetDirection((int)Mathf.Sign(player.position.x - tr.position.x));
+            }
 
+            rb.velocity = new Vector2(enemy.GetDirection() * enemy.GetSpeed(), rb.velocity.y);
+
+        }
     }
 
 }
