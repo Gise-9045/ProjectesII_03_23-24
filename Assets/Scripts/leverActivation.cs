@@ -8,7 +8,7 @@ public class leverActivation : MonoBehaviour
     private bool playerIsHitting = false; // Track the previous state of the player's attack action
     public TextMeshProUGUI touchCounterText;
     public bool isActive;
-    private SpriteRenderer sprite;
+    [SerializeField] private SpriteRenderer sprite;
     public void Start()
     {
         isActive = false;
