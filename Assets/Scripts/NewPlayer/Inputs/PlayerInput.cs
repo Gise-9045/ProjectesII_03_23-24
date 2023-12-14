@@ -8,6 +8,9 @@ public class PlayerInput : MonoBehaviour
 
     [SerializeField] private PlayerController _playerController;
 
+    public bool canMove;
+    public bool canJump; 
+
     private void Start()
     {
         NewInputManger._newInputManager._playerMoveInput.action.started += MoveAction;
@@ -22,6 +25,10 @@ public class PlayerInput : MonoBehaviour
         NewInputManger._newInputManager._playerInteractInput.action.started += InteractingAction;
 
         NewInputManger._newInputManager._playerGodModeInput.action.started += GodModeAction; 
+
+
+        canMove = true;
+        canJump = true;
 
     }
 
@@ -43,7 +50,8 @@ public class PlayerInput : MonoBehaviour
 
     private void MoveAction(InputAction.CallbackContext context)
     {
-        
+        if(!canMove) return;
+
         _playerController.SetPlayerMoveDirection(context.ReadValue<Vector2>());    
     }
 
@@ -54,6 +62,8 @@ public class PlayerInput : MonoBehaviour
 
     private void JumpAction(InputAction.CallbackContext context)
     {
+        if(!canJump) return;
+
         _playerController.playerJumpController.Jump_player(0,2); 
         //switch (playerController.playerState)
         //{
@@ -89,7 +99,9 @@ public class PlayerInput : MonoBehaviour
         //            break;
         //    }
         //}
-        
+        canMove = false;
+        canJump = false;
+
     }
 
     private void InteractingAction(InputAction.CallbackContext context)

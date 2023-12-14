@@ -6,17 +6,21 @@ using UnityEngine.SceneManagement;
 
 public class PlayerStats : MonoBehaviour
 {
-    public int health = 0;
-    private int maxHealh = 3;
+    public int health;
+    private int maxHealh;
 
-    public bool knockback = false;
+    public bool knockback;
     public float knockbackVel;
 
     public bool hasJumpPowerUp;
     public bool hasDashPowerUp;
     public bool hasShoutPowerUp;
 
-    private Vector2 respawnPoint; 
+    public bool isDead;
+
+    private Vector2 respawnPoint;
+
+    private PlayerController playerController;
 
     private void Awake()
     {
@@ -24,9 +28,17 @@ public class PlayerStats : MonoBehaviour
         hasDashPowerUp = false;
         hasShoutPowerUp = false;
 
+        isDead = false;
+
+        knockback = false; 
+
+        maxHealh = 3;
+        health = maxHealh;
+
         respawnPoint = transform.position;
 
-        health = maxHealh; 
+        playerController = GetComponent<PlayerController>();
+
     }
 
     public int GetHealth()
@@ -93,14 +105,17 @@ public class PlayerStats : MonoBehaviour
             health--;
             if (health == 0)
             {
-                Die();
+                playerController.ChangeState(PlayerController.PlayerStates.DEAD);
             }
         }
     }
 
-    private void Die()
+    public void Die()
     {
         //poner una pantalla en negro 
+        playerController.playerInput.canMove = false; 
+        playerController.playerInput.canJump = false; 
+
         transform.position = respawnPoint;
         health = maxHealh; 
     }

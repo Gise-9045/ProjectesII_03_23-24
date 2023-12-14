@@ -17,10 +17,16 @@ public class PlayerController : MonoBehaviour
     public PlayerStats playerStats; 
     //public PlayerRespawn playerRespawn;
 
-    PlayerInput playerInput; 
+    public PlayerInput playerInput; 
 
     private Animator anim;
     private Rigidbody2D rb2d;
+
+    public bool canMove;
+    public bool canJump;
+
+    private float deathCooldownTime = 0.5f;
+    public float deathEndTime = 0;
 
     //[SerializeField] public bool _canDash { get; private set; }
 
@@ -38,6 +44,8 @@ public class PlayerController : MonoBehaviour
         //playerDashController = GetComponent<PlayerDashController>();
         playerJumpController = GetComponent<PlayerJumpController>();
         playerAttackControlller = GetComponent<PlayerAttackController>();
+
+        playerInput = GetComponent<PlayerInput>();
 
         anim = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
@@ -82,10 +90,20 @@ public class PlayerController : MonoBehaviour
                 // movementController.CheckGrounded();
                 break;
             case PlayerStates.DEAD:
-                //playerRespawn.Respawn();
+
+                playerStats.Die();
+
+                //deathEndTime = Time.fixedDeltaTime + deathCooldownTime;
+
+                //if(Time.fixedDeltaTime <= deathEndTime)
+                //{
+                //    ChangeState(PlayerStates.NONE);
+                //} 
+
+                ChangeState(PlayerStates.NONE);
+
                 break;
             case PlayerStates.ATTACK:
-                //playerAttackControlller.Attack(); 
                 break;
         }
     }
@@ -151,6 +169,8 @@ public class PlayerController : MonoBehaviour
         switch (_nextState)
         {
             case PlayerStates.NONE:
+                playerInput.canMove = true;
+                playerInput.canJump = true;
                 break;
             case PlayerStates.MOVING:
                 break;
@@ -161,7 +181,6 @@ public class PlayerController : MonoBehaviour
             case PlayerStates.ATTACK:
                 break;
             case PlayerStates.DEAD:
-                //playerRespawn.Die();
                 break;
             default:
                 break;
