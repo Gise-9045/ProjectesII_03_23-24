@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
         {
             case PlayerStates.NONE:
             case PlayerStates.MOVING:
-                playerJumpController.UpdateGroundCheck(); 
+                //playerJumpController.UpdateGroundCheck(); 
                 CheckMovementStates();
                 //movementController.FloorMovement();
                 //movementController.CheckJumping();
@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
                 //movementController.ApplyForces();
                 break;
             case PlayerStates.AIR:
-                playerJumpController.UpdateGroundCheck();
+                //playerJumpController.UpdateGroundCheck();
                 CheckMovementStates();
                 //movementController.AirMovement();
                 //movementController.CheckJumping();
@@ -113,9 +113,9 @@ public class PlayerController : MonoBehaviour
     {
         // cada frame esta modificando a falso o a verdadera la variable isJumping, no se queda en uno hasta que no detecta el suelo 
 
-        bool isJumping = playerJumpController.lastIsOnGround;
+        bool isJumping = playerJumpController.isOnGround;
 
-        if (!isJumping)
+        if (isJumping)
         {
             //si esta en el suelo
             if (playerMovementController.currentSpeed != 0)
@@ -129,10 +129,11 @@ public class PlayerController : MonoBehaviour
 
         }
 
-        if (isJumping)
+        else
         {
             //si esta en el aire
             ChangeState(PlayerStates.AIR);
+            Debug.Log("JUMP"); 
         }
 
         Debug.Log(isJumping + " " + currentState);

@@ -10,7 +10,7 @@ public class PlayerJumpController : MonoBehaviour
     private Rigidbody2D _physics;
 
     [Header("Ground check")]
-    private bool isOnGround;
+    public bool isOnGround;
     public bool lastIsOnGround;
     public Action onLeaveGround;
     public Action onJump;
@@ -66,9 +66,11 @@ public class PlayerJumpController : MonoBehaviour
         _physics.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
     }
 
-    public void UpdateGroundCheck()
+    public bool UpdateGroundCheck()
     {
-        isOnGround = Physics2D.OverlapCapsule(_physics.position, groundCheck.localScale, CapsuleDirection2D.Horizontal, 0, groundLayer);
+        isOnGround = Physics2D.OverlapCapsule(_physics.position,groundCheck.localScale, CapsuleDirection2D.Horizontal, 0, groundLayer);
+
+        return isOnGround; 
 
         if (!isOnGround && !lastIsOnGround)
         {
@@ -82,6 +84,22 @@ public class PlayerJumpController : MonoBehaviour
         lastIsOnGround = isOnGround;
 
         Debug.Log(isOnGround);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Ground"))
+        {
+            isOnGround = true; 
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Ground"))
+        {
+            isOnGround = false;
+        }
     }
 
     private void UpdateGravity()

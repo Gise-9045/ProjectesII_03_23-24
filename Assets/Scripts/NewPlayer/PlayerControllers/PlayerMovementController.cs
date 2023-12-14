@@ -38,7 +38,6 @@ public class PlayerMovementController : MonoBehaviour
     private void FixedUpdate() 
     {
        
-
         if (currentSpeed < 0)
         {
             controller.ChangeState(PlayerController.PlayerStates.NONE);
@@ -54,6 +53,7 @@ public class PlayerMovementController : MonoBehaviour
         }
         else
         {
+            oldPosition = _direction;
             currentSpeed -= deacceleraiton * maxSpeed * Time.deltaTime;
         }
 
@@ -88,11 +88,9 @@ public class PlayerMovementController : MonoBehaviour
     }
 
 
-    public void SetDirection(Vector2 direction) // FALTA EL FLIP 
+    public void SetDirection(Vector2 direction)
     {
-        _direction = direction;
-
-       
+        _direction = direction;     
     }
 
     private void Flip()
