@@ -5,7 +5,7 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/RenderPipeLine/Scenes/MainMenu.unity
     guid: 0b8501268ac71244fa8c8907ceed472a
   - enabled: 0
@@ -14,8 +14,11 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/RenderPipeLine/Scenes/Tutorial.unity
     guid: 820a9e81812b12a419d654e921539131
-  - enabled: 1
+  - enabled: 0
     path: Assets/RenderPipeLine/Scenes/Tutorial Sprite.unity
     guid: ff631e8c3966fbb4988ad445e7a2523c
+  - enabled: 1
+    path: Assets/RenderPipeLine/Scenes/Test/New Scene Test.unity
+    guid: c73b0db08274e5d4b962f29c889ce098
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: b78ea9e78039b76408561f5465f028b6, type: 2}

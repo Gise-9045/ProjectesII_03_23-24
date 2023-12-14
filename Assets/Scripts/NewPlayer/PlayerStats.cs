@@ -108,6 +108,11 @@ public class PlayerStats : MonoBehaviour
                 playerController.ChangeState(PlayerController.PlayerStates.DEAD);
             }
         }
+
+        if(collision.CompareTag("ItemDash"))
+        {
+            hasDashPowerUp = true; 
+        }
     }
 
     public void Die()
