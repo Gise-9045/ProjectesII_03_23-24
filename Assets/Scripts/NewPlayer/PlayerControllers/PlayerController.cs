@@ -14,8 +14,8 @@ public class PlayerController : MonoBehaviour
     //public PlayerDashController playerDashController; 
     public PlayerJumpController playerJumpController;
     public PlayerAttackController playerAttackControlller;
+    public PlayerInteractionController playerInteractionController;
     public PlayerStats playerStats; 
-    //public PlayerRespawn playerRespawn;
 
     public PlayerInput playerInput; 
 
@@ -39,11 +39,12 @@ public class PlayerController : MonoBehaviour
     private void AllGetComponents()
     {
         playerMovementController = GetComponent<PlayerMovementController>();
-        //playerRespawn = GetComponent<PlayerRespawn>();
-        //playerStats = GetComponent<PlayerStats>();
+        playerStats = GetComponent<PlayerStats>();
         //playerDashController = GetComponent<PlayerDashController>();
         playerJumpController = GetComponent<PlayerJumpController>();
         playerAttackControlller = GetComponent<PlayerAttackController>();
+
+        playerInteractionController = GetComponent<PlayerInteractionController>();
 
         playerInput = GetComponent<PlayerInput>();
 
