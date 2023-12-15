@@ -155,12 +155,11 @@ public class InputManager : MonoBehaviour
 
         if (_jump.inWater == false)
         {
-            _jump.Jump_player(jumpCount, maxJump);
+            _jump.Jump_player();
             jumpCount++;
         } else if(_jump.inWater == true)
         {
-            _jump.Jump_player(jumpCount, maxJump);
-            jumpCount = 0;
+            _jump.Jump_player(); 
         }
 
         // _physics.gravityScale = gravityScale;

@@ -42,7 +42,6 @@ public class PlayerController : MonoBehaviour
         playerStats = GetComponent<PlayerStats>();
         playerDashController = GetComponent<PlayerDashController>();
         playerJumpController = GetComponent<PlayerJumpController>();
-        playerAttackControlller = GetComponent<PlayerAttackController>();
 
         playerInteractionController = GetComponent<PlayerInteractionController>();
 
@@ -117,6 +116,8 @@ public class PlayerController : MonoBehaviour
 
         if (isJumping)
         {
+            playerJumpController.jumpCount = 0;
+
             //si esta en el suelo
             if (playerMovementController.currentSpeed != 0)
             {
@@ -133,10 +134,7 @@ public class PlayerController : MonoBehaviour
         {
             //si esta en el aire
             ChangeState(PlayerStates.AIR);
-            Debug.Log("JUMP"); 
         }
-
-        Debug.Log(isJumping + " " + currentState);
     }
 
     private void AnimateCharacter()
@@ -144,23 +142,23 @@ public class PlayerController : MonoBehaviour
         if (currentState == PlayerStates.MOVING)
         {
             anim.SetBool("isMoving", true);
-            //anim.SetBool("isJumping", false);
+            anim.SetBool("isJumping", false);
         }
         if (currentState == PlayerStates.ATTACK)
         {
             anim.SetBool("isAttacking", true);
-            //anim.SetBool("isMoving", false);
+            anim.SetBool("isMoving", false);
             anim.SetBool("isJumping", false);
         }
         if (currentState == PlayerStates.NONE)
         {
             anim.SetBool("isMoving", false);
-            //anim.SetBool("isJumping", false);
+            anim.SetBool("isJumping", false);
             anim.SetBool("isAttacking", false);
         }
         if (currentState == PlayerStates.AIR)
         {
-            //anim.SetBool("isJumping", true);
+            anim.SetBool("isJumping", true);
             anim.SetBool("isMoving", false);
             anim.SetBool("isAttacking", false);
         }

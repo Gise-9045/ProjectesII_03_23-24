@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 
 public class PlayerJumpController : MonoBehaviour
@@ -14,6 +15,7 @@ public class PlayerJumpController : MonoBehaviour
     public bool lastIsOnGround;
     public Action onLeaveGround;
     public Action onJump;
+
     //public Action OnJumpApex;
     public Action onTouchGround;
     public float collisionRadius = 0.25f;
@@ -30,12 +32,18 @@ public class PlayerJumpController : MonoBehaviour
     [SerializeField] private float gravityOnFall;
     [SerializeField] private float gravityOnJump;
 
+    public int jumpCount;
+    public  int maxJump; 
+
     private void Awake()
     {
         _physics = GetComponent<Rigidbody2D>();
         onLeaveGround += BeforeTouchGround;  // metodo que ctive la animacion de saltar del suelo 
         onJump += WhileJumping; //Metodo que active la animacion de salto en el aire 
         onTouchGround += StartJump; // metodo que ctive la animacion de llegar al suelo 
+
+        jumpCount = 0;
+        maxJump = 1;
 
     }
 
@@ -46,7 +54,7 @@ public class PlayerJumpController : MonoBehaviour
     }
 
 
-    public void Jump_player(int jumpCount , int maxJump)
+    public void Jump_player()
     {
         if (Physics2D.OverlapCapsule(_physics.position, groundCheck.localScale, CapsuleDirection2D.Horizontal, 0, waterLayer))
         {
@@ -54,9 +62,13 @@ public class PlayerJumpController : MonoBehaviour
         }
         else
         {
-            if (jumpCount >= maxJump) return;
+            if (jumpCount > maxJump)
+            { return; }
+            
             _physics.velocity = new Vector2(_physics.velocity.x, 0);
             _physics.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+
+            jumpCount++; 
         }
     }
 

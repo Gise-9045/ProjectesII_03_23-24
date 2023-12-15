@@ -12,11 +12,14 @@ public class PlayerInteractionController : MonoBehaviour
     private Rigidbody2D _physics;
 
     [SerializeField] private Transform interactiveCheck;
+
+    private PlayerJumpController playerJumpController;
  
     // Start is called before the first frame update
     void Awake()
     {
         playerStats = GetComponent<PlayerStats>();
+        playerJumpController = GetComponent<PlayerJumpController>();
         _physics = GetComponent<Rigidbody2D>();
     }
 
@@ -43,11 +46,18 @@ public class PlayerInteractionController : MonoBehaviour
             if (interactedCollider.tag == "ItemJump")
             {
                 playerStats.hasJumpPowerUp = true;
+                playerJumpController.maxJump = 2;
+
+                Destroy(interactedCollider.gameObject);
+
             }
 
             if (interactedCollider.tag == "ItemShout")
             {
                 playerStats.hasShoutPowerUp = true;
+
+                Destroy(interactedCollider.gameObject);
+
             }
         }
     }

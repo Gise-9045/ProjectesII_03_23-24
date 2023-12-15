@@ -24,11 +24,6 @@ public class PlayerAttackController : MonoBehaviour
         {
             collision.GetComponent<Enemy>().TakeDamage(1, true, 20.0f);
         }
-
-        if(collision.tag == "Lever")
-        {
-            collision.GetComponent<leverActivation>().Toggle();
-        }
     }
 
     public void Attack()
@@ -36,4 +31,5 @@ public class PlayerAttackController : MonoBehaviour
         attackParticles.Play();
         anim.SetBool("isAttacking",true);
     }
+
 }

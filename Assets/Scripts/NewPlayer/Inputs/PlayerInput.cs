@@ -69,7 +69,8 @@ public class PlayerInput : MonoBehaviour
     {
         if(!canJump) return;
 
-        _playerController.playerJumpController.Jump_player(0,2); 
+        _playerController.playerJumpController.Jump_player(); 
+
         //switch (playerController.playerState)
         //{
         //    case PlayerController.PlayerStates.WALL_SLIDE:
