@@ -6,45 +6,58 @@ public class WallDetection : MonoBehaviour
 {
     RaycastHit2D rcGround;
 
-    [SerializeField] private Transform parent;
+    private Transform parent;
     [SerializeField] private float distanceX;
     [SerializeField] private float distanceY;
 
     [SerializeField] private Enemy enemy;
+
+    private bool onGround;
+    [SerializeField] private bool detectOnly;
 
     private void Start()
     {
         parent = GetComponentInParent<Transform>();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        rcGround = Physics2D.Raycast(new Vector2(parent.transform.position.x + (enemy.GetDirection() * distanceX), parent.transform.position.y + distanceY) , Vector2.down, distanceY);
+        Vector2 pos = new Vector2(parent.transform.position.x + (enemy.GetDirection().x * distanceX), parent.transform.position.y + distanceY);
+        rcGround = Physics2D.Raycast(pos , Vector2.down, distanceY);
 
-        if (rcGround.collider.tag == "Ground")
+        if (rcGround.collider != null && rcGround.collider.tag == "Ground")
         {
-            Debug.DrawRay(new Vector2(parent.transform.position.x + (enemy.GetDirection() * distanceX), parent.transform.position.y + distanceY), Vector2.down, Color.green);
+            Debug.DrawRay(pos, Vector2.down, Color.green);
+            onGround = true;
         }
         else
         {
-            Debug.DrawRay(new Vector2(parent.transform.position.x + (enemy.GetDirection() * distanceX), parent.transform.position.y + distanceY), Vector2.down, Color.red);
+            Debug.DrawRay(pos, Vector2.down, Color.red);
 
-            enemy.SetDirection(enemy.GetDirection() * -1);
+            onGround = false;
+
+            if(!detectOnly)
+            {
+                enemy.SetDirection(new Vector2(enemy.GetDirection().x * -1, 1));
+            }
         }
+
+        //Debug.Log(rcGround.collider.tag);
 
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Ground") || collision.CompareTag("Lever"))
+        if (collision.CompareTag("Ground") || collision.CompareTag("Lever") || collision.CompareTag("Enemy"))
         {
-            enemy.SetDirection(enemy.GetDirection() * -1);
+            enemy.SetDirection(new Vector2(enemy.GetDirection().x * -1, 1));
+
         }
     }
-    //private void OnDrawGizmos()
-    //{
-    //    parent = GetComponentInParent<Transform>();
 
-    //    Debug.DrawRay(new Vector2(parent.transform.position.x + (1 * distanceX), parent.transform.position.y + distanceY), Vector2.down, Color.blue);
-    //}
+
+    public bool OnGround()
+    {
+        return onGround;
+    }
 }
