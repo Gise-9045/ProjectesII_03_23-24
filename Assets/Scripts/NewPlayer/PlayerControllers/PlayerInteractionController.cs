@@ -6,24 +6,49 @@ public class PlayerInteractionController : MonoBehaviour
 {
     //IDEA: hacer que aparezca un mensaje en pantalla cuando el jugador se acerque a un objeto interactuable
     //      y que se pueda interactuar con él pulsando una tecla, la E.
+    public float interactRange;  
+
+    private PlayerStats playerStats;
+    private Rigidbody2D _physics;
+
+    [SerializeField] private Transform interactiveCheck;
  
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        
+        playerStats = GetComponent<PlayerStats>();
+        _physics = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void Interact()
     {
-        
-    }
+        Collider2D interactedCollider = Physics2D.OverlapCapsule(_physics.position, interactiveCheck.localScale, CapsuleDirection2D.Horizontal, 0);
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "Lever")
+        if (interactedCollider != null)
         {
-            collision.GetComponent<leverActivation>().Toggle();
+            if (interactedCollider.tag == "Lever")
+            {
+                interactedCollider.GetComponent<leverActivation>().Toggle();
+            }
+
+            if (interactedCollider.tag == "ItemDash")
+            {
+                Debug.Log("ItemDash");
+                playerStats.hasDashPowerUp = true;
+
+                // Puedes destruir el objeto ItemDash aquí si también deseas
+                Destroy(interactedCollider.gameObject);
+            }
+
+            if (interactedCollider.tag == "ItemJump")
+            {
+                playerStats.hasJumpPowerUp = true;
+            }
+
+            if (interactedCollider.tag == "ItemShout")
+            {
+                playerStats.hasShoutPowerUp = true;
+            }
         }
     }
 }

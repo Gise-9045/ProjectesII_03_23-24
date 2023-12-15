@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
 
     [HideInInspector]
     public PlayerMovementController playerMovementController;
-    //public PlayerDashController playerDashController; 
+    public PlayerDashController playerDashController; 
     public PlayerJumpController playerJumpController;
     public PlayerAttackController playerAttackControlller;
     public PlayerInteractionController playerInteractionController;
@@ -40,7 +40,7 @@ public class PlayerController : MonoBehaviour
     {
         playerMovementController = GetComponent<PlayerMovementController>();
         playerStats = GetComponent<PlayerStats>();
-        //playerDashController = GetComponent<PlayerDashController>();
+        playerDashController = GetComponent<PlayerDashController>();
         playerJumpController = GetComponent<PlayerJumpController>();
         playerAttackControlller = GetComponent<PlayerAttackController>();
 

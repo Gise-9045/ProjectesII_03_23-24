@@ -26,6 +26,8 @@ public class PlayerInput : MonoBehaviour
 
         NewInputManger._newInputManager._playerGodModeInput.action.started += GodModeAction; 
 
+        NewInputManger._newInputManager._playerDashInput.action.started += DashAction;
+
 
         canMove = true;
         canJump = true;
@@ -44,6 +46,9 @@ public class PlayerInput : MonoBehaviour
 
         NewInputManger._newInputManager._playerInteractInput.action.started -= InteractingAction;
 
+        NewInputManger._newInputManager._playerGodModeInput.action.started -= GodModeAction;
+
+        NewInputManger._newInputManager._playerDashInput.action.started -= DashAction;
     }
 
     #region Actions
@@ -102,12 +107,16 @@ public class PlayerInput : MonoBehaviour
         canMove = false;
         canJump = false;
 
+        _playerController.playerDashController.PlayerDashing();
+
+        canMove = true;
+        canJump = true;
+
     }
 
     private void InteractingAction(InputAction.CallbackContext context)
     {
-        // playerController._interactionController.Interact();
-        Debug.Log("INTERACTION"); 
+        _playerController.playerInteractionController.Interact();
     }
 
     private void AttackAction(InputAction.CallbackContext context)
