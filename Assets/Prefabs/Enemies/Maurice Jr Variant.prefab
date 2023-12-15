@@ -105,6 +105,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 715059079047054257, guid: bef583e4ca8b0c64b9f1917cd9e62f50, type: 3}
+      propertyPath: m_Mass
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 715059079047054257, guid: bef583e4ca8b0c64b9f1917cd9e62f50, type: 3}
       propertyPath: m_GravityScale
       value: 9.81
       objectReference: {fileID: 0}
@@ -114,6 +118,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 791483282030506657, guid: bef583e4ca8b0c64b9f1917cd9e62f50, type: 3}
       propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 791483282030506657, guid: bef583e4ca8b0c64b9f1917cd9e62f50, type: 3}
+      propertyPath: m_LocalScale.z
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 791483282030506657, guid: bef583e4ca8b0c64b9f1917cd9e62f50, type: 3}
@@ -156,6 +164,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4651318814395152128, guid: bef583e4ca8b0c64b9f1917cd9e62f50, type: 3}
+      propertyPath: m_Size.x
+      value: 1.6409631
+      objectReference: {fileID: 0}
+    - target: {fileID: 4651318814395152128, guid: bef583e4ca8b0c64b9f1917cd9e62f50, type: 3}
+      propertyPath: m_Offset.x
+      value: 1.2259462
+      objectReference: {fileID: 0}
     - target: {fileID: 5558712309640680558, guid: bef583e4ca8b0c64b9f1917cd9e62f50, type: 3}
       propertyPath: detectOnly
       value: 1
@@ -182,7 +198,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 673194236642539378, guid: bef583e4ca8b0c64b9f1917cd9e62f50, type: 3}
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 645112553447867822, guid: bef583e4ca8b0c64b9f1917cd9e62f50, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 791483282030506657, guid: bef583e4ca8b0c64b9f1917cd9e62f50, type: 3}
       insertIndex: 1
@@ -214,5 +231,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f426e4cb295ee834da812c39cb821369, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpHeight: 0
-  jumpWidth: 0
