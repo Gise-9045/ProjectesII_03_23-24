@@ -100,7 +100,7 @@ public class Collisions : MonoBehaviour
         {
             collectingDash = true;
             DisplayPopup("Dash Power-Up Acquired");
-           
+            Destroy(collision.gameObject);
         }
     }
     void DisplayPopup(string message)

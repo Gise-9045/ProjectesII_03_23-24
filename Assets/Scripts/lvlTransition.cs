@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class lvlTransition : MonoBehaviour
 {
+    public Animator transitions;
+    [SerializeField] public Scene currentScene;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +20,7 @@ public class lvlTransition : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        //transitions.SetTrigger("LvlPassed");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
