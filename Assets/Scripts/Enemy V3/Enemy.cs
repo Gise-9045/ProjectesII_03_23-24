@@ -6,7 +6,9 @@ using static UnityEngine.ParticleSystem;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private int life;
-    private int direction;
+    [SerializeField] private int maxLife;
+    private Vector2 direction;
+    private float rotation;
     [SerializeField] int speed;
 
     private bool knockback;
@@ -26,7 +28,9 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        direction = 1;
+        direction = new Vector2(1, 1);
+        life = maxLife;
+        rotation = 0;
 
     }
 
@@ -39,6 +43,12 @@ public class Enemy : MonoBehaviour
         return life;
     }
 
+    public int GetMaxLife()
+    {
+        return maxLife;
+
+    }
+
     public void SetSpeed(int s)
     {
         speed = s;
@@ -49,16 +59,33 @@ public class Enemy : MonoBehaviour
         return speed;
     }
 
-    public void SetDirection(int d)
+    public void SetDirection(Vector2 d)
     {
         //-1 izquierda 1 derecha
         direction = d;
+
+        Vector3 currentScale = gameObject.transform.localScale;
+        currentScale.x = direction.x;
+        currentScale.y = direction.y;
+        gameObject.transform.localScale = currentScale;
     }
-    public int GetDirection()
+    public Vector2 GetDirection()
     {
         return direction;
     }
 
+    public void SetRotation(float r)
+    {
+        rotation = r;
+
+        gameObject.transform.localEulerAngles = new Vector3(gameObject.transform.localEulerAngles.x, gameObject.transform.localEulerAngles.y, rotation);
+
+    }
+
+    public float GetRotation()
+    {
+        return rotation;
+    }
 
     public void TakeDamage(int subtractLife, bool knock, float knockVel)
     {
@@ -94,8 +121,8 @@ public class Enemy : MonoBehaviour
     private void Update()
     {
         //EnemyDirection
-        Vector3 currentScale = gameObject.transform.localScale;
-        currentScale.x = direction;
-        gameObject.transform.localScale = currentScale;
+
+
+        //EnemyRotation
     }
 }
