@@ -73,6 +73,11 @@ public class Collisions : MonoBehaviour
         onLeftWall = Physics2D.OverlapCircle((Vector2)transform.position + leftOffset, collisionRadius, groundLayer);
 
         wallSide = onRightWall ? -1 : 1;
+
+        if(collectingDash||collectingJump)
+        {
+            HidePopup(2f);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -92,8 +97,7 @@ public class Collisions : MonoBehaviour
     }
     void DisplayPopup(string message)
     {
-        if (dialogText != null)
-        {
+        if(dialogText != null) { 
             dialogText.text = message;
             dialogText.gameObject.SetActive(true); // Show the popup
             itemContainer.gameObject.SetActive(true);
@@ -106,7 +110,14 @@ public class Collisions : MonoBehaviour
     IEnumerator HidePopup(float delay)
     {
         yield return new WaitForSecondsRealtime(delay);
+
+        Destroy(dialogBoxPrefab);
+        Destroy(currentDialogBox);
+        Destroy(dialogText);
         
+            //itemContainer.gameObject.SetActive(false);
+            //Destroy(currentDialogBox2); // Destroy the dialog box after the delay
+            //itemContainer2.gameObject.SetActive(false);
         
             Destroy(currentDialogBox); // Destroy the dialog box after the delay
             itemContainer.gameObject.SetActive(false);

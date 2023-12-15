@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class BasicMovement : MonoBehaviour
 {
-    [SerializeField] private Enemy enemy;
+    private Enemy enemy;
+    private PlayerDetection detection;
+
     private Rigidbody2D rb;
     private Transform tr;
     private Transform player;
@@ -14,6 +16,10 @@ public class BasicMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         tr = GetComponent<Transform>();
+        enemy = GetComponent<Enemy>();
+        detection = GetComponentInChildren<PlayerDetection>();
+
+
         player = GameObject.FindWithTag("Player").GetComponent<Transform>();
 
     }
@@ -21,15 +27,18 @@ public class BasicMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(enemy.GetKnockback())
+        if (enemy.GetKnockback())
         {
             rb.velocity = new Vector2(-Mathf.Sign(player.position.x - tr.position.x) * enemy.GetKnockbackVel(), rb.velocity.y);
-
         }
         else
         {
-            rb.velocity = new Vector2(enemy.GetDirection() * enemy.GetSpeed(), rb.velocity.y);
+            if (detection.GetPlayerDetection())
+            {
+                enemy.SetDirection(new Vector2((int)Mathf.Sign(player.position.x - tr.position.x), 1));
+            }
 
+            rb.velocity = new Vector2(enemy.GetDirection().x * enemy.GetSpeed(), rb.velocity.y);
         }
     }
 
