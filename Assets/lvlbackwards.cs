@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -21,6 +22,7 @@ public class lvlbackwards : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //transitions.SetTrigger("LvlPassed");
+       if(collision.gameObject.CompareTag("Player"))
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 }

@@ -70,6 +70,8 @@ public class PlayerJumpController : MonoBehaviour
 
             jumpCount++; 
         }
+
+        Debug.Log(jumpCount); 
     }
 
     private void ControlOnWater()

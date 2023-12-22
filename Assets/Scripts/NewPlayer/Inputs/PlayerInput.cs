@@ -105,6 +105,10 @@ public class PlayerInput : MonoBehaviour
         //            break;
         //    }
         //}
+        if(!_playerController.playerStats.hasDashPowerUp)
+        {
+            return; 
+        }
         canMove = false;
         canJump = false;
 

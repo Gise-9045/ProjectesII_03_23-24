@@ -73,7 +73,7 @@ public class PlayerStats : MonoBehaviour
         {
             health = 0;
             Time.timeScale = 1;
-            SceneManager.LoadScene("MainMenu");
+            playerController.ChangeState(PlayerController.PlayerStates.DEAD); 
         }
     }
 
