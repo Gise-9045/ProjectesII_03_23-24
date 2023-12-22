@@ -23,7 +23,7 @@ public class leverActivation : MonoBehaviour
 
     public void Toggle()
     {
-        isActive = !isActive;
+        isActive = true;
         sprite.flipX = isActive;
         
        
