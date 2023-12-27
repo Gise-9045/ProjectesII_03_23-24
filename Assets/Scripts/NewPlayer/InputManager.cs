@@ -35,7 +35,7 @@ public class InputManager : MonoBehaviour
     [SerializeField] private bool wallSlide;
     [SerializeField] private bool isDashing;
     [SerializeField] private bool isAttacking;
-    
+
     public int sidePlayer = 1;
     private int jumpCount = 0;
     private int maxJump = 2;

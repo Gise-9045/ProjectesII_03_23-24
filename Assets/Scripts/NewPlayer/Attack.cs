@@ -9,12 +9,22 @@ public class Attack : MonoBehaviour
 
     [SerializeField] Animator anim;
     [SerializeField] InputActionReference attack;
+    [SerializeField] AudioClip screamClip;
+    [SerializeField] AudioSource scream;
 
     private Enemy enemy;
     private Bullet bullet;
+    private void Start()
+    {
+        scream.clip = screamClip;
+    }
     private void Update()
     {
         anim.SetBool("isAttacking", attack.action.ReadValue<float>() > 0);
+        if (anim.GetBool("isAttacking"))
+        {
+            scream.Play();
+        }
         
     }
 
