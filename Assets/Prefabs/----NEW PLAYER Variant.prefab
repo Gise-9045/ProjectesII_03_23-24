@@ -90,7 +90,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: ccf6f4a7bf29eee4c9365922ef3f0fd1, type: 3}
     - target: {fileID: 2866283476323232485, guid: 21e541372428f44429ebdc6a9683f20b, type: 3}
       propertyPath: volumeAudio
-      value: 0.25
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 3117715904750925188, guid: 21e541372428f44429ebdc6a9683f20b, type: 3}
       propertyPath: m_Enabled
@@ -142,15 +142,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4905686525161926280, guid: 21e541372428f44429ebdc6a9683f20b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.700001
+      value: 0.91532564
       objectReference: {fileID: 0}
     - target: {fileID: 4905686525161926280, guid: 21e541372428f44429ebdc6a9683f20b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.04
+      value: 24.114319
       objectReference: {fileID: 0}
     - target: {fileID: 4905686525161926280, guid: 21e541372428f44429ebdc6a9683f20b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10
+      value: -10.279738
       objectReference: {fileID: 0}
     - target: {fileID: 5311185046990569033, guid: 21e541372428f44429ebdc6a9683f20b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -160,6 +160,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: -0.17274734
       objectReference: {fileID: 0}
+    - target: {fileID: 5366797992790575571, guid: 21e541372428f44429ebdc6a9683f20b, type: 3}
+      propertyPath: dashClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 7c587a2e8efc31e4f8b86e8c3f61673c, type: 3}
     - target: {fileID: 6509692174906454992, guid: 21e541372428f44429ebdc6a9683f20b, type: 3}
       propertyPath: attack
       value: 
