@@ -11559,6 +11559,14 @@ PrefabInstance:
       propertyPath: scream
       value: 
       objectReference: {fileID: 1043965710}
+    - target: {fileID: 4634417904328050617, guid: bd929d1502d16d14f9b906e335a5a177, type: 3}
+      propertyPath: jumpClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 291da080fdb881740be0fb6e6f26bca4, type: 3}
+    - target: {fileID: 4634417904328050617, guid: bd929d1502d16d14f9b906e335a5a177, type: 3}
+      propertyPath: jumpAudio
+      value: 
+      objectReference: {fileID: 1043965710}
     - target: {fileID: 6049863678838471484, guid: bd929d1502d16d14f9b906e335a5a177, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -27198,7 +27206,7 @@ GameObject:
   - component: {fileID: 1043965711}
   - component: {fileID: 1043965710}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: SoundSource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
