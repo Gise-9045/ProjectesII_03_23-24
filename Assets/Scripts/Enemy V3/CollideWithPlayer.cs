@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class CollideWithPlayer : MonoBehaviour
 {
-    [SerializeField] private PlayerStats playerStats;
-    private Transform player;
+    private GameObject player;
     private Transform tr;
 
     [SerializeField] private int substrackLife;
-    [SerializeField] private int knockback;
+    //[SerializeField] private int knockback;
 
     private void Start()
     {
-        player = GameObject.FindWithTag("Player").GetComponent<Transform>();
+        player = GameObject.FindWithTag("Player");
         tr = GetComponent<Transform>();
     }
 
@@ -21,7 +20,7 @@ public class CollideWithPlayer : MonoBehaviour
     {
         if (collision.collider.tag == "Player")
         {
-            playerStats.TakeDamage(1, 20.0f, Mathf.Sign(player.position.x - tr.position.x));
+            player.GetComponent<PlayerStats>().TakeDamage(1, 20.0f, Mathf.Sign(player.transform.position.x - tr.position.x));
         }
     }
 }

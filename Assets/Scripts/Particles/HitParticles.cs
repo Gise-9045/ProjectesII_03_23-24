@@ -6,27 +6,40 @@ public class HitParticles : MonoBehaviour
 {
     public static HitParticles Instance { get; private set; }
 
-    [SerializeField] private GameObject[] particles;
+    [SerializeField] private GameObject player;
+    [SerializeField] private GameObject enemy;
     private void Awake()
     {
         Instance = this;
     }
 
-    public void Enable(float x, float y)
+    public void EnablePlayer(float x, float y)
     {
-        gameObject.transform.position = new Vector2(x, y);
+        gameObject.transform.position = new Vector3(x, y, -2);
 
-        for(int i = 0; i < particles.Length; i++) 
-        {
-            particles[i].SetActive(true);
-        }
+        player.SetActive(true);
+
     }
 
-    public void Disable()
+    public void DisablePlayer()
     {
-        for (int i = 0; i < particles.Length; i++)
-        {
-            particles[i].SetActive(false);
-        }
+
+        player.SetActive(false);
+    }
+
+
+
+
+    public void EnableEnemy(float x, float y)
+    {
+        gameObject.transform.position = new Vector3(x, y, -2);
+
+        enemy.SetActive(true);
+
+    }
+
+    public void DisableEnemy()
+    {
+        enemy.SetActive(false);
     }
 }

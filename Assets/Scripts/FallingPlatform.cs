@@ -22,13 +22,22 @@ public class FallingPlatform : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && collision.gameObject.transform.position.y !> transform.position.y)
         {
             StartCoroutine(Fall());
             touchCounterText.text = "X(";
         }
+        if (collision.gameObject.CompareTag("Player") && collision.gameObject.transform.position.y > transform.position.y)
+        {
+            // Disable the collider temporarily to allow the player to pass through
+            
+            GetComponent<Collider2D>().enabled = false;
+        }
     }
-
+   
+        // Check if the player is above the platform
+        
+    
     private IEnumerator Fall()
     {
         
