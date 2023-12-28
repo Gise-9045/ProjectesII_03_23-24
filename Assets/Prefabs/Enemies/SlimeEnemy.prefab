@@ -13,6 +13,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: aa645ba692cd39f4bae5266b6f1072d6, type: 3}
     - target: {fileID: 380297731777720684, guid: bef583e4ca8b0c64b9f1917cd9e62f50, type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 380297731777720684, guid: bef583e4ca8b0c64b9f1917cd9e62f50, type: 3}
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
@@ -24,6 +28,10 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 380297731777720684, guid: bef583e4ca8b0c64b9f1917cd9e62f50, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 673194236642539378, guid: bef583e4ca8b0c64b9f1917cd9e62f50, type: 3}
       propertyPath: detection
       value: 
@@ -116,6 +124,10 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 7799156073521760185, guid: bef583e4ca8b0c64b9f1917cd9e62f50, type: 3}
+      propertyPath: maxLife
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8520020047002560693, guid: bef583e4ca8b0c64b9f1917cd9e62f50, type: 3}
       propertyPath: m_Size.x
       value: 6.7871857
@@ -137,7 +149,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1469089261615869582, guid: bef583e4ca8b0c64b9f1917cd9e62f50, type: 3}
-      insertIndex: -1
+      insertIndex: 2
       addedObject: {fileID: 541080495688032676}
   m_SourcePrefab: {fileID: 100100000, guid: bef583e4ca8b0c64b9f1917cd9e62f50, type: 3}
 --- !u!114 &802544656980173862 stripped
