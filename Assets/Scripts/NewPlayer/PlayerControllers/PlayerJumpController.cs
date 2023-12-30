@@ -33,7 +33,12 @@ public class PlayerJumpController : MonoBehaviour
     [SerializeField] private float gravityOnJump;
 
     public int jumpCount;
-    public  int maxJump; 
+    public  int maxJump;
+    [Header("Audio")]
+    [SerializeField, Range(0f, 1f)] private float volumeAudio = 0.2f;
+    [SerializeField] private AudioClip jumpClip;
+    [SerializeField] private AudioClip swimClip;
+    [SerializeField] private AudioSource jumpAudio;
 
     private void Awake()
     {
@@ -44,11 +49,13 @@ public class PlayerJumpController : MonoBehaviour
 
         jumpCount = 0;
         maxJump = 1;
-
+        jumpAudio = gameObject.AddComponent<AudioSource>(); // Add an AudioSource component
+        jumpAudio.clip = jumpClip;
     }
 
     private void FixedUpdate()
     {
+        jumpAudio.volume = volumeAudio;
         //UpdateGroundCheck();
         UpdateGravity();
     }
@@ -58,13 +65,15 @@ public class PlayerJumpController : MonoBehaviour
     {
         if (Physics2D.OverlapCapsule(_physics.position, groundCheck.localScale, CapsuleDirection2D.Horizontal, 0, waterLayer))
         {
+            jumpAudio.clip = swimClip;
             ControlOnWater(); 
         }
         else
         {
+            jumpAudio.clip = jumpClip;
             if (jumpCount > maxJump)
             { return; }
-            
+            PlayJumpAudio();
             _physics.velocity = new Vector2(_physics.velocity.x, 0);
             _physics.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
 
@@ -76,6 +85,7 @@ public class PlayerJumpController : MonoBehaviour
 
     private void ControlOnWater()
     {
+        jumpAudio.Play();
         _physics.velocity = new Vector2(_physics.velocity.x, 0);
         _physics.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
     }
@@ -139,5 +149,12 @@ public class PlayerJumpController : MonoBehaviour
         // onLeaveGround?.Invoke();
 
         CancelInvoke("onLeaveGround"); 
+    }
+    private void PlayJumpAudio()
+    {
+        if (jumpAudio != null)
+        {
+            jumpAudio.Play();
+        }
     }
 }
