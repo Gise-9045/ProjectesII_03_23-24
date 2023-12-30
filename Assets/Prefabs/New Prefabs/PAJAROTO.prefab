@@ -177,7 +177,7 @@ Transform:
   - {fileID: 2195076692601112444}
   - {fileID: 8506981356773489166}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1467313283430390670
 GameObject:
@@ -290,7 +290,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1610820830564610065}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 9.01, z: -10}
+  m_LocalPosition: {x: -1.3351212, y: 6.452513, z: -9.83041}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -789,6 +789,10 @@ MonoBehaviour:
   gravityOnJump: 5
   jumpCount: 0
   maxJump: 0
+  volumeAudio: 0.2
+  jumpClip: {fileID: 0}
+  swimClip: {fileID: 0}
+  jumpAudio: {fileID: 0}
 --- !u!114 &1378082704897021428
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -801,6 +805,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8da6972ac9843654fbd778e4fbd79576, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  screamClip: {fileID: 0}
+  scream: {fileID: 0}
+  volumeAudio: 0.2
   anim: {fileID: 5109445124933819267}
   attackParticles: {fileID: 6617304045946069325}
 --- !u!114 &5243287676911561576
@@ -831,7 +838,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _physics: {fileID: 5948458158711145669}
   playermove: {fileID: 56450008416237043}
-  jump: {fileID: 6361488034847475488}
+  dashClip: {fileID: 8300000, guid: 7c587a2e8efc31e4f8b86e8c3f61673c, type: 3}
+  dashAudio: {fileID: 0}
+  volumeAudio: 0.2
   canDash: 0
   tr: {fileID: 6335340091725950978}
 --- !u!114 &6017962168352276904
