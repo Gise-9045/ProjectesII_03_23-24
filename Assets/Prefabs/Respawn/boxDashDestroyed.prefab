@@ -33,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7759672287866346792
 SpriteRenderer:
@@ -100,6 +100,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   impactSpeedThreshold: 140
+  breakingClip: {fileID: 8300000, guid: cc3743d6a6672d6448e0c8a47ccf0168, type: 3}
+  breakingSource: {fileID: 0}
+  volumeAudio: 0.2
 --- !u!50 &6864588529823744920
 Rigidbody2D:
   serializedVersion: 4

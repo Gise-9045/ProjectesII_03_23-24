@@ -22,6 +22,7 @@ public class PlayerInteractionController : MonoBehaviour
         playerJumpController = GetComponent<PlayerJumpController>();
         _physics = GetComponent<Rigidbody2D>();
     }
+   
 
     public void Interact()
     {
