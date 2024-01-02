@@ -17,6 +17,8 @@ public class Enemy : MonoBehaviour
     private bool knockback;
     private float knockbackVel;
 
+    private HitFlash flash;
+
     public bool GetKnockback()
     {
         return knockback;
@@ -36,6 +38,7 @@ public class Enemy : MonoBehaviour
         life = maxLife;
         rotation = 0;
 
+        flash = GetComponentInChildren<HitFlash>();
     }
 
     public void SetLife(int l)
@@ -98,8 +101,11 @@ public class Enemy : MonoBehaviour
         knockback = knock;
         knockbackVel = knockVel;
 
+        flash.Flash(0.15f);
         HitParticles.Instance.DisableEnemy();
         HitParticles.Instance.EnableEnemy(gameObject.transform.position.x, gameObject.transform.position.y);
+
+        
 
         if (knockback)
         {
