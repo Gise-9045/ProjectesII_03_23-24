@@ -3880,7 +3880,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 47177998}
-  m_BodyType: 2
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -16779,6 +16779,7 @@ Transform:
   - {fileID: 1167379519}
   - {fileID: 108094917}
   - {fileID: 561532061}
+  - {fileID: 651919917}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -17018,6 +17019,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2507210497576423525, guid: 7aabec7b42b5d1c47adfc52fa31028ee, type: 3}
+      propertyPath: slimeMoving
+      value: 
+      objectReference: {fileID: 651919918}
+    - target: {fileID: 5161379289150464174, guid: 7aabec7b42b5d1c47adfc52fa31028ee, type: 3}
+      propertyPath: hurtSource
+      value: 
+      objectReference: {fileID: 651919918}
     - target: {fileID: 8467195419225105813, guid: 7aabec7b42b5d1c47adfc52fa31028ee, type: 3}
       propertyPath: m_Name
       value: SlimeEnemy (1)
@@ -17764,6 +17773,134 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5078818771876124176, guid: c57567fdaca93814080c6b4681e87ee9, type: 3}
   m_PrefabInstance: {fileID: 612525124}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &651919916
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 651919917}
+  - component: {fileID: 651919918}
+  m_Layer: 0
+  m_Name: EnemySource
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &651919917
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 651919916}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 127358208}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &651919918
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 651919916}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &739409720
 GameObject:
   m_ObjectHideFlags: 0
@@ -18240,6 +18377,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2507210497576423525, guid: 7aabec7b42b5d1c47adfc52fa31028ee, type: 3}
+      propertyPath: slimeMoving
+      value: 
+      objectReference: {fileID: 651919918}
+    - target: {fileID: 5161379289150464174, guid: 7aabec7b42b5d1c47adfc52fa31028ee, type: 3}
+      propertyPath: hurtSource
+      value: 
+      objectReference: {fileID: 651919918}
     - target: {fileID: 8467195419225105813, guid: 7aabec7b42b5d1c47adfc52fa31028ee, type: 3}
       propertyPath: m_Name
       value: SlimeEnemy (4)
@@ -18920,6 +19065,10 @@ PrefabInstance:
       propertyPath: swimClip
       value: 
       objectReference: {fileID: 8300000, guid: ccf6f4a7bf29eee4c9365922ef3f0fd1, type: 3}
+    - target: {fileID: 6361488034847475488, guid: a497422e4aaee7446a041b3d5d11f184, type: 3}
+      propertyPath: volumeAudio
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 8311901581365734445, guid: a497422e4aaee7446a041b3d5d11f184, type: 3}
       propertyPath: dashAudio
       value: 
@@ -19087,6 +19236,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2507210497576423525, guid: 7aabec7b42b5d1c47adfc52fa31028ee, type: 3}
+      propertyPath: slimeMoving
+      value: 
+      objectReference: {fileID: 651919918}
+    - target: {fileID: 5161379289150464174, guid: 7aabec7b42b5d1c47adfc52fa31028ee, type: 3}
+      propertyPath: hurtSource
+      value: 
+      objectReference: {fileID: 651919918}
     - target: {fileID: 8467195419225105813, guid: 7aabec7b42b5d1c47adfc52fa31028ee, type: 3}
       propertyPath: m_Name
       value: SlimeEnemy (2)
@@ -19153,6 +19310,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2507210497576423525, guid: 7aabec7b42b5d1c47adfc52fa31028ee, type: 3}
+      propertyPath: slimeMoving
+      value: 
+      objectReference: {fileID: 651919918}
+    - target: {fileID: 5161379289150464174, guid: 7aabec7b42b5d1c47adfc52fa31028ee, type: 3}
+      propertyPath: hurtSource
+      value: 
+      objectReference: {fileID: 651919918}
     - target: {fileID: 8467195419225105813, guid: 7aabec7b42b5d1c47adfc52fa31028ee, type: 3}
       propertyPath: m_Name
       value: SlimeEnemy (5)
@@ -19373,6 +19538,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2507210497576423525, guid: 7aabec7b42b5d1c47adfc52fa31028ee, type: 3}
+      propertyPath: slimeMoving
+      value: 
+      objectReference: {fileID: 651919918}
+    - target: {fileID: 5161379289150464174, guid: 7aabec7b42b5d1c47adfc52fa31028ee, type: 3}
+      propertyPath: hurtSource
+      value: 
+      objectReference: {fileID: 651919918}
     - target: {fileID: 8467195419225105813, guid: 7aabec7b42b5d1c47adfc52fa31028ee, type: 3}
       propertyPath: m_Name
       value: SlimeEnemy (3)
@@ -23369,7 +23542,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1781794514}
-  m_BodyType: 2
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -38674,6 +38847,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2507210497576423525, guid: 7aabec7b42b5d1c47adfc52fa31028ee, type: 3}
+      propertyPath: slimeMoving
+      value: 
+      objectReference: {fileID: 651919918}
+    - target: {fileID: 5161379289150464174, guid: 7aabec7b42b5d1c47adfc52fa31028ee, type: 3}
+      propertyPath: hurtSource
+      value: 
+      objectReference: {fileID: 651919918}
     - target: {fileID: 8467195419225105813, guid: 7aabec7b42b5d1c47adfc52fa31028ee, type: 3}
       propertyPath: m_Name
       value: SlimeEnemy (6)
@@ -39968,6 +40149,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2507210497576423525, guid: 7aabec7b42b5d1c47adfc52fa31028ee, type: 3}
+      propertyPath: slimeMoving
+      value: 
+      objectReference: {fileID: 651919918}
+    - target: {fileID: 5161379289150464174, guid: 7aabec7b42b5d1c47adfc52fa31028ee, type: 3}
+      propertyPath: hurtSource
+      value: 
+      objectReference: {fileID: 651919918}
     - target: {fileID: 8467195419225105813, guid: 7aabec7b42b5d1c47adfc52fa31028ee, type: 3}
       propertyPath: m_Name
       value: SlimeEnemy
