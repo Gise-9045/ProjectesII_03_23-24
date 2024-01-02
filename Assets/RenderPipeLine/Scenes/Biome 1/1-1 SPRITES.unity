@@ -856,6 +856,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1485927512}
     - target: {fileID: -5185229350429389685, guid: 95afff1c1d8e136459b13a2574337644, type: 3}
+      propertyPath: doorSource
+      value: 
+      objectReference: {fileID: 1490143450}
+    - target: {fileID: -5185229350429389685, guid: 95afff1c1d8e136459b13a2574337644, type: 3}
       propertyPath: leverControl
       value: 
       objectReference: {fileID: 1439340996}
@@ -12056,7 +12060,7 @@ PrefabInstance:
     - target: {fileID: 5678007072697077956, guid: 3a498233c205a9241a06223365735955, type: 3}
       propertyPath: controllerAtk
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1977523461}
     - target: {fileID: 7051897812800139678, guid: 3a498233c205a9241a06223365735955, type: 3}
       propertyPath: m_Name
       value: lever
@@ -12178,7 +12182,7 @@ PrefabInstance:
     - target: {fileID: 5678007072697077956, guid: 3a498233c205a9241a06223365735955, type: 3}
       propertyPath: controllerAtk
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1977523461}
     - target: {fileID: 7051897812800139678, guid: 3a498233c205a9241a06223365735955, type: 3}
       propertyPath: m_Name
       value: lever
@@ -12433,6 +12437,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1147145884}
     m_Modifications:
+    - target: {fileID: -5185229350429389685, guid: 95afff1c1d8e136459b13a2574337644, type: 3}
+      propertyPath: doorSource
+      value: 
+      objectReference: {fileID: 1490143450}
     - target: {fileID: -5185229350429389685, guid: 95afff1c1d8e136459b13a2574337644, type: 3}
       propertyPath: leverControl
       value: 
@@ -13827,6 +13835,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8506981356773489166, guid: a497422e4aaee7446a041b3d5d11f184, type: 3}
   m_PrefabInstance: {fileID: 91026690}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1977523461 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1378082704897021428, guid: a497422e4aaee7446a041b3d5d11f184, type: 3}
+  m_PrefabInstance: {fileID: 91026690}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8da6972ac9843654fbd778e4fbd79576, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1985270670
 GameObject:
   m_ObjectHideFlags: 0
@@ -14053,6 +14072,10 @@ PrefabInstance:
       propertyPath: sprite
       value: 
       objectReference: {fileID: 629978467}
+    - target: {fileID: -5185229350429389685, guid: 95afff1c1d8e136459b13a2574337644, type: 3}
+      propertyPath: doorSource
+      value: 
+      objectReference: {fileID: 1490143450}
     - target: {fileID: -5185229350429389685, guid: 95afff1c1d8e136459b13a2574337644, type: 3}
       propertyPath: leverControl
       value: 
