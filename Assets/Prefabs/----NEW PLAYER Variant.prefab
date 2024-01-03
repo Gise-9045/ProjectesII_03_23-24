@@ -36,13 +36,9 @@ PrefabInstance:
       propertyPath: bottomOffset.y
       value: -1.38
       objectReference: {fileID: 0}
-    - target: {fileID: 1319215318493518553, guid: 21e541372428f44429ebdc6a9683f20b, type: 3}
-      propertyPath: _playerStats
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 2162837740978201818, guid: 21e541372428f44429ebdc6a9683f20b, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 2162837740978201818, guid: 21e541372428f44429ebdc6a9683f20b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -83,6 +79,18 @@ PrefabInstance:
     - target: {fileID: 2162837740978201818, guid: 21e541372428f44429ebdc6a9683f20b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2866283476323232485, guid: 21e541372428f44429ebdc6a9683f20b, type: 3}
+      propertyPath: jumpClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 291da080fdb881740be0fb6e6f26bca4, type: 3}
+    - target: {fileID: 2866283476323232485, guid: 21e541372428f44429ebdc6a9683f20b, type: 3}
+      propertyPath: swimClip
+      value: 
+      objectReference: {fileID: 8300000, guid: ccf6f4a7bf29eee4c9365922ef3f0fd1, type: 3}
+    - target: {fileID: 2866283476323232485, guid: 21e541372428f44429ebdc6a9683f20b, type: 3}
+      propertyPath: volumeAudio
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 3117715904750925188, guid: 21e541372428f44429ebdc6a9683f20b, type: 3}
       propertyPath: m_Enabled
@@ -134,15 +142,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4905686525161926280, guid: 21e541372428f44429ebdc6a9683f20b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.5599995
+      value: 0.91532564
       objectReference: {fileID: 0}
     - target: {fileID: 4905686525161926280, guid: 21e541372428f44429ebdc6a9683f20b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.6899999
+      value: 24.114319
       objectReference: {fileID: 0}
     - target: {fileID: 4905686525161926280, guid: 21e541372428f44429ebdc6a9683f20b, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10
+      value: -10.279738
       objectReference: {fileID: 0}
     - target: {fileID: 5311185046990569033, guid: 21e541372428f44429ebdc6a9683f20b, type: 3}
       propertyPath: m_LocalPosition.x
@@ -153,21 +161,25 @@ PrefabInstance:
       value: -0.17274734
       objectReference: {fileID: 0}
     - target: {fileID: 5366797992790575571, guid: 21e541372428f44429ebdc6a9683f20b, type: 3}
-      propertyPath: playermove
+      propertyPath: dashClip
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 8300000, guid: 7c587a2e8efc31e4f8b86e8c3f61673c, type: 3}
     - target: {fileID: 6509692174906454992, guid: 21e541372428f44429ebdc6a9683f20b, type: 3}
       propertyPath: attack
       value: 
       objectReference: {fileID: 9011313330024176719, guid: 45ac6d5744795c5498f12a10fd396418, type: 3}
+    - target: {fileID: 6509692174906454992, guid: 21e541372428f44429ebdc6a9683f20b, type: 3}
+      propertyPath: screamClip
+      value: 
+      objectReference: {fileID: 8300000, guid: e058abbd906873444a8056e829c3a30a, type: 3}
+    - target: {fileID: 6509692174906454992, guid: 21e541372428f44429ebdc6a9683f20b, type: 3}
+      propertyPath: volumeAudio
+      value: 0.25
+      objectReference: {fileID: 0}
     - target: {fileID: 7922130519519717653, guid: 21e541372428f44429ebdc6a9683f20b, type: 3}
       propertyPath: anim
       value: 
       objectReference: {fileID: 8810535383969965101}
-    - target: {fileID: 7922130519519717653, guid: 21e541372428f44429ebdc6a9683f20b, type: 3}
-      propertyPath: playerStats
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 8138685119747677626, guid: 21e541372428f44429ebdc6a9683f20b, type: 3}
       propertyPath: m_IgnoreTimeScale
       value: 1
@@ -176,15 +188,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: ----NEW PLAYER Variant
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 537230464511126787, guid: 21e541372428f44429ebdc6a9683f20b, type: 3}
-    - {fileID: 3651648430274574112, guid: 21e541372428f44429ebdc6a9683f20b, type: 3}
-    - {fileID: 1319215318493518553, guid: 21e541372428f44429ebdc6a9683f20b, type: 3}
-    - {fileID: 1246403694502309791, guid: 21e541372428f44429ebdc6a9683f20b, type: 3}
-    - {fileID: 2866283476323232485, guid: 21e541372428f44429ebdc6a9683f20b, type: 3}
-    - {fileID: 7922130519519717653, guid: 21e541372428f44429ebdc6a9683f20b, type: 3}
-    - {fileID: 324981704852434081, guid: 21e541372428f44429ebdc6a9683f20b, type: 3}
-    - {fileID: 5366797992790575571, guid: 21e541372428f44429ebdc6a9683f20b, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

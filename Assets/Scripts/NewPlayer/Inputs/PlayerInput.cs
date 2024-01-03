@@ -121,11 +121,13 @@ public class PlayerInput : MonoBehaviour
 
     private void InteractingAction(InputAction.CallbackContext context)
     {
+        Debug.Log("INTERACTIOM");
         _playerController.playerInteractionController.Interact();
     }
 
     private void AttackAction(InputAction.CallbackContext context)
     {
+       
         _playerController.playerAttackControlller.Attack(); 
     }
 

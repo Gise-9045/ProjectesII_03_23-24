@@ -1,21 +1,24 @@
 using UnityEngine;
 using Cinemachine;
+using System.Collections;
 
 public class cameraPan : MonoBehaviour
 {
     public CinemachineVirtualCamera cameraToPan;
-    public Transform targetTransform; // Set this in the inspector to the object you want to follow
+    public Transform targetTransform;
     public Transform playerTransform;
+    public float smoothSpeed = 0.005f;
+    public Vector2 offset;
 
     private bool isFollowingPlayer = true;
 
-    void OnTriggerEnter2D(Collider2D other)
+    IEnumerator OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))
         {
-            // Change camera settings to follow the new target
-            cameraToPan.m_Follow = targetTransform;
-            cameraToPan.m_LookAt = targetTransform;
+            yield return new WaitForSeconds(0.5f);
+            // Change camera settings to follow the new target smoothly
+            SmoothCameraTransition(targetTransform);
             isFollowingPlayer = false;
         }
     }
@@ -27,16 +30,16 @@ public class cameraPan : MonoBehaviour
         isFollowingPlayer = true;
     }
 
-    void OnTriggerExit2D(Collider2D other)
+    IEnumerator OnTriggerExit2D(Collider2D other)
     {
+        yield return new WaitForSeconds(0.33f);
         if (other.CompareTag("Player"))
         {
             // Revert to the default behavior when the player exits the trigger
-            ResetCamera();
+            SmoothCameraTransition(playerTransform);
         }
     }
 
-    // Other methods like Start and Update remain unchanged
     void Start()
     {
         ResetCamera(); // Set the default camera behavior
@@ -44,9 +47,16 @@ public class cameraPan : MonoBehaviour
 
     void Update()
     {
-        //if(isFollowingPlayer)
-        //{
-        //    ResetCamera();
-        //}
+
+    }
+
+    void SmoothCameraTransition(Transform target)
+    {
+        Vector3 desiredPosition = new Vector3(target.position.x + offset.x, target.position.y + offset.y, cameraToPan.transform.position.z);
+
+        // Smoothly interpolate the position without rotating
+        cameraToPan.transform.position = Vector3.Lerp(cameraToPan.transform.position, desiredPosition, smoothSpeed);
+
+        cameraToPan.m_Follow = target;
     }
 }
