@@ -178,6 +178,54 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flashMaterial: {fileID: 2100000, guid: b9dd9b156a700064aab29824db3d8e72, type: 2}
+--- !u!1 &3512046281420534150
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8021499164032053236}
+  - component: {fileID: 1298396807558058311}
+  m_Layer: 0
+  m_Name: GroundDetection
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8021499164032053236
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3512046281420534150}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.00000023841858, y: 0, z: -9.313226e-10}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 791483282030506657}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1298396807558058311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3512046281420534150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8348fef65ac26144bc45c839e42cc71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 7799156073521760185}
+  distanceX: 0
+  distanceY: 0
+  detectOnly: 0
 --- !u!1 &6315086414359332493
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,10 +316,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f38d65123baf0c448981943deb638e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceX: 0.68
-  distanceY: -1.65
   enemy: {fileID: 7799156073521760185}
-  detectOnly: 0
 --- !u!1 &6781657298616795778
 GameObject:
   m_ObjectHideFlags: 0
@@ -308,6 +353,7 @@ Transform:
   - {fileID: 7752688627961387053}
   - {fileID: 5258292712251647680}
   - {fileID: 6825611754431463189}
+  - {fileID: 8021499164032053236}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -395,6 +441,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d7a2779bda327040bf9ad5a4b8195b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hurtSource: {fileID: 0}
+  hurtClip: {fileID: 0}
+  volumeAudio: 0.2
   life: 3
   maxLife: 0
   speed: 3
@@ -423,3 +472,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 868234993ed8e4743a55675875a1bcf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  slimeMoving: {fileID: 0}
+  movingClip: {fileID: 0}
+  volumeAudio: 0.2

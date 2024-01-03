@@ -16,13 +16,13 @@ public class MauriceJrMovement : MonoBehaviour
     private int jumpHeight;
     private int jumpWidth;
 
-    private WallDetection ground;
+    private GroundDetection ground;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         actualCooldownJump = 0;
-        ground = GetComponentInChildren<WallDetection>();
+        ground = GetComponentInChildren<GroundDetection>();
         enemy = GetComponent<Enemy>();
 
         tr = GetComponent<Transform>();
