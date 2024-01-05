@@ -63,23 +63,23 @@ public class OctorellaMovement : MonoBehaviour
 
             rb.gravityScale = 9.81f;
 
-            animator.SetBool("Open", true);
 
             rb.AddForce(new Vector2(0, 400), ForceMode2D.Impulse);
-
-
         }
 
 
-        if (rb.velocity.y < 0 && actualCooldownShoot <= 0)
+        if (rb.velocity.y < 0 && actualCooldownShoot <= 0 && !ground.OnGround())
         {
             rb.gravityScale = 0.5f;
             actualCooldownShoot = cooldownShoot;
 
+            animator.SetBool("Open", true);
+
+
             //Si jugador está bastante fuera del rango no dispara
-            if(Mathf.Abs(player.position.x - tr.position.x) < 10)
+            if (Mathf.Abs(player.position.x - tr.position.x) < 10)
             {
-                Vector2 bulletPos = new Vector2(tr.position.x + (enemy.GetDirection().x * 1), tr.position.y + 1);
+                Vector2 bulletPos = new Vector2(tr.position.x + (enemy.GetDirection().x * 1), tr.position.y + 0.4f);
                 Instantiate(bullet, bulletPos, Quaternion.identity);
             }
         }
