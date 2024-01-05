@@ -12,6 +12,7 @@ public class GroundDetection : MonoBehaviour
 
     [SerializeField] private float distanceX;
     [SerializeField] private float distanceY;
+    [SerializeField] private float height;
 
     [SerializeField] private bool detectOnly;
 
@@ -30,19 +31,19 @@ public class GroundDetection : MonoBehaviour
         return onGround;
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         Vector2 pos = new Vector2(parent.transform.position.x + (enemy.GetDirection().x * distanceX), parent.transform.position.y + distanceY);
-        rcGround = Physics2D.Raycast(pos, Vector2.down, distanceY);
+        rcGround = Physics2D.Raycast(pos, Vector2.down, height);
 
         if (rcGround.collider != null && rcGround.collider.tag == "Ground")
         {
-            Debug.DrawRay(pos, Vector2.down, Color.green);
+            Debug.DrawRay(pos, new Vector2(0, -height), Color.green);
             onGround = true;
         }
         else
         {
-            Debug.DrawRay(pos, Vector2.down, Color.red);
+            Debug.DrawRay(pos, new Vector2(0, -height), Color.red);
 
             onGround = false;
 

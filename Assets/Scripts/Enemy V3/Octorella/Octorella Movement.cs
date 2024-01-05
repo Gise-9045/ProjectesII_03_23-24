@@ -6,12 +6,25 @@ public class OctorellaMovement : MonoBehaviour
 {
     private Enemy enemy;
 
+    private Transform tr;
+    private Transform player;
+
     private Rigidbody2D rb;
 
     private PlayerDetection detection;
 
-    [SerializeField] private float cooldownAttack = 1.5f;
-    float actualCooldownAttack;
+    private GroundDetection ground;
+
+    [SerializeField] Animator animator;
+
+
+    [SerializeField] private GameObject bullet;
+
+    [SerializeField] private float cooldownJump;
+    float actualCooldownJump;
+
+    [SerializeField] private float cooldownShoot;
+    float actualCooldownShoot;
 
 
     void Start()
@@ -19,23 +32,56 @@ public class OctorellaMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         enemy = GetComponent<Enemy>();
         detection = GetComponentInChildren<PlayerDetection>();
+        ground = GetComponentInChildren<GroundDetection>();
+
+        player = GameObject.FindWithTag("Player").GetComponent<Transform>();
+        tr = GetComponent<Transform>();
+
+
+        actualCooldownJump = 0f;
+        actualCooldownShoot = 0f;
     }
 
     private void FixedUpdate()
     {
-        if (actualCooldownAttack > 0)
+        enemy.SetDirection(new Vector2((int)Mathf.Sign(player.position.x - tr.position.x), 1));
+
+        if (actualCooldownJump > 0 && ground.OnGround())
         {
-            actualCooldownAttack -= Time.deltaTime;
+            actualCooldownJump -= Time.deltaTime;
+            animator.SetBool("Open", false);
+        }
+
+        if (actualCooldownShoot > 0 && !ground.OnGround())
+        {
+            actualCooldownShoot -= Time.deltaTime;
+        }
+
+        if (detection.GetPlayerDetection() && actualCooldownJump <= 0 && ground.OnGround())
+        {
+            actualCooldownJump = cooldownJump;
+
+            rb.gravityScale = 9.81f;
+
+            animator.SetBool("Open", true);
+
+            rb.AddForce(new Vector2(0, 400), ForceMode2D.Impulse);
+
 
         }
 
-        if(detection.GetPlayerDetection() && actualCooldownAttack < 0)
+
+        if (rb.velocity.y < 0 && actualCooldownShoot <= 0)
         {
-            //Hace salto y dispara directo al jugador
+            rb.gravityScale = 0.5f;
+            actualCooldownShoot = cooldownShoot;
 
-            rb.AddForce(new Vector2(enemy.GetDirection().x, 0), ForceMode2D.Impulse);
-
-            Vector2 d = rb.velocity;
+            //Si jugador está bastante fuera del rango no dispara
+            if(Mathf.Abs(player.position.x - tr.position.x) < 10)
+            {
+                Vector2 bulletPos = new Vector2(tr.position.x + (enemy.GetDirection().x * 1), tr.position.y + 1);
+                Instantiate(bullet, bulletPos, Quaternion.identity);
+            }
         }
     }
 }

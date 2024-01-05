@@ -20,15 +20,15 @@ public class MauriceJrMovement : MonoBehaviour
 
     private void Start()
     {
+        cooldownJump = 0.5f;
         rb = GetComponent<Rigidbody2D>();
-        actualCooldownJump = 0;
         ground = GetComponentInChildren<GroundDetection>();
         enemy = GetComponent<Enemy>();
 
         tr = GetComponent<Transform>();
         player = GameObject.FindWithTag("Player").GetComponent<Transform>();
 
-
+        actualCooldownJump = 0.5f;
     }
 
     private void FixedUpdate()
@@ -37,17 +37,13 @@ public class MauriceJrMovement : MonoBehaviour
         {
             actualCooldownJump -= Time.deltaTime;
             CinemachineShake.Instance.ShakeCamera(5f, 0.1f);
-
         }
 
-        if (!ground.OnGround())
+        if (ground.OnGround() && actualCooldownJump < 0)
         {
             actualCooldownJump = cooldownJump;
-        }
 
-        if (ground.OnGround() && actualCooldownJump <= 0)
-        {
-            if(enemy.GetLife() >= enemy.GetMaxLife() / 2)
+            if (enemy.GetLife() >= enemy.GetMaxLife() / 2)
             {
                 cooldownJump = 0.5f;
                 jumpHeight = 350;
