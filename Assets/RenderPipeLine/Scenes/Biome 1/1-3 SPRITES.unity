@@ -7513,6 +7513,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1703931423}
     m_Modifications:
+    - target: {fileID: 3892336086950001759, guid: 795ad132d0492f542826596f0f719f36, type: 3}
+      propertyPath: m_Size.x
+      value: 1.8367033
+      objectReference: {fileID: 0}
+    - target: {fileID: 3892336086950001759, guid: 795ad132d0492f542826596f0f719f36, type: 3}
+      propertyPath: m_Size.y
+      value: 0.60900784
+      objectReference: {fileID: 0}
+    - target: {fileID: 3892336086950001759, guid: 795ad132d0492f542826596f0f719f36, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.0019755363
+      objectReference: {fileID: 0}
+    - target: {fileID: 3892336086950001759, guid: 795ad132d0492f542826596f0f719f36, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.04654646
+      objectReference: {fileID: 0}
     - target: {fileID: 7051897812800139678, guid: 795ad132d0492f542826596f0f719f36, type: 3}
       propertyPath: m_Name
       value: overlapPlatform
@@ -7551,6 +7567,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7542244781282470516, guid: 795ad132d0492f542826596f0f719f36, type: 3}
       propertyPath: m_SizeDelta.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7542244781282470516, guid: 795ad132d0492f542826596f0f719f36, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7542244781282470516, guid: 795ad132d0492f542826596f0f719f36, type: 3}
+      propertyPath: m_LocalScale.y
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7542244781282470516, guid: 795ad132d0492f542826596f0f719f36, type: 3}
@@ -7689,6 +7713,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1703931423}
     m_Modifications:
+    - target: {fileID: 3892336086950001759, guid: 795ad132d0492f542826596f0f719f36, type: 3}
+      propertyPath: m_Size.x
+      value: 1.892559
+      objectReference: {fileID: 0}
+    - target: {fileID: 3892336086950001759, guid: 795ad132d0492f542826596f0f719f36, type: 3}
+      propertyPath: m_Size.y
+      value: 0.6090088
+      objectReference: {fileID: 0}
+    - target: {fileID: 3892336086950001759, guid: 795ad132d0492f542826596f0f719f36, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.029903412
+      objectReference: {fileID: 0}
+    - target: {fileID: 3892336086950001759, guid: 795ad132d0492f542826596f0f719f36, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.009309769
+      objectReference: {fileID: 0}
     - target: {fileID: 7051897812800139678, guid: 795ad132d0492f542826596f0f719f36, type: 3}
       propertyPath: m_Name
       value: overlapPlatform (1)
@@ -7730,6 +7770,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7542244781282470516, guid: 795ad132d0492f542826596f0f719f36, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7542244781282470516, guid: 795ad132d0492f542826596f0f719f36, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7542244781282470516, guid: 795ad132d0492f542826596f0f719f36, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -7759,7 +7807,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7542244781282470516, guid: 795ad132d0492f542826596f0f719f36, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -36.075325
+      value: -36.43
       objectReference: {fileID: 0}
     - target: {fileID: 7542244781282470516, guid: 795ad132d0492f542826596f0f719f36, type: 3}
       propertyPath: m_AnchoredPosition.y
