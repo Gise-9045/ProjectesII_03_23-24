@@ -19,12 +19,6 @@ public class PlayerAttackController : MonoBehaviour
     {
         scream.clip = screamClip;
         scream.volume = volumeAudio;
-        if (anim.GetBool("isAttacking") && !isScreamPlaying)
-        {
-
-            PlayScreamAudio();
-        }
-        // NewInputManger._instance._playerAttackInput.action.ReadValue<float>() > 0); 
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -39,14 +33,16 @@ public class PlayerAttackController : MonoBehaviour
     public void Attack()
     {
         attackParticles.Play();
+        PlayScreamAudio();
         anim.SetBool("isAttacking",true);
        
+
     }
     private void PlayScreamAudio()
     {
-        scream.Play();
+        
         isScreamPlaying = true;
-
+        scream.Play();
         // Assuming scream.clip.length returns the length of the audio clip
         StartCoroutine(ResetScreamFlag(scream.clip.length));
     }
@@ -55,6 +51,7 @@ public class PlayerAttackController : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         isScreamPlaying = false;
+        anim.SetBool("isAttacking", false);
     }
 
 }
