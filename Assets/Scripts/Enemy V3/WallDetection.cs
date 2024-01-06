@@ -25,7 +25,7 @@ public class WallDetection : MonoBehaviour
         Vector2 pos = new Vector2(parent.transform.position.x + (enemy.GetDirection().x * distanceX), parent.transform.position.y + distanceY);
         rcGround = Physics2D.Raycast(pos , Vector2.down, distanceY);
 
-        if (rcGround.collider != null && rcGround.collider.tag == "Ground")
+        if (rcGround.collider != null && rcGround.collider.tag == "Ground"|| rcGround.collider != null && rcGround.collider.tag == "CameraAnimation")
         {
             Debug.DrawRay(pos, Vector2.down, Color.green);
             onGround = true;
