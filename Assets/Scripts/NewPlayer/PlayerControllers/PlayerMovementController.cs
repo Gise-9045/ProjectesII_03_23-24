@@ -93,14 +93,23 @@ public class PlayerMovementController : MonoBehaviour
         _direction = direction;     
     }
 
+
     private void Flip()
     {
         currentScale = model.transform.localScale;
         currentScale.x *= -1;
+        float newRotation = facingRight ? 0f : 180f;
 
-        model.transform.localScale = currentScale;
-        particleAttackModel.transform.localScale = currentScale;
+       
+        model.transform.rotation = Quaternion.Euler(0f, newRotation, 0f);
+        
+        particleAttackModel.transform.localScale *= -1;
 
         facingRight = !facingRight;
     }
 }
+
+
+
+
+
