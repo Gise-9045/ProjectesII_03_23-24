@@ -249,7 +249,7 @@ MonoBehaviour:
   m_Follow: {fileID: 1977523457}
   m_Lens:
     FieldOfView: 60
-    OrthographicSize: 10
+    OrthographicSize: 8
     NearClipPlane: 0.1
     FarClipPlane: 5000
     Dutch: 0
@@ -274,7 +274,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 74192812}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -30.119999, y: -20.494999, z: -9.920011}
+  m_LocalPosition: {x: -30.119999, y: -21.733, z: -9.920011}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -308,7 +308,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2195076692601112444, guid: a497422e4aaee7446a041b3d5d11f184, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.010002
+      value: 6.5340004
       objectReference: {fileID: 0}
     - target: {fileID: 2195076692601112444, guid: a497422e4aaee7446a041b3d5d11f184, type: 3}
       propertyPath: m_LocalPosition.z
@@ -377,6 +377,10 @@ PrefabInstance:
     - target: {fileID: 6361488034847475488, guid: a497422e4aaee7446a041b3d5d11f184, type: 3}
       propertyPath: volumeAudio
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6920062445284523602, guid: a497422e4aaee7446a041b3d5d11f184, type: 3}
+      propertyPath: orthographic size
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8311901581365734445, guid: a497422e4aaee7446a041b3d5d11f184, type: 3}
       propertyPath: dashClip
@@ -773,7 +777,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ad980451443d70438faac0bc6c235a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_TrackedObjectOffset: {x: 0, y: 5, z: 0}
+  m_TrackedObjectOffset: {x: 0, y: 3.65, z: 0}
   m_LookaheadTime: 0.5
   m_LookaheadSmoothing: 10
   m_LookaheadIgnoreY: 1
