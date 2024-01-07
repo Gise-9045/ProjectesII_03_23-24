@@ -5,7 +5,17 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
+  - FlyingEnemy
+  - GroundEnemy
+  - Bullet
   - Enemy
+  - Lever
+  - ItemDash
+  - ItemJump
+  - water
+  - Particles
+  - Hazards
+  - CameraAnimation
   layers:
   - Default
   - TransparentFX
@@ -14,8 +24,8 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
-  - 
+  - Player
+  - Hazard
   - 
   - 
   - 
@@ -42,4 +52,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 2216934569
+    locked: 0
+  - name: Entities
+    uniqueID: 2660712735
+    locked: 0
+  - name: Ground
+    uniqueID: 2492679243
+    locked: 0
+  - name: Decoration
+    uniqueID: 525054241
     locked: 0

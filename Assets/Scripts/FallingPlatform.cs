@@ -17,20 +17,30 @@ public class FallingPlatform : MonoBehaviour
     private void Start()
     {
         initialPosition = transform.position;
-        touchCounterText.text = "ABLE";
+        touchCounterText.text = "Fall";
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && collision.gameObject.transform.position.y !> transform.position.y)
         {
             StartCoroutine(Fall());
+            touchCounterText.text = "X(";
+        }
+        if (collision.gameObject.CompareTag("Player") && collision.gameObject.transform.position.y > transform.position.y)
+        {
+            // Disable the collider temporarily to allow the player to pass through
+            
+            GetComponent<Collider2D>().enabled = false;
         }
     }
-
+   
+        // Check if the player is above the platform
+        
+    
     private IEnumerator Fall()
     {
-        touchCounterText.text = fallDelay.ToString();
+        
         yield return new WaitForSeconds(fallDelay);
         touchCounterText.text = "DESTROYED";
         
@@ -55,7 +65,7 @@ public class FallingPlatform : MonoBehaviour
         // Enable the renderer and collider
         GetComponent<Renderer>().enabled = true;
         GetComponent<Collider2D>().enabled = true;
-        touchCounterText.text = "ABLE";
+        touchCounterText.text = "Fall";
 
         rb.bodyType = RigidbodyType2D.Static;
     }
