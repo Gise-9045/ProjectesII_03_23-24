@@ -13,11 +13,10 @@ public class PlayerJumpController : MonoBehaviour
     [Header("Ground check")]
     public bool isOnGround;
     public bool lastIsOnGround;
-    public Action onLeaveGround;
-    public Action onJump;
+    public bool canDoubleJump; 
+    public bool isJumping; 
+    public bool isSwimming;
 
-    //public Action OnJumpApex;
-    public Action onTouchGround;
     public float collisionRadius = 0.25f;
     public Vector2 bottomOffset;
     public LayerMask groundLayer;
@@ -43,9 +42,6 @@ public class PlayerJumpController : MonoBehaviour
     private void Awake()
     {
         _physics = GetComponent<Rigidbody2D>();
-        onLeaveGround += BeforeTouchGround;  // metodo que ctive la animacion de saltar del suelo 
-        onJump += WhileJumping; //Metodo que active la animacion de salto en el aire 
-        onTouchGround += StartJump; // metodo que ctive la animacion de llegar al suelo 
 
         jumpCount = 0;
         maxJump = 1;
@@ -66,21 +62,51 @@ public class PlayerJumpController : MonoBehaviour
         if (Physics2D.OverlapCapsule(_physics.position, groundCheck.localScale, CapsuleDirection2D.Horizontal, 0, waterLayer))
         {
             jumpAudio.clip = swimClip;
-            ControlOnWater(); 
+            ControlOnWater();
         }
-        else
+        else if (isOnGround)
         {
             jumpAudio.clip = jumpClip;
-            if (jumpCount > maxJump)
-            { return; }
+
             PlayJumpAudio();
             _physics.velocity = new Vector2(_physics.velocity.x, 0);
             _physics.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-
-            jumpCount++; 
+            isOnGround = false;
         }
+        else
+            return;
 
-        Debug.Log(jumpCount); 
+        Debug.Log(isOnGround + "JUMP");
+    }
+
+    public void Jump_player_PowerUp()
+    {
+        if (Physics2D.OverlapCapsule(_physics.position, groundCheck.localScale, CapsuleDirection2D.Horizontal, 0, waterLayer))
+        {
+            jumpAudio.clip = swimClip;
+            ControlOnWater();
+        }
+        if(isOnGround)
+        {
+            jumpAudio.clip = jumpClip;
+
+            PlayJumpAudio();
+            _physics.velocity = new Vector2(_physics.velocity.x, 0);
+            _physics.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            canDoubleJump = true;
+            isOnGround = false;
+        }
+        else if(canDoubleJump)
+        {
+            jumpAudio.clip = jumpClip;
+
+            PlayJumpAudio();
+            _physics.velocity = new Vector2(_physics.velocity.x, 0);
+            _physics.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+            canDoubleJump = false;
+        }
+        else
+            return; 
     }
 
     private void ControlOnWater()
@@ -90,27 +116,14 @@ public class PlayerJumpController : MonoBehaviour
         _physics.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
     }
 
-    public bool UpdateGroundCheck()
-    {
-        isOnGround = Physics2D.OverlapCapsule(_physics.position,groundCheck.localScale, CapsuleDirection2D.Horizontal, 0, groundLayer);
-
-        return isOnGround; 
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("Ground"))
         {
             isOnGround = true; 
         }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Ground"))
-        {
+        else 
             isOnGround = false;
-        }
     }
 
     private void UpdateGravity()
@@ -124,32 +137,7 @@ public class PlayerJumpController : MonoBehaviour
             _physics.gravityScale = gravityOnFall;
         }
     }
-
-    //NO SE PUEDEN PONER EN UN UPDATE
-
-    private void StartJump()
-    {
-        Debug.Log("1");
-        isOnGround = false;
-        //onTouchGround?.Invoke();
-        CancelInvoke("onTouchGround");
-    }
-
-    private void WhileJumping()
-    {
-        Debug.Log("2");
-        //onJump?.Invoke();
-        CancelInvoke("onJump"); 
-    }
-
-    private void BeforeTouchGround()
-    {
-        Debug.Log("3");
-        isOnGround = true;
-        // onLeaveGround?.Invoke();
-
-        CancelInvoke("onLeaveGround"); 
-    }
+   
     private void PlayJumpAudio()
     {
         if (jumpAudio != null)
