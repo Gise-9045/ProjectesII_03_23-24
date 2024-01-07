@@ -290,7 +290,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1610820830564610065}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 170.2, y: -36.62, z: -10.0799885}
+  m_LocalPosition: {x: 62.194298, y: 68.42328, z: -11.385113}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -332,7 +332,7 @@ Camera:
   far clip plane: 5000
   field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 8
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -753,6 +753,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04827cad357ce224da0c10ac259736d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraFollower: {fileID: 0}
   currentSpeed: 0
   acceleraiton: 15
   deacceleraiton: 5
@@ -760,6 +761,7 @@ MonoBehaviour:
   currentScale: {x: 0, y: 0}
   model: {fileID: 2019050881381219605}
   particleAttackModel: {fileID: 7488375578205139344}
+  facingRight: 0
 --- !u!114 &6361488034847475488
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -855,6 +857,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e5fe99997309974c99672e08a17d8b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerData: {fileID: 11400000, guid: bc2095fc0d66fcf49aee73bb9d0184a0, type: 2}
   health: 3
   knockback: 0
   knockbackVel: 0
