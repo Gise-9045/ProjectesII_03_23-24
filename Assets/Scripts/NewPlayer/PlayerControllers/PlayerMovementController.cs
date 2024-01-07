@@ -31,7 +31,7 @@ public class PlayerMovementController : MonoBehaviour
 
     private void Awake()
     {
-        cameraFollower.GetComponent<cameraFollowObject>();
+        //cameraFollower.GetComponent<cameraFollowObject>();
         physics = GetComponent<Rigidbody2D>();
         controller = GetComponent<PlayerController>();
     }
@@ -102,7 +102,7 @@ public class PlayerMovementController : MonoBehaviour
             currentScale.x *= -1;
             model.transform.rotation = Quaternion.Euler(0f, 0, 0f);
             facingRight = !facingRight;
-            cameraFollower.CallTurn();
+            //cameraFollower.CallTurn();
         }
         else
         {
@@ -110,7 +110,7 @@ public class PlayerMovementController : MonoBehaviour
             currentScale.x *= -1;
             model.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
             facingRight = !facingRight;
-            cameraFollower.CallTurn();
+            //cameraFollower.CallTurn();
         }
         particleAttackModel.transform.localScale *= -1;
 
