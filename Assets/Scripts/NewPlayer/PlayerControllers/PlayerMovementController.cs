@@ -10,7 +10,7 @@ public class PlayerMovementController : MonoBehaviour
     private Vector2 oldPosition = Vector2.zero; 
 
     private Rigidbody2D physics;
-
+    [SerializeField]private cameraFollowObject cameraFollower;
     private PlayerController controller;
 
     [Space]
@@ -25,12 +25,13 @@ public class PlayerMovementController : MonoBehaviour
     private int sidePlayer;
     [SerializeField] private GameObject model;
     [SerializeField] private GameObject particleAttackModel;
-    bool facingRight;
+   public bool facingRight;
 
     //[SerializeField] private PlayerStats playerStats;
 
     private void Awake()
     {
+        cameraFollower.GetComponent<cameraFollowObject>();
         physics = GetComponent<Rigidbody2D>();
         controller = GetComponent<PlayerController>();
     }
@@ -96,17 +97,26 @@ public class PlayerMovementController : MonoBehaviour
 
     private void Flip()
     {
-        currentScale = model.transform.localScale;
-        currentScale.x *= -1;
-        float newRotation = facingRight ? 0f : 180f;
-
-       
-        model.transform.rotation = Quaternion.Euler(0f, newRotation, 0f);
-        
+        if (facingRight) { 
+            currentScale = model.transform.localScale;
+            currentScale.x *= -1;
+            model.transform.rotation = Quaternion.Euler(0f, 0, 0f);
+            facingRight = !facingRight;
+            cameraFollower.CallTurn();
+        }
+        else
+        {
+            currentScale = model.transform.localScale;
+            currentScale.x *= -1;
+            model.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+            facingRight = !facingRight;
+            cameraFollower.CallTurn();
+        }
         particleAttackModel.transform.localScale *= -1;
 
-        facingRight = !facingRight;
+       
     }
+
 }
 
 

@@ -33,7 +33,6 @@ public class cameraPan : MonoBehaviour
     void ResetCamera()
     {
         cameraToPan.m_Follow = playerTransform;
-        cameraToPan.m_LookAt = playerTransform;
         isFollowingPlayer = true;
     }
 
