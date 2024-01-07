@@ -5,7 +5,9 @@ using UnityEngine;
 public class BasicMovement : MonoBehaviour
 {
     private Enemy enemy;
-    private PlayerDetection detection;
+    private GroundDetection groundDetection;
+    private WallDetection wallDetection;
+    private PlayerDetection playerDetection;
 
     private Rigidbody2D rb;
     private Transform tr;
@@ -20,7 +22,9 @@ public class BasicMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         tr = GetComponent<Transform>();
         enemy = GetComponent<Enemy>();
-        detection = GetComponentInChildren<PlayerDetection>();
+        groundDetection = GetComponentInChildren<GroundDetection>();
+        wallDetection = GetComponentInChildren<WallDetection>();
+        playerDetection = GetComponentInChildren<PlayerDetection>();
 
 
         player = GameObject.FindWithTag("Player").GetComponent<Transform>();
@@ -37,7 +41,7 @@ public class BasicMovement : MonoBehaviour
         }
         else
         {
-            if (detection.GetPlayerDetection())
+            if (playerDetection.GetPlayerDetection())
             {
                 slimeMoving.clip = movingClip;
                 slimeMoving.Play();
@@ -45,6 +49,11 @@ public class BasicMovement : MonoBehaviour
             }
 
             rb.velocity = new Vector2(enemy.GetDirection().x * enemy.GetSpeed(), rb.velocity.y);
+        }
+
+        if (!groundDetection.OnGround() || wallDetection.Detection())
+        {
+            enemy.SetDirection(new Vector2(enemy.GetDirection().x * -1, 1));
         }
     }
 

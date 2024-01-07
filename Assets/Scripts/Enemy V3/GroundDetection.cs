@@ -14,9 +14,6 @@ public class GroundDetection : MonoBehaviour
     [SerializeField] private float distanceY;
     [SerializeField] private float height;
 
-    [SerializeField] private bool detectOnly;
-
-
     private bool onGround;
 
 
@@ -46,14 +43,6 @@ public class GroundDetection : MonoBehaviour
             Debug.DrawRay(pos, new Vector2(0, -height), Color.red);
 
             onGround = false;
-
-            if (!detectOnly)
-            {
-                enemy.SetDirection(new Vector2(enemy.GetDirection().x * -1, 1));
-            }
         }
-
-        //Debug.Log(rcGround.collider.tag);
-
     }
 }

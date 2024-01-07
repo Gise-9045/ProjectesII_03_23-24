@@ -9,6 +9,7 @@ public class MauriceJrMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Transform player;
     private Transform tr;
+    private WallDetection wallDetection;
 
     private float cooldownJump;
     private float actualCooldownJump;
@@ -24,6 +25,7 @@ public class MauriceJrMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         ground = GetComponentInChildren<GroundDetection>();
         enemy = GetComponent<Enemy>();
+        wallDetection = GetComponentInChildren<WallDetection>();
 
         tr = GetComponent<Transform>();
         player = GameObject.FindWithTag("Player").GetComponent<Transform>();
@@ -62,6 +64,11 @@ public class MauriceJrMovement : MonoBehaviour
                 jumpHeight = 500;
                 PersuePlayer();
             }
+        }
+
+        if (wallDetection.Detection())
+        {
+            enemy.SetDirection(new Vector2(enemy.GetDirection().x * -1, 1));
         }
 
     }

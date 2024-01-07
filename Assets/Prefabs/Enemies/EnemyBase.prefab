@@ -225,6 +225,7 @@ MonoBehaviour:
   enemy: {fileID: 7799156073521760185}
   distanceX: 0
   distanceY: 0
+  height: 0
   detectOnly: 0
 --- !u!1 &6315086414359332493
 GameObject:
@@ -446,6 +447,7 @@ MonoBehaviour:
   volumeAudio: 0.2
   life: 3
   maxLife: 0
+  direction: {x: 1, y: 1}
   speed: 3
 --- !u!114 &2182709870495789930
 MonoBehaviour:
