@@ -29,6 +29,10 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 715059079047054257, guid: bef583e4ca8b0c64b9f1917cd9e62f50, type: 3}
+      propertyPath: m_Constraints
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 715059079047054257, guid: bef583e4ca8b0c64b9f1917cd9e62f50, type: 3}
       propertyPath: m_GravityScale
       value: 9.81
       objectReference: {fileID: 0}
@@ -162,6 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dcb335710fe4a8940a95c27ecab1ab41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  animator: {fileID: 3360786669230949576}
   bullet: {fileID: 1069680202819648885, guid: 3dcd2003a1389604889bd7f06ade66da, type: 3}
   cooldownJump: 3
   cooldownShoot: 1
