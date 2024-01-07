@@ -177,7 +177,7 @@ Transform:
   - {fileID: 2195076692601112444}
   - {fileID: 8506981356773489166}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1467313283430390670
 GameObject:
@@ -834,11 +834,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e5fe99997309974c99672e08a17d8b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData: {fileID: 11400000, guid: bc2095fc0d66fcf49aee73bb9d0184a0, type: 2}
   health: 3
   knockback: 0
   knockbackVel: 0
-  hasJumpPowerUp: 1
+  hasJumpPowerUp: 0
   hasDashPowerUp: 0
   hasShoutPowerUp: 0
   isDead: 0
