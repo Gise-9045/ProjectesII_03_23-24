@@ -144,7 +144,7 @@ TextureImporter:
         width: 538
         height: 89
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -165,7 +165,7 @@ TextureImporter:
         width: 255
         height: 385
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -181,10 +181,10 @@ TextureImporter:
       name: keyboard buttons_2
       rect:
         serializedVersion: 2
-        x: 200
-        y: 6
-        width: 101
-        height: 102
+        x: 206
+        y: 12
+        width: 290
+        height: 185
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -199,27 +199,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: keyboard buttons_3
-      rect:
-        serializedVersion: 2
-        x: 395
-        y: 7
-        width: 96
-        height: 99
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b9b923c819a866f4faa35caff46b6c0c
-      internalID: 593343690
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: keyboard buttons_4
       rect:
         serializedVersion: 2
@@ -228,7 +207,7 @@ TextureImporter:
         width: 180
         height: 97
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -249,7 +228,7 @@ TextureImporter:
         width: 91
         height: 94
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -257,6 +236,48 @@ TextureImporter:
       bones: []
       spriteID: f5519dca3a13e864996b38c50ddc2504
       internalID: -210153275
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_6
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 304
+        width: 181
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ec8dadfe0242f848b9c2fd97ae4c89f
+      internalID: 1338417861
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: keyboard buttons_7
+      rect:
+        serializedVersion: 2
+        x: 398
+        y: 198
+        width: 91
+        height: 94
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1871d39bb976d8f45a8b28e778a773d2
+      internalID: -509811208
       vertices: []
       indices: 
       edges: []
@@ -278,6 +299,10 @@ TextureImporter:
       keyboard buttons_3: 593343690
       keyboard buttons_4: -1254293706
       keyboard buttons_5: -210153275
+      keyboard buttons_6: 1338417861
+      keyboard buttons_7: -509811208
+      keyboard buttons_8: -1850927857
+      keyboard buttons_9: -52316554
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

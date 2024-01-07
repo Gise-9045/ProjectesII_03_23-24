@@ -9,12 +9,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 380297731777720684, guid: bef583e4ca8b0c64b9f1917cd9e62f50, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7442467f20428a1438325b28f842ba3d, type: 3}
+    - target: {fileID: 380297731777720684, guid: bef583e4ca8b0c64b9f1917cd9e62f50, type: 3}
       propertyPath: m_Color.b
-      value: 0.1462264
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 380297731777720684, guid: bef583e4ca8b0c64b9f1917cd9e62f50, type: 3}
       propertyPath: m_Color.g
-      value: 0.5735317
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 380297731777720684, guid: bef583e4ca8b0c64b9f1917cd9e62f50, type: 3}
       propertyPath: m_Color.r
@@ -126,7 +130,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7752688627961387053, guid: bef583e4ca8b0c64b9f1917cd9e62f50, type: 3}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7752688627961387053, guid: bef583e4ca8b0c64b9f1917cd9e62f50, type: 3}
       propertyPath: m_LocalScale.y

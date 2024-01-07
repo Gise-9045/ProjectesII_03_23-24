@@ -27,11 +27,11 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private GameObject particleAttackModel;
    public bool facingRight;
 
-    //[SerializeField] private PlayerStats playerStats;
+    [SerializeField] private PlayerStats playerStats;
 
     private void Awake()
     {
-        cameraFollower.GetComponent<cameraFollowObject>();
+        //cameraFollower.GetComponent<cameraFollowObject>();
         physics = GetComponent<Rigidbody2D>();
         controller = GetComponent<PlayerController>();
     }
@@ -75,17 +75,15 @@ public class PlayerMovementController : MonoBehaviour
 
     private void Walk() 
     {
-        //if(playerStats.knockback)
-        //{
-        //    physics.velocity = new Vector2(playerStats.knockbackVel, physics.velocity.y);
-        //}
-        //else
-        //{
-
-        currentSpeed = Mathf.Clamp(currentSpeed, 0, maxSpeed);
-        physics.velocity = new Vector2(oldPosition.x * currentSpeed, physics.velocity.y);
-
-
+        if (playerStats.knockback)
+        {
+            physics.velocity = new Vector2(playerStats.knockbackVel, physics.velocity.y);
+        }
+        else
+        {
+            currentSpeed = Mathf.Clamp(currentSpeed, 0, maxSpeed);
+            physics.velocity = new Vector2(oldPosition.x * currentSpeed, physics.velocity.y);
+        }
     }
 
 
@@ -102,7 +100,7 @@ public class PlayerMovementController : MonoBehaviour
             currentScale.x *= -1;
             model.transform.rotation = Quaternion.Euler(0f, 0, 0f);
             facingRight = !facingRight;
-            cameraFollower.CallTurn();
+            //cameraFollower.CallTurn();
         }
         else
         {
@@ -110,7 +108,7 @@ public class PlayerMovementController : MonoBehaviour
             currentScale.x *= -1;
             model.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
             facingRight = !facingRight;
-            cameraFollower.CallTurn();
+            //cameraFollower.CallTurn();
         }
         particleAttackModel.transform.localScale *= -1;
 

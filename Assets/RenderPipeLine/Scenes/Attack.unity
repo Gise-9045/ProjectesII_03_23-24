@@ -1239,14 +1239,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sleafy
       objectReference: {fileID: 0}
-    - target: {fileID: 4130902543261644654, guid: 553ce11eb92636746834000a083849eb, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4130902543261644654, guid: 553ce11eb92636746834000a083849eb, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2.01
-      objectReference: {fileID: 0}
     - target: {fileID: 4537613989183432954, guid: 553ce11eb92636746834000a083849eb, type: 3}
       propertyPath: hurtSource
       value: 
@@ -1273,22 +1265,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5091244779773297101, guid: 553ce11eb92636746834000a083849eb, type: 3}
       propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6306141209982672431, guid: 553ce11eb92636746834000a083849eb, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: 7442467f20428a1438325b28f842ba3d, type: 3}
-    - target: {fileID: 6306141209982672431, guid: 553ce11eb92636746834000a083849eb, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6306141209982672431, guid: 553ce11eb92636746834000a083849eb, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6306141209982672431, guid: 553ce11eb92636746834000a083849eb, type: 3}
-      propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6358824394647789026, guid: 553ce11eb92636746834000a083849eb, type: 3}
@@ -1490,6 +1466,10 @@ PrefabInstance:
       propertyPath: screamClip
       value: 
       objectReference: {fileID: 8300000, guid: e058abbd906873444a8056e829c3a30a, type: 3}
+    - target: {fileID: 1839527660066867176, guid: a497422e4aaee7446a041b3d5d11f184, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2195076692601112444, guid: a497422e4aaee7446a041b3d5d11f184, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.1200027
@@ -1506,10 +1486,18 @@ PrefabInstance:
       propertyPath: _playerGodModeInput
       value: 
       objectReference: {fileID: -4357608401226535041, guid: 45ac6d5744795c5498f12a10fd396418, type: 3}
+    - target: {fileID: 2837367058904576212, guid: a497422e4aaee7446a041b3d5d11f184, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4249747389842340821, guid: a497422e4aaee7446a041b3d5d11f184, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 189094912}
+    - target: {fileID: 4682430307416512274, guid: a497422e4aaee7446a041b3d5d11f184, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6248572682562481943, guid: a497422e4aaee7446a041b3d5d11f184, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1566,6 +1554,10 @@ PrefabInstance:
       propertyPath: jumpAudio
       value: 
       objectReference: {fileID: 620824624}
+    - target: {fileID: 6920062445284523602, guid: a497422e4aaee7446a041b3d5d11f184, type: 3}
+      propertyPath: orthographic size
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8311901581365734445, guid: a497422e4aaee7446a041b3d5d11f184, type: 3}
       propertyPath: dashAudio
       value: 
@@ -2003,6 +1995,10 @@ PrefabInstance:
     - target: {fileID: 2069851713646515450, guid: 8844a980f5b71f54d9aefa8c1d7ce5f7, type: 3}
       propertyPath: m_Name
       value: Octorella
+      objectReference: {fileID: 0}
+    - target: {fileID: 2069851713646515450, guid: 8844a980f5b71f54d9aefa8c1d7ce5f7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3312055261327669644, guid: 8844a980f5b71f54d9aefa8c1d7ce5f7, type: 3}
       propertyPath: m_LocalPosition.x

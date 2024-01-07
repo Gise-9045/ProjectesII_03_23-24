@@ -69,8 +69,6 @@ public class PlayerInput : MonoBehaviour
     {
         if(!canJump) return;
 
-        _playerController.playerJumpController.Jump_player(); 
-
         //switch (playerController.playerState)
         //{
         //    case PlayerController.PlayerStates.WALL_SLIDE:
@@ -85,6 +83,16 @@ public class PlayerInput : MonoBehaviour
         //        playerController._wallJumpController.CheckWallJumpInAir();
         //        break;
         //}
+
+        switch(_playerController.playerStats.hasJumpPowerUp)
+        {
+            case false:
+                _playerController.playerJumpController.Jump_player();
+                break;
+            case true:
+                _playerController.playerJumpController.Jump_player_PowerUp();
+                break;
+        }
     }
 
     private void StopJump()
