@@ -223,10 +223,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 7799156073521760185}
-  distanceX: 0
-  distanceY: 0
-  height: 0
-  detectOnly: 0
+  distanceX: 0.5
+  distanceY: -0.5
+  height: 0.5
 --- !u!1 &6315086414359332493
 GameObject:
   m_ObjectHideFlags: 0
@@ -317,7 +316,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f38d65123baf0c448981943deb638e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 7799156073521760185}
 --- !u!1 &6781657298616795778
 GameObject:
   m_ObjectHideFlags: 0
