@@ -149,19 +149,7 @@ public class InputManager : MonoBehaviour
 
     private void PlayerJump(InputAction.CallbackContext obj) 
     {
-        if (!canMove) return;
-        
-       // float gravityScale = _physics.gravityScale;
-
-        if (_jump.inWater == false)
-        {
-            _jump.Jump_player();
-            jumpCount++;
-        } else if(_jump.inWater == true)
-        {
-            _jump.Jump_player(); 
-        }
-
+      
         // _physics.gravityScale = gravityScale;
     }
 
