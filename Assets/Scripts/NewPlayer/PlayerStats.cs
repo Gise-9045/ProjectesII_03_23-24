@@ -39,8 +39,9 @@ public class PlayerStats : MonoBehaviour
         health = PlayerPrefs.GetInt("PlayerHealth", health); 
         maxHealth = PlayerPrefs.GetInt("MaxPlayerHealth", maxHealth);
 
-        respawnPoint = new Vector2(PlayerPrefs.GetFloat("RespawnPointX", transform.position.x),
-                                   PlayerPrefs.GetFloat("RespawnPointY", transform.position.y));
+        respawnPoint = new Vector2(PlayerPrefs.GetFloat("RespawnPointX", respawnPoint.x),
+                                   PlayerPrefs.GetFloat("RespawnPointY", respawnPoint.y));
+       
 
         hasJumpPowerUp = PlayerPrefs.GetInt("HasJumpPowerUp", 0) == 1; 
         hasDashPowerUp = PlayerPrefs.GetInt("HasDashPowerUp", 0) == 1;
@@ -115,7 +116,7 @@ public class PlayerStats : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision) //colisionar con hazards
     {
-        Debug.Log("colision tag on:" + collision.tag);
+        //Debug.Log("colision tag on:" + collision.tag);
 
         if (collision.CompareTag("Respawn"))
         {
