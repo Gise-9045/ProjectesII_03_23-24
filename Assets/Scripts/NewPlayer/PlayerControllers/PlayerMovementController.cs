@@ -27,7 +27,7 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField] private GameObject particleAttackModel;
    public bool facingRight;
 
-    //[SerializeField] private PlayerStats playerStats;
+    [SerializeField] private PlayerStats playerStats;
 
     private void Awake()
     {
@@ -75,17 +75,15 @@ public class PlayerMovementController : MonoBehaviour
 
     private void Walk() 
     {
-        //if(playerStats.knockback)
-        //{
-        //    physics.velocity = new Vector2(playerStats.knockbackVel, physics.velocity.y);
-        //}
-        //else
-        //{
-
-        currentSpeed = Mathf.Clamp(currentSpeed, 0, maxSpeed);
-        physics.velocity = new Vector2(oldPosition.x * currentSpeed, physics.velocity.y);
-
-
+        if (playerStats.knockback)
+        {
+            physics.velocity = new Vector2(playerStats.knockbackVel, physics.velocity.y);
+        }
+        else
+        {
+            currentSpeed = Mathf.Clamp(currentSpeed, 0, maxSpeed);
+            physics.velocity = new Vector2(oldPosition.x * currentSpeed, physics.velocity.y);
+        }
     }
 
 
