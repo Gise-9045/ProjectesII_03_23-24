@@ -9,12 +9,12 @@ public class Wall : MonoBehaviour
     
     private Rigidbody2D _physics;
     private Collisions _collision;
-    private Jump _jump;
+    //private Jump _jump;
 
     private void Awake() {
         _physics = GetComponent<Rigidbody2D>();
         _collision = GetComponent<Collisions>();
-        _jump = GetComponent<Jump>();
+       // _jump = GetComponent<Jump>();
     }
 
     public void WallJump(int jumpCount,  int maxJump)
@@ -24,7 +24,7 @@ public class Wall : MonoBehaviour
 
         Vector2 wallDir = _collision.onRightWall ? Vector2.left : Vector2.right;
 
-        _jump.Jump_player(jumpCount, maxJump);
+        //_jump.Jump_player(jumpCount, maxJump);
     }
     public void WallSlide()
     {

@@ -4,14 +4,16 @@ using UnityEngine;
 public class leverActivation : MonoBehaviour
 {
     
-    [SerializeField] private Attack controllerAtk;
-    private bool playerIsHitting = false; // Track the previous state of the player's attack action
-    public TextMeshProUGUI touchCounterText;
+    [SerializeField] private PlayerAttackController controllerAtk;
+    private bool playerIsHitting = false; //Track the previous state of the player's attack action
+   
     public bool isActive;
+    [SerializeField] private SpriteRenderer sprite;
     public void Start()
     {
         isActive = false;
-        touchCounterText.text = isActive ? "ACTIVE" : "INACTIVE";
+        
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     public void Update()
@@ -21,7 +23,7 @@ public class leverActivation : MonoBehaviour
 
     public void Toggle()
     {
-        isActive = !isActive;
-        touchCounterText.text = isActive ? "ACTIVE" : "INACTIVE";
+        isActive = true;
+        sprite.flipX = isActive;
     }
 }

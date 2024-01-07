@@ -10,6 +10,7 @@ public class Move : MonoBehaviour
     private Vector2 oldPosition = Vector2.zero; 
 
     [SerializeField] private Rigidbody2D physics;
+    [SerializeField] private Animator anim; 
 
     [Space]
     [Header("Velocity")]
@@ -36,11 +37,13 @@ public class Move : MonoBehaviour
         {
             if (_direction.magnitude > 0 && currentSpeed >= 0)
             {
+                anim.SetBool("isMoving", true);
                 oldPosition = _direction;
                 currentSpeed += acceleraiton * maxSpeed * Time.fixedDeltaTime;
             }
             else
             {
+                anim.SetBool("isMoving", false);
                 currentSpeed -= deacceleraiton * maxSpeed * Time.fixedDeltaTime;
             }
 
