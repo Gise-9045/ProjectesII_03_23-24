@@ -39,6 +39,9 @@ public class PlayerJumpController : MonoBehaviour
     [SerializeField] private AudioClip swimClip;
     [SerializeField] private AudioSource jumpAudio;
 
+
+    private PlayerGroundDetection groundDetection;
+
     private void Awake()
     {
         _physics = GetComponent<Rigidbody2D>();
@@ -47,6 +50,8 @@ public class PlayerJumpController : MonoBehaviour
         maxJump = 1;
         jumpAudio = gameObject.AddComponent<AudioSource>(); // Add an AudioSource component
         jumpAudio.clip = jumpClip;
+
+        groundDetection = GetComponentInChildren<PlayerGroundDetection>();
     }
 
     private void FixedUpdate()
@@ -54,6 +59,16 @@ public class PlayerJumpController : MonoBehaviour
         jumpAudio.volume = volumeAudio;
         //UpdateGroundCheck();
         UpdateGravity();
+
+
+        if(groundDetection.OnGround())
+        {
+            isOnGround = true;
+        }
+        else
+        {
+            isOnGround = false;
+        }
     }
 
 
@@ -116,15 +131,16 @@ public class PlayerJumpController : MonoBehaviour
         _physics.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.CompareTag("Ground"))
-        {
-            isOnGround = true; 
-        }
-        else 
-            isOnGround = false;
-    }
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if(collision.CompareTag("Ground") || collision.CompareTag("Enemy"))
+    //    {
+    //        isOnGround = true; 
+    //    }
+    //    else 
+    //        isOnGround = false;
+    //}
+
 
     private void UpdateGravity()
     {
