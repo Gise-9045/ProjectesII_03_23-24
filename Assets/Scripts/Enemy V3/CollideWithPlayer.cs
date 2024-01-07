@@ -20,7 +20,7 @@ public class CollideWithPlayer : MonoBehaviour
     {
         if (collision.collider.tag == "Player")
         {
-            player.GetComponent<PlayerStats>().TakeDamage(1, 20.0f, Mathf.Sign(player.transform.position.x - tr.position.x));
+            player.GetComponent<PlayerStats>().TakeDamage(substrackLife, 20.0f, Mathf.Sign(player.transform.position.x - tr.position.x));
         }
     }
 }
