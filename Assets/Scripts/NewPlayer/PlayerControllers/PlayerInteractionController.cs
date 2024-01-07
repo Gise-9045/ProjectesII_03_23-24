@@ -48,7 +48,6 @@ public class PlayerInteractionController : MonoBehaviour
             if (interactedCollider.tag == "ItemJump")
             {
                 playerStats.hasJumpPowerUp = true;
-                playerJumpController.maxJump = 2;
 
                 Destroy(interactedCollider.gameObject);
 
