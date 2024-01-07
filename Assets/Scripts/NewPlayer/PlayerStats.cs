@@ -31,9 +31,6 @@ public class PlayerStats : MonoBehaviour
             Debug.LogError("PlayerData scriptable object is not assigned!");
             return;
         }
-        hasJumpPowerUp = false;
-        hasDashPowerUp = false;
-        hasShoutPowerUp = false;
 
         knockback = false;
 
