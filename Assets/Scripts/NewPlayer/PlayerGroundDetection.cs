@@ -42,15 +42,15 @@ public class PlayerGroundDetection : MonoBehaviour
 
         rcGround = Physics2D.Raycast(pos, Vector2.down, height);
 
-        if(rcGround.collider == null)
-        {
-            Debug.Log("NULL");
+        //if(rcGround.collider == null)
+        //{
+        //    Debug.Log("NULL");
 
-        }
-        else
-        {
-            Debug.Log(rcGround.collider.tag);
-        }
+        //}
+        //else
+        //{
+        //    Debug.Log(rcGround.collider.tag);
+        //}
 
 
         if (rcGround.collider != null && rcGround.collider.tag == "Ground" || rcGround.collider != null && rcGround.collider.tag == "CameraAnimation")
