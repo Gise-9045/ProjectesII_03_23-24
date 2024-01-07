@@ -603,7 +603,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6361488034847475488, guid: a497422e4aaee7446a041b3d5d11f184, type: 3}
       propertyPath: volumeAudio
-      value: 0.1
+      value: 0.05
       objectReference: {fileID: 0}
     - target: {fileID: 6920062445284523602, guid: a497422e4aaee7446a041b3d5d11f184, type: 3}
       propertyPath: orthographic size
@@ -634,6 +634,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e5fe99997309974c99672e08a17d8b0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!4 &294436869 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8506981356773489166, guid: a497422e4aaee7446a041b3d5d11f184, type: 3}
+  m_PrefabInstance: {fileID: 294436866}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &350240901
 GameObject:
   m_ObjectHideFlags: 0
@@ -8927,7 +8932,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ab0aa41c05782944bc362ea436d16b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTransform: {fileID: 0}
+  playerTransform: {fileID: 294436869}
   flipRotationTime: 0.5
 --- !u!4 &1458482431
 Transform:

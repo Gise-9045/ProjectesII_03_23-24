@@ -1244,8 +1244,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 36451868}
     - target: {fileID: 4931065476955667093, guid: 553ce11eb92636746834000a083849eb, type: 3}
+      propertyPath: m_Size.x
+      value: 1.9530487
+      objectReference: {fileID: 0}
+    - target: {fileID: 4931065476955667093, guid: 553ce11eb92636746834000a083849eb, type: 3}
+      propertyPath: m_Size.y
+      value: 1.6330327
+      objectReference: {fileID: 0}
+    - target: {fileID: 4931065476955667093, guid: 553ce11eb92636746834000a083849eb, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4931065476955667093, guid: 553ce11eb92636746834000a083849eb, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.07000005
+      objectReference: {fileID: 0}
+    - target: {fileID: 4931065476955667093, guid: 553ce11eb92636746834000a083849eb, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.08843857
       objectReference: {fileID: 0}
     - target: {fileID: 5091244779773297101, guid: 553ce11eb92636746834000a083849eb, type: 3}
       propertyPath: m_IsActive
@@ -1257,15 +1273,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6358824394647789026, guid: 553ce11eb92636746834000a083849eb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 67.85
+      value: 67.22
       objectReference: {fileID: 0}
     - target: {fileID: 6358824394647789026, guid: 553ce11eb92636746834000a083849eb, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.065923
+      value: -1.16
       objectReference: {fileID: 0}
     - target: {fileID: 6358824394647789026, guid: 553ce11eb92636746834000a083849eb, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.013102227
+      value: 0.23
       objectReference: {fileID: 0}
     - target: {fileID: 6358824394647789026, guid: 553ce11eb92636746834000a083849eb, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1526,6 +1542,10 @@ PrefabInstance:
       propertyPath: jumpAudio
       value: 
       objectReference: {fileID: 620824624}
+    - target: {fileID: 6920062445284523602, guid: a497422e4aaee7446a041b3d5d11f184, type: 3}
+      propertyPath: orthographic size
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8311901581365734445, guid: a497422e4aaee7446a041b3d5d11f184, type: 3}
       propertyPath: dashAudio
       value: 
