@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
     [SerializeField, Range(0f, 3f)] private float volumeAudio = 0.2f;
     [SerializeField] private int life;
     [SerializeField] private int maxLife;
-    private Vector2 direction;
+    [SerializeField] private Vector2 direction;
     private float rotation;
     [SerializeField] int speed;
 
@@ -29,14 +29,12 @@ public class Enemy : MonoBehaviour
         return knockbackVel;
     }
 
-
-
     private void Start()
     {
-        hurtSource.clip = hurtClip; 
-        direction = new Vector2(1, 1);
+        hurtSource.clip = hurtClip;
         life = maxLife;
         rotation = 0;
+        SetDirection(direction);
 
         flash = GetComponentInChildren<HitFlash>();
     }

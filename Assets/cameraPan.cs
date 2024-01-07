@@ -11,28 +11,34 @@ public class cameraPan : MonoBehaviour
     public Vector2 offset;
 
     private bool isFollowingPlayer = true;
+    private bool ignoreTarget = false;
 
     IEnumerator OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Player") && !ignoreTarget)
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.25f);
+
             // Change camera settings to follow the new target smoothly
             SmoothCameraTransition(targetTransform);
             isFollowingPlayer = false;
+
+            // Ignore the target for a specified time
+            ignoreTarget = true;
+            yield return new WaitForSeconds(2.0f); // Adjust the time as needed
+            ignoreTarget = false;
         }
     }
 
     void ResetCamera()
     {
         cameraToPan.m_Follow = playerTransform;
-        cameraToPan.m_LookAt = playerTransform;
         isFollowingPlayer = true;
     }
 
     IEnumerator OnTriggerExit2D(Collider2D other)
     {
-        yield return new WaitForSeconds(0.33f);
+        yield return new WaitForSeconds(0.25f);
         if (other.CompareTag("Player"))
         {
             // Revert to the default behavior when the player exits the trigger
