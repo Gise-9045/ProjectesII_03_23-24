@@ -4,60 +4,34 @@ using UnityEngine;
 
 public class WallDetection : MonoBehaviour
 {
-    RaycastHit2D rcGround;
-
-    private Transform parent;
-    [SerializeField] private float distanceX;
-    [SerializeField] private float distanceY;
-
-    [SerializeField] private Enemy enemy;
-
-    private bool onGround;
-    [SerializeField] private bool detectOnly;
+    private Enemy enemy;
+    private bool detection;
 
     private void Start()
     {
-        parent = GetComponentInParent<Transform>();
+        enemy = GetComponent<Enemy>();
     }
 
-    private void FixedUpdate()
+    public bool Detection()
     {
-        Vector2 pos = new Vector2(parent.transform.position.x + (enemy.GetDirection().x * distanceX), parent.transform.position.y + distanceY);
-        rcGround = Physics2D.Raycast(pos , Vector2.down, distanceY);
-
-        if (rcGround.collider != null && rcGround.collider.tag == "Ground"|| rcGround.collider != null && rcGround.collider.tag == "CameraAnimation")
-        {
-            Debug.DrawRay(pos, Vector2.down, Color.green);
-            onGround = true;
-        }
-        else
-        {
-            Debug.DrawRay(pos, Vector2.down, Color.red);
-
-            onGround = false;
-
-            if(!detectOnly)
-            {
-                enemy.SetDirection(new Vector2(enemy.GetDirection().x * -1, 1));
-            }
-        }
-
-        //Debug.Log(rcGround.collider.tag);
-
+        return detection;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Ground") || collision.CompareTag("Lever") || collision.CompareTag("Enemy"))
         {
-            enemy.SetDirection(new Vector2(enemy.GetDirection().x * -1, 1));
+            detection = true;
 
         }
     }
 
-
-    public bool OnGround()
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        return onGround;
+        if (collision.CompareTag("Ground") || collision.CompareTag("Lever") || collision.CompareTag("Enemy"))
+        {
+            detection = false;
+
+        }
     }
 }

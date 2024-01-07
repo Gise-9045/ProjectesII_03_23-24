@@ -177,7 +177,7 @@ Transform:
   - {fileID: 2195076692601112444}
   - {fileID: 8506981356773489166}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1467313283430390670
 GameObject:
@@ -230,7 +230,7 @@ MonoBehaviour:
   _playerAttackInput: {fileID: 9011313330024176719, guid: 45ac6d5744795c5498f12a10fd396418, type: 3}
   _playerLaserInput: {fileID: 4003433570853961338, guid: 45ac6d5744795c5498f12a10fd396418, type: 3}
   _playerInteractInput: {fileID: -1131421082683534271, guid: 45ac6d5744795c5498f12a10fd396418, type: 3}
-  _playerGodModeInput: {fileID: 2239517034355586566, guid: 45ac6d5744795c5498f12a10fd396418, type: 3}
+  _playerGodModeInput: {fileID: -4357608401226535041, guid: 45ac6d5744795c5498f12a10fd396418, type: 3}
   _playerPauseInput: {fileID: -2537746012016652200, guid: 45ac6d5744795c5498f12a10fd396418, type: 3}
 --- !u!114 &4249747389842340821
 MonoBehaviour:
@@ -736,7 +736,7 @@ MonoBehaviour:
   playerJumpController: {fileID: 6361488034847475488}
   playerAttackControlller: {fileID: 1378082704897021428}
   playerInteractionController: {fileID: 5243287676911561576}
-  playerStats: {fileID: 0}
+  playerStats: {fileID: 6017962168352276904}
   playerInput: {fileID: 113484116027159981}
   canMove: 0
   canJump: 0

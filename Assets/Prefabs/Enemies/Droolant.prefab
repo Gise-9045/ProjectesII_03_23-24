@@ -24,13 +24,17 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 380297731777720684, guid: bef583e4ca8b0c64b9f1917cd9e62f50, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 715059079047054257, guid: bef583e4ca8b0c64b9f1917cd9e62f50, type: 3}
       propertyPath: m_BodyType
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 791483282030506657, guid: bef583e4ca8b0c64b9f1917cd9e62f50, type: 3}
       propertyPath: m_RootOrder
-      value: -1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 791483282030506657, guid: bef583e4ca8b0c64b9f1917cd9e62f50, type: 3}
       propertyPath: m_LocalPosition.x
@@ -112,6 +116,10 @@ PrefabInstance:
       propertyPath: speed
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7799156073521760185, guid: bef583e4ca8b0c64b9f1917cd9e62f50, type: 3}
+      propertyPath: maxLife
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8520020047002560693, guid: bef583e4ca8b0c64b9f1917cd9e62f50, type: 3}
       propertyPath: m_Size.x
       value: 1.5262675
@@ -138,6 +146,7 @@ PrefabInstance:
     - {fileID: 673194236642539378, guid: bef583e4ca8b0c64b9f1917cd9e62f50, type: 3}
     m_RemovedGameObjects:
     - {fileID: 6315086414359332493, guid: bef583e4ca8b0c64b9f1917cd9e62f50, type: 3}
+    - {fileID: 3512046281420534150, guid: bef583e4ca8b0c64b9f1917cd9e62f50, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6781657298616795778, guid: bef583e4ca8b0c64b9f1917cd9e62f50, type: 3}
@@ -168,7 +177,7 @@ MonoBehaviour:
   cooldownAttack: 1.5
   bullet: {fileID: 2761185668801126051, guid: 0452f4bba6da8bf4bb010dac8175b448, type: 3}
   animator: {fileID: 7276429723699566463}
-  arrayPosX: 0
+  arrayPosX: 0.5
   attackClip: {fileID: 8300000, guid: c7e297bec5e319b49bb7f37eab88dbca, type: 3}
   attackSource: {fileID: 0}
   volumeAudio: 0.2
