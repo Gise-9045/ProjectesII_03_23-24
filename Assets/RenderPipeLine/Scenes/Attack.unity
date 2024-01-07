@@ -1466,6 +1466,10 @@ PrefabInstance:
       propertyPath: screamClip
       value: 
       objectReference: {fileID: 8300000, guid: e058abbd906873444a8056e829c3a30a, type: 3}
+    - target: {fileID: 1839527660066867176, guid: a497422e4aaee7446a041b3d5d11f184, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2195076692601112444, guid: a497422e4aaee7446a041b3d5d11f184, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.1200027
@@ -1482,10 +1486,18 @@ PrefabInstance:
       propertyPath: _playerGodModeInput
       value: 
       objectReference: {fileID: -4357608401226535041, guid: 45ac6d5744795c5498f12a10fd396418, type: 3}
+    - target: {fileID: 2837367058904576212, guid: a497422e4aaee7446a041b3d5d11f184, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4249747389842340821, guid: a497422e4aaee7446a041b3d5d11f184, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 189094912}
+    - target: {fileID: 4682430307416512274, guid: a497422e4aaee7446a041b3d5d11f184, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6248572682562481943, guid: a497422e4aaee7446a041b3d5d11f184, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -1984,6 +1996,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Octorella
       objectReference: {fileID: 0}
+    - target: {fileID: 2069851713646515450, guid: 8844a980f5b71f54d9aefa8c1d7ce5f7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3312055261327669644, guid: 8844a980f5b71f54d9aefa8c1d7ce5f7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2366,6 +2382,10 @@ PrefabInstance:
     - target: {fileID: 8483932015995639788, guid: 28d2659d17bbbc04f8ed797a3ed60bf9, type: 3}
       propertyPath: m_Name
       value: OrangeSlimeEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 8483932015995639788, guid: 28d2659d17bbbc04f8ed797a3ed60bf9, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
