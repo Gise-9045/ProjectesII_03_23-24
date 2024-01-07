@@ -72,7 +72,7 @@ public class SleafyMovement : MonoBehaviour
             }
             else
             {
-                rb.velocity = new Vector2(0, rb.velocity.y); ;
+                rb.velocity = new Vector2(0, rb.velocity.y);
             }
         }
 
@@ -80,11 +80,14 @@ public class SleafyMovement : MonoBehaviour
         {
             animator.SetBool("Enabled", false);
             persue = false;
-
-            //ESPERAR A QUE ACABE ANIMACIÓN PARA PONER AL INICIO
-            tr.position = startPos;
-
-            actualCooldownAppear = cooldownAppear;
+            rb.velocity = new Vector2(0, 0);
         }
+    }
+
+
+    void RestartEnemy()
+    {
+        tr.position = startPos;
+        actualCooldownAppear = cooldownAppear;
     }
 }
