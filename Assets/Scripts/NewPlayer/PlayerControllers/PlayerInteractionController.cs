@@ -111,26 +111,27 @@ public class PlayerInteractionController : MonoBehaviour
                     interacting = false;
             }
 
-            if (interactedCollider.gameObject.CompareTag("ItemDash"))
-            {
-                Debug.Log("ItemDash");
-                playerStats.hasDashPowerUp = true;
-                    interacting = false;
+                if (interactedCollider.collider.tag == "ItemDash")
+                {
+                    playerStats.hasDashPowerUp = true;
+                    Debug.Log("ItemDash");
+                    DisplayPopup("Dash Power-Up Acquired");
+                    Destroy(interactedCollider.gameObject);
+                    
 
                     // Puedes destruir el objeto ItemDash aquí si también deseas
                     Destroy(interactedCollider.gameObject);
-            }
+                }
 
-            if (interactedCollider.gameObject.CompareTag("ItemJump"))
-            {
-                playerStats.hasJumpPowerUp = true;
-                playerJumpController.maxJump = 2;
-                    interacting = false;
+                if (interactedCollider.collider.tag == "ItemJump")
+                {
+                    playerStats.hasJumpPowerUp = true;
+                    DisplayPopup("Jump Power-Up Acquired");
                     Destroy(interactedCollider.gameObject);
 
-            }
+                }
 
-            if (interactedCollider.gameObject.CompareTag("ItemShout"))
+                if (interactedCollider.gameObject.CompareTag("ItemShout"))
             {
                 playerStats.hasShoutPowerUp = true;
                     interacting = false;
