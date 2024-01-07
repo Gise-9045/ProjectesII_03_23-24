@@ -4,8 +4,10 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class PlayerStats : MonoBehaviour
 {
+    public PlayerData playerData;
     public int health;
     private int maxHealh;
 
@@ -24,16 +26,19 @@ public class PlayerStats : MonoBehaviour
 
     private void Awake()
     {
+        if (playerData == null)
+        {
+            Debug.LogError("PlayerData scriptable object is not assigned!");
+            return;
+        }
         hasJumpPowerUp = false;
         hasDashPowerUp = false;
         hasShoutPowerUp = false;
 
-        isDead = false;
-
-        knockback = false; 
+        knockback = false;
 
         maxHealh = 3;
-        health = maxHealh;
+        playerData.health = maxHealh;
 
         respawnPoint = transform.position;
 
@@ -43,12 +48,12 @@ public class PlayerStats : MonoBehaviour
 
     public int GetHealth()
     {
-        return health;
+        return playerData.health;
     }
 
     private void Update()
     {
-        if(knockback && Time.timeScale == 1)
+        if (knockback && Time.timeScale == 1)
         {
             StartCoroutine(KnockBack());
         }
@@ -57,7 +62,7 @@ public class PlayerStats : MonoBehaviour
     public void TakeDamage(int damage, float k, float direction)
     {
 
-        health -= damage;
+        playerData.health -= damage;
 
         knockbackVel = k;
         knockbackVel *= direction;
@@ -69,9 +74,9 @@ public class PlayerStats : MonoBehaviour
         CinemachineShake.Instance.ShakeCamera(5f, 0.5f);
         HitStop.Instance.StopTime(0f, 0.5f);
 
-        if (health <= 0)
+        if (playerData.health <= 0)
         {
-            health = 0;
+            playerData.health = 0;
             Time.timeScale = 1;
             playerController.ChangeState(PlayerController.PlayerStates.DEAD); 
         }
@@ -117,6 +122,11 @@ public class PlayerStats : MonoBehaviour
         playerController.playerInput.canJump = false; 
 
         transform.position = respawnPoint;
-        health = maxHealh; 
+        health = maxHealh;
+        playerData.health = maxHealh;
+        playerData.hasJumpPowerUp = hasJumpPowerUp;
+        playerData.hasDashPowerUp = hasDashPowerUp;
+        playerData.hasShoutPowerUp = hasShoutPowerUp;
+        playerData.respawnPoint = respawnPoint;
     }
 }

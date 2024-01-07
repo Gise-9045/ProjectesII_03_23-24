@@ -9,6 +9,7 @@ public class MauriceJrMovement : MonoBehaviour
     private Rigidbody2D rb;
     private Transform player;
     private Transform tr;
+    private WallDetection wallDetection;
 
     private float cooldownJump;
     private float actualCooldownJump;
@@ -16,19 +17,20 @@ public class MauriceJrMovement : MonoBehaviour
     private int jumpHeight;
     private int jumpWidth;
 
-    private WallDetection ground;
+    private GroundDetection ground;
 
     private void Start()
     {
+        cooldownJump = 0.5f;
         rb = GetComponent<Rigidbody2D>();
-        actualCooldownJump = 0;
-        ground = GetComponentInChildren<WallDetection>();
+        ground = GetComponentInChildren<GroundDetection>();
         enemy = GetComponent<Enemy>();
+        wallDetection = GetComponentInChildren<WallDetection>();
 
         tr = GetComponent<Transform>();
         player = GameObject.FindWithTag("Player").GetComponent<Transform>();
 
-
+        actualCooldownJump = 0.5f;
     }
 
     private void FixedUpdate()
@@ -37,17 +39,13 @@ public class MauriceJrMovement : MonoBehaviour
         {
             actualCooldownJump -= Time.deltaTime;
             CinemachineShake.Instance.ShakeCamera(5f, 0.1f);
-
         }
 
-        if (!ground.OnGround())
+        if (ground.OnGround() && actualCooldownJump < 0)
         {
             actualCooldownJump = cooldownJump;
-        }
 
-        if (ground.OnGround() && actualCooldownJump <= 0)
-        {
-            if(enemy.GetLife() >= enemy.GetMaxLife() / 2)
+            if (enemy.GetLife() >= enemy.GetMaxLife() / 2)
             {
                 cooldownJump = 0.5f;
                 jumpHeight = 350;
@@ -66,6 +64,11 @@ public class MauriceJrMovement : MonoBehaviour
                 jumpHeight = 500;
                 PersuePlayer();
             }
+        }
+
+        if (wallDetection.Detection())
+        {
+            enemy.SetDirection(new Vector2(enemy.GetDirection().x * -1, 1));
         }
 
     }
