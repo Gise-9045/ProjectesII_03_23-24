@@ -116,7 +116,7 @@ public class PlayerStats : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision) //colisionar con hazards
     {
-        Debug.Log("colision tag on:" + collision.tag);
+        //Debug.Log("colision tag on:" + collision.tag);
 
         if (collision.CompareTag("Respawn"))
         {
