@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class NewInputManger : MonoBehaviour
+public class InputManger : MonoBehaviour
 {
     
-    public static NewInputManger _newInputManager;
+    public static InputManger _newInputManager;
 
     [Header("Ingame Actions")]
     public InputActionReference _playerMoveInput;
