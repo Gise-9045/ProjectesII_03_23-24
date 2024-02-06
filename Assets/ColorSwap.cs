@@ -9,7 +9,7 @@ public class ColorSwap : MonoBehaviour
     public Color newColor;
     private SpriteRenderer myRenderer;
     public ColorScheme palette;
-   
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -29,8 +29,8 @@ public class ColorSwap : MonoBehaviour
     {
         if (collision.CompareTag("ColorChange"))
         {
+            palette = collision.GetComponent<ColorSwap>().palette;
             Debug.Log("BEEP");
-            palette = collision.GetComponent<ColorScheme>();
             ChangeColor(palette);
             Update();
         }
@@ -60,12 +60,12 @@ public class ColorSwap : MonoBehaviour
                 break;
             case ColorScheme.PINK:
                 newColor.r = 255;
-                newColor.g = 105;
-                newColor.b = 108;
+                newColor.g = 0;
+                newColor.b = 255;
                 myRenderer.color = newColor;
                 break;
             case ColorScheme.PURPLE:
-                newColor.r = 255;
+                newColor.r = 100;
                 newColor.g = 0;
                 newColor.b = 255;
                 myRenderer.color = newColor;
