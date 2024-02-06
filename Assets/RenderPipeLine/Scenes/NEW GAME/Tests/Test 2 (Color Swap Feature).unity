@@ -217,8 +217,8 @@ GameObject:
   m_Component:
   - component: {fileID: 526800356}
   - component: {fileID: 526800355}
-  - component: {fileID: 526800353}
   - component: {fileID: 526800352}
+  - component: {fileID: 526800357}
   m_Layer: 0
   m_Name: Color Fountain
   m_TagString: ColorChange
@@ -271,20 +271,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.1544828, y: 1.1492229}
   m_EdgeRadius: 0
---- !u!114 &526800353
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 526800351}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62b06c0f1ad325f48b2d6761d8918926, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  newColor: {r: 0, g: 0, b: 0, a: 0}
-  palette: 0
 --- !u!212 &526800355
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -352,6 +338,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &526800357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 526800351}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78e06d4fe4f15ec499e32a8daeac0f37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  newColor: {r: 0.39215687, g: 0, b: 1, a: 1}
+  palette: 0
 --- !u!1 &653755754
 GameObject:
   m_ObjectHideFlags: 0
