@@ -10,7 +10,6 @@ public class PlayerMovementController : MonoBehaviour
     private Vector2 oldPosition = Vector2.zero; 
 
     private Rigidbody2D physics;
-    [SerializeField]private cameraFollowObject cameraFollower;
     private PlayerController controller;
 
     [Space]
