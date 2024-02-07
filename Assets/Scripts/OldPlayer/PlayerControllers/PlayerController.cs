@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     public PlayerInteractionController playerInteractionController;
     public PlayerStats playerStats; 
 
-    public PlayerInput playerInput; 
+    //public PlayerInput playerInput; 
 
     private Animator anim;
     private Rigidbody2D rb2d;
@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
 
         playerInteractionController = GetComponent<PlayerInteractionController>();
 
-        playerInput = GetComponent<PlayerInput>();
+        //playerInput = GetComponent<PlayerInput>();
 
         anim = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
@@ -169,8 +169,8 @@ public class PlayerController : MonoBehaviour
         switch (_nextState)
         {
             case PlayerStates.NONE:
-                playerInput.canMove = true;
-                playerInput.canJump = true;
+                //playerInput.canMove = true;
+                //playerInput.canJump = true;
                 break;
             case PlayerStates.MOVING:
                 break;
