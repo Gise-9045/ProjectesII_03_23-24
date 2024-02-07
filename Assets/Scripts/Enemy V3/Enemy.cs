@@ -5,12 +5,19 @@ using static UnityEngine.ParticleSystem;
 
 public class Enemy : MonoBehaviour
 {
+    [SerializeField] private AudioSource hurtSource;
+    [SerializeField] private AudioClip hurtClip;
+    [SerializeField, Range(0f, 3f)] private float volumeAudio = 0.2f;
     [SerializeField] private int life;
-    private int direction;
+    [SerializeField] private int maxLife;
+    [SerializeField] private Vector2 direction;
+    private float rotation;
     [SerializeField] int speed;
 
     private bool knockback;
     private float knockbackVel;
+
+    private HitFlash flash;
 
     public bool GetKnockback()
     {
@@ -22,12 +29,14 @@ public class Enemy : MonoBehaviour
         return knockbackVel;
     }
 
-
-
     private void Start()
     {
-        direction = 1;
+        hurtSource.clip = hurtClip;
+        life = maxLife;
+        rotation = 0;
+        SetDirection(direction);
 
+        flash = GetComponentInChildren<HitFlash>();
     }
 
     public void SetLife(int l)
@@ -37,6 +46,12 @@ public class Enemy : MonoBehaviour
     public int GetLife()
     {
         return life;
+    }
+
+    public int GetMaxLife()
+    {
+        return maxLife;
+
     }
 
     public void SetSpeed(int s)
@@ -49,26 +64,46 @@ public class Enemy : MonoBehaviour
         return speed;
     }
 
-    public void SetDirection(int d)
+    public void SetDirection(Vector2 d)
     {
         //-1 izquierda 1 derecha
         direction = d;
+
+        Vector3 currentScale = gameObject.transform.localScale;
+        currentScale.x = direction.x;
+        currentScale.y = direction.y;
+        gameObject.transform.localScale = currentScale;
     }
-    public int GetDirection()
+    public Vector2 GetDirection()
     {
         return direction;
     }
 
+    public void SetRotation(float r)
+    {
+        rotation = r;
+
+        gameObject.transform.localEulerAngles = new Vector3(gameObject.transform.localEulerAngles.x, gameObject.transform.localEulerAngles.y, rotation);
+
+    }
+
+    public float GetRotation()
+    {
+        return rotation;
+    }
 
     public void TakeDamage(int subtractLife, bool knock, float knockVel)
     {
         life -= subtractLife;
-
+       
         knockback = knock;
         knockbackVel = knockVel;
 
+        flash.Flash(0.15f);
         HitParticles.Instance.DisableEnemy();
         HitParticles.Instance.EnableEnemy(gameObject.transform.position.x, gameObject.transform.position.y);
+
+        
 
         if (knockback)
         {
@@ -77,9 +112,11 @@ public class Enemy : MonoBehaviour
 
         if (life <= 0 )
         {
+            hurtSource.clip = hurtClip;
             CinemachineShake.Instance.ShakeCamera(5f, 0.5f);
-            HitStop.Instance.StopTime(0f, 0.5f);
+            HitStop.Instance.StopTime(0.15f, 0.5f);
             Destroy(gameObject);
+            hurtSource.Play();
         }
     }
 
@@ -94,8 +131,8 @@ public class Enemy : MonoBehaviour
     private void Update()
     {
         //EnemyDirection
-        Vector3 currentScale = gameObject.transform.localScale;
-        currentScale.x = direction;
-        gameObject.transform.localScale = currentScale;
+        hurtSource.volume = volumeAudio;
+
+        //EnemyRotation
     }
 }

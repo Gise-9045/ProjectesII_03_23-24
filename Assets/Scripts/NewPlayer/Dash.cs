@@ -9,6 +9,9 @@ public class Dash : MonoBehaviour
 {
     [SerializeField] private Rigidbody2D _physics;
     [SerializeField] private Move playermove;
+    [SerializeField] private AudioClip dashClip;
+    [SerializeField] private AudioSource dashAudio;
+    [SerializeField, Range(0f, 1f)] private float volumeAudio = 0.2f;
     public bool canDash = true;
     private bool isDashing;
     private float dashtime = 0.2f;
@@ -17,11 +20,13 @@ public class Dash : MonoBehaviour
     private float dashingCooldown = 2f;
     
     [SerializeField] private TrailRenderer tr;
-
+    
     private void FixedUpdate()
     {
+        dashAudio.volume = volumeAudio;
         if ((Time.timeScale>=1f))
         {
+            dashAudio.clip = dashClip;
             if (isDashing)
             {
                 return;
@@ -32,13 +37,16 @@ public class Dash : MonoBehaviour
     }
     private IEnumerator Dashing()
     {
-        if(Time.timeScale>=1f)
+       
+        if (Time.timeScale>=1f)
         {
             canDash = false;
             isDashing = true;
+            
             float originalGravity = _physics.gravityScale;
             
             if(_physics.gravityScale!=00.2f) {
+                dashAudio.Play();
                 playermove.maxSpeed = 50f;
                 playermove.currentSpeed = 50f;
                 _physics.velocity = new Vector2(50, 5f);

@@ -8,7 +8,7 @@ public class CollideWithPlayer : MonoBehaviour
     private Transform tr;
 
     [SerializeField] private int substrackLife;
-    [SerializeField] private int knockback;
+    //[SerializeField] private int knockback;
 
     private void Start()
     {
@@ -20,7 +20,7 @@ public class CollideWithPlayer : MonoBehaviour
     {
         if (collision.collider.tag == "Player")
         {
-            player.GetComponent<PlayerStats>().TakeDamage(1, 20.0f, Mathf.Sign(player.transform.position.x - tr.position.x));
+            player.GetComponent<PlayerStats>().TakeDamage(substrackLife, 20.0f, Mathf.Sign(player.transform.position.x - tr.position.x));
         }
     }
 }

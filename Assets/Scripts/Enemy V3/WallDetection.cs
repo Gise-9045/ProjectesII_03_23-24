@@ -4,47 +4,34 @@ using UnityEngine;
 
 public class WallDetection : MonoBehaviour
 {
-    RaycastHit2D rcGround;
-
-    [SerializeField] private Transform parent;
-    [SerializeField] private float distanceX;
-    [SerializeField] private float distanceY;
-
-    [SerializeField] private Enemy enemy;
+    private Enemy enemy;
+    private bool detection;
 
     private void Start()
     {
-        parent = GetComponentInParent<Transform>();
+        enemy = GetComponent<Enemy>();
     }
 
-    private void Update()
+    public bool Detection()
     {
-        rcGround = Physics2D.Raycast(new Vector2(parent.transform.position.x + (enemy.GetDirection() * distanceX), parent.transform.position.y + distanceY) , Vector2.down, distanceY);
-
-        if (rcGround.collider.tag == "Ground")
-        {
-            Debug.DrawRay(new Vector2(parent.transform.position.x + (enemy.GetDirection() * distanceX), parent.transform.position.y + distanceY), Vector2.down, Color.green);
-        }
-        else
-        {
-            Debug.DrawRay(new Vector2(parent.transform.position.x + (enemy.GetDirection() * distanceX), parent.transform.position.y + distanceY), Vector2.down, Color.red);
-
-            enemy.SetDirection(enemy.GetDirection() * -1);
-        }
-
+        return detection;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Ground") || collision.CompareTag("Lever"))
+        if (collision.CompareTag("Ground") || collision.CompareTag("Lever") || collision.CompareTag("Enemy"))
         {
-            enemy.SetDirection(enemy.GetDirection() * -1);
+            detection = true;
+
         }
     }
-    //private void OnDrawGizmos()
-    //{
-    //    parent = GetComponentInParent<Transform>();
 
-    //    Debug.DrawRay(new Vector2(parent.transform.position.x + (1 * distanceX), parent.transform.position.y + distanceY), Vector2.down, Color.blue);
-    //}
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Ground") || collision.CompareTag("Lever") || collision.CompareTag("Enemy"))
+        {
+            detection = false;
+
+        }
+    }
 }

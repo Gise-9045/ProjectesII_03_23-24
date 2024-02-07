@@ -15,7 +15,7 @@ public class HitParticles : MonoBehaviour
 
     public void EnablePlayer(float x, float y)
     {
-        gameObject.transform.position = new Vector2(x, y);
+        gameObject.transform.position = new Vector3(x, y, -2);
 
         player.SetActive(true);
 
@@ -32,7 +32,7 @@ public class HitParticles : MonoBehaviour
 
     public void EnableEnemy(float x, float y)
     {
-        gameObject.transform.position = new Vector2(x, y);
+        gameObject.transform.position = new Vector3(x, y, -2);
 
         enemy.SetActive(true);
 
