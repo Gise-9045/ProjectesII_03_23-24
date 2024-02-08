@@ -12,7 +12,7 @@ public class KeySaver : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Key"))
         {
-            collision.transform.localScale = new Vector2(0.5f, 0.5f);
+            collision.transform.localScale = new Vector2(0.7f, 0.7f);
             keys.Add(collision.transform);
             
             //collision.gameObject.SetActive(false); // Desactivamos la llave en la escena

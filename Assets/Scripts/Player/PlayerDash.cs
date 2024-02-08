@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerDash : MonoBehaviour
+public class PlayerDash3 : MonoBehaviour
 {
     // Start is called before the first frame update
     void Start()
