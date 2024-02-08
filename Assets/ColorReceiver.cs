@@ -5,11 +5,11 @@ using UnityEngine;
 
 public class ColorReceiver : MonoBehaviour
 {
-    [SerializeField] private SpriteRenderer _spriteRenderer;
-
+   [SerializeField] private SpriteRenderer _spriteRenderer;
+   
     private void Awake()
     {
-       // _spriteRenderer = GetComponent<SpriteRenderer>();
+       
 
     }
 

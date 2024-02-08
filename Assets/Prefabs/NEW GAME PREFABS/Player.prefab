@@ -61,6 +61,7 @@ GameObject:
   - component: {fileID: 2855868302909866203}
   - component: {fileID: 4699660460486079957}
   - component: {fileID: 5681322220447698301}
+  - component: {fileID: 935124475402786911}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -187,6 +188,9 @@ MonoBehaviour:
   jumpForce: 13
   jumpTimeCounter: 0.15
 --- !u!114 &5681322220447698301
+  jumpForce: 22
+  jumpTimeCounter: 0
+--- !u!114 &935124475402786911
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -196,11 +200,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5ed52ff366f620440825f7a4f2b84371, type: 3}
+  m_Script: {fileID: 11500000, guid: 62b06c0f1ad325f48b2d6761d8918926, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   keys: []
   player: {fileID: 6347379661504714166}
   distanceBetweenKeys: -1
+  _spriteRenderer: {fileID: 7750458099682802608}
 --- !u!1 &9051913027470519325
 GameObject:
   m_ObjectHideFlags: 0

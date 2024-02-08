@@ -53,7 +53,7 @@ public class PlayerGroundDetection : MonoBehaviour
         //}
 
 
-        if (rcGround.collider != null && rcGround.collider.tag == "Ground" || rcGround.collider != null && rcGround.collider.tag == "CameraAnimation")
+        if (rcGround.collider != null && rcGround.collider.tag == "Ground" || rcGround.collider != null && rcGround.collider.tag == "ColorChange")
         {
             Debug.DrawRay(pos, new Vector2(0, -height), Color.green);
             onGround = true;
