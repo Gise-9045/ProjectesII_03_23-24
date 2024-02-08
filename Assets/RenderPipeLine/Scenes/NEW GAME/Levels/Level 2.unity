@@ -414,7 +414,7 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: 15, y: 4, z: 0}
+  - first: {x: 10, y: 0, z: 0}
     second:
       serializedVersion: 2
       m_TileIndex: 0
@@ -632,7 +632,7 @@ GameObject:
   - component: {fileID: 370041736}
   m_Layer: 0
   m_Name: Lago Dash
-  m_TagString: Untagged
+  m_TagString: ColorChange
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -664,9 +664,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 78e06d4fe4f15ec499e32a8daeac0f37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  colorProperty:
-    colorScheme: 2
-    color: {r: 0, g: 0.21464849, b: 1, a: 1}
+  colorDatabase: {fileID: 11400000, guid: 6e7c3875dcb6473469760cf75a4f3957, type: 2}
+  _spriteRenderer: {fileID: 370041739}
+  colorType: 2
 --- !u!19719996 &370041737
 TilemapCollider2D:
   m_ObjectHideFlags: 0
@@ -696,7 +696,7 @@ TilemapCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -747,12 +747,12 @@ Tilemap:
   - m_RefCount: 0
     m_Data: {fileID: 0}
   - m_RefCount: 3
-    m_Data: {fileID: 11400000, guid: 500b55cedfe1a1b41b2f8d98fce6360f, type: 2}
+    m_Data: {fileID: 11400000, guid: e55d3fb9889b017468dc542a941456f1, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 0
     m_Data: {fileID: 0}
   - m_RefCount: 3
-    m_Data: {fileID: 893886453, guid: 2c75636cce5424540b395f76e9009cd4, type: 3}
+    m_Data: {fileID: -1574045257, guid: 2c75636cce5424540b395f76e9009cd4, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 3
     m_Data:
@@ -1592,6 +1592,7 @@ GameObject:
   - component: {fileID: 1432855871}
   - component: {fileID: 1432855870}
   - component: {fileID: 1432855869}
+  - component: {fileID: 1432855873}
   m_Layer: 0
   m_Name: Player()
   m_TagString: Untagged
@@ -1607,7 +1608,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1432855867}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.17, y: 4.55, z: 0}
+  m_LocalPosition: {x: -12.21, y: 4.55, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1754,6 +1755,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1432855873
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1432855867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62b06c0f1ad325f48b2d6761d8918926, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1707804604
 GameObject:
   m_ObjectHideFlags: 0
