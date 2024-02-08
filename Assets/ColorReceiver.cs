@@ -6,7 +6,7 @@ using UnityEngine;
 public class ColorReceiver : MonoBehaviour
 {
    [SerializeField] private SpriteRenderer _spriteRenderer;
-
+   
     private void Awake()
     {
        
