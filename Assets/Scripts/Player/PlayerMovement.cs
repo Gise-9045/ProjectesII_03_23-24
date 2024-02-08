@@ -20,6 +20,11 @@ public class PlayerMovement : MonoBehaviour
 
     bool isJumping;
 
+    private float coyoteTime;
+    private float actualCoyoteTime;
+
+    private float slide;
+
 
 
     void Start()
@@ -28,45 +33,83 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         ground = GetComponentInChildren<PlayerGroundDetection>();
         isJumping = false;
+        coyoteTime = 0.3f;
     }
 
     void Update()
     {
-        //if (Input.GetKey(KeyCode.A))
-        //{
-        //    player.SetDirection(new Vector2(-1, player.GetDirection().y));
-
-        //    rb.velocity = new Vector2(player.GetDirection().x * player.GetSpeed(), rb.velocity.y);
-
-        //}
-        //else if (Input.GetKey(KeyCode.D))
-        //{
-        //    player.SetDirection(new Vector2(1, player.GetDirection().y));
-
-        //    rb.velocity = new Vector2(player.GetDirection().x * player.GetSpeed(), rb.velocity.y);
-
-        //}
+        Walk();
+        Jump();
+    }
 
 
-        if (ground.OnGround() && Input.GetKeyDown(KeyCode.Space))
+    void Walk()
+    {
+
+        if(slide > 0)
         {
-            isJumping = true;
-            actualJumpTimeCounter = jumpTimeCounter;
-            rb.velocity = Vector2.up * jumpForce;
+            slide -= Time.deltaTime;
+        }
+        else if(slide < 0)
+        {
+            slide = 0;
+        }
+
+
+        if (Input.GetKey(KeyCode.A))
+        {
+            slide = 0.3f;
+            player.SetDirection(new Vector2(-1, player.GetDirection().y));
+
+            rb.velocity = new Vector2(player.GetDirection().x * player.GetSpeed(), rb.velocity.y);
 
         }
-            
+        else if (Input.GetKey(KeyCode.D))
+        {
+            slide = 0.3f;
+            player.SetDirection(new Vector2(1, player.GetDirection().y));
+
+            rb.velocity = new Vector2(player.GetDirection().x * player.GetSpeed(), rb.velocity.y);
+
+        }
+        else
+        {
+            rb.velocity = new Vector2(player.GetDirection().x * (player.GetSpeed() * slide), rb.velocity.y);
+
+        }
+    }
+
+    void Jump()
+    {
+        if (ground.OnGround())
+        {
+            actualCoyoteTime = coyoteTime;
+        }
+        else
+        {
+            actualCoyoteTime -= Time.deltaTime;
+        }
+
+
+        if (actualCoyoteTime > 0 && Input.GetKeyDown(KeyCode.Space) && !isJumping)
+        {
+            actualCoyoteTime = 0f;
+            isJumping = true;
+            actualJumpTimeCounter = jumpTimeCounter;
+            rb.velocity = new Vector2(rb.velocity.x, Vector2.up.y * jumpForce);
+        }
+
         if (Input.GetKey(KeyCode.Space) && isJumping)
         {
 
             if (actualJumpTimeCounter > 0)
             {
-                 rb.velocity = Vector2.up * jumpForce;
+                rb.velocity = new Vector2(rb.velocity.x, Vector2.up.y * jumpForce);
                 actualJumpTimeCounter -= Time.deltaTime;
             }
             else
             {
-                 isJumping = false;
+                isJumping = false;
 
             }
         }
@@ -74,6 +117,7 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Space))
         {
             isJumping = false;
+            actualCoyoteTime = 0f;
         }
     }
 }
