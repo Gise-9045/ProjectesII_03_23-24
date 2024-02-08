@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public enum ColorTypes
 {
@@ -30,11 +31,11 @@ public class ColorList
 public class ColorSpreader : MonoBehaviour
 {
     public ColorProterty colorProperty;
-    private SpriteRenderer _spriteRenderer;
+    private Tilemap _spriteRenderer;
 
     private void Start()
     {
-        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _spriteRenderer = GetComponent<Tilemap>();
         _spriteRenderer.color = colorProperty.color;
     }
 
