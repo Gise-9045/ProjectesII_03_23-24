@@ -13,7 +13,7 @@ public class ColorSwap : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        myRenderer = GetComponent<SpriteRenderer>();
+        myRenderer = GetComponentInChildren<SpriteRenderer>();
         newColor.a = 1;
         myRenderer.color = newColor;
 
