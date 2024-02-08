@@ -13,12 +13,12 @@ public class ColorReceiver : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.CompareTag("ColorChange"))
+        if (collision.collider.CompareTag("ColorChange"))
         {
             Debug.Log("BEEP");
-            ChangeColor(collision.GetComponent<ColorSpreader>().GetColor());
+            ChangeColor(collision.collider.GetComponent<ColorSpreader>().GetColor());
         }
     }
     public void ChangeColor(Color color)
