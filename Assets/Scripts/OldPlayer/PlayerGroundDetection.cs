@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerGroundDetection : MonoBehaviour
 {
     RaycastHit2D rcGround;
-    private Transform parent;
+    private Player parent;
 
     [SerializeField] private float distanceX;
     [SerializeField] private float distanceY;
@@ -16,7 +16,7 @@ public class PlayerGroundDetection : MonoBehaviour
 
     void Start()
     {
-        parent = GetComponentInParent<Transform>();
+        parent = GetComponentInParent<Player>();
     }
 
 
@@ -29,7 +29,8 @@ public class PlayerGroundDetection : MonoBehaviour
     {
         Vector2 pos = new Vector2(0, 0);
 
-        if(parent.transform.rotation.y == 0)
+
+        if(parent.GetDirection().x == 1)
         {
             pos = new Vector2(parent.transform.position.x + (1 * distanceX), parent.transform.position.y + distanceY);
 
