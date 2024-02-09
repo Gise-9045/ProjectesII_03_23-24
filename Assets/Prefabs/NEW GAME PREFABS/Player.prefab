@@ -60,7 +60,7 @@ GameObject:
   - component: {fileID: 8297331419958875687}
   - component: {fileID: 2855868302909866203}
   - component: {fileID: 4699660460486079957}
-  - component: {fileID: 6297830050441247458}
+  - component: {fileID: 1453456629046782491}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -84,7 +84,7 @@ Transform:
   - {fileID: 3234670503469191788}
   - {fileID: 7714223498843353683}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &3052298248717793505
 Rigidbody2D:
@@ -186,7 +186,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpForce: 13
   jumpTimeCounter: 0.15
---- !u!114 &6297830050441247458
+--- !u!114 &1453456629046782491
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -195,11 +195,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4142734498769889216}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78e06d4fe4f15ec499e32a8daeac0f37, type: 3}
+  m_Script: {fileID: 11500000, guid: dd30b809185b5994382a38652cfd525a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  newColor: {r: 0, g: 0, b: 0, a: 0}
-  palette: 5
+  keys: []
+  player: {fileID: 6347379661504714166}
+  distanceBetweenKeys: 0.7
+  smoothness: 10
 --- !u!1 &9051913027470519325
 GameObject:
   m_ObjectHideFlags: 0
