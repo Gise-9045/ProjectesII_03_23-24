@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     private float coyoteTime;
     private float actualCoyoteTime;
     private int doubleJump = 0;
-    [SerializeField] private bool canDoubleJump = false;
+    private bool canDoubleJump = false;
     private float slide;
 
 
@@ -128,5 +128,8 @@ public class PlayerMovement : MonoBehaviour
             actualCoyoteTime = 0f;
         }
     }
-
+    public void SetDoubleJump(bool condition)
+    {
+        canDoubleJump = condition;
+    }
 }
