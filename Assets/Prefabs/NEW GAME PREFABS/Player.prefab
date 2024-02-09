@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e2b5ad0301cc6441b1f9c32baa21412, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceX: -0.25
-  distanceY: -0.7
+  distanceX: -0.42
+  distanceY: -0.5
   height: 0.5
 --- !u!1 &4142734498769889216
 GameObject:
@@ -61,6 +61,7 @@ GameObject:
   - component: {fileID: 2855868302909866203}
   - component: {fileID: 4699660460486079957}
   - component: {fileID: 1453456629046782491}
+  - component: {fileID: 1300749428106360260}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -184,7 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 972e26beb2e8c0344bb725a61b461ae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 15
+  jumpForce: 13
   jumpTimeCounter: 0.15
 --- !u!114 &1453456629046782491
 MonoBehaviour:
@@ -202,6 +203,20 @@ MonoBehaviour:
   player: {fileID: 6347379661504714166}
   distanceBetweenKeys: 0.7
   smoothness: 10
+--- !u!114 &1300749428106360260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4142734498769889216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62b06c0f1ad325f48b2d6761d8918926, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spriteRenderer: {fileID: 7750458099682802608}
+  boolManaging: {fileID: 4699660460486079957}
 --- !u!1 &9051913027470519325
 GameObject:
   m_ObjectHideFlags: 0

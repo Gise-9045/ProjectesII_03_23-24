@@ -13,9 +13,15 @@ public class Player : MonoBehaviour
 
     Vector2 direction;
 
+    [SerializeField] private Transform respawn; //posicion de respawn
+    private Transform player;
+
+    
+
     void Start()
     {
         direction= new Vector2(1, 1);
+        player = GetComponent<Transform>();
     }
 
     public void SetLife(int l) { life = l; }
@@ -74,5 +80,13 @@ public class Player : MonoBehaviour
     void Update()
     {
         
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Hazards"))
+        {
+            player.position = respawn.position;    
+        }
     }
 }
