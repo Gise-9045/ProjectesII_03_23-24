@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -37,15 +36,16 @@ public class ColorList
 public class ColorSpreader : MonoBehaviour
 {
     public ColorDatabase colorDatabase; // Referencia al ScriptableObject
-   [SerializeField] private Tilemap _spriteRenderer;
-   
+    
+    private Tilemap _spriteRenderer;
+
     public ColorTypes colorType; // Define el tipo de color a usar
 
 
     private void Start()
     {
-       
-        //_spriteRenderer = GetComponent<Tilemap>();
+
+        _spriteRenderer = GetComponent<Tilemap>();
         // Buscar el color correspondiente en la base de datos y asignarlo
         ColorProperty colorProperty = colorDatabase.colorList.Find(c => c.colorScheme == colorType);
         if (colorProperty != null)

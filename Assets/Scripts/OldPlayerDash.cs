@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerDash : MonoBehaviour
+public class OldPlayerDash : MonoBehaviour
 {
     [SerializeField] private InputActionReference dash;
     private float isDashing;

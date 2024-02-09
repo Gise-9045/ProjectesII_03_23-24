@@ -28,7 +28,7 @@ public class ButtonManager : MonoBehaviour
 
     public void PlayButton()
     {
-        SceneManager.LoadScene("Tutorial");
+        SceneManager.LoadScene("Level Tutorial");
     }
 
     public void SettingsButton()
