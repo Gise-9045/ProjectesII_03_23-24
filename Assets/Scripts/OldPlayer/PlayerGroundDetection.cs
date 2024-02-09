@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -13,6 +14,14 @@ public class PlayerGroundDetection : MonoBehaviour
 
     private bool onGround;
 
+    [SerializeField]
+    private BoxCollider2D boxCol;
+    [SerializeField]
+    private Rigidbody2D playerRb;
+
+    public Action OnGroundTouchdown;
+    public Action OnLeaveGround;
+
 
     void Start()
     {
@@ -27,42 +36,31 @@ public class PlayerGroundDetection : MonoBehaviour
 
     private void Update()
     {
-        Vector2 pos = new Vector2(0, 0);
+        bool previous = onGround;
 
-        if(parent.transform.rotation.y == 0)
+        Vector2 p = (Vector2)this.transform.position - Vector2.up * (boxCol.size.y / 2.0f) + boxCol.offset - Vector2.up * boxCol.edgeRadius;
+        Vector2 size = new Vector2(boxCol.size.x, boxCol.edgeRadius * 2.0f);
+        Collider2D[] colliders = Physics2D.OverlapBoxAll(p, size, 0.0f);
+
+        onGround = false;
+        foreach(Collider2D collider in colliders)
         {
-            pos = new Vector2(parent.transform.position.x + (1 * distanceX), parent.transform.position.y + distanceY);
-
+            if(collider.CompareTag("Ground") || collider.CompareTag("ColorChange"))
+            {
+                onGround = playerRb.velocity.y < 1.0f;
+                break;
+            }
         }
-        else
-        {
-            pos = new Vector2(parent.transform.position.x + (-1 * distanceX), parent.transform.position.y + distanceY);
 
+        if(onGround && !previous)
+        {
+            if (OnGroundTouchdown != null)
+                OnGroundTouchdown.Invoke();
         }
-
-        rcGround = Physics2D.Raycast(pos, Vector2.down, height);
-
-        //if(rcGround.collider == null)
-        //{
-        //    Debug.Log("NULL");
-
-        //}
-        //else
-        //{
-        //    Debug.Log(rcGround.collider.tag);
-        //}
-
-
-        if (rcGround.collider != null && rcGround.collider.tag == "Ground" || rcGround.collider != null && rcGround.collider.tag == "ColorChange")
+        else if(!onGround && previous)
         {
-            Debug.DrawRay(pos, new Vector2(0, -height), Color.green);
-            onGround = true;
-        }
-        else
-        {
-            Debug.DrawRay(pos, new Vector2(0, -height), Color.red);
-
-            onGround = false;
+            if (OnLeaveGround != null)
+                OnLeaveGround.Invoke();
         }
     }
 }

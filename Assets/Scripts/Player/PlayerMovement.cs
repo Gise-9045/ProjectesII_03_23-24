@@ -29,7 +29,13 @@ public class PlayerMovement : MonoBehaviour
     bool onStairs;
     bool usingStairs = false;
 
+    [SerializeField]
+    private ParticleSystem walkParticles;
+    [SerializeField]
+    private ParticleSystem jumpParticles;
 
+    [SerializeField]
+    private Animator animator;
 
     void Start()
     {
@@ -39,10 +45,18 @@ public class PlayerMovement : MonoBehaviour
         isJumping = false;
         onStairs = false;
         coyoteTime = 0.3f;
+
+        ground.OnGroundTouchdown += jumpParticles.Play;
+        ground.OnGroundTouchdown += walkParticles.Play;
+
+        ground.OnLeaveGround += walkParticles.Stop;
     }
 
     void Update()
     {
+
+        animator.SetFloat("FallVelocity", rb.velocity.y);
+        animator.SetBool("Grounded", ground.OnGround());
         Walk();
 
         if(onStairs)
@@ -64,10 +78,9 @@ public class PlayerMovement : MonoBehaviour
 
         }
 
-        Jump();
+        CheckJump();
 
     }
-
 
     void Walk()
     {
@@ -84,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
-            slide = 0.3f;
+            slide = 0.1f;
             player.SetDirection(new Vector2(-1, player.GetDirection().y));
 
             rb.velocity = new Vector2(player.GetDirection().x * player.GetSpeed(), rb.velocity.y);
@@ -92,7 +105,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
-            slide = 0.3f;
+            slide = 0.1f;
             player.SetDirection(new Vector2(1, player.GetDirection().y));
 
             rb.velocity = new Vector2(player.GetDirection().x * player.GetSpeed(), rb.velocity.y);
@@ -106,6 +119,13 @@ public class PlayerMovement : MonoBehaviour
     }
     void Jump()
     {
+        isJumping = true;
+        actualJumpTimeCounter = jumpTimeCounter;
+        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        jumpParticles.Play();
+    }
+    void CheckJump()
+    {
         if (ground.OnGround())
         {
             actualCoyoteTime = coyoteTime;
@@ -118,16 +138,12 @@ public class PlayerMovement : MonoBehaviour
 
         if (actualCoyoteTime > 0 && Input.GetKeyDown(KeyCode.Space) && !isJumping)
         {
+            Jump();
             actualCoyoteTime = 0f;
-            isJumping = true;
-            actualJumpTimeCounter = jumpTimeCounter;
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
         else if (canDoubleJump && doubleJump < 1 && Input.GetKeyDown(KeyCode.Space))
         {
-            isJumping = true;
-            actualJumpTimeCounter = jumpTimeCounter;
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            Jump();
             doubleJump++; // Incrementa el contador de saltos después de un doble salto
         }
 

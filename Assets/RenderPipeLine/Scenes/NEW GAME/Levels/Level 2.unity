@@ -677,6 +677,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 9133217937417573106, guid: 6b1a4e2b7293bb94ebc70d874974b9aa, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1127,9 +1131,10 @@ GameObject:
   - component: {fileID: 850669220}
   - component: {fileID: 850669219}
   - component: {fileID: 850669218}
+  - component: {fileID: 850669221}
   m_Layer: 0
   m_Name: Hazards
-  m_TagString: Untagged
+  m_TagString: Hazards
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1444,6 +1449,19 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &850669221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 850669216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e30936dbed41f648ab5b19c9dfd3dcd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1683388912}
 --- !u!1001 &969636515
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1759,6 +1777,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90877c543b25da74f8d321d10bf81583, type: 3}
+--- !u!114 &1683388912 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2855868302909866203, guid: 6b1a4e2b7293bb94ebc70d874974b9aa, type: 3}
+  m_PrefabInstance: {fileID: 306998119}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2262d54d3cd454643bcb69c5b09e47eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1707804604
 GameObject:
   m_ObjectHideFlags: 0
@@ -2261,7 +2290,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1874673888}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -13.71, y: 4.19, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
