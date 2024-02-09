@@ -12,13 +12,13 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
-        if(!pauseMenu.activeSelf && pauseController.action.WasPressedThisFrame())
+        if(!pauseMenu.activeSelf && Input.GetKeyDown(KeyCode.Escape))
         {
             pauseMenu.SetActive(true);
             Time.timeScale = 0.0f;
 
         }
-        else if(pauseMenu.activeSelf && pauseController.action.WasPressedThisFrame())
+        else if(pauseMenu.activeSelf && Input.GetKeyDown(KeyCode.Escape))
         {
             pauseMenu.SetActive(false);
             Time.timeScale = 1.0f;

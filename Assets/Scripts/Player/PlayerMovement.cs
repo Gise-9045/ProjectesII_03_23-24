@@ -27,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     private float slide;
 
     bool onStairs;
+    bool usingStairs = false;
 
 
 
@@ -46,8 +47,15 @@ public class PlayerMovement : MonoBehaviour
 
         if(onStairs)
         {
-            Stairs();
-            rb.gravityScale = 0f;
+            if (usingStairs)
+            {
+                Stairs();
+                rb.gravityScale = 0f;
+            }
+            else
+            {
+                usingStairs = Input.GetKeyDown(KeyCode.W) || rb.velocity.y <= 0.0f;
+            }
 
         }
         else
@@ -102,8 +110,6 @@ public class PlayerMovement : MonoBehaviour
         {
             actualCoyoteTime = coyoteTime;
             doubleJump = 0;
-
-
         }
         else
         {
@@ -130,10 +136,12 @@ public class PlayerMovement : MonoBehaviour
             if (actualJumpTimeCounter > 0)
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                rb.gravityScale = 0.0f;
                 actualJumpTimeCounter -= Time.deltaTime;
             }
             else
             {
+                rb.gravityScale = 9.81f;
                 isJumping = false;
             }
         }
@@ -142,6 +150,7 @@ public class PlayerMovement : MonoBehaviour
         {
             isJumping = false;
             actualCoyoteTime = 0f;
+            rb.gravityScale = 9.81f;
         }
     }
     /* void Jump()
@@ -223,5 +232,6 @@ public class PlayerMovement : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         onStairs = false;
+        usingStairs = false;
     }
 }
