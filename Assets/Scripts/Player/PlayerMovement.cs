@@ -74,7 +74,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             slide = 0.3f;
             player.SetDirection(new Vector2(-1, player.GetDirection().y));
@@ -82,7 +82,7 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(player.GetDirection().x * player.GetSpeed(), rb.velocity.y);
 
         }
-        else if (Input.GetKey(KeyCode.D))
+        else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             slide = 0.3f;
             player.SetDirection(new Vector2(1, player.GetDirection().y));
@@ -150,12 +150,12 @@ public class PlayerMovement : MonoBehaviour
 
     void Stairs()
     {
-        if(Input.GetKey(KeyCode.W))
+        if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             rb.gravityScale = 0f;
             rb.velocity = new Vector2(rb.velocity.x, 5);
         }
-        else if(Input.GetKey(KeyCode.S)) 
+        else if(Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) 
         {
             rb.gravityScale = 0f;
             rb.velocity = new Vector2(rb.velocity.x, -5);

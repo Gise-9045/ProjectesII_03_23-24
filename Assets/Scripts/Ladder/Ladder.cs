@@ -15,10 +15,4 @@ public class Ladder : MonoBehaviour
 
         col.size = sp.size;
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
