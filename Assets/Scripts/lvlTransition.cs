@@ -21,6 +21,10 @@ public class lvlTransition : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //transitions.SetTrigger("LvlPassed");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        if (collision.CompareTag("Player"))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+       
     }
 }

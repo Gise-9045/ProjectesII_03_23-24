@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Experimental.GraphView;
+//using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -11,33 +11,17 @@ public class Player : MonoBehaviour
     [SerializeField] private int life;
     [SerializeField] int speed;
 
-    int direction;
+    Vector2 direction;
 
     void Start()
     {
-        
+        direction= new Vector2(1, 1);
     }
 
-    private void OnEnable()
-    {
-        InputController.OnJump += Jump;
-        //InputController.OnMove 
-    }
-
-    private void OnDisable()
-    {
-        InputController.OnJump -= Jump;
-    }
-
-
-    public void SetLife(int l)
-    {
-        life = l;
-    }
-    public int GetLife()
-    {
-        return life;
-    }
+    public void SetLife(int l) { life = l; }
+    public int GetLife() { return life; }
+    public void SetSpeed(int s) { speed = s; }
+    public int GetSpeed() { return speed; }
 
     public void TakeDamage(int subtractLife, bool knock, float knockVel)
     {
@@ -66,14 +50,19 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void SetDirection(int d)
+    public void SetDirection(Vector2 d)
     {
         //-1 izquierda 1 derecha
         direction = d;
 
         Vector3 currentScale = gameObject.transform.localScale;
-        currentScale.x = direction;
+        currentScale.x = direction.x;
+        currentScale.y = direction.y;
         gameObject.transform.localScale = currentScale;
+    }
+    public Vector2 GetDirection()
+    {
+        return direction;
     }
 
     private IEnumerator KnockBack()
@@ -85,10 +74,5 @@ public class Player : MonoBehaviour
     void Update()
     {
         
-    }
-
-    private void Jump()
-    {
-        Debug.Log("OWO");
     }
 }
