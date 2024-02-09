@@ -23,10 +23,11 @@ public class PlayerMovement : MonoBehaviour
     private float coyoteTime;
     private float actualCoyoteTime;
     private int doubleJump = 0;
-    private bool canDoubleJump = false;
+    [SerializeField] private bool canDoubleJump = false;
     private float slide;
 
     bool onStairs;
+    bool usingStairs = false;
 
 
 
@@ -46,8 +47,15 @@ public class PlayerMovement : MonoBehaviour
 
         if(onStairs)
         {
-            Stairs();
-            rb.gravityScale = 0f;
+            if (usingStairs)
+            {
+                Stairs();
+                rb.gravityScale = 0f;
+            }
+            else
+            {
+                usingStairs = Input.GetKeyDown(KeyCode.W) || rb.velocity.y <= 0.0f;
+            }
 
         }
         else
@@ -96,41 +104,45 @@ public class PlayerMovement : MonoBehaviour
 
         }
     }
-
     void Jump()
     {
         if (ground.OnGround())
         {
             actualCoyoteTime = coyoteTime;
+            doubleJump = 0;
         }
         else
         {
             actualCoyoteTime -= Time.deltaTime;
         }
 
-
         if (actualCoyoteTime > 0 && Input.GetKeyDown(KeyCode.Space) && !isJumping)
         {
-            rb.gravityScale = 9.81f;
-
             actualCoyoteTime = 0f;
             isJumping = true;
             actualJumpTimeCounter = jumpTimeCounter;
-            rb.velocity = new Vector2(rb.velocity.x, Vector2.up.y * jumpForce);
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        }
+        else if (canDoubleJump && doubleJump < 1 && Input.GetKeyDown(KeyCode.Space))
+        {
+            isJumping = true;
+            actualJumpTimeCounter = jumpTimeCounter;
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            doubleJump++; // Incrementa el contador de saltos después de un doble salto
         }
 
         if (Input.GetKey(KeyCode.Space) && isJumping)
         {
-
             if (actualJumpTimeCounter > 0)
             {
-                rb.velocity = new Vector2(rb.velocity.x, Vector2.up.y * jumpForce);
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                rb.gravityScale = 0.0f;
                 actualJumpTimeCounter -= Time.deltaTime;
             }
             else
             {
+                rb.gravityScale = 9.81f;
                 isJumping = false;
-
             }
         }
 
@@ -138,8 +150,52 @@ public class PlayerMovement : MonoBehaviour
         {
             isJumping = false;
             actualCoyoteTime = 0f;
+            rb.gravityScale = 9.81f;
         }
     }
+    /* void Jump()
+     {
+         if (ground.OnGround())
+         {
+             actualCoyoteTime = coyoteTime;
+         }
+         else
+         {
+             actualCoyoteTime -= Time.deltaTime;
+         }
+
+
+         if (actualCoyoteTime > 0 && Input.GetKeyDown(KeyCode.Space) && !isJumping)
+         {
+             rb.gravityScale = 9.81f;
+
+             actualCoyoteTime = 0f;
+             isJumping = true;
+             actualJumpTimeCounter = jumpTimeCounter;
+             rb.velocity = new Vector2(rb.velocity.x, Vector2.up.y * jumpForce);
+         }
+
+         if (Input.GetKey(KeyCode.Space) && isJumping)
+         {
+
+             if (actualJumpTimeCounter > 0)
+             {
+                 rb.velocity = new Vector2(rb.velocity.x, Vector2.up.y * jumpForce);
+                 actualJumpTimeCounter -= Time.deltaTime;
+             }
+             else
+             {
+                 isJumping = false;
+
+             }
+         }
+
+         if (Input.GetKeyUp(KeyCode.Space))
+         {
+             isJumping = false;
+             actualCoyoteTime = 0f;
+         }
+     }*/
     public void SetDoubleJump(bool condition)
     {
         canDoubleJump = condition;
@@ -176,5 +232,6 @@ public class PlayerMovement : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         onStairs = false;
+        usingStairs = false;
     }
 }
