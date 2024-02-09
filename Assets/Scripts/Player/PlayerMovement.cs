@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     private float coyoteTime;
     private float actualCoyoteTime;
     private int doubleJump = 0;
-    [SerializeField] private bool canDoubleJump = false;
+    private bool canDoubleJump = false;
     private float slide;
 
     bool onStairs;
@@ -64,11 +64,11 @@ public class PlayerMovement : MonoBehaviour
     void Walk()
     {
 
-        if (slide > 0)
+        if(slide > 0)
         {
             slide -= Time.deltaTime;
         }
-        else if (slide < 0)
+        else if(slide < 0)
         {
             slide = 0;
         }
@@ -102,13 +102,11 @@ public class PlayerMovement : MonoBehaviour
         if (ground.OnGround())
         {
             actualCoyoteTime = coyoteTime;
-            doubleJump = 0;
         }
         else
         {
             actualCoyoteTime -= Time.deltaTime;
         }
-
 
 
         if (actualCoyoteTime > 0 && Input.GetKeyDown(KeyCode.Space) && !isJumping)
@@ -118,26 +116,21 @@ public class PlayerMovement : MonoBehaviour
             actualCoyoteTime = 0f;
             isJumping = true;
             actualJumpTimeCounter = jumpTimeCounter;
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-        }
-        else if (canDoubleJump && doubleJump < 1 && Input.GetKeyDown(KeyCode.Space))
-        {
-            isJumping = true;
-            actualJumpTimeCounter = jumpTimeCounter;
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            doubleJump++; // Incrementa el contador de saltos después de un doble salto
+            rb.velocity = new Vector2(rb.velocity.x, Vector2.up.y * jumpForce);
         }
 
         if (Input.GetKey(KeyCode.Space) && isJumping)
         {
+
             if (actualJumpTimeCounter > 0)
             {
-                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                rb.velocity = new Vector2(rb.velocity.x, Vector2.up.y * jumpForce);
                 actualJumpTimeCounter -= Time.deltaTime;
             }
             else
             {
                 isJumping = false;
+
             }
         }
 
@@ -146,6 +139,10 @@ public class PlayerMovement : MonoBehaviour
             isJumping = false;
             actualCoyoteTime = 0f;
         }
+    }
+    public void SetDoubleJump(bool condition)
+    {
+        canDoubleJump = condition;
     }
 
     void Stairs()

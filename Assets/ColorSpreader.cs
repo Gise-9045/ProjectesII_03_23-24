@@ -58,5 +58,10 @@ public class ColorSpreader : MonoBehaviour
     {
         return _spriteRenderer.color;
     }
+    public ColorTypes GetColorType()
+    {
+        ColorProperty colorProperty = colorDatabase.colorList.Find(c => c.colorScheme == colorType);
+        return colorProperty.colorScheme;
+    }
 
 }
