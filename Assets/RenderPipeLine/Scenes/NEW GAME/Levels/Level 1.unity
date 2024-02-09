@@ -1486,11 +1486,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0fe614d5db9199b46800996b9ba00913, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1154774826 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4142734498769889216, guid: 6b1a4e2b7293bb94ebc70d874974b9aa, type: 3}
-  m_PrefabInstance: {fileID: 1622501651}
-  m_PrefabAsset: {fileID: 0}
 --- !u!61 &1154774831 stripped
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 8297331419958875687, guid: 6b1a4e2b7293bb94ebc70d874974b9aa, type: 3}
@@ -1501,27 +1496,11 @@ Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 3052298248717793505, guid: 6b1a4e2b7293bb94ebc70d874974b9aa, type: 3}
   m_PrefabInstance: {fileID: 1622501651}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &1154774834
+--- !u!95 &1154774834 stripped
 Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 6038616916327065998, guid: 6b1a4e2b7293bb94ebc70d874974b9aa, type: 3}
+  m_PrefabInstance: {fileID: 1622501651}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1154774826}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 004f91ef782548446bc8b877b17cf034, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1160952469
 GameObject:
   m_ObjectHideFlags: 0
@@ -1811,10 +1790,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4142734498769889216, guid: 6b1a4e2b7293bb94ebc70d874974b9aa, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1154774834}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b1a4e2b7293bb94ebc70d874974b9aa, type: 3}
 --- !u!1001 &1711176283
 PrefabInstance:
