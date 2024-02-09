@@ -7,12 +7,12 @@ using UnityEngine;
 public class ColorReceiver : MonoBehaviour
 {
    [SerializeField] private SpriteRenderer _spriteRenderer;
-    private PlayerMovement boolManaging;
+    [SerializeField] private PlayerMovement boolManaging;
    
    
     private void Awake()
     {
-       boolManaging = GetComponent<PlayerMovement>();
+      // boolManaging = GetComponent<PlayerMovement>();
 
     }
     private void Update()

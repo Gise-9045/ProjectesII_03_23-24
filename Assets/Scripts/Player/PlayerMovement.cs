@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     private float coyoteTime;
     private float actualCoyoteTime;
     private int doubleJump = 0;
-    private bool canDoubleJump = false;
+    [SerializeField] private bool canDoubleJump = false;
     private float slide;
 
     bool onStairs;
@@ -96,41 +96,45 @@ public class PlayerMovement : MonoBehaviour
 
         }
     }
-
     void Jump()
     {
         if (ground.OnGround())
         {
             actualCoyoteTime = coyoteTime;
+            doubleJump = 0;
+
+
         }
         else
         {
             actualCoyoteTime -= Time.deltaTime;
         }
 
-
         if (actualCoyoteTime > 0 && Input.GetKeyDown(KeyCode.Space) && !isJumping)
         {
-            rb.gravityScale = 9.81f;
-
             actualCoyoteTime = 0f;
             isJumping = true;
             actualJumpTimeCounter = jumpTimeCounter;
-            rb.velocity = new Vector2(rb.velocity.x, Vector2.up.y * jumpForce);
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+        }
+        else if (canDoubleJump && doubleJump < 1 && Input.GetKeyDown(KeyCode.Space))
+        {
+            isJumping = true;
+            actualJumpTimeCounter = jumpTimeCounter;
+            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            doubleJump++; // Incrementa el contador de saltos después de un doble salto
         }
 
         if (Input.GetKey(KeyCode.Space) && isJumping)
         {
-
             if (actualJumpTimeCounter > 0)
             {
-                rb.velocity = new Vector2(rb.velocity.x, Vector2.up.y * jumpForce);
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
                 actualJumpTimeCounter -= Time.deltaTime;
             }
             else
             {
                 isJumping = false;
-
             }
         }
 
@@ -140,6 +144,49 @@ public class PlayerMovement : MonoBehaviour
             actualCoyoteTime = 0f;
         }
     }
+    /* void Jump()
+     {
+         if (ground.OnGround())
+         {
+             actualCoyoteTime = coyoteTime;
+         }
+         else
+         {
+             actualCoyoteTime -= Time.deltaTime;
+         }
+
+
+         if (actualCoyoteTime > 0 && Input.GetKeyDown(KeyCode.Space) && !isJumping)
+         {
+             rb.gravityScale = 9.81f;
+
+             actualCoyoteTime = 0f;
+             isJumping = true;
+             actualJumpTimeCounter = jumpTimeCounter;
+             rb.velocity = new Vector2(rb.velocity.x, Vector2.up.y * jumpForce);
+         }
+
+         if (Input.GetKey(KeyCode.Space) && isJumping)
+         {
+
+             if (actualJumpTimeCounter > 0)
+             {
+                 rb.velocity = new Vector2(rb.velocity.x, Vector2.up.y * jumpForce);
+                 actualJumpTimeCounter -= Time.deltaTime;
+             }
+             else
+             {
+                 isJumping = false;
+
+             }
+         }
+
+         if (Input.GetKeyUp(KeyCode.Space))
+         {
+             isJumping = false;
+             actualCoyoteTime = 0f;
+         }
+     }*/
     public void SetDoubleJump(bool condition)
     {
         canDoubleJump = condition;
