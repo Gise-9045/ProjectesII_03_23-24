@@ -838,6 +838,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 4699660460486079957, guid: 6b1a4e2b7293bb94ebc70d874974b9aa, type: 3}
+      propertyPath: animator
+      value: 
+      objectReference: {fileID: 1182553228}
+    - target: {fileID: 4699660460486079957, guid: 6b1a4e2b7293bb94ebc70d874974b9aa, type: 3}
       propertyPath: jumpForce
       value: 25
       objectReference: {fileID: 0}
@@ -885,11 +889,34 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8112743677211091208, guid: 6b1a4e2b7293bb94ebc70d874974b9aa, type: 3}
+      propertyPath: boxCol
+      value: 
+      objectReference: {fileID: 1182553229}
+    - target: {fileID: 8112743677211091208, guid: 6b1a4e2b7293bb94ebc70d874974b9aa, type: 3}
+      propertyPath: playerRb
+      value: 
+      objectReference: {fileID: 1182553230}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6b1a4e2b7293bb94ebc70d874974b9aa, type: 3}
+--- !u!95 &1182553228 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6038616916327065998, guid: 6b1a4e2b7293bb94ebc70d874974b9aa, type: 3}
+  m_PrefabInstance: {fileID: 1182553227}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &1182553229 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 8297331419958875687, guid: 6b1a4e2b7293bb94ebc70d874974b9aa, type: 3}
+  m_PrefabInstance: {fileID: 1182553227}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &1182553230 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 3052298248717793505, guid: 6b1a4e2b7293bb94ebc70d874974b9aa, type: 3}
+  m_PrefabInstance: {fileID: 1182553227}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1711215539
 GameObject:
   m_ObjectHideFlags: 0

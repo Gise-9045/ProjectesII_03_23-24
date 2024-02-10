@@ -1483,9 +1483,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 850669216}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fe614d5db9199b46800996b9ba00913, type: 3}
+  m_Script: {fileID: 11500000, guid: 7e30936dbed41f648ab5b19c9dfd3dcd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1255777263}
 --- !u!61 &1154774831 stripped
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 8297331419958875687, guid: 6b1a4e2b7293bb94ebc70d874974b9aa, type: 3}
@@ -1638,6 +1639,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1255777263 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2855868302909866203, guid: 6b1a4e2b7293bb94ebc70d874974b9aa, type: 3}
+  m_PrefabInstance: {fileID: 1622501651}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2262d54d3cd454643bcb69c5b09e47eb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1456638108
 PrefabInstance:
   m_ObjectHideFlags: 0
