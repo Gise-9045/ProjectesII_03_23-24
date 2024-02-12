@@ -16,6 +16,7 @@ public class KeySaver : MonoBehaviour
         if (collision.CompareTag("Key"))
         {
             collision.transform.localScale = new Vector2(0.7f, 0.7f);
+            collision.gameObject.GetComponent<Collider2D>().enabled = false;
             keys.Add(collision.transform);
 
             // Gira la llave hacia el lado opuesto al que mira el jugador
