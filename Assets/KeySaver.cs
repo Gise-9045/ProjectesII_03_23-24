@@ -20,7 +20,6 @@ public class KeySaver : MonoBehaviour
             keys.Add(collision.transform);
 
             // Gira la llave hacia el lado opuesto al que mira el jugador
-            RotateKeyTowardsPlayer(false);
         }
     }
 
