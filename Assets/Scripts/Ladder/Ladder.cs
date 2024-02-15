@@ -13,6 +13,6 @@ public class Ladder : MonoBehaviour
         col = GetComponent<BoxCollider2D>();
         sp = GetComponentInChildren<SpriteRenderer>();
 
-        col.size = sp.size;
+        col.size = new Vector2(sp.size.x/2, sp.size.y);
     }
 }

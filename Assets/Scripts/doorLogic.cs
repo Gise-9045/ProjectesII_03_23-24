@@ -9,9 +9,9 @@ public class doorLogic : MonoBehaviour
     [SerializeField] private bool isActive;
     [SerializeField] private leverActivation leverControl;
     [SerializeField] private SpriteRenderer sprite;
-    [SerializeField] private AudioClip doorClip;
-    [SerializeField] private AudioSource doorSource;
-    [SerializeField, Range(0f, 3f)] private float volumeAudio = 0.2f;
+    //[SerializeField] private AudioClip doorClip;
+    //[SerializeField] private AudioSource doorSource;
+    //[SerializeField, Range(0f, 3f)] private float volumeAudio = 0.2f;
     public bool isOpen;
     // Start is called before the first frame update
     void Start()
@@ -22,7 +22,7 @@ public class doorLogic : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        doorSource.volume = volumeAudio;    
+        //doorSource.volume = volumeAudio;    
         isActive = leverControl.isActive;
         GetComponent<Collider2D>().enabled = !isActive;
        sprite.enabled = !isActive;
@@ -31,9 +31,9 @@ public class doorLogic : MonoBehaviour
     public void Toggle()
     {
         isActive = !isActive;
-        doorSource.clip = doorClip;
+        //doorSource.clip = doorClip;
        sprite.enabled = isActive;
-        doorSource.Play();
+        //doorSource.Play();
         GetComponent<Collider2D>().enabled = isActive;
         
     }
