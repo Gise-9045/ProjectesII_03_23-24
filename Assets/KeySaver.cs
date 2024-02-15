@@ -27,12 +27,7 @@ public class KeySaver : MonoBehaviour
 
     void Update()
     {
-        // Verifica si el jugador ha girado
-        if (player.rotation != playerPreviousRotation)
-        {
-            RotateKeyTowardsPlayer(true);
-            playerPreviousRotation = player.rotation;
-        }
+     
 
         // Movemos las llaves hacia el jugador con un espacio de 2 unidades entre ellas
         foreach (Transform key in keys)
@@ -51,17 +46,5 @@ public class KeySaver : MonoBehaviour
         }
     }
 
-    void RotateKeyTowardsPlayer(bool inverseRotation)
-    {
-        foreach (Transform key in keys)
-        {
-            Vector3 keyRotation = key.rotation.eulerAngles;
-            if (inverseRotation)
-                keyRotation.z -= 180f;
-            else
-                keyRotation.z += 180f;
-
-            key.rotation = Quaternion.Euler(keyRotation);
-        }
-    }
+    
 }
