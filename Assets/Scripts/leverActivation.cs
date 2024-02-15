@@ -4,8 +4,7 @@ using UnityEngine;
 public class leverActivation : MonoBehaviour
 {
     
-    [SerializeField] private PlayerAttackController controllerAtk;
-    private bool playerIsHitting = false; //Track the previous state of the player's attack action
+    
    
     public bool isActive;
     [SerializeField] private SpriteRenderer sprite;
@@ -20,10 +19,16 @@ public class leverActivation : MonoBehaviour
     {
         
     }
-
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            Toggle();
+        }
+    }
     public void Toggle()
     {
         isActive = true;
-        sprite.flipX = isActive;
+        
     }
 }
