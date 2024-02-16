@@ -44,11 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e2b5ad0301cc6441b1f9c32baa21412, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distanceX: -0.42
-  distanceY: -0.5
-  height: 0.5
-  boxCol: {fileID: 0}
-  playerRb: {fileID: 0}
 --- !u!1 &4142734498769889216
 GameObject:
   m_ObjectHideFlags: 0
@@ -195,9 +190,12 @@ MonoBehaviour:
   jumpForce: 13
   jumpTimeCounter: 0.15
   canDoubleJump: 0
+  dashVelocity: 20
+  dashTimer: 0.2
+  canDash: 1
+  dashCooldown: 0.5
   walkParticles: {fileID: 6481496431267818245}
   jumpParticles: {fileID: 7029129437548754459}
-  animator: {fileID: 0}
 --- !u!114 &1453456629046782491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10130,6 +10128,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6872624881921557582}
   - component: {fileID: 7750458099682802608}
+  - component: {fileID: 4153527862323257196}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -10190,8 +10189,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1634254561
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 1166968686, guid: 2c75636cce5424540b395f76e9009cd4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -10204,3 +10203,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4153527862323257196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9133217937417573106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d6bc33d25617ed458768e753813a9ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
