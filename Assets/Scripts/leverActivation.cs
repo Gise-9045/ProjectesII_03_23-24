@@ -6,6 +6,7 @@ public class leverActivation : MonoBehaviour
     
     public bool isActive;
     [SerializeField] private SpriteRenderer sprite;
+    [SerializeField] private doorLogic doorAffected;
 
     public void Start()
     {
@@ -23,6 +24,12 @@ public class leverActivation : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             Toggle();
+            if (doorAffected.GetActive() == false)
+            {
+                doorAffected.Toggle();
+            }
+            
+            
         }
     }
     public void Toggle()

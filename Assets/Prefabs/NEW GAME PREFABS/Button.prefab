@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6771856592171695001}
   m_Layer: 0
   m_Name: Sprite
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -145,6 +145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActive: 0
   sprite: {fileID: 8604578124681948764}
+  doorAffected: {fileID: 0}
 --- !u!1 &8141295534420899593
 GameObject:
   m_ObjectHideFlags: 0

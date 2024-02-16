@@ -10,7 +10,8 @@ public class Player : MonoBehaviour
 
     [SerializeField] private int life;
     [SerializeField] int speed;
-
+    [SerializeField] private ParticleSystem hurtParticles;
+    
     Vector2 direction;
 
     [SerializeField] private Transform respawn; //posicion de respawn
@@ -31,6 +32,10 @@ public class Player : MonoBehaviour
 
     public void TakeDamage()
     {
+        
+        hurtParticles.transform.position = player.transform.position;
+        hurtParticles.Play();
+        
         player.position = respawn.position;
     }
 

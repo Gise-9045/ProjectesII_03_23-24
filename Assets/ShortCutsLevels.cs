@@ -27,7 +27,7 @@ public class ShortCutsLevels : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            SceneManager.LoadScene("Level 3(JUMP)");
+            SceneManager.LoadScene("Level JUMP");
         }
 
         if(Input.GetKeyDown(KeyCode.Alpha4))

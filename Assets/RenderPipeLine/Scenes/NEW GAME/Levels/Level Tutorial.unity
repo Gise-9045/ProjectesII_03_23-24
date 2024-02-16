@@ -5029,6 +5029,10 @@ PrefabInstance:
       propertyPath: respawn
       value: 
       objectReference: {fileID: 1807423241}
+    - target: {fileID: 2855868302909866203, guid: 6b1a4e2b7293bb94ebc70d874974b9aa, type: 3}
+      propertyPath: hurtParticles
+      value: 
+      objectReference: {fileID: 1647062341}
     - target: {fileID: 4142734498769889216, guid: 6b1a4e2b7293bb94ebc70d874974b9aa, type: 3}
       propertyPath: m_Name
       value: Player
@@ -5510,6 +5514,72 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!1001 &1637397538
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6911302292822805304, guid: 59efc6f65ead8364ea19184d389ea501, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6911302292822805304, guid: 59efc6f65ead8364ea19184d389ea501, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -5.731686
+      objectReference: {fileID: 0}
+    - target: {fileID: 6911302292822805304, guid: 59efc6f65ead8364ea19184d389ea501, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -1.7853239
+      objectReference: {fileID: 0}
+    - target: {fileID: 6911302292822805304, guid: 59efc6f65ead8364ea19184d389ea501, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.07229894
+      objectReference: {fileID: 0}
+    - target: {fileID: 6911302292822805304, guid: 59efc6f65ead8364ea19184d389ea501, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6911302292822805304, guid: 59efc6f65ead8364ea19184d389ea501, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6911302292822805304, guid: 59efc6f65ead8364ea19184d389ea501, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6911302292822805304, guid: 59efc6f65ead8364ea19184d389ea501, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6911302292822805304, guid: 59efc6f65ead8364ea19184d389ea501, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6911302292822805304, guid: 59efc6f65ead8364ea19184d389ea501, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6911302292822805304, guid: 59efc6f65ead8364ea19184d389ea501, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7944925222244490561, guid: 59efc6f65ead8364ea19184d389ea501, type: 3}
+      propertyPath: m_Name
+      value: HurtParticles
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 59efc6f65ead8364ea19184d389ea501, type: 3}
+--- !u!198 &1647062341 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5070386794244897242, guid: 59efc6f65ead8364ea19184d389ea501, type: 3}
+  m_PrefabInstance: {fileID: 1637397538}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1682481792
 GameObject:
   m_ObjectHideFlags: 0

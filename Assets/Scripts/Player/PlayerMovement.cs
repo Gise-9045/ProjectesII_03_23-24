@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     private int doubleJump = 0;
     [SerializeField] private bool canDoubleJump = false;
     private float slide;
+    [SerializeField] private TrailRenderer dashTrail;
 
     bool onStairs;
     bool usingStairs = false;
@@ -131,6 +132,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void Jump()
     {
+       
         isJumping = true;
         actualJumpTimeCounter = jumpTimeCounter;
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
@@ -142,10 +144,12 @@ public class PlayerMovement : MonoBehaviour
         {
             actualCoyoteTime = coyoteTime;
             doubleJump = 0;
+            dashTrail.emitting = false;
         }
         else
         {
             actualCoyoteTime -= Time.deltaTime;
+            //fallingTrail.emitting = false;
         }
 
         if (actualCoyoteTime > 0 && Input.GetKeyDown(KeyCode.Space) && !isJumping)
@@ -171,6 +175,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 rb.gravityScale = 9.81f;
                 isJumping = false;
+                
             }
         }
 
@@ -192,6 +197,7 @@ public class PlayerMovement : MonoBehaviour
         if (actualDashTimer > 0)
         {
             dashing = true;
+            dashTrail.emitting = true;
             actualDashCooldown = 0.5f;
             rb.velocity = new Vector2(player.GetDirection().x * dashVelocity, 0);
             rb.gravityScale = 0f;
@@ -200,6 +206,7 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             dashing = false;
+            dashTrail.emitting = false;
         }
     }
 
