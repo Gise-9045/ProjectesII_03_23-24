@@ -13,6 +13,13 @@ TagManager:
   - ItemDash
   - ItemJump
   - water
+  - Particles
+  - Hazards
+  - CameraAnimation
+  - ColorChange
+  - Key
+  - FxTemporaire
+  - Ladder
   layers:
   - Default
   - TransparentFX
@@ -22,7 +29,7 @@ TagManager:
   - UI
   - Ground
   - Player
-  - 
+  - Hazard
   - 
   - 
   - 
@@ -49,4 +56,16 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 2216934569
+    locked: 0
+  - name: Entities
+    uniqueID: 2660712735
+    locked: 0
+  - name: Ground
+    uniqueID: 2492679243
+    locked: 0
+  - name: Decoration
+    uniqueID: 525054241
     locked: 0

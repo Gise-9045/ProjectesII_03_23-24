@@ -8,23 +8,33 @@ public class doorLogic : MonoBehaviour
 {
     [SerializeField] private bool isActive;
     [SerializeField] private leverActivation leverControl;
-    public TextMeshProUGUI touchCounterText;
+    [SerializeField] private SpriteRenderer sprite;
+    //[SerializeField] private AudioClip doorClip;
+    //[SerializeField] private AudioSource doorSource;
+    //[SerializeField, Range(0f, 3f)] private float volumeAudio = 0.2f;
+    public bool isOpen;
     // Start is called before the first frame update
     void Start()
     {
         isActive = leverControl.isActive;
-        touchCounterText.text = isActive ? "OPEN" : "CLOSED";
+        
+        //sprite = GetComponent<SpriteRenderer>();
     }
     private void FixedUpdate()
     {
+        //doorSource.volume = volumeAudio;    
         isActive = leverControl.isActive;
         GetComponent<Collider2D>().enabled = !isActive;
-        touchCounterText.text = isActive ? "OPEN" : "CLOSED";
+       sprite.enabled = !isActive;
+        
     }
     public void Toggle()
     {
         isActive = !isActive;
-        GetComponent<Collider2D>().enabled = !isActive;
-        touchCounterText.text = isActive ? "OPEN" : "CLOSED";
+        //doorSource.clip = doorClip;
+       sprite.enabled = isActive;
+        //doorSource.Play();
+        GetComponent<Collider2D>().enabled = isActive;
+        
     }
 }

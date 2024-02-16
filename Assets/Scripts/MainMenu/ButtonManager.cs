@@ -28,7 +28,7 @@ public class ButtonManager : MonoBehaviour
 
     public void PlayButton()
     {
-        SceneManager.LoadScene("Gym");
+        SceneManager.LoadScene("Level Tutorial");
     }
 
     public void SettingsButton()
@@ -131,7 +131,7 @@ public class ButtonManager : MonoBehaviour
 
         for (int i = 0; i < controlsAnim.LongLength; i++)
         {
-            controlsAnim[i].SetBool("isActive", true);
+            //controlsAnim[i].SetBool("isActive", true);
         }
     }
 
@@ -146,7 +146,7 @@ public class ButtonManager : MonoBehaviour
     {
         for (int i = 0; i < controlsAnim.LongLength; i++)
         {
-            controlsAnim[i].SetBool("isActive", false);
+            //controlsAnim[i].SetBool("isActive", false);
         }
 
         yield return new WaitForSeconds(0.8f);
