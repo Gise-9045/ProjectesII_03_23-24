@@ -18,34 +18,34 @@ public class NewPlayerController : MonoBehaviour
 
     }
 
-    private void FixedUpdate() //fixedupdate è preferibile con tutto quello che ha a che fare con fisica
-    {
-        Debug.Log("FixedUpdate");
-        platform = Physics2D.OverlapCircle(platformCheck.position, platformCheckRadius, whatIsPlatform);
+    //private void FixedUpdate() //fixedupdate è preferibile con tutto quello che ha a che fare con fisica
+    //{
+    //    Debug.Log("FixedUpdate");
+    //    platform = Physics2D.OverlapCircle(platformCheck.position, platformCheckRadius, whatIsPlatform);
 
-        if (Input.GetKeyDown(KeyCode.Space) && platform)
-        {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, jumpPower);
-        }
-        if (Input.GetKey(KeyCode.D) && platform)
-        {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(moveSpeed, 0);
-            Debug.Log("D");
-        }
-        if (Input.GetKey(KeyCode.A) && platform)
-        {
-            GetComponent<Rigidbody2D>().velocity = new Vector2(-moveSpeed, 0);
-        }
+    //    if (Input.GetKeyDown(KeyCode.Space) && platform)
+    //    {
+    //        GetComponent<Rigidbody2D>().velocity = new Vector2(GetComponent<Rigidbody2D>().velocity.x, jumpPower);
+    //    }
+    //    if (Input.GetKey(KeyCode.D) && platform)
+    //    {
+    //        GetComponent<Rigidbody2D>().velocity = new Vector2(moveSpeed, 0);
+    //        Debug.Log("D");
+    //    }
+    //    if (Input.GetKey(KeyCode.A) && platform)
+    //    {
+    //        GetComponent<Rigidbody2D>().velocity = new Vector2(-moveSpeed, 0);
+    //    }
 
-        // flip player
-        if (GetComponent<Rigidbody2D>().velocity.x > 0)
-        {
-            transform.localScale = new Vector3(1f, 1f, 1f);
-        }
-        else if (GetComponent<Rigidbody2D>().velocity.x < 0)
-        {
-            transform.localScale = new Vector3(-1f, 1f, 1f);
-        }
-    }
+    //    // flip player
+    //    if (GetComponent<Rigidbody2D>().velocity.x > 0)
+    //    {
+    //        transform.localScale = new Vector3(1f, 1f, 1f);
+    //    }
+    //    else if (GetComponent<Rigidbody2D>().velocity.x < 0)
+    //    {
+    //        transform.localScale = new Vector3(-1f, 1f, 1f);
+    //    }
+    //}
 
 }
