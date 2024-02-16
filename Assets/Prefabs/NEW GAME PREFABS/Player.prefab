@@ -190,6 +190,10 @@ MonoBehaviour:
   jumpForce: 13
   jumpTimeCounter: 0.15
   canDoubleJump: 0
+  dashVelocity: 20
+  dashTimer: 0.2
+  canDash: 1
+  dashCooldown: 0.5
   walkParticles: {fileID: 6481496431267818245}
   jumpParticles: {fileID: 7029129437548754459}
 --- !u!114 &1453456629046782491

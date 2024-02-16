@@ -29,6 +29,14 @@ public class PlayerMovement : MonoBehaviour
     bool onStairs;
     bool usingStairs = false;
 
+    bool dashing = false;
+    [SerializeField] float dashVelocity;
+    float actualDashTimer;
+    [SerializeField] float dashTimer;
+    [SerializeField] bool canDash;
+    [SerializeField] float dashCooldown;
+    float actualDashCooldown = 0;
+
     [SerializeField]
     private ParticleSystem walkParticles;
     [SerializeField]
@@ -58,8 +66,9 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("FallVelocity", rb.velocity.y);
         animator.SetBool("Grounded", ground.OnGround());
         Walk();
+        DashCheck();
 
-        if(onStairs)
+        if (onStairs)
         {
             if (usingStairs)
             {
@@ -72,10 +81,14 @@ public class PlayerMovement : MonoBehaviour
             }
 
         }
-        else
+        else if (canDash && !dashing && Input.GetKeyDown(KeyCode.LeftShift) && actualDashCooldown <= 0)
+        {
+            actualDashTimer = dashTimer;
+            rb.gravityScale = 0f;
+        }
+        else if(!dashing)
         {
             rb.gravityScale = 9.81f;
-
         }
 
         CheckJump();
@@ -169,6 +182,28 @@ public class PlayerMovement : MonoBehaviour
             rb.gravityScale = 9.81f;
         }
     }
+
+    void DashCheck()
+    {
+        if (actualDashCooldown > 0)
+        {
+            actualDashCooldown -= Time.deltaTime;
+        }
+
+        if (actualDashTimer > 0)
+        {
+            dashing = true;
+            actualDashCooldown = 0.5f;
+            rb.velocity = new Vector2(player.GetDirection().x * dashVelocity, 0);
+            rb.gravityScale = 0f;
+            actualDashTimer -= Time.deltaTime;
+        }
+        else
+        {
+            dashing = false;
+        }
+    }
+
     /* void Jump()
      {
          if (ground.OnGround())
