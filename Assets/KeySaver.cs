@@ -18,12 +18,10 @@ public class KeySaver : MonoBehaviour
             collision.transform.localScale = new Vector2(0.7f, 0.7f);
             collision.gameObject.GetComponent<Collider2D>().enabled = false;
             keys.Add(collision.transform);
-
-            // Gira la llave hacia el lado opuesto al que mira el jugador
-            RotateKeyTowardsPlayer(false);
         }
     }
 
+    public List<Transform> GetListKeys() { return keys;}
 
     void Update()
     {
@@ -32,14 +30,6 @@ public class KeySaver : MonoBehaviour
         // Movemos las llaves hacia el jugador con un espacio de 2 unidades entre ellas
         foreach (Transform key in keys)
         {
-            if (player.position.x > 0)
-            {
-                
-            }
-            if (player.position.x < 0)
-            {
-             
-            }
 
             Vector3 targetPosition = player.position + Vector3.right * distanceBetweenKeys * keys.IndexOf(key) + new Vector3(1,0,0);
             key.position = Vector3.Lerp(key.position, targetPosition, Time.deltaTime * smoothness);
