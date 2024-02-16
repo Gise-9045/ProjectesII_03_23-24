@@ -10,24 +10,28 @@ public class ButtonManager : MonoBehaviour
     [SerializeField] private GameObject exitDialog;
     [SerializeField] private GameObject controls;
 
-    [SerializeField] private Animator[] mainMenuAnim;
-    [SerializeField] private Animator[] optionsAnim;
-    [SerializeField] private Animator[] controlsAnim;
+
+    [SerializeField] private Animator VerticalTransition;
+    [SerializeField] private Animator HorizontalTransition;
+    [SerializeField] private Animator StartSceneUp;
 
     //MENÚ DE INICIO
     private void Start()
     {
-        mainMenu.SetActive(true);
 
-        for (int i = 0; i < mainMenuAnim.LongLength; i++)
-        {
-            mainMenuAnim[i].SetBool("isActive", true);
-        }
     }
 
 
     public void PlayButton()
     {
+        StartCoroutine(Play());
+    }
+
+    IEnumerator Play()
+    {
+        VerticalTransition.SetBool("UpAnimation", true);
+        StartSceneUp.SetBool("Up", true);
+        yield return new WaitForSeconds(0.5f);
         SceneManager.LoadScene("Level Tutorial");
     }
 
@@ -38,23 +42,11 @@ public class ButtonManager : MonoBehaviour
 
     IEnumerator Settings()
     {
-        for (int i = 0; i < mainMenuAnim.LongLength; i++)
-        {
-            mainMenuAnim[i].SetBool("isActive", false);
-        }
-
-        yield return new WaitForSeconds(0.8f);
+        HorizontalTransition.SetBool("LeftAnimation", true);
+        yield return new WaitForSeconds(0.3f);
+        HorizontalTransition.SetBool("LeftAnimation", false);
         mainMenu.SetActive(false);
-
-        yield return new WaitUntil(() => !mainMenu.activeSelf);
-
         options.SetActive(true);
-
-
-        for (int i = 0; i < optionsAnim.LongLength; i++)
-        {
-            optionsAnim[i].SetBool("isActive", true);
-        }
 
     }
 
@@ -86,24 +78,9 @@ public class ButtonManager : MonoBehaviour
 
     IEnumerator Menu()
     {
-        for (int i = 0; i < optionsAnim.LongLength; i++)
-        {
-            optionsAnim[i].SetBool("isActive", false);
-        }
-
-        yield return new WaitForSeconds(0.8f);
-        options.SetActive(false);
-
-        yield return new WaitUntil(() => !options.activeSelf);
-
-
         mainMenu.SetActive(true);
-
-
-        for (int i = 0; i < mainMenuAnim.LongLength; i++)
-        {
-            mainMenuAnim[i].SetBool("isActive", true);
-        }
+        options.SetActive(false);
+        yield return new WaitForSeconds(0.8f);
     }
 
 
@@ -115,24 +92,7 @@ public class ButtonManager : MonoBehaviour
 
     IEnumerator Controls()
     {
-        for (int i = 0; i < optionsAnim.LongLength; i++)
-        {
-            optionsAnim[i].SetBool("isActive", false);
-        }
-
         yield return new WaitForSeconds(0.8f);
-        options.SetActive(false);
-
-        yield return new WaitUntil(() => !options.activeSelf);
-
-
-        controls.SetActive(true);
-
-
-        for (int i = 0; i < controlsAnim.LongLength; i++)
-        {
-            //controlsAnim[i].SetBool("isActive", true);
-        }
     }
 
 
@@ -144,24 +104,7 @@ public class ButtonManager : MonoBehaviour
 
     IEnumerator Settings2()
     {
-        for (int i = 0; i < controlsAnim.LongLength; i++)
-        {
-            //controlsAnim[i].SetBool("isActive", false);
-        }
-
         yield return new WaitForSeconds(0.8f);
-        controls.SetActive(false);
-
-        yield return new WaitUntil(() => !controls.activeSelf);
-
-
-        options.SetActive(true);
-
-
-        for (int i = 0; i < optionsAnim.LongLength; i++)
-        {
-            optionsAnim[i].SetBool("isActive", true);
-        }
     }
 
 }
