@@ -9,7 +9,7 @@ public class KeySaver : MonoBehaviour
     public Transform player;
     public float distanceBetweenKeys = 2.0f;
     public float smoothness = 5.0f; // Suavidad del movimiento de la llave
-    private Quaternion playerPreviousRotation; // Rotación anterior del jugador
+    private Quaternion playerPreviousRotation; // Rotaciï¿½n anterior del jugador
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
