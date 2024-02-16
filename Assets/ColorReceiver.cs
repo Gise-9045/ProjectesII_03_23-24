@@ -29,10 +29,17 @@ public class ColorReceiver : MonoBehaviour
             //ENCONTRAR MANERA MAS LIMPIA DE HACER ESTO
             if(collision.collider.GetComponent<ColorSpreader>().GetColorType() == ColorTypes.BLUE ) {
                 boolManaging.SetDoubleJump(true);
+                boolManaging.SetDash(false);
+            }
+            else if (collision.collider.GetComponent<ColorSpreader>().GetColorType() == ColorTypes.GREEN)
+            {
+                boolManaging.SetDash(true);
+                boolManaging.SetDoubleJump(false);
             }
             else
             {
                 boolManaging.SetDoubleJump(false);
+                boolManaging.SetDash(false);
             }
         }
     }

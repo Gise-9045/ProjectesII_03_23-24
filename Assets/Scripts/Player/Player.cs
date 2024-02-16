@@ -29,31 +29,9 @@ public class Player : MonoBehaviour
     public void SetSpeed(int s) { speed = s; }
     public int GetSpeed() { return speed; }
 
-    public void TakeDamage(int subtractLife, bool knock, float knockVel)
+    public void TakeDamage()
     {
-        life -= subtractLife;
-
-        knockback = knock;
-        knockbackVel = knockVel;
-
-        HitParticles.Instance.DisableEnemy();
-        HitParticles.Instance.EnableEnemy(gameObject.transform.position.x, gameObject.transform.position.y);
-
-
-
-        if (knockback)
-        {
-            StartCoroutine(KnockBack());
-        }
-
-        if (life <= 0)
-        {
-
-            CinemachineShake.Instance.ShakeCamera(5f, 0.5f);
-            HitStop.Instance.StopTime(0.15f, 0.5f);
-            Destroy(gameObject);
-
-        }
+        player.position = respawn.position;
     }
 
     public void SetDirection(Vector2 d)
@@ -82,11 +60,5 @@ public class Player : MonoBehaviour
         
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.CompareTag("Hazards"))
-        {
-            player.position = respawn.position;    
-        }
-    }
+   
 }
