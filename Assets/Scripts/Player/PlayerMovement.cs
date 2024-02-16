@@ -34,7 +34,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private ParticleSystem jumpParticles;
 
-    [SerializeField]
     private Animator animator;
 
     void Start()
@@ -45,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
         isJumping = false;
         onStairs = false;
         coyoteTime = 0.3f;
+        animator = GetComponent<Animator>();
 
         ground.OnGroundTouchdown += jumpParticles.Play;
         ground.OnGroundTouchdown += walkParticles.Play;
