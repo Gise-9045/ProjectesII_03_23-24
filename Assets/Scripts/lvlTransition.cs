@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class lvlTransition : MonoBehaviour
 {
-    public Animator transitions;
     [SerializeField] public Scene currentScene;
     [SerializeField] private KeySaver keySaverList; // Referencia al script KeySaver
     // Start is called before the first frame update

@@ -18,32 +18,39 @@ public class ButtonManager : MonoBehaviour
     //MENÚ DE INICIO
     private void Start()
     {
+        VerticalTransition.SetBool("ExitDownAnimation", true);
+        StartSceneUp.SetBool("Down", true);
 
     }
 
 
     public void PlayButton()
     {
+        VerticalTransition.SetBool("ExitDownAnimation", false);
+        StartSceneUp.SetBool("Down", false);
         StartCoroutine(Play());
     }
 
     IEnumerator Play()
     {
+
         VerticalTransition.SetBool("UpAnimation", true);
         StartSceneUp.SetBool("Up", true);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.7f);
         SceneManager.LoadScene("Level Tutorial");
     }
 
     public void SettingsButton()
     {
-        StartCoroutine(Settings());
+        //StartCoroutine(Settings());
+        mainMenu.SetActive(false);
+        options.SetActive(true);
     }
 
     IEnumerator Settings()
     {
         HorizontalTransition.SetBool("LeftAnimation", true);
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSeconds(0.5f);
         HorizontalTransition.SetBool("LeftAnimation", false);
         mainMenu.SetActive(false);
         options.SetActive(true);
@@ -72,39 +79,53 @@ public class ButtonManager : MonoBehaviour
     //OPCIONES
     public void BackOptionsButton()
     {
-        StartCoroutine(Menu());
+        //StartCoroutine(Menu());
+        mainMenu.SetActive(true);
+        options.SetActive(false);
     }
 
 
     IEnumerator Menu()
     {
+        HorizontalTransition.SetBool("RightAnimation", true);
+        yield return new WaitForSeconds(0.5f);
+        HorizontalTransition.SetBool("RightAnimation", false);
         mainMenu.SetActive(true);
         options.SetActive(false);
-        yield return new WaitForSeconds(0.8f);
     }
 
 
     //CONTROLS
     public void ControlsButton()
     {
-        StartCoroutine(Controls());
+        //StartCoroutine(Controls());
+        controls.SetActive(true);
+        options.SetActive(false);
     }
 
     IEnumerator Controls()
     {
-        yield return new WaitForSeconds(0.8f);
+        HorizontalTransition.SetBool("LeftAnimation", true);
+        yield return new WaitForSeconds(0.5f);
+        HorizontalTransition.SetBool("LeftAnimation", false);
+
     }
 
 
     public void BackControlsButton()
     {
-        StartCoroutine(Settings2());
+        //StartCoroutine(Settings2());
+        controls.SetActive(false);
+        options.SetActive(true);
     }
 
 
     IEnumerator Settings2()
     {
-        yield return new WaitForSeconds(0.8f);
+        HorizontalTransition.SetBool("RightAnimation", true);
+        yield return new WaitForSeconds(0.5f);
+        HorizontalTransition.SetBool("RightAnimation", false);
+
     }
 
 }
