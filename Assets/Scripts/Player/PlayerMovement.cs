@@ -83,8 +83,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (canDash && !dashing && Input.GetKeyDown(KeyCode.LeftShift) && actualDashCooldown <= 0)
         {
-            actualDashTimer = dashTimer;
-            rb.gravityScale = 0f;
+            Dash();
         }
         else if(!dashing)
         {
@@ -250,6 +249,10 @@ public class PlayerMovement : MonoBehaviour
     public void SetDoubleJump(bool condition)
     {
         canDoubleJump = condition;
+    } 
+    public void SetDash(bool condition)
+    {
+        canDash = condition;
     }
 
     void Stairs()
@@ -284,5 +287,10 @@ public class PlayerMovement : MonoBehaviour
     {
         onStairs = false;
         usingStairs = false;
+    }
+    private void Dash()
+    {
+        actualDashTimer = dashTimer;
+        rb.gravityScale = 0f;
     }
 }
