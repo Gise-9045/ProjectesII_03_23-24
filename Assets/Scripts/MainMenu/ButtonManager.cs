@@ -10,51 +10,50 @@ public class ButtonManager : MonoBehaviour
     [SerializeField] private GameObject exitDialog;
     [SerializeField] private GameObject controls;
 
-    [SerializeField] private Animator[] mainMenuAnim;
-    [SerializeField] private Animator[] optionsAnim;
-    [SerializeField] private Animator[] controlsAnim;
+
+    [SerializeField] private Animator VerticalTransition;
+    [SerializeField] private Animator HorizontalTransition;
+    [SerializeField] private Animator StartSceneUp;
 
     //MENÚ DE INICIO
     private void Start()
     {
-        mainMenu.SetActive(true);
+        VerticalTransition.SetBool("ExitDownAnimation", true);
+        StartSceneUp.SetBool("Down", true);
 
-        for (int i = 0; i < mainMenuAnim.LongLength; i++)
-        {
-            mainMenuAnim[i].SetBool("isActive", true);
-        }
     }
 
 
     public void PlayButton()
     {
+        VerticalTransition.SetBool("ExitDownAnimation", false);
+        StartSceneUp.SetBool("Down", false);
+        StartCoroutine(Play());
+    }
+
+    IEnumerator Play()
+    {
+
+        VerticalTransition.SetBool("UpAnimation", true);
+        StartSceneUp.SetBool("Up", true);
+        yield return new WaitForSeconds(0.7f);
         SceneManager.LoadScene("Level Tutorial");
     }
 
     public void SettingsButton()
     {
-        StartCoroutine(Settings());
+        //StartCoroutine(Settings());
+        mainMenu.SetActive(false);
+        options.SetActive(true);
     }
 
     IEnumerator Settings()
     {
-        for (int i = 0; i < mainMenuAnim.LongLength; i++)
-        {
-            mainMenuAnim[i].SetBool("isActive", false);
-        }
-
-        yield return new WaitForSeconds(0.8f);
+        HorizontalTransition.SetBool("LeftAnimation", true);
+        yield return new WaitForSeconds(0.5f);
+        HorizontalTransition.SetBool("LeftAnimation", false);
         mainMenu.SetActive(false);
-
-        yield return new WaitUntil(() => !mainMenu.activeSelf);
-
         options.SetActive(true);
-
-
-        for (int i = 0; i < optionsAnim.LongLength; i++)
-        {
-            optionsAnim[i].SetBool("isActive", true);
-        }
 
     }
 
@@ -80,88 +79,53 @@ public class ButtonManager : MonoBehaviour
     //OPCIONES
     public void BackOptionsButton()
     {
-        StartCoroutine(Menu());
+        //StartCoroutine(Menu());
+        mainMenu.SetActive(true);
+        options.SetActive(false);
     }
 
 
     IEnumerator Menu()
     {
-        for (int i = 0; i < optionsAnim.LongLength; i++)
-        {
-            optionsAnim[i].SetBool("isActive", false);
-        }
-
-        yield return new WaitForSeconds(0.8f);
-        options.SetActive(false);
-
-        yield return new WaitUntil(() => !options.activeSelf);
-
-
+        HorizontalTransition.SetBool("RightAnimation", true);
+        yield return new WaitForSeconds(0.5f);
+        HorizontalTransition.SetBool("RightAnimation", false);
         mainMenu.SetActive(true);
-
-
-        for (int i = 0; i < mainMenuAnim.LongLength; i++)
-        {
-            mainMenuAnim[i].SetBool("isActive", true);
-        }
+        options.SetActive(false);
     }
 
 
     //CONTROLS
     public void ControlsButton()
     {
-        StartCoroutine(Controls());
+        //StartCoroutine(Controls());
+        controls.SetActive(true);
+        options.SetActive(false);
     }
 
     IEnumerator Controls()
     {
-        for (int i = 0; i < optionsAnim.LongLength; i++)
-        {
-            optionsAnim[i].SetBool("isActive", false);
-        }
+        HorizontalTransition.SetBool("LeftAnimation", true);
+        yield return new WaitForSeconds(0.5f);
+        HorizontalTransition.SetBool("LeftAnimation", false);
 
-        yield return new WaitForSeconds(0.8f);
-        options.SetActive(false);
-
-        yield return new WaitUntil(() => !options.activeSelf);
-
-
-        controls.SetActive(true);
-
-
-        for (int i = 0; i < controlsAnim.LongLength; i++)
-        {
-            //controlsAnim[i].SetBool("isActive", true);
-        }
     }
 
 
     public void BackControlsButton()
     {
-        StartCoroutine(Settings2());
+        //StartCoroutine(Settings2());
+        controls.SetActive(false);
+        options.SetActive(true);
     }
 
 
     IEnumerator Settings2()
     {
-        for (int i = 0; i < controlsAnim.LongLength; i++)
-        {
-            //controlsAnim[i].SetBool("isActive", false);
-        }
+        HorizontalTransition.SetBool("RightAnimation", true);
+        yield return new WaitForSeconds(0.5f);
+        HorizontalTransition.SetBool("RightAnimation", false);
 
-        yield return new WaitForSeconds(0.8f);
-        controls.SetActive(false);
-
-        yield return new WaitUntil(() => !controls.activeSelf);
-
-
-        options.SetActive(true);
-
-
-        for (int i = 0; i < optionsAnim.LongLength; i++)
-        {
-            optionsAnim[i].SetBool("isActive", true);
-        }
     }
 
 }

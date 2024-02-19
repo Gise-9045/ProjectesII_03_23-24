@@ -1341,6 +1341,18 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: -0.036018774
       objectReference: {fileID: 0}
+    - target: {fileID: 6668421711333943357, guid: c57567fdaca93814080c6b4681e87ee9, type: 3}
+      propertyPath: vertical
+      value: 
+      objectReference: {fileID: 1188205038}
+    - target: {fileID: 6668421711333943357, guid: c57567fdaca93814080c6b4681e87ee9, type: 3}
+      propertyPath: horizontal
+      value: 
+      objectReference: {fileID: 1188205039}
+    - target: {fileID: 6668421711333943357, guid: c57567fdaca93814080c6b4681e87ee9, type: 3}
+      propertyPath: transition
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1491,6 +1503,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 582930581195230655, guid: 90877c543b25da74f8d321d10bf81583, type: 3}
+      propertyPath: transition
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1294412219296819478, guid: 90877c543b25da74f8d321d10bf81583, type: 3}
       propertyPath: m_Name
       value: UI
@@ -1584,6 +1600,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90877c543b25da74f8d321d10bf81583, type: 3}
+--- !u!1 &1188205038 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1344661898102543509, guid: 90877c543b25da74f8d321d10bf81583, type: 3}
+  m_PrefabInstance: {fileID: 1188205037}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1188205039 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2289989182603666283, guid: 90877c543b25da74f8d321d10bf81583, type: 3}
+  m_PrefabInstance: {fileID: 1188205037}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1683388912 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2855868302909866203, guid: 6b1a4e2b7293bb94ebc70d874974b9aa, type: 3}
@@ -2099,6 +2125,18 @@ PrefabInstance:
     - target: {fileID: 5782121520602112732, guid: 5dabb304a592e1d4b948101024cf52b6, type: 3}
       propertyPath: m_Name
       value: Door
+      objectReference: {fileID: 0}
+    - target: {fileID: 6136389294209927114, guid: 5dabb304a592e1d4b948101024cf52b6, type: 3}
+      propertyPath: vertical
+      value: 
+      objectReference: {fileID: 1188205038}
+    - target: {fileID: 6136389294209927114, guid: 5dabb304a592e1d4b948101024cf52b6, type: 3}
+      propertyPath: horizontal
+      value: 
+      objectReference: {fileID: 1188205039}
+    - target: {fileID: 6136389294209927114, guid: 5dabb304a592e1d4b948101024cf52b6, type: 3}
+      propertyPath: transition
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6136389294209927114, guid: 5dabb304a592e1d4b948101024cf52b6, type: 3}
       propertyPath: keySaverList

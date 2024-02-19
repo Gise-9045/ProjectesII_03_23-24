@@ -1,16 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class LvlTransitionWithoutKey : MonoBehaviour
 {
-    public Animator transitions;
     [SerializeField] public Scene currentScene;
-    // Start is called before the first frame update
+
+    [SerializeField] GameObject horizontal;
+    [SerializeField] GameObject vertical;
+
+    private Animator verticalAnim;
+    private Animator horizontalAnim;
+
+    private enum Transition { NONE, LEFT };
+    [SerializeField] private Transition transition;
+
+
     void Start()
     {
-
+        verticalAnim = vertical.GetComponentInChildren<Animator>();
+        horizontalAnim = horizontal.GetComponentInChildren<Animator>();
     }
 
     // Update is called once per frame
@@ -23,9 +34,28 @@ public class LvlTransitionWithoutKey : MonoBehaviour
         //transitions.SetTrigger("LvlPassed");
         if (collision.CompareTag("Player"))
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-            Debug.Log("LvlPassed");
+            horizontalAnim.SetBool("ExitLeftAnimation", false);
+            StartCoroutine(LevelTransition());
+ 
         }
+
+    }
+
+    IEnumerator LevelTransition()
+    {
+        switch (transition)
+        {
+            case Transition.LEFT:
+                horizontal.SetActive(true);
+                horizontalAnim.SetBool("LeftAnimation", true);
+                yield return new WaitForSeconds(0.7f);
+
+                break;
+        }
+
+
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        Debug.Log("LvlPassed");
 
     }
 }
