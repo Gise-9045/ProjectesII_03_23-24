@@ -18,7 +18,7 @@ public class doorLogic : MonoBehaviour
     {
         isActive = leverControl.isActive;
         
-        sprite = GetComponent<SpriteRenderer>();
+        //sprite = GetComponent<SpriteRenderer>();
     }
     private void FixedUpdate()
     {

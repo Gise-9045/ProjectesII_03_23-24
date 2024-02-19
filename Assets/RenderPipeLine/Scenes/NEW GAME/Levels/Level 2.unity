@@ -387,12 +387,12 @@ Tilemap:
   - m_RefCount: 0
     m_Data: {fileID: 0}
   - m_RefCount: 1
-    m_Data: {fileID: 11400000, guid: 639f6f8fa7415674e9f32595363460c2, type: 2}
+    m_Data: {fileID: 11400000, guid: 09684969f01dd3443a8a08ade9161a49, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 0
     m_Data: {fileID: 0}
   - m_RefCount: 1
-    m_Data: {fileID: 2001230023, guid: 2c75636cce5424540b395f76e9009cd4, type: 3}
+    m_Data: {fileID: 1001241773, guid: 2c75636cce5424540b395f76e9009cd4, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 1
     m_Data:
@@ -441,6 +441,17 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &245314692 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6771856592171695001, guid: e896ab0001b7deb469ea1d848d0b0514, type: 3}
+  m_PrefabInstance: {fileID: 5286355128394351526}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba97e1f56880c3244bc66e6ade94ce07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &300604218
 GameObject:
   m_ObjectHideFlags: 0
@@ -1605,22 +1616,28 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: -0.036018774
       objectReference: {fileID: 0}
+    - target: {fileID: 6668421711333943357, guid: c57567fdaca93814080c6b4681e87ee9, type: 3}
+      propertyPath: vertical
+      value: 
+      objectReference: {fileID: 1188205038}
+    - target: {fileID: 6668421711333943357, guid: c57567fdaca93814080c6b4681e87ee9, type: 3}
+      propertyPath: horizontal
+      value: 
+      objectReference: {fileID: 1188205039}
+    - target: {fileID: 6668421711333943357, guid: c57567fdaca93814080c6b4681e87ee9, type: 3}
+      propertyPath: transition
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c57567fdaca93814080c6b4681e87ee9, type: 3}
---- !u!114 &1091463127 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1331838966881445681, guid: e896ab0001b7deb469ea1d848d0b0514, type: 3}
-  m_PrefabInstance: {fileID: 5286355128394351526}
+--- !u!212 &996706115 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 5198736903039938745, guid: 81ae6cc943697704f8f750c8a88488ce, type: 3}
+  m_PrefabInstance: {fileID: 5169248066417778304}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba97e1f56880c3244bc66e6ade94ce07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &1112970972
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1839,6 +1856,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 582930581195230655, guid: 90877c543b25da74f8d321d10bf81583, type: 3}
+      propertyPath: transition
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1294412219296819478, guid: 90877c543b25da74f8d321d10bf81583, type: 3}
       propertyPath: m_Name
       value: UI
@@ -1932,6 +1953,16 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 90877c543b25da74f8d321d10bf81583, type: 3}
+--- !u!1 &1188205038 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1344661898102543509, guid: 90877c543b25da74f8d321d10bf81583, type: 3}
+  m_PrefabInstance: {fileID: 1188205037}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1188205039 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2289989182603666283, guid: 90877c543b25da74f8d321d10bf81583, type: 3}
+  m_PrefabInstance: {fileID: 1188205037}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1238434004
 GameObject:
   m_ObjectHideFlags: 0
@@ -2412,7 +2443,7 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: ce0a72874e6df6846bd98de1f20fef47, type: 2}
   - m_RefCount: 1
-    m_Data: {fileID: 11400000, guid: 09684969f01dd3443a8a08ade9161a49, type: 2}
+    m_Data: {fileID: 11400000, guid: 0e3450ea0d6abe04597a586c5a18a11b, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 0
     m_Data: {fileID: 0}
@@ -2447,7 +2478,7 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: 1186819242, guid: 2c75636cce5424540b395f76e9009cd4, type: 3}
   - m_RefCount: 1
-    m_Data: {fileID: 1001241773, guid: 2c75636cce5424540b395f76e9009cd4, type: 3}
+    m_Data: {fileID: -1014134742, guid: 2c75636cce5424540b395f76e9009cd4, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 12
     m_Data:
@@ -2546,7 +2577,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1874673888}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.48, y: -5.68, z: 0}
+  m_LocalPosition: {x: -13.83, y: -7.82, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5968,9 +5999,25 @@ PrefabInstance:
       value: Blockage
       objectReference: {fileID: 0}
     - target: {fileID: 4596621966536837774, guid: 81ae6cc943697704f8f750c8a88488ce, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 996706115}
+    - target: {fileID: 4596621966536837774, guid: 81ae6cc943697704f8f750c8a88488ce, type: 3}
       propertyPath: leverControl
       value: 
-      objectReference: {fileID: 1091463127}
+      objectReference: {fileID: 245314692}
+    - target: {fileID: 5198736903039938745, guid: 81ae6cc943697704f8f750c8a88488ce, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5198736903039938745, guid: 81ae6cc943697704f8f750c8a88488ce, type: 3}
+      propertyPath: m_Color.g
+      value: 0.6417511
+      objectReference: {fileID: 0}
+    - target: {fileID: 5198736903039938745, guid: 81ae6cc943697704f8f750c8a88488ce, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8561974844838355742, guid: 81ae6cc943697704f8f750c8a88488ce, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -6028,9 +6075,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 432481817791459316, guid: e896ab0001b7deb469ea1d848d0b0514, type: 3}
+      propertyPath: m_Name
+      value: Sprite Button
+      objectReference: {fileID: 0}
     - target: {fileID: 8141295534420899593, guid: e896ab0001b7deb469ea1d848d0b0514, type: 3}
       propertyPath: m_Name
       value: Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 8604578124681948764, guid: e896ab0001b7deb469ea1d848d0b0514, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8604578124681948764, guid: e896ab0001b7deb469ea1d848d0b0514, type: 3}
+      propertyPath: m_Color.g
+      value: 0.6417511
+      objectReference: {fileID: 0}
+    - target: {fileID: 8604578124681948764, guid: e896ab0001b7deb469ea1d848d0b0514, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9022916571552113933, guid: e896ab0001b7deb469ea1d848d0b0514, type: 3}
       propertyPath: m_RootOrder
