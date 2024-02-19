@@ -14,6 +14,10 @@ public class LvlTransitionWithoutKey : MonoBehaviour
     private Animator verticalAnim;
     private Animator horizontalAnim;
 
+    private enum Transition { NONE, LEFT };
+    [SerializeField] private Transition transition;
+
+
     void Start()
     {
         verticalAnim = vertical.GetComponentInChildren<Animator>();
@@ -39,8 +43,17 @@ public class LvlTransitionWithoutKey : MonoBehaviour
 
     IEnumerator LevelTransition()
     {
-        horizontalAnim.SetBool("LeftAnimation", true);
-        yield return new WaitForSeconds(0.7f);
+        switch (transition)
+        {
+            case Transition.LEFT:
+                horizontal.SetActive(true);
+                horizontalAnim.SetBool("LeftAnimation", true);
+                yield return new WaitForSeconds(0.7f);
+
+                break;
+        }
+
+
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         Debug.Log("LvlPassed");
 
