@@ -64,7 +64,9 @@ public class PlayerMovement : MonoBehaviour
     {
 
         animator.SetFloat("FallVelocity", rb.velocity.y);
-        animator.SetBool("Grounded", ground.OnGround());
+        animator.SetBool("Grounded", ground.OnGround() || onStairs);
+        animator.SetBool("Stairs", onStairs && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S)));
+
         Walk();
         DashCheck();
 
@@ -203,49 +205,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    /* void Jump()
-     {
-         if (ground.OnGround())
-         {
-             actualCoyoteTime = coyoteTime;
-         }
-         else
-         {
-             actualCoyoteTime -= Time.deltaTime;
-         }
-
-
-         if (actualCoyoteTime > 0 && Input.GetKeyDown(KeyCode.Space) && !isJumping)
-         {
-             rb.gravityScale = 9.81f;
-
-             actualCoyoteTime = 0f;
-             isJumping = true;
-             actualJumpTimeCounter = jumpTimeCounter;
-             rb.velocity = new Vector2(rb.velocity.x, Vector2.up.y * jumpForce);
-         }
-
-         if (Input.GetKey(KeyCode.Space) && isJumping)
-         {
-
-             if (actualJumpTimeCounter > 0)
-             {
-                 rb.velocity = new Vector2(rb.velocity.x, Vector2.up.y * jumpForce);
-                 actualJumpTimeCounter -= Time.deltaTime;
-             }
-             else
-             {
-                 isJumping = false;
-
-             }
-         }
-
-         if (Input.GetKeyUp(KeyCode.Space))
-         {
-             isJumping = false;
-             actualCoyoteTime = 0f;
-         }
-     }*/
+    
     public void SetDoubleJump(bool condition)
     {
         canDoubleJump = condition;
@@ -285,8 +245,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        onStairs = false;
-        usingStairs = false;
+        if (collision.tag == "Ladder")
+        {
+            onStairs = false;
+            usingStairs = false;
+        }
+
     }
     private void Dash()
     {
