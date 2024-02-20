@@ -66,6 +66,8 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("FallVelocity", rb.velocity.y);
         animator.SetBool("Grounded", ground.OnGround() || onStairs);
         animator.SetBool("Stairs", onStairs && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S)));
+        animator.SetBool("Dash", dashing);
+        animator.SetFloat("DashVelocity", rb.velocity.x);
 
         Walk();
         DashCheck();
