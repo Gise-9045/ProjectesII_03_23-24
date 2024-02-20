@@ -65,6 +65,7 @@ public class PlayerMovement : MonoBehaviour
 
         animator.SetFloat("FallVelocity", rb.velocity.y);
         animator.SetBool("Grounded", ground.OnGround());
+
         Walk();
         DashCheck();
 
