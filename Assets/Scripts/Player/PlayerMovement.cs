@@ -35,6 +35,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float dashTimer;
     [SerializeField] bool canDash;
     [SerializeField] float dashCooldown;
+    [SerializeField] private ParticleSystem dashTrail;
     float actualDashCooldown = 0;
 
     [SerializeField]
@@ -46,6 +47,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        
         player = GetComponent<Player>();
         rb = GetComponent<Rigidbody2D>();
         ground = GetComponentInChildren<PlayerGroundDetection>();
@@ -197,13 +199,16 @@ public class PlayerMovement : MonoBehaviour
         {
             dashing = true;
             actualDashCooldown = 0.5f;
+            dashTrail.Play();
             rb.velocity = new Vector2(player.GetDirection().x * dashVelocity, 0);
             rb.gravityScale = 0f;
             actualDashTimer -= Time.deltaTime;
+            
         }
         else
         {
             dashing = false;
+           
         }
     }
 
