@@ -5,18 +5,9 @@ using UnityEngine;
 
 public class PlayerGroundDetection : MonoBehaviour
 {
-    RaycastHit2D rcGround;
-    private Transform parent;
-
-    [SerializeField] private float distanceX;
-    [SerializeField] private float distanceY;
-    [SerializeField] private float height;
-
     private bool onGround;
 
-    [SerializeField]
     private BoxCollider2D boxCol;
-    [SerializeField]
     private Rigidbody2D playerRb;
 
     public Action OnGroundTouchdown;
@@ -25,7 +16,8 @@ public class PlayerGroundDetection : MonoBehaviour
 
     void Start()
     {
-        parent = GetComponentInParent<Transform>();
+        boxCol = GetComponentInParent<BoxCollider2D>();
+        playerRb = GetComponentInParent<Rigidbody2D>();
     }
 
 

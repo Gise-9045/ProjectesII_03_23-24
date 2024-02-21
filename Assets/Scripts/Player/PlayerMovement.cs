@@ -29,12 +29,19 @@ public class PlayerMovement : MonoBehaviour
     bool onStairs;
     bool usingStairs = false;
 
+    bool dashing = false;
+    [SerializeField] float dashVelocity;
+    float actualDashTimer;
+    [SerializeField] float dashTimer;
+    [SerializeField] bool canDash;
+    [SerializeField] float dashCooldown;
+    float actualDashCooldown = 0;
+
     [SerializeField]
     private ParticleSystem walkParticles;
     [SerializeField]
     private ParticleSystem jumpParticles;
 
-    [SerializeField]
     private Animator animator;
 
     void Start()
@@ -45,6 +52,7 @@ public class PlayerMovement : MonoBehaviour
         isJumping = false;
         onStairs = false;
         coyoteTime = 0.3f;
+        animator = GetComponent<Animator>();
 
         ground.OnGroundTouchdown += jumpParticles.Play;
         ground.OnGroundTouchdown += walkParticles.Play;
@@ -56,10 +64,13 @@ public class PlayerMovement : MonoBehaviour
     {
 
         animator.SetFloat("FallVelocity", rb.velocity.y);
-        animator.SetBool("Grounded", ground.OnGround());
-        Walk();
+        animator.SetBool("Grounded", ground.OnGround() || onStairs);
+        animator.SetBool("Stairs", onStairs && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S)));
 
-        if(onStairs)
+        Walk();
+        DashCheck();
+
+        if (onStairs)
         {
             if (usingStairs)
             {
@@ -72,10 +83,13 @@ public class PlayerMovement : MonoBehaviour
             }
 
         }
-        else
+        else if (canDash && !dashing && Input.GetKeyDown(KeyCode.LeftShift) && actualDashCooldown <= 0)
+        {
+            Dash();
+        }
+        else if(!dashing)
         {
             rb.gravityScale = 9.81f;
-
         }
 
         CheckJump();
@@ -169,52 +183,36 @@ public class PlayerMovement : MonoBehaviour
             rb.gravityScale = 9.81f;
         }
     }
-    /* void Jump()
-     {
-         if (ground.OnGround())
-         {
-             actualCoyoteTime = coyoteTime;
-         }
-         else
-         {
-             actualCoyoteTime -= Time.deltaTime;
-         }
 
+    void DashCheck()
+    {
+        if (actualDashCooldown > 0)
+        {
+            actualDashCooldown -= Time.deltaTime;
+        }
 
-         if (actualCoyoteTime > 0 && Input.GetKeyDown(KeyCode.Space) && !isJumping)
-         {
-             rb.gravityScale = 9.81f;
+        if (actualDashTimer > 0)
+        {
+            dashing = true;
+            actualDashCooldown = 0.5f;
+            rb.velocity = new Vector2(player.GetDirection().x * dashVelocity, 0);
+            rb.gravityScale = 0f;
+            actualDashTimer -= Time.deltaTime;
+        }
+        else
+        {
+            dashing = false;
+        }
+    }
 
-             actualCoyoteTime = 0f;
-             isJumping = true;
-             actualJumpTimeCounter = jumpTimeCounter;
-             rb.velocity = new Vector2(rb.velocity.x, Vector2.up.y * jumpForce);
-         }
-
-         if (Input.GetKey(KeyCode.Space) && isJumping)
-         {
-
-             if (actualJumpTimeCounter > 0)
-             {
-                 rb.velocity = new Vector2(rb.velocity.x, Vector2.up.y * jumpForce);
-                 actualJumpTimeCounter -= Time.deltaTime;
-             }
-             else
-             {
-                 isJumping = false;
-
-             }
-         }
-
-         if (Input.GetKeyUp(KeyCode.Space))
-         {
-             isJumping = false;
-             actualCoyoteTime = 0f;
-         }
-     }*/
+    
     public void SetDoubleJump(bool condition)
     {
         canDoubleJump = condition;
+    } 
+    public void SetDash(bool condition)
+    {
+        canDash = condition;
     }
 
     void Stairs()
@@ -247,7 +245,16 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        onStairs = false;
-        usingStairs = false;
+        if (collision.tag == "Ladder")
+        {
+            onStairs = false;
+            usingStairs = false;
+        }
+
+    }
+    private void Dash()
+    {
+        actualDashTimer = dashTimer;
+        rb.gravityScale = 0f;
     }
 }
