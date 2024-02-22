@@ -68,6 +68,8 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("FallVelocity", rb.velocity.y);
         animator.SetBool("Grounded", ground.OnGround() || onStairs);
         animator.SetBool("Stairs", onStairs && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S)));
+        animator.SetBool("Dash", dashing);
+        animator.SetFloat("DashVelocity", rb.velocity.x);
 
         Walk();
         DashCheck();
@@ -197,7 +199,6 @@ public class PlayerMovement : MonoBehaviour
         {
             dashing = true;
             actualDashCooldown = 0.5f;
-            dashTrail.Play();
             rb.velocity = new Vector2(player.GetDirection().x * dashVelocity, 0);
             rb.gravityScale = 0f;
             actualDashTimer -= Time.deltaTime;
@@ -261,5 +262,7 @@ public class PlayerMovement : MonoBehaviour
     {
         actualDashTimer = dashTimer;
         rb.gravityScale = 0f;
+        dashTrail.Play();
+
     }
 }
