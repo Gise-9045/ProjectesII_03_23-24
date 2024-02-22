@@ -451,37 +451,37 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: DashVelocity
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Grounded
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Dash
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Walk
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: Stairs
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -658,25 +658,25 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: 7542760232208737149}
-    m_Position: {x: 250, y: 120, z: 0}
+    m_Position: {x: 240, y: -220, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2542208532169540202}
     m_Position: {x: 510, y: 120, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -4225311054889102138}
-    m_Position: {x: 200, y: -150, z: 0}
+    m_Position: {x: 240, y: -60, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -322630559618652168}
-    m_Position: {x: 360, y: 300, z: 0}
+    m_Position: {x: 240, y: 290, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3545546656881479892}
     m_Position: {x: -30, y: 120, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 3909561578124852281}
-    m_Position: {x: -80, y: 290, z: 0}
+    m_Position: {x: -30, y: 290, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -7802204151061953753}
-    m_Position: {x: 260, y: -560, z: 0}
+    m_Position: {x: 240, y: 120, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []

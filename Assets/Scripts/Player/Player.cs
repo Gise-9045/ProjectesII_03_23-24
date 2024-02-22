@@ -17,7 +17,6 @@ public class Player : MonoBehaviour
     private Transform player;
 
     
-
     void Start()
     {
         direction= new Vector2(1, 1);
