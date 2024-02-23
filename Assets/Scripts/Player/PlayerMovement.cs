@@ -49,6 +49,8 @@ public class PlayerMovement : MonoBehaviour
 
     private Animator animator;
 
+    private bool oldDead;
+
     void Start()
     {
         
@@ -65,27 +67,38 @@ public class PlayerMovement : MonoBehaviour
         ground.OnGroundTouchdown += walkParticles.Play;
 
         ground.OnLeaveGround += walkParticles.Stop;
+
+        oldDead = false;
     }
 
     void Update()
     {
         if (player.GetDead())
         {
-            animator.SetBool("Grounded", true);
             animator.SetBool("Stairs", false);
             animator.SetBool("Dash", false);
+            animator.SetBool("Walk", false);
+            animator.SetBool("Grounded", true);
+
 
             animator.SetBool("Death", true);
 
-            //deathParticles.Play();
+            if(player.GetDead() && player.GetDead() != oldDead)
+            {
+                deathParticles.Play();
+            }
 
             rb.gravityScale = 0f;
+            rb.velocity = Vector2.zero;
+
+            oldDead = player.GetDead();
+
             return;
         }
         else
         {
             animator.SetBool("Death", false);
-
+            oldDead = player.GetDead();
         }
 
         animator.SetFloat("FallVelocity", rb.velocity.y);
