@@ -54,7 +54,7 @@ public class LvlTransitionBack : MonoBehaviour
         }
 
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        SceneManager.LoadScene("Gray Zone 1");
         Debug.Log("LvlPassed");
 
     }
