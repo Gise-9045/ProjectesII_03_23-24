@@ -5364,7 +5364,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1880365019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5404,6 +5404,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 565177713030525501, guid: 9dea25aeee664294e837a4119888f1c0, type: 3}
+      propertyPath: fountain
+      value: 
+      objectReference: {fileID: 431692269}
     - target: {fileID: 565177713030525501, guid: 9dea25aeee664294e837a4119888f1c0, type: 3}
       propertyPath: grayDatabase
       value: 

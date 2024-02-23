@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 8833963981279398460}
   - component: {fileID: 8604578124681948764}
   - component: {fileID: 7764343088574680606}
-  - component: {fileID: 3464183587713546615}
+  - component: {fileID: 8528379397331439162}
+  - component: {fileID: 7309158589545609306}
   m_Layer: 0
   m_Name: ButtonLogic
   m_TagString: Untagged
@@ -75,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 1042826110, guid: 2c75636cce5424540b395f76e9009cd4, type: 3}
+  m_Sprite: {fileID: -569890901, guid: 2c75636cce5424540b395f76e9009cd4, type: 3}
   m_Color: {r: 1, g: 0.6392157, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -118,7 +119,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0017775446, y: 0.051565416}
+  m_Offset: {x: 0.0017775446, y: 0.313977}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -129,9 +130,30 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.27097324, y: 0.08605096}
+  m_Size: {x: 0.27097324, y: 0.112411976}
   m_EdgeRadius: 0
---- !u!114 &3464183587713546615
+--- !u!95 &8528379397331439162
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 432481817791459316}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 379c1c556856ca54ba22755f597e7209, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &7309158589545609306
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,12 +162,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 432481817791459316}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba97e1f56880c3244bc66e6ade94ce07, type: 3}
+  m_Script: {fileID: 11500000, guid: 6f35a7679691e464b84edbc07a75f11e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 0
   sprite: {fileID: 8604578124681948764}
-  boxUI: {fileID: 0}
+  pressed: {fileID: 8528379397331439162}
 --- !u!1 &8141295534420899593
 GameObject:
   m_ObjectHideFlags: 0
