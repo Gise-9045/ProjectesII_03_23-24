@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8604578124681948764}
   - component: {fileID: 7764343088574680606}
   - component: {fileID: 8528379397331439162}
-  - component: {fileID: 7309158589545609306}
+  - component: {fileID: 715896924469408840}
   m_Layer: 0
   m_Name: ButtonLogic
   m_TagString: Untagged
@@ -153,7 +153,7 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &7309158589545609306
+--- !u!114 &715896924469408840
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -162,11 +162,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 432481817791459316}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f35a7679691e464b84edbc07a75f11e, type: 3}
+  m_Script: {fileID: 11500000, guid: ba97e1f56880c3244bc66e6ade94ce07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isActive: 0
   sprite: {fileID: 8604578124681948764}
+  boxUI: {fileID: 0}
   pressed: {fileID: 8528379397331439162}
 --- !u!1 &8141295534420899593
 GameObject:
