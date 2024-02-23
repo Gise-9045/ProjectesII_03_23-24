@@ -1,3 +1,4 @@
+using Cinemachine.Utility;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,9 +8,10 @@ public class PlayerMovement : MonoBehaviour
 {
     private Player player;
 
-    private Vector2 actualMovement;
+    private Vector2 stairsPos;
 
     private Rigidbody2D rb;
+    private Transform tr;
 
     [SerializeField] private float jumpForce;
     [SerializeField] private float jumpTimeCounter;
@@ -51,6 +53,7 @@ public class PlayerMovement : MonoBehaviour
         player = GetComponent<Player>();
         rb = GetComponent<Rigidbody2D>();
         ground = GetComponentInChildren<PlayerGroundDetection>();
+        tr = GetComponentInChildren<Transform>();
         isJumping = false;
         onStairs = false;
         coyoteTime = 0.3f;
@@ -68,6 +71,8 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("FallVelocity", rb.velocity.y);
         animator.SetBool("Grounded", ground.OnGround() || onStairs);
         animator.SetBool("Stairs", onStairs && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S)));
+        animator.SetBool("Dash", dashing);
+        animator.SetFloat("DashVelocity", rb.velocity.x);
 
         Walk();
         DashCheck();
@@ -197,7 +202,6 @@ public class PlayerMovement : MonoBehaviour
         {
             dashing = true;
             actualDashCooldown = 0.5f;
-            dashTrail.Play();
             rb.velocity = new Vector2(player.GetDirection().x * dashVelocity, 0);
             rb.gravityScale = 0f;
             actualDashTimer -= Time.deltaTime;
@@ -222,7 +226,12 @@ public class PlayerMovement : MonoBehaviour
 
     void Stairs()
     {
-        if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+        if((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) && !(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow)))
+        {
+            tr.position = new Vector2((float)(tr.position.x + 0.05 * (stairsPos.x - tr.position.x)), tr.position.y);
+        }
+
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             rb.gravityScale = 0f;
             rb.velocity = new Vector2(rb.velocity.x, 5);
@@ -244,6 +253,8 @@ public class PlayerMovement : MonoBehaviour
         if(collision.tag == "Ladder")
         {
             onStairs = true;
+
+            stairsPos = collision.transform.position;
         }
 
     }
@@ -261,5 +272,7 @@ public class PlayerMovement : MonoBehaviour
     {
         actualDashTimer = dashTimer;
         rb.gravityScale = 0f;
+        dashTrail.Play();
+
     }
 }
