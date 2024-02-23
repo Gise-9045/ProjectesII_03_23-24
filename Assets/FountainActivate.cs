@@ -11,9 +11,9 @@ public class FountainActivate : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //dashFountain.SetActive(false);
-        //jumpFountain.SetActive(false);
-        //pickFountain.SetActive(false);
+        dashFountain.SetActive(false);
+        jumpFountain.SetActive(false);
+        pickFountain.SetActive(false);
 
     }
 
