@@ -21,7 +21,7 @@ public class ButtonActivateFountain : MonoBehaviour
         {
             pressed.SetBool("Pressed", true);
             fountain.SetActive(true);
-            //grayDatabase.dashActive = true;
+            grayDatabase.dashActive = true;
         }
     }
    
