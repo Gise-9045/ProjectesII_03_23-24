@@ -15,7 +15,7 @@ public class leverActivation : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") || collision.CompareTag("PuzzleBox"))
         {
             Toggle();
         }
@@ -28,7 +28,7 @@ public class leverActivation : MonoBehaviour
         {
             boxUI.SetActive(true);
 
-            // Llama a la función HideBoxUI después de 5 segundos
+            // Llama a la funciï¿½n HideBoxUI despuï¿½s de 5 segundos
             Invoke("HideBoxUI", 5f);
         }
 

@@ -37,7 +37,7 @@ public class PlayerGroundDetection : MonoBehaviour
         onGround = false;
         foreach(Collider2D collider in colliders)
         {
-            if(collider.CompareTag("Ground") || collider.CompareTag("ColorChange"))
+            if(collider.CompareTag("Ground") || collider.CompareTag("ColorChange")|| collider.CompareTag("PuzzleBox"))
             {
                 onGround = playerRb.velocity.y < 1.0f;
                 break;
