@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 8833963981279398460}
   - component: {fileID: 8604578124681948764}
   - component: {fileID: 7764343088574680606}
-  - component: {fileID: 8941272973008630754}
   - component: {fileID: 3083860517611137561}
+  - component: {fileID: 8231795567967368030}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -132,20 +132,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.27097324, y: 0.08605096}
   m_EdgeRadius: 0
---- !u!114 &8941272973008630754
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 432481817791459316}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d397bbc2be1f0004b8994cce7ef78026, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isActive: 0
-  sprite: {fileID: 8604578124681948764}
 --- !u!95 &3083860517611137561
 Animator:
   serializedVersion: 5
@@ -156,7 +142,7 @@ Animator:
   m_GameObject: {fileID: 432481817791459316}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d946874b04515e64aa7f1562c9646c2f, type: 2}
+  m_Controller: {fileID: 9100000, guid: 379c1c556856ca54ba22755f597e7209, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -167,6 +153,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8231795567967368030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 432481817791459316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f35a7679691e464b84edbc07a75f11e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isActive: 0
+  sprite: {fileID: 8604578124681948764}
+  pressed: {fileID: 3083860517611137561}
 --- !u!1 &8141295534420899593
 GameObject:
   m_ObjectHideFlags: 0
@@ -178,7 +179,7 @@ GameObject:
   - component: {fileID: 9022916571552113933}
   - component: {fileID: 7192747173139619475}
   m_Layer: 0
-  m_Name: ButtonPermanent
+  m_Name: ButtonIntercale
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
