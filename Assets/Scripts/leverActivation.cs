@@ -23,7 +23,6 @@ public class leverActivation : MonoBehaviour
 
     public void Toggle()
     {
-       
 
         if(!isActive)
         {
@@ -34,6 +33,8 @@ public class leverActivation : MonoBehaviour
         }
 
         isActive = true;
+        
+
     }
 
     private void HideBoxUI()
