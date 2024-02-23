@@ -491,8 +491,8 @@ TextureImporter:
       name: PlayerTilemap_18
       rect:
         serializedVersion: 2
-        x: 0
-        y: 272
+        x: 224
+        y: 288
         width: 16
         height: 16
       alignment: 0
@@ -512,7 +512,7 @@ TextureImporter:
       name: PlayerTilemap_19
       rect:
         serializedVersion: 2
-        x: 16
+        x: 0
         y: 272
         width: 16
         height: 16
@@ -533,7 +533,7 @@ TextureImporter:
       name: PlayerTilemap_20
       rect:
         serializedVersion: 2
-        x: 32
+        x: 16
         y: 272
         width: 16
         height: 16
@@ -554,7 +554,7 @@ TextureImporter:
       name: PlayerTilemap_21
       rect:
         serializedVersion: 2
-        x: 48
+        x: 32
         y: 272
         width: 16
         height: 16
@@ -575,7 +575,7 @@ TextureImporter:
       name: PlayerTilemap_22
       rect:
         serializedVersion: 2
-        x: 64
+        x: 48
         y: 272
         width: 16
         height: 16
@@ -596,7 +596,7 @@ TextureImporter:
       name: PlayerTilemap_23
       rect:
         serializedVersion: 2
-        x: 80
+        x: 64
         y: 272
         width: 16
         height: 16
@@ -617,7 +617,7 @@ TextureImporter:
       name: PlayerTilemap_24
       rect:
         serializedVersion: 2
-        x: 96
+        x: 80
         y: 272
         width: 16
         height: 16
@@ -638,8 +638,8 @@ TextureImporter:
       name: PlayerTilemap_25
       rect:
         serializedVersion: 2
-        x: 0
-        y: 256
+        x: 96
+        y: 272
         width: 16
         height: 16
       alignment: 0
@@ -659,7 +659,7 @@ TextureImporter:
       name: PlayerTilemap_26
       rect:
         serializedVersion: 2
-        x: 16
+        x: 0
         y: 256
         width: 16
         height: 16
@@ -680,7 +680,7 @@ TextureImporter:
       name: PlayerTilemap_27
       rect:
         serializedVersion: 2
-        x: 32
+        x: 16
         y: 256
         width: 16
         height: 16
@@ -701,7 +701,7 @@ TextureImporter:
       name: PlayerTilemap_28
       rect:
         serializedVersion: 2
-        x: 48
+        x: 32
         y: 256
         width: 16
         height: 16
@@ -722,7 +722,7 @@ TextureImporter:
       name: PlayerTilemap_29
       rect:
         serializedVersion: 2
-        x: 64
+        x: 48
         y: 256
         width: 16
         height: 16
@@ -743,7 +743,7 @@ TextureImporter:
       name: PlayerTilemap_30
       rect:
         serializedVersion: 2
-        x: 80
+        x: 64
         y: 256
         width: 16
         height: 16
@@ -764,7 +764,7 @@ TextureImporter:
       name: PlayerTilemap_31
       rect:
         serializedVersion: 2
-        x: 96
+        x: 80
         y: 256
         width: 16
         height: 16
@@ -777,6 +777,27 @@ TextureImporter:
       bones: []
       spriteID: fb5893c657a72a14792fcf548c5d90af
       internalID: -113486323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PlayerTilemap_32
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 256
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2888a4ca02489ec4cb240c984370da78
+      internalID: -1898139326
       vertices: []
       indices: 
       edges: []
@@ -818,6 +839,7 @@ TextureImporter:
       PlayerTilemap_3: 747012816
       PlayerTilemap_30: -2123533062
       PlayerTilemap_31: -113486323
+      PlayerTilemap_32: -1898139326
       PlayerTilemap_4: 976559550
       PlayerTilemap_5: -104128496
       PlayerTilemap_6: -1316229136
