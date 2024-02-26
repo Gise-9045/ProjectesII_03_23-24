@@ -794,17 +794,6 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
---- !u!114 &385458408 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3464183587713546615, guid: e896ab0001b7deb469ea1d848d0b0514, type: 3}
-  m_PrefabInstance: {fileID: 758513066}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba97e1f56880c3244bc66e6ade94ce07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &420570323
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1021,6 +1010,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 595477486}
   m_CullTransparentMesh: 1
+--- !u!114 &618249110 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 715896924469408840, guid: e896ab0001b7deb469ea1d848d0b0514, type: 3}
+  m_PrefabInstance: {fileID: 758513066}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba97e1f56880c3244bc66e6ade94ce07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &758513066
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1029,6 +1029,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 715896924469408840, guid: e896ab0001b7deb469ea1d848d0b0514, type: 3}
+      propertyPath: boxUI
+      value: 
+      objectReference: {fileID: 1850286476}
     - target: {fileID: 3464183587713546615, guid: e896ab0001b7deb469ea1d848d0b0514, type: 3}
       propertyPath: boxUI
       value: 
@@ -1457,7 +1461,7 @@ PrefabInstance:
     - target: {fileID: 4596621966536837774, guid: 81ae6cc943697704f8f750c8a88488ce, type: 3}
       propertyPath: leverControl
       value: 
-      objectReference: {fileID: 385458408}
+      objectReference: {fileID: 618249110}
     - target: {fileID: 8561974844838355742, guid: 81ae6cc943697704f8f750c8a88488ce, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -1904,7 +1908,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1388313651334440561, guid: e48e924d4c9643e43916eb95f4103005, type: 3}
       propertyPath: m_Size.y
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 5318345606892094481, guid: e48e924d4c9643e43916eb95f4103005, type: 3}
       propertyPath: m_Name
@@ -1920,7 +1924,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5806725900113244216, guid: e48e924d4c9643e43916eb95f4103005, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.54
+      value: 3.07
       objectReference: {fileID: 0}
     - target: {fileID: 5806725900113244216, guid: e48e924d4c9643e43916eb95f4103005, type: 3}
       propertyPath: m_LocalPosition.z

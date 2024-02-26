@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class leverActivateOnce : MonoBehaviour
+public class intercaleLever : MonoBehaviour
 {
     public bool isActive;
     [SerializeField] private SpriteRenderer sprite;
@@ -27,10 +27,17 @@ public class leverActivateOnce : MonoBehaviour
             Toggle();
         }
     }
-    
-    public void Toggle()
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        isActive = true;
+        if (collision.CompareTag("Player") || collision.CompareTag("PuzzleBox"))
+        {
+            pressed.SetBool("Pressed", false);
+            Toggle();
+        }
+    }
+    public void Toggle() { 
+        isActive = !isActive;
+       
 
     }
 }

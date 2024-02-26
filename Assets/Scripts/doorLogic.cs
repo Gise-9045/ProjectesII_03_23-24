@@ -49,9 +49,9 @@ public class doorLogic : MonoBehaviour
         {
             return ((leverActivation)leverControl).isActive;
         }
-        else if (leverControl is leverActivateOnce)
+        else if (leverControl is intercaleLever)
         {
-            return ((leverActivateOnce)leverControl).isActive;
+            return ((intercaleLever)leverControl).isActive;
         }
         else
         {
