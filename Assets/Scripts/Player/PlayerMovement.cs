@@ -135,7 +135,6 @@ public class PlayerMovement : MonoBehaviour
         }
 
         CheckJump();
-
     }
 
     void Walk()
