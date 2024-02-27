@@ -1,5 +1,7 @@
+using Cinemachine.Utility;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 //using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
@@ -7,9 +9,10 @@ public class PlayerMovement : MonoBehaviour
 {
     private Player player;
 
-    private Vector2 actualMovement;
+    private Vector2 stairsPos;
 
     private Rigidbody2D rb;
+    private Transform tr;
 
     [SerializeField] private float jumpForce;
     [SerializeField] private float jumpTimeCounter;
@@ -35,6 +38,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float dashTimer;
     [SerializeField] bool canDash;
     [SerializeField] float dashCooldown;
+    [SerializeField] private ParticleSystem dashTrail;
+    [SerializeField] private ParticleSystem deathParticles;
     float actualDashCooldown = 0;
 
     [SerializeField]
@@ -44,11 +49,15 @@ public class PlayerMovement : MonoBehaviour
 
     private Animator animator;
 
+    private bool oldDead;
+
     void Start()
     {
+        
         player = GetComponent<Player>();
         rb = GetComponent<Rigidbody2D>();
         ground = GetComponentInChildren<PlayerGroundDetection>();
+        tr = GetComponentInChildren<Transform>();
         isJumping = false;
         onStairs = false;
         coyoteTime = 0.3f;
@@ -58,13 +67,48 @@ public class PlayerMovement : MonoBehaviour
         ground.OnGroundTouchdown += walkParticles.Play;
 
         ground.OnLeaveGround += walkParticles.Stop;
+
+        oldDead = false;
     }
 
     void Update()
     {
+        if (player.GetDead())
+        {
+            animator.SetBool("Stairs", false);
+            animator.SetBool("Dash", false);
+            animator.SetBool("Walk", false);
+            animator.SetBool("Grounded", true);
+
+
+            animator.SetBool("Death", true);
+
+            if(player.GetDead() && player.GetDead() != oldDead)
+            {
+                deathParticles.Play();
+            }
+
+            rb.gravityScale = 0f;
+            rb.velocity = Vector2.zero;
+
+            oldDead = player.GetDead();
+
+            return;
+        }
+        else
+        {
+            animator.SetBool("Death", false);
+            oldDead = player.GetDead();
+        }
 
         animator.SetFloat("FallVelocity", rb.velocity.y);
-        animator.SetBool("Grounded", ground.OnGround());
+        animator.SetBool("Grounded", ground.OnGround() || onStairs);
+        animator.SetBool("Stairs", onStairs && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S)));
+        animator.SetBool("Dash", dashing);
+        animator.SetFloat("DashVelocity", rb.velocity.x);
+
+        animator.SetBool("Walk", Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow));
+
         Walk();
         DashCheck();
 
@@ -83,8 +127,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (canDash && !dashing && Input.GetKeyDown(KeyCode.LeftShift) && actualDashCooldown <= 0)
         {
-            actualDashTimer = dashTimer;
-            rb.gravityScale = 0f;
+            Dash();
         }
         else if(!dashing)
         {
@@ -92,7 +135,6 @@ public class PlayerMovement : MonoBehaviour
         }
 
         CheckJump();
-
     }
 
     void Walk()
@@ -197,64 +239,33 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(player.GetDirection().x * dashVelocity, 0);
             rb.gravityScale = 0f;
             actualDashTimer -= Time.deltaTime;
+            
         }
         else
         {
             dashing = false;
+           
         }
     }
 
-    /* void Jump()
-     {
-         if (ground.OnGround())
-         {
-             actualCoyoteTime = coyoteTime;
-         }
-         else
-         {
-             actualCoyoteTime -= Time.deltaTime;
-         }
-
-
-         if (actualCoyoteTime > 0 && Input.GetKeyDown(KeyCode.Space) && !isJumping)
-         {
-             rb.gravityScale = 9.81f;
-
-             actualCoyoteTime = 0f;
-             isJumping = true;
-             actualJumpTimeCounter = jumpTimeCounter;
-             rb.velocity = new Vector2(rb.velocity.x, Vector2.up.y * jumpForce);
-         }
-
-         if (Input.GetKey(KeyCode.Space) && isJumping)
-         {
-
-             if (actualJumpTimeCounter > 0)
-             {
-                 rb.velocity = new Vector2(rb.velocity.x, Vector2.up.y * jumpForce);
-                 actualJumpTimeCounter -= Time.deltaTime;
-             }
-             else
-             {
-                 isJumping = false;
-
-             }
-         }
-
-         if (Input.GetKeyUp(KeyCode.Space))
-         {
-             isJumping = false;
-             actualCoyoteTime = 0f;
-         }
-     }*/
+    
     public void SetDoubleJump(bool condition)
     {
         canDoubleJump = condition;
+    } 
+    public void SetDash(bool condition)
+    {
+        canDash = condition;
     }
 
     void Stairs()
     {
-        if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+        if((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) || Input.GetKey(KeyCode.Space) && !(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow)))
+        {
+            tr.position = new Vector2((float)(tr.position.x + 0.05 * (stairsPos.x - tr.position.x)), tr.position.y);
+        }
+
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             rb.gravityScale = 0f;
             rb.velocity = new Vector2(rb.velocity.x, 5);
@@ -270,19 +281,30 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "Ladder")
         {
             onStairs = true;
+
+            stairsPos = collision.transform.position;
         }
 
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        onStairs = false;
-        usingStairs = false;
+        if (collision.tag == "Ladder")
+        {
+            onStairs = false;
+            usingStairs = false;
+        }
+    }
+    private void Dash()
+    {
+        actualDashTimer = dashTimer;
+        rb.gravityScale = 0f;
+        dashTrail.Play();
+
     }
 }
