@@ -15,6 +15,8 @@ public class TransitionManager : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1.0f;
+
         verticalAnim = vertical.GetComponentInChildren<Animator>();
         horizontalAnim = horizontal.GetComponentInChildren<Animator>();
 
