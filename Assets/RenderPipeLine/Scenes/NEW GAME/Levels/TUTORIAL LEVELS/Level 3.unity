@@ -866,6 +866,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7583558940446338581, guid: 5dabb304a592e1d4b948101024cf52b6, type: 3}
+      propertyPath: animKey
+      value: 
+      objectReference: {fileID: 1054638589}
     - target: {fileID: 8111450350650892164, guid: 5dabb304a592e1d4b948101024cf52b6, type: 3}
       propertyPath: m_SortingOrder
       value: -1
@@ -1442,6 +1446,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1683388912}
+--- !u!95 &1054638589 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3894419639386791234, guid: b8454e11204def943aefd9c3af3ab135, type: 3}
+  m_PrefabInstance: {fileID: 95146817}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1115117204
 PrefabInstance:
   m_ObjectHideFlags: 0
