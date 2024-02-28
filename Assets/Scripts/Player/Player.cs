@@ -33,8 +33,11 @@ public class Player : MonoBehaviour
 
     public void TakeDamage()
     {
-        dead = true;
-        StartCoroutine(Death());
+        if(!dead)
+        {
+            dead = true;
+            StartCoroutine(Death());
+        }
     }
 
     public void SetDirection(Vector2 d)
@@ -61,14 +64,7 @@ public class Player : MonoBehaviour
     private IEnumerator Death()
     {
         yield return new WaitForSecondsRealtime(1f);
-        dead = false;
         player.position = respawn.position;
+        dead = false;
     }
-
-    void Update()
-    {
-        
-    }
-
-   
 }
