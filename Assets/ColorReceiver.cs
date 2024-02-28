@@ -36,6 +36,11 @@ public class ColorReceiver : MonoBehaviour
                 boolManaging.SetDash(true);
                 boolManaging.SetDoubleJump(false);
             }
+            else if (collision.collider.GetComponent<ColorSpreader>().GetColorType() == ColorTypes.NULL)
+            {
+                boolManaging.SetDash(false);
+                boolManaging.SetDoubleJump(false);
+            }
             else
             {
                 boolManaging.SetDoubleJump(false);

@@ -34,6 +34,7 @@ public class LvlTransitionBack : MonoBehaviour
         //transitions.SetTrigger("LvlPassed");
         if (collision.CompareTag("Player"))
         {
+            Time.timeScale = 0.0f;
             horizontalAnim.SetBool("ExitLeftAnimation", false);
             StartCoroutine(LevelTransition());
 
@@ -48,13 +49,13 @@ public class LvlTransitionBack : MonoBehaviour
             case Transition.LEFT:
                 horizontal.SetActive(true);
                 horizontalAnim.SetBool("LeftAnimation", true);
-                yield return new WaitForSeconds(0.7f);
+                yield return new WaitForSecondsRealtime(0.7f);
 
                 break;
         }
 
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+        SceneManager.LoadScene("Gray Zone 1");
         Debug.Log("LvlPassed");
 
     }

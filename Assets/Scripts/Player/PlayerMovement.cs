@@ -1,6 +1,7 @@
 using Cinemachine.Utility;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 //using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
@@ -38,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] bool canDash;
     [SerializeField] float dashCooldown;
     [SerializeField] private ParticleSystem dashTrail;
+    [SerializeField] private ParticleSystem deathParticles;
     float actualDashCooldown = 0;
 
     [SerializeField]
@@ -46,6 +48,8 @@ public class PlayerMovement : MonoBehaviour
     private ParticleSystem jumpParticles;
 
     private Animator animator;
+
+    private bool oldDead;
 
     void Start()
     {
@@ -63,16 +67,47 @@ public class PlayerMovement : MonoBehaviour
         ground.OnGroundTouchdown += walkParticles.Play;
 
         ground.OnLeaveGround += walkParticles.Stop;
+
+        oldDead = false;
     }
 
     void Update()
     {
+        if (player.GetDead())
+        {
+            animator.SetBool("Stairs", false);
+            animator.SetBool("Dash", false);
+            animator.SetBool("Walk", false);
+            animator.SetBool("Grounded", true);
+
+
+            animator.SetBool("Death", true);
+
+            if(player.GetDead() && player.GetDead() != oldDead)
+            {
+                deathParticles.Play();
+            }
+
+            rb.gravityScale = 0f;
+            rb.velocity = Vector2.zero;
+
+            oldDead = player.GetDead();
+
+            return;
+        }
+        else
+        {
+            animator.SetBool("Death", false);
+            oldDead = player.GetDead();
+        }
 
         animator.SetFloat("FallVelocity", rb.velocity.y);
         animator.SetBool("Grounded", ground.OnGround() || onStairs);
         animator.SetBool("Stairs", onStairs && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S)));
         animator.SetBool("Dash", dashing);
         animator.SetFloat("DashVelocity", rb.velocity.x);
+
+        animator.SetBool("Walk", Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow));
 
         Walk();
         DashCheck();
@@ -100,7 +135,6 @@ public class PlayerMovement : MonoBehaviour
         }
 
         CheckJump();
-
     }
 
     void Walk()
@@ -226,7 +260,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Stairs()
     {
-        if((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) && !(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow)))
+        if((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S)) || Input.GetKey(KeyCode.Space) && !(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow)))
         {
             tr.position = new Vector2((float)(tr.position.x + 0.05 * (stairsPos.x - tr.position.x)), tr.position.y);
         }
@@ -247,7 +281,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "Ladder")
@@ -266,7 +299,6 @@ public class PlayerMovement : MonoBehaviour
             onStairs = false;
             usingStairs = false;
         }
-
     }
     private void Dash()
     {

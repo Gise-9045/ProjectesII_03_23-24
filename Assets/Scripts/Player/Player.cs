@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
     [SerializeField] private int life;
     [SerializeField] int speed;
 
+    [SerializeField] private bool dead;
+
     Vector2 direction;
 
     [SerializeField] private Transform respawn; //posicion de respawn
@@ -27,10 +29,12 @@ public class Player : MonoBehaviour
     public int GetLife() { return life; }
     public void SetSpeed(int s) { speed = s; }
     public int GetSpeed() { return speed; }
+    public bool GetDead() { return dead; }
 
     public void TakeDamage()
     {
-        player.position = respawn.position;
+        dead = true;
+        StartCoroutine(Death());
     }
 
     public void SetDirection(Vector2 d)
@@ -52,6 +56,13 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSecondsRealtime(0.1f);
         knockback = false;
+    }
+
+    private IEnumerator Death()
+    {
+        yield return new WaitForSecondsRealtime(1f);
+        dead = false;
+        player.position = respawn.position;
     }
 
     void Update()

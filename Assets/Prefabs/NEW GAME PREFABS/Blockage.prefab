@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5058143696216588181}
   m_Layer: 0
   m_Name: Blockage
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isActive: 0
   leverControl: {fileID: 0}
-  sprite: {fileID: 0}
+  sprite: {fileID: 5198736903039938745}
   isOpen: 0
 --- !u!61 &5058143696216588181
 BoxCollider2D:
@@ -169,7 +169,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 1642083196, guid: 2c75636cce5424540b395f76e9009cd4, type: 3}
-  m_Color: {r: 1, g: 0.27523845, b: 0, a: 1}
+  m_Color: {r: 1, g: 0.6392157, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
