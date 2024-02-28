@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8561974844838355742}
-  - component: {fileID: 4596621966536837774}
   - component: {fileID: 5058143696216588181}
+  - component: {fileID: 5155050903856164927}
   m_Layer: 0
-  m_Name: Blockage
+  m_Name: ReverseBlockage
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34,22 +34,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4596621966536837774
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4402748200585735379}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 099b15a98aa34194caa14af151d9b13c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isActive: 0
-  leverControl: {fileID: 0}
-  sprite: {fileID: 5198736903039938745}
-  isOpen: 0
 --- !u!61 &5058143696216588181
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -95,6 +79,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &5155050903856164927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4402748200585735379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78606e2144c22ba428b5a37d4e39d0e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isActive: 0
+  leverControl: {fileID: 0}
+  sprite: {fileID: 5198736903039938745}
+  isOpen: 0
 --- !u!1 &6146478181119148757
 GameObject:
   m_ObjectHideFlags: 0
@@ -169,7 +169,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 1642083196, guid: 2c75636cce5424540b395f76e9009cd4, type: 3}
-  m_Color: {r: 1, g: 0.6392157, b: 0, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
