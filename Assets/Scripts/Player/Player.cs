@@ -18,11 +18,14 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform respawn; //posicion de respawn
     private Transform player;
 
+    private AudioManager audioManager;
     
     void Start()
     {
         direction= new Vector2(1, 1);
         player = GetComponent<Transform>();
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+
     }
 
     public void SetLife(int l) { life = l; }
@@ -63,6 +66,7 @@ public class Player : MonoBehaviour
 
     private IEnumerator Death()
     {
+        audioManager.PlaySFX(audioManager.death);
         yield return new WaitForSecondsRealtime(1f);
         player.position = respawn.position;
         dead = false;
