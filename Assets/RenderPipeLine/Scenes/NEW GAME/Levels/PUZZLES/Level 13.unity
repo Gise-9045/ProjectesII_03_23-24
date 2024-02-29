@@ -2140,6 +2140,18 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 655937576}
     m_ColliderPaths:
+    - - X: 80000000
+        Y: 75625000
+      - X: 76875000
+        Y: 78125000
+      - X: 70000000
+        Y: 78125000
+      - X: 70000000
+        Y: 71250000
+      - X: 71250000
+        Y: 70000000
+      - X: 80000000
+        Y: 70000000
     - - X: 110000000
         Y: -74375000
       - X: 106875000
@@ -2154,6 +2166,12 @@ CompositeCollider2D:
         Y: -80000000
   m_CompositePaths:
     m_Paths:
+    - - {x: 7.9999704, y: 7}
+      - {x: 7.9999905, y: 7.562508}
+      - {x: 7.6874914, y: 7.8125}
+      - {x: 7, y: 7.8124704}
+      - {x: 7.000008, y: 7.124992}
+      - {x: 7.1250114, y: 7}
     - - {x: 10.99997, y: -8}
       - {x: 10.99999, y: -7.437492}
       - {x: 10.687491, y: -7.1875}
@@ -2295,6 +2313,16 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
+  - first: {x: 7, y: 7, z: 0}
+    second:
+      serializedVersion: 2
+      m_TileIndex: 40
+      m_TileSpriteIndex: 40
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 27
+      m_TileObjectToInstantiateIndex: 65535
+      dummyAlignment: 0
+      m_AllTileFlags: 1073741825
   m_AnimatedTiles: {}
   m_TileAssetArray:
   - m_RefCount: 0
@@ -2377,7 +2405,7 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 1
+  - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: 6507ef5b9726cf64388642b3ab6569ba, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 0
@@ -2460,10 +2488,10 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 1
+  - m_RefCount: 2
     m_Data: {fileID: 1516775751, guid: 2c75636cce5424540b395f76e9009cd4, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 1
+  - m_RefCount: 2
     m_Data:
       e00: 1
       e01: 0
@@ -2536,7 +2564,7 @@ Tilemap:
     m_Data: {r: 4.6887e-41, g: 4.6887e-41, b: 4.6887e-41, a: 4.6887e-41}
   - m_RefCount: 0
     m_Data: {r: 4.6887e-41, g: 4.6887e-41, b: 4.6887e-41, a: 4.6887e-41}
-  - m_RefCount: 1
+  - m_RefCount: 2
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -2701,7 +2729,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1102710362}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14, y: -7.48, z: 0}
+  m_LocalPosition: {x: 11.75, y: -7.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
