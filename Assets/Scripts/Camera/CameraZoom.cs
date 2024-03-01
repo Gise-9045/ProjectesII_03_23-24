@@ -17,7 +17,7 @@ public class CameraZoom : MonoBehaviour
     private Vector2 actualPos;
     private Vector2 finalPos;
 
-    void Start()
+    void Awake()
     {
         cam = GetComponent<Camera>();
         tr = GetComponent<Transform>();
@@ -29,6 +29,13 @@ public class CameraZoom : MonoBehaviour
         //Me guardo el zoom total de pantalla
         finalZoom = cam.orthographicSize;
 
+        actualZoom = cam.orthographicSize;
+        actualPos = tr.position;
+    }
+
+    public void SetToPlayer()
+    {
+        //Set zoom and pos to player (Without movement)
         //Zoom inicial (Apuntando a player)
         cam.orthographicSize = 1;
         actualZoom = cam.orthographicSize;
@@ -36,7 +43,7 @@ public class CameraZoom : MonoBehaviour
 
         tr.position = new Vector3(playerTr.position.x, playerTr.position.y, -20);
         actualPos = tr.position;
-    } 
+    }
 
     public void PlayerZoomOut()
     {

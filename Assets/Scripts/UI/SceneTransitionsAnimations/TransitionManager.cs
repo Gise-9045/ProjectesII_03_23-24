@@ -74,6 +74,8 @@ public class TransitionManager : MonoBehaviour
     public IEnumerator StartHole()
     {
         hole.SetActive(true);
+        cam.SetToPlayer();
+
 
         yield return new WaitForSeconds(0.5f);
         holeAnim.SetBool("Open", true);
@@ -90,7 +92,9 @@ public class TransitionManager : MonoBehaviour
     public IEnumerator StartIntroHole()
     {
         hole.SetActive(true);
+        cam.SetToPlayer();
         holeAnim.SetBool("MidOpen", true);
+
 
 
         yield return new WaitForSeconds(1.5f);
