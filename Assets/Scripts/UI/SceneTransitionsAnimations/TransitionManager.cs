@@ -74,15 +74,17 @@ public class TransitionManager : MonoBehaviour
     public IEnumerator StartHole()
     {
         hole.SetActive(true);
+        cam.SetToPlayer();
 
-        yield return new WaitForSeconds(0.5f);
-        holeAnim.SetBool("Open", true);
+
+        //yield return new WaitForSeconds(0.5f);
+        holeAnim.SetBool("OpenFromMid", true);
         cam.PlayerZoomOut();
 
 
         yield return new WaitForSeconds(3f);
         hole.SetActive(false);
-        holeAnim.SetBool("MidOpen", false);
+        holeAnim.SetBool("OpenFromMid", false);
         holeAnim.SetBool("Open", false);
     }
 
@@ -90,14 +92,16 @@ public class TransitionManager : MonoBehaviour
     public IEnumerator StartIntroHole()
     {
         hole.SetActive(true);
+        cam.SetToPlayer();
         holeAnim.SetBool("MidOpen", true);
+
 
 
         yield return new WaitForSeconds(1.5f);
         player.SetStop(true);
 
         yield return new WaitForSeconds(0.5f);
-        holeAnim.SetBool("Open", true);
+        holeAnim.SetBool("OpenFromMid", true);
         cam.PlayerZoomOut();
         player.SetStop(false);
 
@@ -105,24 +109,7 @@ public class TransitionManager : MonoBehaviour
         yield return new WaitForSeconds(3f);
         hole.SetActive(false);
         holeAnim.SetBool("MidOpen", false);
-        holeAnim.SetBool("Open", false);
-    }
-
-    public void Close()
-    {
-        holeAnim.SetBool("MidOpen", false);
-        holeAnim.SetBool("Open", false);
-    }
-
-    public void MidOpen()
-    {
-        holeAnim.SetBool("MidOpen", true);
-
-    }
-
-    public void Open()
-    {
-        holeAnim.SetBool("Open", true);
+        holeAnim.SetBool("OpenFromMid", false);
     }
 
 
