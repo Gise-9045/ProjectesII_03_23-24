@@ -12,17 +12,21 @@ public class Player : MonoBehaviour
     [SerializeField] int speed;
 
     [SerializeField] private bool dead;
+    [SerializeField] private bool stop;
 
     Vector2 direction;
 
     [SerializeField] private Transform respawn; //posicion de respawn
     private Transform player;
 
+    private AudioManager audioManager;
     
     void Start()
     {
         direction= new Vector2(1, 1);
         player = GetComponent<Transform>();
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+
     }
 
     public void SetLife(int l) { life = l; }
@@ -31,10 +35,16 @@ public class Player : MonoBehaviour
     public int GetSpeed() { return speed; }
     public bool GetDead() { return dead; }
 
+    public void SetStop(bool s) { stop = s; }
+    public bool GetStop() { return stop; }
+
     public void TakeDamage()
     {
-        dead = true;
-        StartCoroutine(Death());
+        if(!dead)
+        {
+            dead = true;
+            StartCoroutine(Death());
+        }
     }
 
     public void SetDirection(Vector2 d)
@@ -60,15 +70,9 @@ public class Player : MonoBehaviour
 
     private IEnumerator Death()
     {
+        audioManager.PlaySFX(audioManager.death);
         yield return new WaitForSecondsRealtime(1f);
-        dead = false;
         player.position = respawn.position;
+        dead = false;
     }
-
-    void Update()
-    {
-        
-    }
-
-   
 }
