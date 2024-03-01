@@ -32,6 +32,7 @@ public class lvlTransition : MonoBehaviour
         //transitions.SetTrigger("LvlPassed");
         if (collision.CompareTag("Player") && keySaverList.GetListKeys().Count != 0)
         {
+            Time.timeScale = 0.0f;
             horizontalAnim.SetBool("ExitLeftAnimation", false);
             StartCoroutine(LevelTransition());
         }
@@ -46,7 +47,7 @@ public class lvlTransition : MonoBehaviour
             case Transition.LEFT:
                 horizontal.SetActive(true);
                 horizontalAnim.SetBool("LeftAnimation", true);
-                yield return new WaitForSeconds(0.7f);
+                yield return new WaitForSecondsRealtime(0.7f);
 
                 break;
         }

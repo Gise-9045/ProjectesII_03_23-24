@@ -15,6 +15,5 @@ public class PlayerAnimations : MonoBehaviour
 
     void Update()
     {
-        anim.SetBool("Walk", Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D));
     }
 }

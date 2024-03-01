@@ -18,7 +18,7 @@ public class PauseManager : MonoBehaviour
         horizontalAnim = horizontal.GetComponentInChildren<Animator>();
     }
 
-        private void Update()
+    private void Update()
     {
         if (!pauseMenu.activeSelf && Input.GetKeyDown(KeyCode.Escape))
         {

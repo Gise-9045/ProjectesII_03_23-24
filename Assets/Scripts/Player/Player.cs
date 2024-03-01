@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 //using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -11,27 +12,47 @@ public class Player : MonoBehaviour
     [SerializeField] private int life;
     [SerializeField] int speed;
 
+    [SerializeField] private bool dead;
+    [SerializeField] public bool canDie; 
+    [SerializeField] private bool stop;
+
     Vector2 direction;
 
-    [SerializeField] private Transform respawn; //posicion de respawn
-    private Transform player;
-
+    private AudioManager audioManager;
     
-
     void Start()
     {
         direction= new Vector2(1, 1);
-        player = GetComponent<Transform>();
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        canDie = true; 
+
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.G))
+        {
+            canDie = false;
+            Debug.Log("GodMode"); 
+        }
     }
 
     public void SetLife(int l) { life = l; }
     public int GetLife() { return life; }
     public void SetSpeed(int s) { speed = s; }
     public int GetSpeed() { return speed; }
+    public bool GetDead() { return dead; }
+
+    public void SetStop(bool s) { stop = s; }
+    public bool GetStop() { return stop; }
 
     public void TakeDamage()
     {
-        player.position = respawn.position;
+        if(!dead)
+        {
+            dead = true;
+            StartCoroutine(Death());
+        }
     }
 
     public void SetDirection(Vector2 d)
@@ -55,10 +76,11 @@ public class Player : MonoBehaviour
         knockback = false;
     }
 
-    void Update()
+    private IEnumerator Death()
     {
-        
+        audioManager.PlaySFX(audioManager.death);
+        yield return new WaitForSecondsRealtime(1f);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name); 
+        dead = false;
     }
-
-   
 }
