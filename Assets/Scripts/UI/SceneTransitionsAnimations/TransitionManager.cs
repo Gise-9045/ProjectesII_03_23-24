@@ -77,7 +77,7 @@ public class TransitionManager : MonoBehaviour
         cam.SetToPlayer();
 
 
-        yield return new WaitForSeconds(0.5f);
+        //yield return new WaitForSeconds(0.5f);
         holeAnim.SetBool("Open", true);
         cam.PlayerZoomOut();
 
@@ -101,7 +101,7 @@ public class TransitionManager : MonoBehaviour
         player.SetStop(true);
 
         yield return new WaitForSeconds(0.5f);
-        holeAnim.SetBool("Open", true);
+        holeAnim.SetBool("OpenFromMid", true);
         cam.PlayerZoomOut();
         player.SetStop(false);
 
@@ -109,24 +109,7 @@ public class TransitionManager : MonoBehaviour
         yield return new WaitForSeconds(3f);
         hole.SetActive(false);
         holeAnim.SetBool("MidOpen", false);
-        holeAnim.SetBool("Open", false);
-    }
-
-    public void Close()
-    {
-        holeAnim.SetBool("MidOpen", false);
-        holeAnim.SetBool("Open", false);
-    }
-
-    public void MidOpen()
-    {
-        holeAnim.SetBool("MidOpen", true);
-
-    }
-
-    public void Open()
-    {
-        holeAnim.SetBool("Open", true);
+        holeAnim.SetBool("OpenFromMid", false);
     }
 
 
