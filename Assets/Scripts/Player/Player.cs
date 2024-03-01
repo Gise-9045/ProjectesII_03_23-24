@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     [SerializeField] int speed;
 
     [SerializeField] private bool dead;
+    [SerializeField] private bool stop;
 
     Vector2 direction;
 
@@ -33,6 +34,9 @@ public class Player : MonoBehaviour
     public void SetSpeed(int s) { speed = s; }
     public int GetSpeed() { return speed; }
     public bool GetDead() { return dead; }
+
+    public void SetStop(bool s) { stop = s; }
+    public bool GetStop() { return stop; }
 
     public void TakeDamage()
     {
