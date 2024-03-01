@@ -38,22 +38,25 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float dashTimer;
     [SerializeField] bool canDash;
     [SerializeField] float dashCooldown;
+
+    private AudioManager audioManager;
+
+
+    [Header("----- Particles -----")]
     [SerializeField] private ParticleSystem dashTrail;
     [SerializeField] private ParticleSystem deathParticles;
-    float actualDashCooldown = 0;
+    [SerializeField] private ParticleSystem walkParticles;
+    [SerializeField] private ParticleSystem jumpParticles;
 
-    [SerializeField]
-    private ParticleSystem walkParticles;
-    [SerializeField]
-    private ParticleSystem jumpParticles;
+    float actualDashCooldown = 0;
 
     private Animator animator;
 
     private bool oldDead;
 
+
     void Start()
     {
-        
         player = GetComponent<Player>();
         rb = GetComponent<Rigidbody2D>();
         ground = GetComponentInChildren<PlayerGroundDetection>();
@@ -62,6 +65,8 @@ public class PlayerMovement : MonoBehaviour
         onStairs = false;
         coyoteTime = 0.3f;
         animator = GetComponent<Animator>();
+
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
 
         ground.OnGroundTouchdown += jumpParticles.Play;
         ground.OnGroundTouchdown += walkParticles.Play;
@@ -157,6 +162,10 @@ public class PlayerMovement : MonoBehaviour
 
             rb.velocity = new Vector2(player.GetDirection().x * player.GetSpeed(), rb.velocity.y);
 
+            //if(!audioManager.IsPlayingSFX())
+            //{
+            //    audioManager.PlaySFX(audioManager.walk);
+            //}
         }
         else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
@@ -165,6 +174,10 @@ public class PlayerMovement : MonoBehaviour
 
             rb.velocity = new Vector2(player.GetDirection().x * player.GetSpeed(), rb.velocity.y);
 
+            //if (!audioManager.IsPlayingSFX())
+            //{
+            //    audioManager.PlaySFX(audioManager.walk);
+            //}
         }
         else
         {
@@ -178,6 +191,8 @@ public class PlayerMovement : MonoBehaviour
         actualJumpTimeCounter = jumpTimeCounter;
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         jumpParticles.Play();
+        audioManager.PlaySFX(audioManager.jump);
+
     }
     void CheckJump()
     {
