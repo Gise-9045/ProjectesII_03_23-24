@@ -35,6 +35,9 @@ public class Player : MonoBehaviour
             canDie = false;
             Debug.Log("GodMode"); 
         }
+
+
+        if(Input.GetKeyDown(KeyCode.R)) { SceneManager.LoadScene(SceneManager.GetActiveScene().name);  }
     }
 
     public void SetLife(int l) { life = l; }
@@ -48,10 +51,12 @@ public class Player : MonoBehaviour
 
     public void TakeDamage()
     {
-        if(!dead)
+        if(canDie && !dead)
         {
+
             dead = true;
             StartCoroutine(Death());
+
         }
     }
 
