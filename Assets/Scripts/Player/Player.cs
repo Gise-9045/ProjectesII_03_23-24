@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     Vector2 direction;
 
     private AudioManager audioManager;
+    [SerializeField] private GameObject crownGodMode;
     
     void Start()
     {
@@ -33,8 +34,12 @@ public class Player : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.G))
         {
             canDie = false;
-            Debug.Log("GodMode"); 
+            Debug.Log("GodMode");
+            crownGodMode.SetActive(true);
         }
+
+
+        if(Input.GetKeyDown(KeyCode.R)) { SceneManager.LoadScene(SceneManager.GetActiveScene().name);}
     }
 
     public void SetLife(int l) { life = l; }
@@ -48,10 +53,12 @@ public class Player : MonoBehaviour
 
     public void TakeDamage()
     {
-        if(!dead)
+        if(canDie && !dead)
         {
+
             dead = true;
             StartCoroutine(Death());
+
         }
     }
 
