@@ -28,6 +28,7 @@ public class doorLogic : MonoBehaviour
 
     public void Toggle()
     {
+        Debug.Log("Toggle");
         isActive = !isActive;
         //doorSource.clip = doorClip;
         sprite.enabled = isActive;
