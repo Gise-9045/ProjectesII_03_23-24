@@ -100,9 +100,21 @@ public class PlayerMovement : MonoBehaviour
 
             return;
         }
+        else if(player.GetStop())
+        {
+            animator.SetBool("Stairs", false);
+            animator.SetBool("Dash", false);
+            animator.SetBool("Walk", false);
+            animator.SetBool("Grounded", true);
+
+            animator.SetBool("StartPose", true);
+
+            return;
+        }
         else
         {
             animator.SetBool("Death", false);
+            animator.SetBool("StartPose", false);
             oldDead = player.GetDead();
         }
 
