@@ -366,7 +366,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -278.99994, y: 0}
+  m_AnchoredPosition: {x: -279, y: -147}
   m_SizeDelta: {x: -1642.8738, y: -985.37354}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &196388456
@@ -391,7 +391,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Press W to climb
 
-    Take the Key and open the Door to the next level'
+    Press SPACE to jump'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: bcc11518e72a4d146a2d409f7ae17420, type: 2}
   m_sharedMaterial: {fileID: 7461197988122149924, guid: bcc11518e72a4d146a2d409f7ae17420, type: 2}
@@ -418,7 +418,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25.15
+  m_fontSize: 29.25
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1

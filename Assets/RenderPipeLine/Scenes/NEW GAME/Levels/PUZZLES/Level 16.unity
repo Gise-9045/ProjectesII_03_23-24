@@ -217,6 +217,10 @@ PrefabInstance:
       value: Blockage (2)
       objectReference: {fileID: 0}
     - target: {fileID: 4596621966536837774, guid: 81ae6cc943697704f8f750c8a88488ce, type: 3}
+      propertyPath: timeDelay
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596621966536837774, guid: 81ae6cc943697704f8f750c8a88488ce, type: 3}
       propertyPath: leverControl
       value: 
       objectReference: {fileID: 1167101038}
@@ -350,6 +354,10 @@ PrefabInstance:
     - target: {fileID: 4402748200585735379, guid: 9ce97fa73c425ca4c846a6778b0777e9, type: 3}
       propertyPath: m_Name
       value: ReverseBlockage (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5155050903856164927, guid: 9ce97fa73c425ca4c846a6778b0777e9, type: 3}
+      propertyPath: timeDelay
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5155050903856164927, guid: 9ce97fa73c425ca4c846a6778b0777e9, type: 3}
       propertyPath: leverControl
@@ -814,6 +822,10 @@ PrefabInstance:
     - target: {fileID: 4402748200585735379, guid: 9ce97fa73c425ca4c846a6778b0777e9, type: 3}
       propertyPath: m_Name
       value: ReverseBlockage (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5155050903856164927, guid: 9ce97fa73c425ca4c846a6778b0777e9, type: 3}
+      propertyPath: timeDelay
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5155050903856164927, guid: 9ce97fa73c425ca4c846a6778b0777e9, type: 3}
       propertyPath: leverControl
@@ -1539,6 +1551,10 @@ PrefabInstance:
     - target: {fileID: 4402748200585735379, guid: 81ae6cc943697704f8f750c8a88488ce, type: 3}
       propertyPath: m_Name
       value: Blockage (7)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596621966536837774, guid: 81ae6cc943697704f8f750c8a88488ce, type: 3}
+      propertyPath: timeDelay
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4596621966536837774, guid: 81ae6cc943697704f8f750c8a88488ce, type: 3}
       propertyPath: leverControl
@@ -2483,6 +2499,10 @@ PrefabInstance:
       value: Blockage (1)
       objectReference: {fileID: 0}
     - target: {fileID: 4596621966536837774, guid: 81ae6cc943697704f8f750c8a88488ce, type: 3}
+      propertyPath: timeDelay
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596621966536837774, guid: 81ae6cc943697704f8f750c8a88488ce, type: 3}
       propertyPath: leverControl
       value: 
       objectReference: {fileID: 1167101038}
@@ -2658,6 +2678,10 @@ PrefabInstance:
       value: ReverseBlockage (2)
       objectReference: {fileID: 0}
     - target: {fileID: 5155050903856164927, guid: 9ce97fa73c425ca4c846a6778b0777e9, type: 3}
+      propertyPath: timeDelay
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5155050903856164927, guid: 9ce97fa73c425ca4c846a6778b0777e9, type: 3}
       propertyPath: leverControl
       value: 
       objectReference: {fileID: 1167101038}
@@ -2726,6 +2750,10 @@ PrefabInstance:
     - target: {fileID: 4402748200585735379, guid: 81ae6cc943697704f8f750c8a88488ce, type: 3}
       propertyPath: m_Name
       value: Blockage (12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596621966536837774, guid: 81ae6cc943697704f8f750c8a88488ce, type: 3}
+      propertyPath: timeDelay
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4596621966536837774, guid: 81ae6cc943697704f8f750c8a88488ce, type: 3}
       propertyPath: leverControl
@@ -2798,6 +2826,10 @@ PrefabInstance:
       value: Blockage (13)
       objectReference: {fileID: 0}
     - target: {fileID: 4596621966536837774, guid: 81ae6cc943697704f8f750c8a88488ce, type: 3}
+      propertyPath: timeDelay
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596621966536837774, guid: 81ae6cc943697704f8f750c8a88488ce, type: 3}
       propertyPath: leverControl
       value: 
       objectReference: {fileID: 1167101038}
@@ -2866,6 +2898,10 @@ PrefabInstance:
     - target: {fileID: 4402748200585735379, guid: 81ae6cc943697704f8f750c8a88488ce, type: 3}
       propertyPath: m_Name
       value: Blockage
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596621966536837774, guid: 81ae6cc943697704f8f750c8a88488ce, type: 3}
+      propertyPath: timeDelay
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4596621966536837774, guid: 81ae6cc943697704f8f750c8a88488ce, type: 3}
       propertyPath: leverControl
@@ -4144,7 +4180,9 @@ CompositeCollider2D:
         Y: -40000000
       - X: -70000000
         Y: -34375000
-      - X: -64375000
+      - X: -70000000
+        Y: -35000000
+      - X: -63750000
         Y: -40000000
       - X: -61875000
         Y: -40000000
@@ -4881,54 +4919,6 @@ CompositeCollider2D:
       - {x: -6.000029, y: 3}
       - {x: -14, y: 2.999971}
       - {x: -13.999971, y: 2}
-    - - {x: -3.7500293, y: -6}
-      - {x: -3.7499704, y: -4}
-      - {x: -3.6874928, y: -3.9999945}
-      - {x: -3, y: -3.4375741}
-      - {x: -2.99999, y: -3.500008}
-      - {x: -2.374991, y: -4}
-      - {x: -2.1875618, y: -4.0000615}
-      - {x: -2.25, y: -4.062511}
-      - {x: -2.249971, y: -5}
-      - {x: -2.1875618, y: -5.0000615}
-      - {x: -2.25, y: -5.062511}
-      - {x: -2.249971, y: -6}
-      - {x: -2, y: -5.999971}
-      - {x: -2.0000293, y: -3}
-      - {x: -4, y: -3.0000293}
-      - {x: -3.999971, y: -6}
-    - - {x: 4.249971, y: -6}
-      - {x: 4.2500296, y: -4}
-      - {x: 4.312507, y: -3.9999945}
-      - {x: 5, y: -3.4375741}
-      - {x: 5.00001, y: -3.500008}
-      - {x: 5.625009, y: -4}
-      - {x: 5.8124385, y: -4.0000615}
-      - {x: 5.75, y: -4.062511}
-      - {x: 5.750029, y: -5}
-      - {x: 5.8124385, y: -5.0000615}
-      - {x: 5.75, y: -5.062511}
-      - {x: 5.750029, y: -6}
-      - {x: 6, y: -5.999971}
-      - {x: 5.999971, y: -3}
-      - {x: 4, y: -3.0000293}
-      - {x: 4.000029, y: -6}
-    - - {x: 0.2499707, y: -6}
-      - {x: 0.2500294, y: -4}
-      - {x: 0.3125072, y: -3.9999945}
-      - {x: 1, y: -3.4375741}
-      - {x: 1.0000099, y: -3.500008}
-      - {x: 1.6250091, y: -4}
-      - {x: 1.8124382, y: -4.0000615}
-      - {x: 1.75, y: -4.062511}
-      - {x: 1.7500292, y: -5}
-      - {x: 1.8124382, y: -5.0000615}
-      - {x: 1.75, y: -5.062511}
-      - {x: 1.7500292, y: -6}
-      - {x: 2, y: -5.999971}
-      - {x: 1.9999708, y: -3}
-      - {x: 0, y: -3.0000293}
-      - {x: 0.000029300001, y: -6}
     - - {x: -14.000029, y: -6}
       - {x: -14.000029, y: -3}
       - {x: -15, y: -3.0000293}
@@ -4940,21 +4930,6 @@ CompositeCollider2D:
       - {x: -14.187563, y: -5.0000615}
       - {x: -14.25, y: -5.062511}
       - {x: -14.249971, y: -6}
-    - - {x: -7.7500296, y: -6}
-      - {x: -7.7499704, y: -4}
-      - {x: -7.687493, y: -3.9999945}
-      - {x: -6.999982, y: -3.4375184}
-      - {x: -6.4374895, y: -4}
-      - {x: -6.1875615, y: -4.0000615}
-      - {x: -6.25, y: -4.062511}
-      - {x: -6.249971, y: -5}
-      - {x: -6.1875615, y: -5.0000615}
-      - {x: -6.25, y: -5.062511}
-      - {x: -6.249971, y: -6}
-      - {x: -6, y: -5.999971}
-      - {x: -6.000029, y: -3}
-      - {x: -8, y: -3.0000293}
-      - {x: -7.9999704, y: -6}
     - - {x: -11.75003, y: -6}
       - {x: -11.74997, y: -4}
       - {x: -11.687493, y: -3.9999945}
@@ -4971,6 +4946,74 @@ CompositeCollider2D:
       - {x: -10.00003, y: -3}
       - {x: -12, y: -3.0000293}
       - {x: -11.99997, y: -6}
+    - - {x: 4.249971, y: -6}
+      - {x: 4.2500296, y: -4}
+      - {x: 4.312507, y: -3.9999945}
+      - {x: 5, y: -3.4375741}
+      - {x: 5.00001, y: -3.500008}
+      - {x: 5.625009, y: -4}
+      - {x: 5.8124385, y: -4.0000615}
+      - {x: 5.75, y: -4.062511}
+      - {x: 5.750029, y: -5}
+      - {x: 5.8124385, y: -5.0000615}
+      - {x: 5.75, y: -5.062511}
+      - {x: 5.750029, y: -6}
+      - {x: 6, y: -5.999971}
+      - {x: 5.999971, y: -3}
+      - {x: 4, y: -3.0000293}
+      - {x: 4.000029, y: -6}
+    - - {x: -7.7500296, y: -6}
+      - {x: -7.7499704, y: -4}
+      - {x: -7.687493, y: -3.9999945}
+      - {x: -7, y: -3.4375741}
+      - {x: -6.9999905, y: -3.500008}
+      - {x: -6.3749914, y: -4}
+      - {x: -6.1875615, y: -4.0000615}
+      - {x: -6.25, y: -4.062511}
+      - {x: -6.249971, y: -5}
+      - {x: -6.1875615, y: -5.0000615}
+      - {x: -6.25, y: -5.062511}
+      - {x: -6.249971, y: -6}
+      - {x: -6, y: -5.999971}
+      - {x: -6.000029, y: -3}
+      - {x: -8, y: -3.0000293}
+      - {x: -7.9999704, y: -6}
+    - - {x: 0.2499707, y: -6}
+      - {x: 0.2500294, y: -4}
+      - {x: 0.3125072, y: -3.9999945}
+      - {x: 1, y: -3.4375741}
+      - {x: 1.0000099, y: -3.500008}
+      - {x: 1.6250091, y: -4}
+      - {x: 1.8124382, y: -4.0000615}
+      - {x: 1.75, y: -4.062511}
+      - {x: 1.7500292, y: -5}
+      - {x: 1.8124382, y: -5.0000615}
+      - {x: 1.75, y: -5.062511}
+      - {x: 1.7500292, y: -6}
+      - {x: 2, y: -5.999971}
+      - {x: 1.9999708, y: -3}
+      - {x: 0, y: -3.0000293}
+      - {x: 0.000029300001, y: -6}
+    - - {x: -3.7500293, y: -6}
+      - {x: -3.7499704, y: -4}
+      - {x: -3.6874928, y: -3.9999945}
+      - {x: -3, y: -3.4375741}
+      - {x: -2.99999, y: -3.500008}
+      - {x: -2.374991, y: -4}
+      - {x: -2.1875618, y: -4.0000615}
+      - {x: -2.25, y: -4.062511}
+      - {x: -2.249971, y: -5}
+      - {x: -2.1875618, y: -5.0000615}
+      - {x: -2.25, y: -5.062511}
+      - {x: -2.249971, y: -6}
+      - {x: -2, y: -5.999971}
+      - {x: -2.0000293, y: -3}
+      - {x: -4, y: -3.0000293}
+      - {x: -3.999971, y: -6}
+    - - {x: -8.00003, y: -6.4375}
+      - {x: -8.00003, y: -6}
+      - {x: -10, y: -6.000029}
+      - {x: -9.99997, y: -6.4375}
     - - {x: -4.000029, y: -6.4375}
       - {x: -4.000029, y: -6}
       - {x: -6, y: -6.000029}
@@ -4979,6 +5022,10 @@ CompositeCollider2D:
       - {x: -0.000029300001, y: -6}
       - {x: -2, y: -6.000029}
       - {x: -1.9999708, y: -6.4375}
+    - - {x: 3.999971, y: -6.4375}
+      - {x: 3.999971, y: -6}
+      - {x: 2, y: -6.000029}
+      - {x: 2.0000293, y: -6.4375}
     - - {x: 7.9999704, y: -6.4375}
       - {x: 7.9999704, y: -6}
       - {x: 6, y: -6.000029}
@@ -4987,14 +5034,6 @@ CompositeCollider2D:
       - {x: -12.00003, y: -6}
       - {x: -14, y: -6.000029}
       - {x: -13.999971, y: -6.4375}
-    - - {x: 3.999971, y: -6.4375}
-      - {x: 3.999971, y: -6}
-      - {x: 2, y: -6.000029}
-      - {x: 2.0000293, y: -6.4375}
-    - - {x: -8.00003, y: -6.4375}
-      - {x: -8.00003, y: -6}
-      - {x: -10, y: -6.000029}
-      - {x: -9.99997, y: -6.4375}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
@@ -6183,8 +6222,8 @@ Tilemap:
   - first: {x: -7, y: -4, z: 0}
     second:
       serializedVersion: 2
-      m_TileIndex: 34
-      m_TileSpriteIndex: 33
+      m_TileIndex: 38
+      m_TileSpriteIndex: 40
       m_TileMatrixIndex: 0
       m_TileColorIndex: 27
       m_TileObjectToInstantiateIndex: 65535
@@ -7600,15 +7639,15 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 1
-    m_Data: {fileID: 11400000, guid: 8bf5e48e6265555438e195ec48ef4d96, type: 2}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 17
     m_Data: {fileID: 11400000, guid: f1e711044996a334da6f022d6a36153b, type: 2}
   - m_RefCount: 0
     m_Data: {fileID: 0}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: dd605e0fbf997d44a96ab95aa515db23, type: 2}
-  - m_RefCount: 6
+  - m_RefCount: 7
     m_Data: {fileID: 11400000, guid: c91a5174340ea6d4eaa3dc52a1121295, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 97f65eb6174faa544a7a111285d72fbb, type: 2}
@@ -7681,8 +7720,8 @@ Tilemap:
     m_Data: {fileID: -194510825, guid: 2c75636cce5424540b395f76e9009cd4, type: 3}
   - m_RefCount: 12
     m_Data: {fileID: -1481520797, guid: 2c75636cce5424540b395f76e9009cd4, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: -1403016048, guid: 2c75636cce5424540b395f76e9009cd4, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 12
     m_Data: {fileID: -886349043, guid: 2c75636cce5424540b395f76e9009cd4, type: 3}
   - m_RefCount: 1
@@ -7695,7 +7734,7 @@ Tilemap:
     m_Data: {fileID: -795472701, guid: 2c75636cce5424540b395f76e9009cd4, type: 3}
   - m_RefCount: 2
     m_Data: {fileID: 620675179, guid: 2c75636cce5424540b395f76e9009cd4, type: 3}
-  - m_RefCount: 6
+  - m_RefCount: 7
     m_Data: {fileID: 870084429, guid: 2c75636cce5424540b395f76e9009cd4, type: 3}
   m_TileMatrixArray:
   - m_RefCount: 241
@@ -7810,6 +7849,10 @@ PrefabInstance:
       value: ReverseBlockage (1)
       objectReference: {fileID: 0}
     - target: {fileID: 5155050903856164927, guid: 9ce97fa73c425ca4c846a6778b0777e9, type: 3}
+      propertyPath: timeDelay
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5155050903856164927, guid: 9ce97fa73c425ca4c846a6778b0777e9, type: 3}
       propertyPath: leverControl
       value: 
       objectReference: {fileID: 1167101038}
@@ -7883,6 +7926,10 @@ PrefabInstance:
     - target: {fileID: 4402748200585735379, guid: 81ae6cc943697704f8f750c8a88488ce, type: 3}
       propertyPath: m_Name
       value: Blockage (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596621966536837774, guid: 81ae6cc943697704f8f750c8a88488ce, type: 3}
+      propertyPath: timeDelay
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4596621966536837774, guid: 81ae6cc943697704f8f750c8a88488ce, type: 3}
       propertyPath: leverControl
@@ -8151,6 +8198,10 @@ PrefabInstance:
       value: Blockage (4)
       objectReference: {fileID: 0}
     - target: {fileID: 4596621966536837774, guid: 81ae6cc943697704f8f750c8a88488ce, type: 3}
+      propertyPath: timeDelay
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596621966536837774, guid: 81ae6cc943697704f8f750c8a88488ce, type: 3}
       propertyPath: leverControl
       value: 
       objectReference: {fileID: 1167101038}
@@ -8219,6 +8270,10 @@ PrefabInstance:
     - target: {fileID: 4402748200585735379, guid: 81ae6cc943697704f8f750c8a88488ce, type: 3}
       propertyPath: m_Name
       value: Blockage (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596621966536837774, guid: 81ae6cc943697704f8f750c8a88488ce, type: 3}
+      propertyPath: timeDelay
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4596621966536837774, guid: 81ae6cc943697704f8f750c8a88488ce, type: 3}
       propertyPath: leverControl
@@ -8872,6 +8927,10 @@ PrefabInstance:
       value: Blockage (5)
       objectReference: {fileID: 0}
     - target: {fileID: 4596621966536837774, guid: 81ae6cc943697704f8f750c8a88488ce, type: 3}
+      propertyPath: timeDelay
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596621966536837774, guid: 81ae6cc943697704f8f750c8a88488ce, type: 3}
       propertyPath: leverControl
       value: 
       objectReference: {fileID: 1167101038}
@@ -9270,6 +9329,10 @@ PrefabInstance:
       value: Blockage (11)
       objectReference: {fileID: 0}
     - target: {fileID: 4596621966536837774, guid: 81ae6cc943697704f8f750c8a88488ce, type: 3}
+      propertyPath: timeDelay
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596621966536837774, guid: 81ae6cc943697704f8f750c8a88488ce, type: 3}
       propertyPath: leverControl
       value: 
       objectReference: {fileID: 1167101038}
@@ -9340,6 +9403,10 @@ PrefabInstance:
       value: Blockage (9)
       objectReference: {fileID: 0}
     - target: {fileID: 4596621966536837774, guid: 81ae6cc943697704f8f750c8a88488ce, type: 3}
+      propertyPath: timeDelay
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596621966536837774, guid: 81ae6cc943697704f8f750c8a88488ce, type: 3}
       propertyPath: leverControl
       value: 
       objectReference: {fileID: 1167101038}
@@ -9408,6 +9475,10 @@ PrefabInstance:
     - target: {fileID: 4402748200585735379, guid: 9ce97fa73c425ca4c846a6778b0777e9, type: 3}
       propertyPath: m_Name
       value: ReverseBlockage
+      objectReference: {fileID: 0}
+    - target: {fileID: 5155050903856164927, guid: 9ce97fa73c425ca4c846a6778b0777e9, type: 3}
+      propertyPath: timeDelay
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5155050903856164927, guid: 9ce97fa73c425ca4c846a6778b0777e9, type: 3}
       propertyPath: leverControl
@@ -9530,6 +9601,10 @@ PrefabInstance:
       value: Blockage (3)
       objectReference: {fileID: 0}
     - target: {fileID: 4596621966536837774, guid: 81ae6cc943697704f8f750c8a88488ce, type: 3}
+      propertyPath: timeDelay
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596621966536837774, guid: 81ae6cc943697704f8f750c8a88488ce, type: 3}
       propertyPath: leverControl
       value: 
       objectReference: {fileID: 1167101038}
@@ -9598,6 +9673,10 @@ PrefabInstance:
     - target: {fileID: 4402748200585735379, guid: 81ae6cc943697704f8f750c8a88488ce, type: 3}
       propertyPath: m_Name
       value: Blockage (8)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4596621966536837774, guid: 81ae6cc943697704f8f750c8a88488ce, type: 3}
+      propertyPath: timeDelay
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4596621966536837774, guid: 81ae6cc943697704f8f750c8a88488ce, type: 3}
       propertyPath: leverControl

@@ -1,43 +1,63 @@
+using System.Collections;
 using UnityEngine;
 
 public class doorLogic : MonoBehaviour
 {
     [SerializeField] private bool isActive;
-    [SerializeField] private MonoBehaviour leverControl; // Change the type to MonoBehaviour
+    [SerializeField] private MonoBehaviour leverControl;
     [SerializeField] private SpriteRenderer sprite;
-    //[SerializeField] private AudioClip doorClip;
-    //[SerializeField] private AudioSource doorSource;
-    //[SerializeField, Range(0f, 3f)] private float volumeAudio = 0.2f;
-    public bool isOpen;
+    [SerializeField] private float timeDelay = 0.5f;
+    private bool isToggling = false;
 
-    // Start is called before the first frame update
     void Start()
     {
-       
         isActive = GetLeverIsActive();
-        //sprite = GetComponent<SpriteRenderer>();
+        UpdateDoorState();
     }
 
-    private void FixedUpdate()
+
+    void Update()
     {
-        //doorSource.volume = volumeAudio;    
-        isActive = GetLeverIsActive();
+
+        if (GetLeverIsActive() != isActive && !isToggling)
+        {
+            if (leverControl is intercaleLever)
+            {
+
+                ToggleDoorImmediate();
+            }
+            else
+            {
+                StartCoroutine(ToggleWithDelay());
+            }
+        }
+    }
+
+
+    private void ToggleDoorImmediate()
+    {
+        isActive = !isActive;
+        UpdateDoorState();
+    }
+
+
+    private IEnumerator ToggleWithDelay()
+    {
+        isToggling = true;
+        yield return new WaitForSeconds(timeDelay);
+        isActive = !isActive;
+        UpdateDoorState();
+        isToggling = false;
+    }
+
+
+    private void UpdateDoorState()
+    {
         GetComponent<Collider2D>().enabled = !isActive;
         sprite.enabled = !isActive;
     }
 
-    public void Toggle()
-    {
-        Debug.Log("Toggle");
-        isActive = !isActive;
-        //doorSource.clip = doorClip;
-        sprite.enabled = isActive;
-        //doorSource.Play();
-        GetComponent<Collider2D>().enabled = isActive;
-    }
-
-    
-
+    // Method to get the lever's current state
     private bool GetLeverIsActive()
     {
         if (leverControl == null)
