@@ -2404,6 +2404,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 348726835709962220, guid: 90877c543b25da74f8d321d10bf81583, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 582930581195230655, guid: 90877c543b25da74f8d321d10bf81583, type: 3}
       propertyPath: transition
       value: 3
@@ -2494,6 +2498,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4213870841556097822, guid: 90877c543b25da74f8d321d10bf81583, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8771136046121126207, guid: 90877c543b25da74f8d321d10bf81583, type: 3}
+      propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -7042,6 +7050,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3248344774244174726, guid: 698bd860d70756c43ba71c529cc5e683, type: 3}
+      propertyPath: music
+      value: 
+      objectReference: {fileID: 8300000, guid: df402192257a9544c8d073233c9bff6e, type: 3}
     - target: {fileID: 4532678261763847737, guid: 698bd860d70756c43ba71c529cc5e683, type: 3}
       propertyPath: m_Sprite
       value: 
