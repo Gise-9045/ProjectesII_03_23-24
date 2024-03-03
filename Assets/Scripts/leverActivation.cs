@@ -3,31 +3,32 @@ using UnityEngine;
 
 public class leverActivation : MonoBehaviour
 {
-    
     public bool isActive;
     [SerializeField] private SpriteRenderer sprite;
+    [SerializeField] private Animator pressed;
 
-    public void Start()
+    private void Start()
     {
         isActive = false;
-        
         sprite = GetComponent<SpriteRenderer>();
+        pressed = GetComponent<Animator>();
+    }
 
-    }
-    public void Update()
-    {
-        
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Player") || collision.CompareTag("PuzzleBox"))
         {
+            pressed.SetBool("Pressed", true);
             Toggle();
         }
     }
+
     public void Toggle()
     {
+
         isActive = true;
         
+
     }
+
 }

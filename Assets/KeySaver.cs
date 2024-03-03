@@ -10,6 +10,12 @@ public class KeySaver : MonoBehaviour
     public float distanceBetweenKeys = 2.0f;
     public float smoothness = 5.0f; // Suavidad del movimiento de la llave
     private Quaternion playerPreviousRotation; // Rotaci�n anterior del jugador
+    private AudioManager audioManager;
+
+    private void Start()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -18,6 +24,7 @@ public class KeySaver : MonoBehaviour
             collision.transform.localScale = new Vector2(0.7f, 0.7f);
             collision.gameObject.GetComponent<Collider2D>().enabled = false;
             keys.Add(collision.transform);
+            audioManager.PlaySFX(audioManager.key);
         }
     }
 

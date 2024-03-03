@@ -1,5 +1,7 @@
+using Cinemachine.Utility;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 //using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
@@ -7,9 +9,10 @@ public class PlayerMovement : MonoBehaviour
 {
     private Player player;
 
-    private Vector2 actualMovement;
+    private Vector2 stairsPos;
 
     private Rigidbody2D rb;
+    private Transform tr;
 
     [SerializeField] private float jumpForce;
     [SerializeField] private float jumpTimeCounter;
@@ -35,41 +38,93 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float dashTimer;
     [SerializeField] bool canDash;
     [SerializeField] float dashCooldown;
-    [SerializeField] private ParticleSystem dashTrail;
-    float actualDashCooldown = 0;
 
-    [SerializeField]
-    private ParticleSystem walkParticles;
-    [SerializeField]
-    private ParticleSystem jumpParticles;
+    private AudioManager audioManager;
+
+
+    [Header("----- Particles -----")]
+    [SerializeField] private ParticleSystem dashTrail;
+    [SerializeField] private ParticleSystem deathParticles;
+    [SerializeField] private ParticleSystem walkParticles;
+    [SerializeField] private ParticleSystem jumpParticles;
+
+    float actualDashCooldown = 0;
 
     private Animator animator;
 
+    private bool oldDead;
+
+
     void Start()
     {
-        
         player = GetComponent<Player>();
         rb = GetComponent<Rigidbody2D>();
         ground = GetComponentInChildren<PlayerGroundDetection>();
+        tr = GetComponentInChildren<Transform>();
         isJumping = false;
         onStairs = false;
         coyoteTime = 0.3f;
         animator = GetComponent<Animator>();
 
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+
         ground.OnGroundTouchdown += jumpParticles.Play;
         ground.OnGroundTouchdown += walkParticles.Play;
 
         ground.OnLeaveGround += walkParticles.Stop;
+
+        oldDead = false;
     }
 
     void Update()
     {
+        if (player.GetDead())
+        {
+            animator.SetBool("Stairs", false);
+            animator.SetBool("Dash", false);
+            animator.SetBool("Walk", false);
+            animator.SetBool("Grounded", true);
+
+
+            animator.SetBool("Death", true);
+
+            if(player.GetDead() && player.GetDead() != oldDead)
+            {
+                deathParticles.Play();
+            }
+
+            rb.gravityScale = 0f;
+            rb.velocity = Vector2.zero;
+
+            oldDead = player.GetDead();
+
+            return;
+        }
+        else if(player.GetStop())
+        {
+            animator.SetBool("Stairs", false);
+            animator.SetBool("Dash", false);
+            animator.SetBool("Walk", false);
+            animator.SetBool("Grounded", true);
+
+            animator.SetBool("StartPose", true);
+
+            return;
+        }
+        else
+        {
+            animator.SetBool("Death", false);
+            animator.SetBool("StartPose", false);
+            oldDead = player.GetDead();
+        }
 
         animator.SetFloat("FallVelocity", rb.velocity.y);
         animator.SetBool("Grounded", ground.OnGround() || onStairs);
         animator.SetBool("Stairs", onStairs && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S)));
         animator.SetBool("Dash", dashing);
         animator.SetFloat("DashVelocity", rb.velocity.x);
+
+        animator.SetBool("Walk", Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow));
 
         Walk();
         DashCheck();
@@ -97,7 +152,6 @@ public class PlayerMovement : MonoBehaviour
         }
 
         CheckJump();
-
     }
 
     void Walk()
@@ -120,6 +174,10 @@ public class PlayerMovement : MonoBehaviour
 
             rb.velocity = new Vector2(player.GetDirection().x * player.GetSpeed(), rb.velocity.y);
 
+            //if(!audioManager.IsPlayingSFX())
+            //{
+            //    audioManager.PlaySFX(audioManager.walk);
+            //}
         }
         else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
@@ -128,6 +186,10 @@ public class PlayerMovement : MonoBehaviour
 
             rb.velocity = new Vector2(player.GetDirection().x * player.GetSpeed(), rb.velocity.y);
 
+            //if (!audioManager.IsPlayingSFX())
+            //{
+            //    audioManager.PlaySFX(audioManager.walk);
+            //}
         }
         else
         {
@@ -141,6 +203,8 @@ public class PlayerMovement : MonoBehaviour
         actualJumpTimeCounter = jumpTimeCounter;
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         jumpParticles.Play();
+        audioManager.PlaySFX(audioManager.jump);
+
     }
     void CheckJump()
     {
@@ -223,7 +287,12 @@ public class PlayerMovement : MonoBehaviour
 
     void Stairs()
     {
-        if(Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+        if((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.Space)) && !(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow)))
+        {
+            tr.position = new Vector2((float)(tr.position.x + 0.05f * (stairsPos.x - tr.position.x)), tr.position.y);
+        }
+
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             rb.gravityScale = 0f;
             rb.velocity = new Vector2(rb.velocity.x, 5);
@@ -239,12 +308,13 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "Ladder")
         {
             onStairs = true;
+
+            stairsPos = collision.transform.position;
         }
 
     }
@@ -256,7 +326,6 @@ public class PlayerMovement : MonoBehaviour
             onStairs = false;
             usingStairs = false;
         }
-
     }
     private void Dash()
     {

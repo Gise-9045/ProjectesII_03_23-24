@@ -1,40 +1,83 @@
 using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class doorLogic : MonoBehaviour
 {
     [SerializeField] private bool isActive;
-    [SerializeField] private leverActivation leverControl;
+    [SerializeField] private MonoBehaviour leverControl;
     [SerializeField] private SpriteRenderer sprite;
-    //[SerializeField] private AudioClip doorClip;
-    //[SerializeField] private AudioSource doorSource;
-    //[SerializeField, Range(0f, 3f)] private float volumeAudio = 0.2f;
-    public bool isOpen;
-    // Start is called before the first frame update
+    [SerializeField] private float timeDelay = 0.5f;
+    private bool isToggling = false;
+
     void Start()
     {
-        isActive = leverControl.isActive;
-        
-        //sprite = GetComponent<SpriteRenderer>();
+        isActive = GetLeverIsActive();
+        UpdateDoorState();
     }
-    private void FixedUpdate()
+
+
+    void Update()
     {
-        //doorSource.volume = volumeAudio;    
-        isActive = leverControl.isActive;
-        GetComponent<Collider2D>().enabled = !isActive;
-       sprite.enabled = !isActive;
-        
+
+        if (GetLeverIsActive() != isActive && !isToggling)
+        {
+            if (leverControl is intercaleLever)
+            {
+
+                ToggleDoorImmediate();
+            }
+            else
+            {
+                StartCoroutine(ToggleWithDelay());
+            }
+        }
     }
-    public void Toggle()
+
+
+    private void ToggleDoorImmediate()
     {
         isActive = !isActive;
-        //doorSource.clip = doorClip;
-       sprite.enabled = isActive;
-        //doorSource.Play();
-        GetComponent<Collider2D>().enabled = isActive;
-        
+        UpdateDoorState();
+    }
+
+
+    private IEnumerator ToggleWithDelay()
+    {
+        isToggling = true;
+        yield return new WaitForSeconds(timeDelay);
+        isActive = !isActive;
+        UpdateDoorState();
+        isToggling = false;
+    }
+
+
+    private void UpdateDoorState()
+    {
+        GetComponent<Collider2D>().enabled = !isActive;
+        sprite.enabled = !isActive;
+    }
+
+    // Method to get the lever's current state
+    private bool GetLeverIsActive()
+    {
+        if (leverControl == null)
+        {
+            Debug.LogError("Lever control is not assigned!");
+            return false;
+        }
+
+        if (leverControl is leverActivation)
+        {
+            return ((leverActivation)leverControl).isActive;
+        }
+        else if (leverControl is intercaleLever)
+        {
+            return ((intercaleLever)leverControl).isActive;
+        }
+        else
+        {
+            Debug.LogError("Unknown lever control type!");
+            return false;
+        }
     }
 }
