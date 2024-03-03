@@ -17,11 +17,15 @@ public class LvlTransitionWithoutKey : MonoBehaviour
     private enum Transition { NONE, LEFT };
     [SerializeField] private Transition transition;
 
+    private AudioManager audioManager;
+
 
     void Start()
     {
         verticalAnim = vertical.GetComponentInChildren<Animator>();
         horizontalAnim = horizontal.GetComponentInChildren<Animator>();
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+
     }
 
     // Update is called once per frame
@@ -34,6 +38,8 @@ public class LvlTransitionWithoutKey : MonoBehaviour
         //transitions.SetTrigger("LvlPassed");
         if (collision.CompareTag("Player"))
         {
+            audioManager.PlaySFX(audioManager.doorOpens);
+
             Time.timeScale = 0.0f;
             horizontalAnim.SetBool("ExitLeftAnimation", false);
             StartCoroutine(LevelTransition());
