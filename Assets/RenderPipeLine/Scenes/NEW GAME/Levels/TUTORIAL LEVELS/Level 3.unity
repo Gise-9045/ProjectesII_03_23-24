@@ -870,6 +870,14 @@ PrefabInstance:
       propertyPath: animKey
       value: 
       objectReference: {fileID: 1054638589}
+    - target: {fileID: 7583558940446338581, guid: 5dabb304a592e1d4b948101024cf52b6, type: 3}
+      propertyPath: timeDelay
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7583558940446338581, guid: 5dabb304a592e1d4b948101024cf52b6, type: 3}
+      propertyPath: audioManager
+      value: 
+      objectReference: {fileID: 1398645037}
     - target: {fileID: 8111450350650892164, guid: 5dabb304a592e1d4b948101024cf52b6, type: 3}
       propertyPath: m_SortingOrder
       value: -1
@@ -2840,6 +2848,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 698bd860d70756c43ba71c529cc5e683, type: 3}
+--- !u!114 &1398645037 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3248344774244174726, guid: 698bd860d70756c43ba71c529cc5e683, type: 3}
+  m_PrefabInstance: {fileID: 1398645036}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b37ae0643fd20d4c8654d7bba0c54e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1683388912 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2855868302909866203, guid: 6b1a4e2b7293bb94ebc70d874974b9aa, type: 3}

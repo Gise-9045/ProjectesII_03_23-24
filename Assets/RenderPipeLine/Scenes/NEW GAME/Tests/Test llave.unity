@@ -3528,6 +3528,25 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &651881932 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7598643314687062846, guid: b8454e11204def943aefd9c3af3ab135, type: 3}
+  m_PrefabInstance: {fileID: 8896022954348484414}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &651881936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 651881932}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78e06d4fe4f15ec499e32a8daeac0f37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  colorDatabase: {fileID: 0}
+  colorType: 0
 --- !u!1 &833081382
 GameObject:
   m_ObjectHideFlags: 0
@@ -4435,5 +4454,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7598643314687062846, guid: b8454e11204def943aefd9c3af3ab135, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 651881936}
   m_SourcePrefab: {fileID: 100100000, guid: b8454e11204def943aefd9c3af3ab135, type: 3}
