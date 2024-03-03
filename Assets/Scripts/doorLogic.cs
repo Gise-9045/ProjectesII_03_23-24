@@ -9,10 +9,14 @@ public class doorLogic : MonoBehaviour
     [SerializeField] private float timeDelay = 0.5f;
     private bool isToggling = false;
 
+    private AudioManager audioManager;
+
     void Start()
     {
         isActive = GetLeverIsActive();
         UpdateDoorState();
+
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
 
 
@@ -37,6 +41,7 @@ public class doorLogic : MonoBehaviour
     private void ToggleDoorImmediate()
     {
         isActive = !isActive;
+        audioManager.PlaySFX(audioManager.boxOpen);
         UpdateDoorState();
     }
 
@@ -45,6 +50,7 @@ public class doorLogic : MonoBehaviour
     {
         isToggling = true;
         yield return new WaitForSeconds(timeDelay);
+        audioManager.PlaySFX(audioManager.boxOpen);
         isActive = !isActive;
         UpdateDoorState();
         isToggling = false;

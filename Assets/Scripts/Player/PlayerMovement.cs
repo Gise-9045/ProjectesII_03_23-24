@@ -54,6 +54,11 @@ public class PlayerMovement : MonoBehaviour
 
     private bool oldDead;
 
+    [Header("----- Sound -----")]
+    [SerializeField] private float walkSoundDelay = 1.0f;
+    private bool isPlayingSound = false;
+    private Coroutine soundCoroutine;
+    private bool isPlayingJumpSound = false;
 
     void Start()
     {
@@ -174,10 +179,10 @@ public class PlayerMovement : MonoBehaviour
 
             rb.velocity = new Vector2(player.GetDirection().x * player.GetSpeed(), rb.velocity.y);
 
-            //if(!audioManager.IsPlayingSFX())
-            //{
-            //    audioManager.PlaySFX(audioManager.walk);
-            //}
+            if (!isPlayingSound && isJumping == false)
+            {
+                soundCoroutine = StartCoroutine(PlaySoundRepeatedly());
+            }
         }
         else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
@@ -186,17 +191,40 @@ public class PlayerMovement : MonoBehaviour
 
             rb.velocity = new Vector2(player.GetDirection().x * player.GetSpeed(), rb.velocity.y);
 
-            //if (!audioManager.IsPlayingSFX())
-            //{
-            //    audioManager.PlaySFX(audioManager.walk);
-            //}
+            if (!isPlayingSound && isJumping == false)
+            {
+                soundCoroutine = StartCoroutine(PlaySoundRepeatedly());
+            }
         }
         else
         {
+
             rb.velocity = new Vector2(player.GetDirection().x * (player.GetSpeed() * slide), rb.velocity.y);
+           
 
         }
+
+        if(Input.GetKeyUp(KeyCode.D)|| Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.LeftArrow))
+        {
+            if (soundCoroutine != null)
+            {
+                StopCoroutine(soundCoroutine);
+            }
+            isPlayingSound = false;
+        }
     }
+
+    IEnumerator PlaySoundRepeatedly()
+    {
+        isPlayingSound = true;
+
+        while (true)
+        {
+            audioManager.PlaySFX(audioManager.walk);
+            yield return new WaitForSeconds(walkSoundDelay);
+        }
+    }
+
     void Jump()
     {
         isJumping = true;
@@ -250,6 +278,8 @@ public class PlayerMovement : MonoBehaviour
             actualCoyoteTime = 0f;
             rb.gravityScale = 9.81f;
         }
+
+        isPlayingJumpSound = true;
     }
 
     void DashCheck()

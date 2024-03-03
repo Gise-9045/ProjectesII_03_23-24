@@ -6661,6 +6661,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3248344774244174726, guid: 698bd860d70756c43ba71c529cc5e683, type: 3}
+      propertyPath: walk
+      value: 
+      objectReference: {fileID: 8300000, guid: a68491487a70e6942b1edef842e2e878, type: 3}
     - target: {fileID: 7665806839036162660, guid: 698bd860d70756c43ba71c529cc5e683, type: 3}
       propertyPath: m_Name
       value: Audio Manager
@@ -7024,6 +7028,10 @@ PrefabInstance:
       propertyPath: animator
       value: 
       objectReference: {fileID: 1618185475}
+    - target: {fileID: 4699660460486079957, guid: 6b1a4e2b7293bb94ebc70d874974b9aa, type: 3}
+      propertyPath: walkSoundDelay
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 6347379661504714166, guid: 6b1a4e2b7293bb94ebc70d874974b9aa, type: 3}
       propertyPath: m_RootOrder
       value: 4
