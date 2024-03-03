@@ -180,7 +180,7 @@ public class PlayerMovement : MonoBehaviour
 
             rb.velocity = new Vector2(player.GetDirection().x * player.GetSpeed(), rb.velocity.y);
 
-            if (!isPlayingSound && isJumping == false)
+            if (!isPlayingSound && ground.OnGround())
             {
                 soundCoroutine = StartCoroutine(PlaySoundRepeatedly());
             }
@@ -194,7 +194,7 @@ public class PlayerMovement : MonoBehaviour
 
             rb.velocity = new Vector2(player.GetDirection().x * player.GetSpeed(), rb.velocity.y);
 
-            if (!isPlayingSound && isJumping == false)
+            if (!isPlayingSound && ground.OnGround())
             {
                 soundCoroutine = StartCoroutine(PlaySoundRepeatedly());
             }
@@ -240,7 +240,9 @@ public class PlayerMovement : MonoBehaviour
         actualJumpTimeCounter = jumpTimeCounter;
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         jumpParticles.Play();
+      
         audioManager.PlaySFX(audioManager.jump);
+    
 
     }
     void CheckJump()
@@ -370,6 +372,7 @@ public class PlayerMovement : MonoBehaviour
     {
         actualDashTimer = dashTimer;
         rb.gravityScale = 0f;
+        audioManager.PlaySFX(audioManager.dash);
         dashTrail.Play();
 
     }
