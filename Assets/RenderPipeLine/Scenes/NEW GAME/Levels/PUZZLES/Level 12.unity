@@ -2488,17 +2488,7 @@ Tilemap:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 753617120}
   m_Enabled: 1
-  m_Tiles:
-  - first: {x: 4, y: 5, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 16
-      m_TileSpriteIndex: 16
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 14
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
+  m_Tiles: {}
   m_AnimatedTiles: {}
   m_TileAssetArray:
   - m_RefCount: 0
@@ -2533,8 +2523,8 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 1
-    m_Data: {fileID: 11400000, guid: 26489e5e4ad733c4e84fd178b6174eda, type: 2}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   m_TileSpriteArray:
   - m_RefCount: 0
     m_Data: {fileID: 0}
@@ -2568,27 +2558,27 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 1
-    m_Data: {fileID: 1742547626, guid: 2c75636cce5424540b395f76e9009cd4, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   m_TileMatrixArray:
-  - m_RefCount: 1
+  - m_RefCount: 0
     m_Data:
-      e00: 1
+      e00: 0
       e01: 0
-      e02: 0
-      e03: 0
+      e02: -2.98156e-19
+      e03: -2.98156e-19
       e10: 0
-      e11: 1
-      e12: 0
-      e13: 0
-      e20: 0
-      e21: 0
-      e22: 1
-      e23: 0
-      e30: 0
-      e31: 0
-      e32: 0
-      e33: 1
+      e11: 0
+      e12: 5.4e-43
+      e13: 5.4e-43
+      e20: 10778.344
+      e21: -1.0824641e+37
+      e22: 6.7709076e-19
+      e23: 1.4744797e+10
+      e30: 4.5904e-41
+      e31: 5.42e-43
+      e32: 5.41e-43
+      e33: 5.44e-43
   m_TileColorArray:
   - m_RefCount: 0
     m_Data: {r: 4.6876e-41, g: 4.6876e-41, b: 4.6876e-41, a: 4.6876e-41}
@@ -2618,8 +2608,8 @@ Tilemap:
     m_Data: {r: 4.6876e-41, g: 4.6876e-41, b: 4.6876e-41, a: 4.6876e-41}
   - m_RefCount: 0
     m_Data: {r: 4.6876e-41, g: 4.6876e-41, b: 4.6876e-41, a: 4.6876e-41}
-  - m_RefCount: 1
-    m_Data: {r: 1, g: 1, b: 1, a: 1}
+  - m_RefCount: 0
+    m_Data: {r: 4.342e-41, g: 4.342e-41, b: 4.342e-41, a: 4.342e-41}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 0.8207547, g: 0.55600005, b: 0.07355818, a: 0.78039217}
