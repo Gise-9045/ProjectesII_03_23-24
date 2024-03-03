@@ -23,10 +23,7 @@ public class AudioManager : MonoBehaviour
 
     public AudioClip music;
 
-    int countMusic = 0;
-
     [Header("----- UI -----")]
-    [SerializeField] private TextMeshProUGUI nameMusic;
     [SerializeField] private UnityEngine.UI.Image UISound;
     [SerializeField] private Sprite[] soundSprite;
 
@@ -34,7 +31,8 @@ public class AudioManager : MonoBehaviour
     {
         musicSource.clip = music;
         musicSource.Play();
-  
+        UISound.sprite = soundSprite[0];
+
     }
 
     private void Update()
