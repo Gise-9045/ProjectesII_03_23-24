@@ -25,6 +25,8 @@ public class AudioBoxController : MonoBehaviour
         {
             audioManager.PlaySFX(audioManager.boxSliding);
             //hacer que se repita 
+
+
         }
     }
 }

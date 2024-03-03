@@ -4176,17 +4176,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 582930581195230655, guid: 90877c543b25da74f8d321d10bf81583, type: 3}
-      propertyPath: hole
-      value: 
-      objectReference: {fileID: 1768643133}
-    - target: {fileID: 582930581195230655, guid: 90877c543b25da74f8d321d10bf81583, type: 3}
       propertyPath: transition
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
-    - target: {fileID: 582930581195230655, guid: 90877c543b25da74f8d321d10bf81583, type: 3}
-      propertyPath: holeTransition
-      value: 
-      objectReference: {fileID: 1073761359}
     - target: {fileID: 1294412219296819478, guid: 90877c543b25da74f8d321d10bf81583, type: 3}
       propertyPath: m_Name
       value: UI
@@ -4276,12 +4268,8 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5602102341694337661, guid: 90877c543b25da74f8d321d10bf81583, type: 3}
-      propertyPath: m_Name
-      value: CenterTransitionOLD
-      objectReference: {fileID: 0}
-    - target: {fileID: 5602102341694337661, guid: 90877c543b25da74f8d321d10bf81583, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4402,39 +4390,15 @@ Tilemap:
   m_Enabled: 1
   m_Tiles: {}
   m_AnimatedTiles: {}
-  m_TileAssetArray:
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  m_TileSpriteArray:
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  m_TileMatrixArray:
-  - m_RefCount: 0
-    m_Data:
-      e00: 0
-      e01: 0
-      e02: 4.357555e+29
-      e03: 4.357555e+29
-      e10: 0
-      e11: 0
-      e12: 7.17e-43
-      e13: 7.17e-43
-      e20: -0.000096040545
-      e21: 7.6888155e+21
-      e22: -0.000000003141425
-      e23: -2.0523415
-      e30: 4.5904e-41
-      e31: 7.2e-43
-      e32: 7.17e-43
-      e33: 7.2e-43
-  m_TileColorArray:
-  - m_RefCount: 0
-    m_Data: {r: 4.6551e-41, g: 4.6551e-41, b: 4.6551e-41, a: 4.6551e-41}
+  m_TileAssetArray: []
+  m_TileSpriteArray: []
+  m_TileMatrixArray: []
+  m_TileColorArray: []
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: 0, y: 0, z: 0}
-  m_Size: {x: 16, y: 4, z: 1}
+  m_Size: {x: 0, y: 0, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
@@ -4564,17 +4528,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba6110309164a7f4d9e9a39f68545322, type: 3}
---- !u!114 &1073761359 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7784401290758324105, guid: 90877c543b25da74f8d321d10bf81583, type: 3}
-  m_PrefabInstance: {fileID: 650811029}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 968e78600fc5dd3a483e4bea9265867b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &1076375230 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 6038616916327065998, guid: 6b1a4e2b7293bb94ebc70d874974b9aa, type: 3}
@@ -4601,11 +4554,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2262d54d3cd454643bcb69c5b09e47eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1768643133 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4694815813892106073, guid: 90877c543b25da74f8d321d10bf81583, type: 3}
-  m_PrefabInstance: {fileID: 650811029}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1813048582
 GameObject:
   m_ObjectHideFlags: 0
