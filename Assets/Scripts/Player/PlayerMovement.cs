@@ -21,7 +21,8 @@ public class PlayerMovement : MonoBehaviour
 
     private PlayerGroundDetection ground;
 
-    bool isJumping;
+    public bool isJumping;
+    public bool isWalking;
 
     private float coyoteTime;
     private float actualCoyoteTime;
@@ -183,6 +184,8 @@ public class PlayerMovement : MonoBehaviour
             {
                 soundCoroutine = StartCoroutine(PlaySoundRepeatedly());
             }
+
+            isWalking = true;
         }
         else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
@@ -195,6 +198,8 @@ public class PlayerMovement : MonoBehaviour
             {
                 soundCoroutine = StartCoroutine(PlaySoundRepeatedly());
             }
+
+            isWalking = true;
         }
         else
         {
@@ -211,7 +216,11 @@ public class PlayerMovement : MonoBehaviour
                 StopCoroutine(soundCoroutine);
             }
             isPlayingSound = false;
+
+            isWalking = false;
         }
+
+        
     }
 
     IEnumerator PlaySoundRepeatedly()
