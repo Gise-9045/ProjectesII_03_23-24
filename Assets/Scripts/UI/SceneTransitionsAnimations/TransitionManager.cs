@@ -5,6 +5,7 @@ using UnityEngine;
 public class TransitionManager : MonoBehaviour
 {
     CameraZoom cam;
+    [SerializeField] private HoleTransition holeTransition;
 
     private enum Transition { NONE, UP, DOWN, LEFT, RIGHT, INTROHOLE, HOLE};
     [SerializeField] GameObject horizontal;
@@ -83,11 +84,11 @@ public class TransitionManager : MonoBehaviour
         //cam.SetToPlayer();
 
         holeTransition.ResetToZero();
-        player.SetStop(true);
+        //player.SetStop(true);
 
         holeTransition.Scale(4000);
         //cam.PlayerZoomOut();
-        player.SetStop(false);
+        //player.SetStop(false);
 
 
         yield return new WaitForSeconds(3f);
