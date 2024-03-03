@@ -20,6 +20,8 @@ public class AudioManager : MonoBehaviour
     public AudioClip boxOpen;
     public AudioClip boxSliding;
     public AudioClip boxSurface;         
+    public AudioClip doorOpens;         
+    public AudioClip findKey;         
 
     public AudioClip music;
 
