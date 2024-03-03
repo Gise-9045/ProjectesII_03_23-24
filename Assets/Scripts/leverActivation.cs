@@ -5,7 +5,6 @@ public class leverActivation : MonoBehaviour
 {
     public bool isActive;
     [SerializeField] private SpriteRenderer sprite;
-    [SerializeField] private GameObject boxUI;
     [SerializeField] private Animator pressed;
 
     private void Start()
@@ -27,22 +26,9 @@ public class leverActivation : MonoBehaviour
     public void Toggle()
     {
 
-        if(!isActive)
-        {
-            boxUI.SetActive(true);
-
-            // Llama a la funci�n HideBoxUI despu�s de 5 segundos
-            Invoke("HideBoxUI", 5f);
-        }
-
         isActive = true;
         
 
     }
 
-    private void HideBoxUI()
-    {
-        // Desactiva el GameObject boxUI
-        boxUI.SetActive(false);
-    }
 }

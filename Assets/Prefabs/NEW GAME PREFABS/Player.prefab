@@ -5062,7 +5062,8 @@ MonoBehaviour:
   life: 3
   speed: 7
   dead: 0
-  respawn: {fileID: 0}
+  canDie: 0
+  stop: 0
 --- !u!114 &4699660460486079957
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5076,7 +5077,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForce: 13
-  jumpTimeCounter: 0.15
+  jumpTimeCounter: 0.13
   canDoubleJump: 0
   dashVelocity: 20
   dashTimer: 0.2

@@ -146,7 +146,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grayDatabase: {fileID: 11400000, guid: 51191353656cd5648b3d54b5d7a03c9b, type: 2}
   sprite: {fileID: 8604578124681948764}
-  pressed: {fileID: 0}
+  fountain: {fileID: 0}
+  pressed: {fileID: 551700106255473405}
 --- !u!95 &551700106255473405
 Animator:
   serializedVersion: 5
@@ -180,7 +181,7 @@ GameObject:
   - component: {fileID: 7192747173139619475}
   m_Layer: 0
   m_Name: ButtonDashFountain
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
