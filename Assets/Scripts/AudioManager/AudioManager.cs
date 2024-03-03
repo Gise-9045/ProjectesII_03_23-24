@@ -23,6 +23,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip doorOpens;         
     public AudioClip findKey;
     public AudioClip powerActive;
+    public AudioClip stairsClimb;
     
     public AudioClip music;
 

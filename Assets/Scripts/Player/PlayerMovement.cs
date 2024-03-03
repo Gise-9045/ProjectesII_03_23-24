@@ -57,6 +57,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("----- Sound -----")]
     [SerializeField] private float walkSoundDelay = 1.0f;
+    [SerializeField] private float ClimbSoundDelay = 1.0f;
     private bool isPlayingSound = false;
     private Coroutine soundCoroutine;
     private bool isPlayingJumpSound = false;
@@ -235,6 +236,18 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    IEnumerator PlaySoundRepeatedlyStairs()
+    {
+        isPlayingSound = true;
+
+        while (true)
+        {
+            if (ground.OnGround())
+                audioManager.PlaySFX(audioManager.stairsClimb);
+            yield return new WaitForSeconds(walkSoundDelay);
+        }
+    }
+
     void Jump()
     {
         isJumping = true;
@@ -338,11 +351,20 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.gravityScale = 0f;
             rb.velocity = new Vector2(rb.velocity.x, 5);
+            if (!isPlayingSound && ground.OnGround())
+            {
+                soundCoroutine = StartCoroutine(PlaySoundRepeatedlyStairs());
+            }
         }
         else if(Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) 
         {
             rb.gravityScale = 0f;
             rb.velocity = new Vector2(rb.velocity.x, -5);
+            if (!isPlayingSound && ground.OnGround())
+            {
+                soundCoroutine = StartCoroutine(PlaySoundRepeatedlyStairs());
+            }
+
         }
         else
         {
@@ -365,6 +387,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.tag == "Ladder")
         {
+            audioManager.StopSFX(audioManager.stairsClimb);
+            StopCoroutine(PlaySoundRepeatedlyStairs()); 
             onStairs = false;
             usingStairs = false;
         }
