@@ -80,7 +80,8 @@ public class Player : MonoBehaviour
     {
         audioManager.PlaySFX(audioManager.death);
         yield return new WaitForSecondsRealtime(1f);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name); 
+        var arguments = 1;
+        SceneArguments.SceneManager.LoadScene(SceneManager.GetActiveScene().name, "NoTransition");
         dead = false;
     }
 }
