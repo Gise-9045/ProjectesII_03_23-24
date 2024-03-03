@@ -79,13 +79,13 @@ public class TransitionManager : MonoBehaviour
     public IEnumerator StartHole()
     {
         hole.SetActive(true);
-        cam.SetToPlayer();
+        //cam.SetToPlayer();
 
         holeTransition.ResetToZero();
         player.SetStop(true);
 
         holeTransition.Scale(4000);
-        cam.PlayerZoomOut();
+        //cam.PlayerZoomOut();
         player.SetStop(false);
 
 
