@@ -8,17 +8,22 @@ public class ButtonActivateFountain : MonoBehaviour
     [SerializeField] private GameObject fountain;
     [SerializeField] private Animator pressed;
 
+    private AudioManager audioManager;
+
     public void Start()
     {
         sprite = GetComponent<SpriteRenderer>();
         pressed = GetComponent<Animator>();
         fountain.SetActive(false);
+
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
     }
    
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player") || collision.CompareTag("PuzzleBox"))
         {
+            audioManager.PlaySFX(audioManager.powerActive); 
             pressed.SetBool("Pressed", true);
             fountain.SetActive(true);
            
