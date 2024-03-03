@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
         {
             canDie = false;
             Debug.Log("GodMode");
-            crownGodMode.SetActive(true);
+            crownGodMode.SetActive(false);
         }
 
 
