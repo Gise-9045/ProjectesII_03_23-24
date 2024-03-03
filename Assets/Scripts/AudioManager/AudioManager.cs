@@ -26,18 +26,22 @@ public class AudioManager : MonoBehaviour
     public AudioClip powerActive;
     
 
-    public AudioClip music;
+    public AudioClip[] music;
+
+
+    int countMusic = 0;
 
     [Header("----- UI -----")]
+    [SerializeField] private TextMeshProUGUI nameMusic;
     [SerializeField] private UnityEngine.UI.Image UISound;
     [SerializeField] private Sprite[] soundSprite;
 
     private void Start()
     {
-        musicSource.clip = music;
+        musicSource.clip = music[0];
         musicSource.Play();
+        nameMusic.text = musicSource.clip.name;
         UISound.sprite = soundSprite[0];
-
     }
 
     private void Update()
@@ -55,7 +59,49 @@ public class AudioManager : MonoBehaviour
                 musicSource.Play();
                 UISound.sprite = soundSprite[0];
             }
-        }      
+        }
+
+        if(Input.GetKeyDown(KeyCode.U))
+        {
+            if(countMusic == music.Length-1)
+            {
+                musicSource.Stop();
+                countMusic = 0;
+                musicSource.clip = music[countMusic];
+                musicSource.Play();
+            }
+            else
+            {
+                musicSource.Stop();
+                countMusic++;
+                musicSource.clip = music[countMusic];
+                musicSource.Play();
+            }
+
+            nameMusic.text = musicSource.clip.name;
+        }
+
+        if(Input.GetKeyDown(KeyCode.I))
+        {
+            if (countMusic == 0)
+            {
+                musicSource.Stop();
+                countMusic = music.Length - 1;
+                musicSource.clip = music[countMusic];
+                musicSource.Play();
+            }
+            else
+            {
+                musicSource.Stop();
+                countMusic--;
+                musicSource.clip = music[countMusic];
+                musicSource.Play();
+            }
+
+            nameMusic.text = musicSource.clip.name;
+        }
+
+       
     }
     public void PlaySFX(AudioClip clip)
     {

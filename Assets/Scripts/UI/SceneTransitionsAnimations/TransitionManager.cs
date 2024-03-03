@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class TransitionManager : MonoBehaviour
 {
-    private CameraZoom cam;
-    [SerializeField] private HoleTransition holeTransition;
+    CameraZoom cam;
 
     private enum Transition { NONE, UP, DOWN, LEFT, RIGHT, INTROHOLE, HOLE};
     [SerializeField] GameObject horizontal;
@@ -33,10 +32,6 @@ public class TransitionManager : MonoBehaviour
 
         cam = GameObject.Find("Main Camera").GetComponent<CameraZoom>();
 
-        if(SceneArguments.SceneManager.GetSceneArguments() == "NoTransition")
-        {
-            return;
-        }
 
         switch (transition) 
         { 
@@ -81,16 +76,16 @@ public class TransitionManager : MonoBehaviour
         hole.SetActive(true);
         cam.SetToPlayer();
 
-        holeTransition.ResetToZero();
-        player.SetStop(true);
 
-        holeTransition.Scale(4000);
+        //yield return new WaitForSeconds(0.5f);
+        holeAnim.SetBool("OpenFromMid", true);
         cam.PlayerZoomOut();
-        player.SetStop(false);
 
 
         yield return new WaitForSeconds(3f);
         hole.SetActive(false);
+        holeAnim.SetBool("OpenFromMid", false);
+        holeAnim.SetBool("Open", false);
     }
 
 
@@ -98,20 +93,23 @@ public class TransitionManager : MonoBehaviour
     {
         hole.SetActive(true);
         cam.SetToPlayer();
+        holeAnim.SetBool("MidOpen", true);
 
-        holeTransition.ResetToZero();
+
+
+        yield return new WaitForSeconds(1.5f);
         player.SetStop(true);
-        holeTransition.Scale(500);
 
-
-        yield return new WaitForSeconds(2f);
-        holeTransition.Scale(4000);
+        yield return new WaitForSeconds(0.5f);
+        holeAnim.SetBool("OpenFromMid", true);
         cam.PlayerZoomOut();
         player.SetStop(false);
 
 
         yield return new WaitForSeconds(3f);
         hole.SetActive(false);
+        holeAnim.SetBool("MidOpen", false);
+        holeAnim.SetBool("OpenFromMid", false);
     }
 
 
