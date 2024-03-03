@@ -24,9 +24,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip findKey;
     public AudioClip powerActive;
     
-
     public AudioClip music;
-
 
     [Header("----- UI -----")]
     [SerializeField] private UnityEngine.UI.Image UISound;
