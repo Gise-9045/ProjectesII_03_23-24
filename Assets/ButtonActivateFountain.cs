@@ -23,7 +23,11 @@ public class ButtonActivateFountain : MonoBehaviour
     {
         if (collision.CompareTag("Player") || collision.CompareTag("PuzzleBox"))
         {
-            audioManager.PlaySFX(audioManager.powerActive); 
+            if(!pressed.GetBool("Pressed"))
+            {
+                audioManager.PlaySFX(audioManager.powerActive);
+            }
+            
             pressed.SetBool("Pressed", true);
             fountain.SetActive(true);
            
