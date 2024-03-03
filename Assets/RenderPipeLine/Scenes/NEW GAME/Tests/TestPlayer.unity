@@ -4177,7 +4177,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 582930581195230655, guid: 90877c543b25da74f8d321d10bf81583, type: 3}
       propertyPath: transition
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1294412219296819478, guid: 90877c543b25da74f8d321d10bf81583, type: 3}
       propertyPath: m_Name
@@ -4272,8 +4272,12 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5602102341694337661, guid: 90877c543b25da74f8d321d10bf81583, type: 3}
+      propertyPath: m_Name
+      value: OldCenterTransition
+      objectReference: {fileID: 0}
+    - target: {fileID: 5602102341694337661, guid: 90877c543b25da74f8d321d10bf81583, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -4619,11 +4623,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a526f4774217c414987f9866154e0633, type: 3}
---- !u!1 &1768643133 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4694815813892106073, guid: 90877c543b25da74f8d321d10bf81583, type: 3}
-  m_PrefabInstance: {fileID: 650811029}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1813048582
 GameObject:
   m_ObjectHideFlags: 0
@@ -4987,6 +4986,10 @@ PrefabInstance:
     - target: {fileID: 7665806839036162660, guid: 698bd860d70756c43ba71c529cc5e683, type: 3}
       propertyPath: m_Name
       value: Audio Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7665806839036162660, guid: 698bd860d70756c43ba71c529cc5e683, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
