@@ -16,12 +16,15 @@ public class AudioManager : MonoBehaviour
     public AudioClip death;
     public AudioClip walk;
     public AudioClip jump;
+    public AudioClip dash;
     public AudioClip key;
     public AudioClip boxOpen;
     public AudioClip boxSliding;
     public AudioClip boxSurface;         
     public AudioClip doorOpens;         
-    public AudioClip findKey;         
+    public AudioClip findKey;
+    public AudioClip powerActive;
+    
 
     public AudioClip music;
 
