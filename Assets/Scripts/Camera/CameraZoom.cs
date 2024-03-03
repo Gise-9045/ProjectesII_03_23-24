@@ -25,7 +25,7 @@ public class CameraZoom : MonoBehaviour
         tr = GetComponent<Transform>();
         playerTr = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
 
-        smoothTime = 40f;
+        smoothTime = 70f;
         zoomVelocity = 0;
         posVelocity = Vector2.zero;
 
