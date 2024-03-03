@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class AudioManager : MonoBehaviour
 {
@@ -25,7 +24,6 @@ public class AudioManager : MonoBehaviour
     public AudioClip findKey;
     public AudioClip powerActive;
     
-
     public AudioClip music;
 
     [Header("----- UI -----")]
@@ -37,7 +35,6 @@ public class AudioManager : MonoBehaviour
         musicSource.clip = music;
         musicSource.Play();
         UISound.sprite = soundSprite[0];
-
     }
 
     private void Update()
@@ -55,7 +52,7 @@ public class AudioManager : MonoBehaviour
                 musicSource.Play();
                 UISound.sprite = soundSprite[0];
             }
-        }      
+        }
     }
     public void PlaySFX(AudioClip clip)
     {
