@@ -229,6 +229,7 @@ public class PlayerMovement : MonoBehaviour
 
         while (true)
         {
+            if(ground.OnGround())
             audioManager.PlaySFX(audioManager.walk);
             yield return new WaitForSeconds(walkSoundDelay);
         }

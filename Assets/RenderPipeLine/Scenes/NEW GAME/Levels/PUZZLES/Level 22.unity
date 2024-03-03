@@ -877,6 +877,7 @@ GameObject:
   - component: {fileID: 353131006}
   - component: {fileID: 353131005}
   - component: {fileID: 353131004}
+  - component: {fileID: 353131008}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1002,6 +1003,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &353131008
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 353131003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c85120c3b986d54f889b9555b8334fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &355908878
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8983,6 +8996,17 @@ Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 3052298248717793505, guid: 6b1a4e2b7293bb94ebc70d874974b9aa, type: 3}
   m_PrefabInstance: {fileID: 1618185474}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1618185478 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1453456629046782491, guid: 6b1a4e2b7293bb94ebc70d874974b9aa, type: 3}
+  m_PrefabInstance: {fileID: 1618185474}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd30b809185b5994382a38652cfd525a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1618185482 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2855868302909866203, guid: 6b1a4e2b7293bb94ebc70d874974b9aa, type: 3}
@@ -9737,6 +9761,10 @@ PrefabInstance:
       propertyPath: transition
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6136389294209927114, guid: 5dabb304a592e1d4b948101024cf52b6, type: 3}
+      propertyPath: keySaverList
+      value: 
+      objectReference: {fileID: 1618185478}
     - target: {fileID: 6704505605561849792, guid: 5dabb304a592e1d4b948101024cf52b6, type: 3}
       propertyPath: m_RootOrder
       value: 5
