@@ -54,5 +54,10 @@ public class ShortCutsLevels : MonoBehaviour
         {
             SceneManager.LoadScene("Level 24");
         }
+
+        if(Input.GetKeyDown(KeyCode.Alpha9))
+        {
+            SceneManager.LoadScene("Level 27");
+        }
     }
 }
