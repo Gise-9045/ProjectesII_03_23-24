@@ -233,6 +233,11 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3589198296878004778, guid: 302ce4d16d5310c4a91a782c348bc334, type: 3}
   m_PrefabInstance: {fileID: 8732897}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8732899 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4094007565375278357, guid: 302ce4d16d5310c4a91a782c348bc334, type: 3}
+  m_PrefabInstance: {fileID: 8732897}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &109892868
 GameObject:
   m_ObjectHideFlags: 0
@@ -7630,6 +7635,10 @@ PrefabInstance:
       propertyPath: respawn
       value: 
       objectReference: {fileID: 1102710363}
+    - target: {fileID: 2855868302909866203, guid: 6b1a4e2b7293bb94ebc70d874974b9aa, type: 3}
+      propertyPath: crownGodMode
+      value: 
+      objectReference: {fileID: 8732899}
     - target: {fileID: 3052298248717793505, guid: 6b1a4e2b7293bb94ebc70d874974b9aa, type: 3}
       propertyPath: m_Interpolate
       value: 0
