@@ -31,6 +31,11 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private UnityEngine.UI.Image UISound;
     [SerializeField] private Sprite[] soundSprite;
 
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
     private void Start()
     {
         musicSource.clip = music;
