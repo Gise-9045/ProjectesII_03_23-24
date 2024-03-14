@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 //using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -12,17 +13,38 @@ public class Player : MonoBehaviour
     [SerializeField] int speed;
 
     [SerializeField] private bool dead;
+    [SerializeField] public bool canDie; 
+    [SerializeField] private bool stop;
 
     Vector2 direction;
 
-    [SerializeField] private Transform respawn; //posicion de respawn
-    private Transform player;
-
+    private AudioManager audioManager;
+    [SerializeField] private GameObject crownGodMode;
     
     void Start()
     {
         direction= new Vector2(1, 1);
-        player = GetComponent<Transform>();
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        canDie = true; 
+
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.G) && !crownGodMode.activeSelf)
+        {
+            canDie = false;
+            Debug.Log("GodMode");
+            crownGodMode.SetActive(true);
+        }
+        else if(Input.GetKeyDown(KeyCode.G) && crownGodMode.activeSelf)
+        {
+            canDie = true;
+            crownGodMode.SetActive(false);
+        }
+
+
+        if(Input.GetKeyDown(KeyCode.R)) { SceneArguments.SceneManager.LoadScene(SceneManager.GetActiveScene().name, "NoTransition"); }
     }
 
     public void SetLife(int l) { life = l; }
@@ -31,10 +53,18 @@ public class Player : MonoBehaviour
     public int GetSpeed() { return speed; }
     public bool GetDead() { return dead; }
 
+    public void SetStop(bool s) { stop = s; }
+    public bool GetStop() { return stop; }
+
     public void TakeDamage()
     {
-        dead = true;
-        StartCoroutine(Death());
+        if(canDie && !dead)
+        {
+
+            dead = true;
+            StartCoroutine(Death());
+
+        }
     }
 
     public void SetDirection(Vector2 d)
@@ -60,15 +90,10 @@ public class Player : MonoBehaviour
 
     private IEnumerator Death()
     {
+        audioManager.PlaySFX(audioManager.death);
         yield return new WaitForSecondsRealtime(1f);
+        SceneArguments.SceneManager.LoadScene(SceneManager.GetActiveScene().name, "NoTransition");
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         dead = false;
-        player.position = respawn.position;
     }
-
-    void Update()
-    {
-        
-    }
-
-   
 }

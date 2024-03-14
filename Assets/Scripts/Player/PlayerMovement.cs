@@ -21,7 +21,8 @@ public class PlayerMovement : MonoBehaviour
 
     private PlayerGroundDetection ground;
 
-    bool isJumping;
+    public bool isJumping;
+    public bool isWalking;
 
     private float coyoteTime;
     private float actualCoyoteTime;
@@ -38,22 +39,31 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float dashTimer;
     [SerializeField] bool canDash;
     [SerializeField] float dashCooldown;
+
+    private AudioManager audioManager;
+
+
+    [Header("----- Particles -----")]
     [SerializeField] private ParticleSystem dashTrail;
     [SerializeField] private ParticleSystem deathParticles;
-    float actualDashCooldown = 0;
+    [SerializeField] private ParticleSystem walkParticles;
+    [SerializeField] private ParticleSystem jumpParticles;
 
-    [SerializeField]
-    private ParticleSystem walkParticles;
-    [SerializeField]
-    private ParticleSystem jumpParticles;
+    float actualDashCooldown = 0;
 
     private Animator animator;
 
     private bool oldDead;
 
+    [Header("----- Sound -----")]
+    [SerializeField] private float walkSoundDelay = 1.0f;
+    [SerializeField] private float ClimbSoundDelay = 1.0f;
+    private bool isPlayingSound = false;
+    private Coroutine soundCoroutine;
+    private bool isPlayingJumpSound = false;
+
     void Start()
     {
-        
         player = GetComponent<Player>();
         rb = GetComponent<Rigidbody2D>();
         ground = GetComponentInChildren<PlayerGroundDetection>();
@@ -62,6 +72,8 @@ public class PlayerMovement : MonoBehaviour
         onStairs = false;
         coyoteTime = 0.3f;
         animator = GetComponent<Animator>();
+
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
 
         ground.OnGroundTouchdown += jumpParticles.Play;
         ground.OnGroundTouchdown += walkParticles.Play;
@@ -95,9 +107,21 @@ public class PlayerMovement : MonoBehaviour
 
             return;
         }
+        else if(player.GetStop())
+        {
+            animator.SetBool("Stairs", false);
+            animator.SetBool("Dash", false);
+            animator.SetBool("Walk", false);
+            animator.SetBool("Grounded", true);
+
+            animator.SetBool("StartPose", true);
+
+            return;
+        }
         else
         {
             animator.SetBool("Death", false);
+            animator.SetBool("StartPose", false);
             oldDead = player.GetDead();
         }
 
@@ -157,6 +181,12 @@ public class PlayerMovement : MonoBehaviour
 
             rb.velocity = new Vector2(player.GetDirection().x * player.GetSpeed(), rb.velocity.y);
 
+            if (!isPlayingSound && ground.OnGround())
+            {
+                soundCoroutine = StartCoroutine(PlaySoundRepeatedly());
+            }
+
+            isWalking = true;
         }
         else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
@@ -165,19 +195,69 @@ public class PlayerMovement : MonoBehaviour
 
             rb.velocity = new Vector2(player.GetDirection().x * player.GetSpeed(), rb.velocity.y);
 
+            if (!isPlayingSound && ground.OnGround())
+            {
+                soundCoroutine = StartCoroutine(PlaySoundRepeatedly());
+            }
+
+            isWalking = true;
         }
         else
         {
+
             rb.velocity = new Vector2(player.GetDirection().x * (player.GetSpeed() * slide), rb.velocity.y);
+           
 
         }
+
+        if(Input.GetKeyUp(KeyCode.D)|| Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.LeftArrow))
+        {
+            if (soundCoroutine != null)
+            {
+                StopCoroutine(soundCoroutine);
+            }
+            isPlayingSound = false;
+
+            isWalking = false;
+        }
+
+        
     }
+
+    IEnumerator PlaySoundRepeatedly()
+    {
+        isPlayingSound = true;
+
+        while (true)
+        {
+            if(ground.OnGround())
+            audioManager.PlaySFX(audioManager.walk);
+            yield return new WaitForSeconds(walkSoundDelay);
+        }
+    }
+
+    IEnumerator PlaySoundRepeatedlyStairs()
+    {
+        isPlayingSound = true;
+
+        while (true)
+        {
+            if (ground.OnGround())
+                audioManager.PlaySFX(audioManager.stairsClimb);
+            yield return new WaitForSeconds(walkSoundDelay);
+        }
+    }
+
     void Jump()
     {
         isJumping = true;
         actualJumpTimeCounter = jumpTimeCounter;
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         jumpParticles.Play();
+      
+        audioManager.PlaySFX(audioManager.jump);
+    
+
     }
     void CheckJump()
     {
@@ -223,6 +303,8 @@ public class PlayerMovement : MonoBehaviour
             actualCoyoteTime = 0f;
             rb.gravityScale = 9.81f;
         }
+
+        isPlayingJumpSound = true;
     }
 
     void DashCheck()
@@ -269,11 +351,20 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.gravityScale = 0f;
             rb.velocity = new Vector2(rb.velocity.x, 5);
+            if (!isPlayingSound && ground.OnGround())
+            {
+                soundCoroutine = StartCoroutine(PlaySoundRepeatedlyStairs());
+            }
         }
         else if(Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) 
         {
             rb.gravityScale = 0f;
             rb.velocity = new Vector2(rb.velocity.x, -5);
+            if (!isPlayingSound && ground.OnGround())
+            {
+                soundCoroutine = StartCoroutine(PlaySoundRepeatedlyStairs());
+            }
+
         }
         else
         {
@@ -296,6 +387,8 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.tag == "Ladder")
         {
+            audioManager.StopSFX(audioManager.stairsClimb);
+            StopCoroutine(PlaySoundRepeatedlyStairs()); 
             onStairs = false;
             usingStairs = false;
         }
@@ -304,6 +397,7 @@ public class PlayerMovement : MonoBehaviour
     {
         actualDashTimer = dashTimer;
         rb.gravityScale = 0f;
+        audioManager.PlaySFX(audioManager.dash);
         dashTrail.Play();
 
     }
