@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -25,20 +26,24 @@ public class AudioManager : MonoBehaviour
     public AudioClip powerActive;
     public AudioClip stairsClimb;
     
-    public AudioClip music;
+    public AudioClip[] music;
 
     [Header("----- UI -----")]
     [SerializeField] private UnityEngine.UI.Image UISound;
     [SerializeField] private Sprite[] soundSprite;
 
+    private bool inMainMenu; // This is a bool to check if the scene is the main menu again or not
+    private int countMusic= 0; 
+
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
+        inMainMenu = false; 
     }
 
     private void Start()
     {
-        musicSource.clip = music;
+        musicSource.clip = music[0];
         musicSource.Play();
         UISound.sprite = soundSprite[0];
     }
@@ -59,7 +64,49 @@ public class AudioManager : MonoBehaviour
                 UISound.sprite = soundSprite[0];
             }
         }
+        
+        if(Input.GetKeyDown(KeyCode.U))
+        {
+            if(countMusic == music.Length-1)
+            {
+                musicSource.Stop();
+                countMusic = 0;
+                musicSource.clip = music[countMusic];
+                musicSource.Play();
+            }
+            else
+            {
+                musicSource.Stop();
+                countMusic++;
+                musicSource.clip = music[countMusic];
+                musicSource.Play();
+            }
+
+           // nameMusic.text = musicSource.clip.name;
+        }
+
+        if(Input.GetKeyDown(KeyCode.I))
+        {
+            if (countMusic == 0)
+            {
+                musicSource.Stop();
+                countMusic = music.Length - 1;
+                musicSource.clip = music[countMusic];
+                musicSource.Play();
+            }
+            else
+            {
+                musicSource.Stop();
+                countMusic--;
+                musicSource.clip = music[countMusic];
+                musicSource.Play();
+            }
+
+           // nameMusic.text = musicSource.clip.name;
+        }
+
     }
+    
     public void PlaySFX(AudioClip clip)
     {
         SFXSource.PlayOneShot(clip);
