@@ -35,10 +35,17 @@ public class AudioManager : MonoBehaviour
     private bool inMainMenu; // This is a bool to check if the scene is the main menu again or not
     private int countMusic= 0; 
 
+    public AudioManager Instance { get; private set; }
+
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
-        inMainMenu = false; 
+        if (Instance == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            Instance = this;
+        }
+        else
+            Destroy(this.gameObject);
     }
 
     private void Start()
