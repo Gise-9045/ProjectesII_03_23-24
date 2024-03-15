@@ -23,12 +23,18 @@ public class AudioManager : MonoBehaviour
     public AudioClip doorOpens;         
     public AudioClip findKey;
     public AudioClip powerActive;
+    public AudioClip stairsClimb;
     
     public AudioClip music;
 
     [Header("----- UI -----")]
     [SerializeField] private UnityEngine.UI.Image UISound;
     [SerializeField] private Sprite[] soundSprite;
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
 
     private void Start()
     {
