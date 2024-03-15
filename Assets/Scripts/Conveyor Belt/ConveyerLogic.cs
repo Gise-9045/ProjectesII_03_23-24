@@ -28,10 +28,11 @@ public class ConveyerLogic : MonoBehaviour
     }
     private void Update()
     {
-        //if(flipConveyor.GetIsACtive())
-        //{
-        //    Flip();
-        //} Esto peta que flipas
+        if(flipConveyor.GetIsToggled())
+        {
+            Flip();
+            flipConveyor.SetisToggled(false);
+        }
         if (stopConveyor.GetIsACtive())
         {
             StopMoving();
@@ -49,7 +50,7 @@ public class ConveyerLogic : MonoBehaviour
     private void StartMoving()
     {
         effector.forceMagnitude = velocity;
-        animator.speed = velocity / 100; //100 is the base speed for the animator (mentira)
+        animator.speed = velocity / 75; //100 is the base speed for the animator (mentira)
     }
     private void Flip()
     {
