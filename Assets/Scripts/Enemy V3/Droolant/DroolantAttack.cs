@@ -15,6 +15,12 @@ public class DroolantAttack : MonoBehaviour
 
     [SerializeField] Animator animator;
 
+    [SerializeField] float arrayPosX;
+
+    [SerializeField] private AudioClip attackClip;
+    [SerializeField] private AudioSource attackSource;
+    [SerializeField, Range(0f, 3f)] private float volumeAudio = 0.2f;
+
     private void Start()
     {
         parent = GetComponentInParent<Transform>();
@@ -24,10 +30,14 @@ public class DroolantAttack : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector2 pos = new Vector2(parent.transform.position.x, parent.transform.position.y - 1);
-        RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.down);
+        Vector2 rayCastPos1 = new Vector2(parent.transform.position.x - arrayPosX, parent.transform.position.y - 1);
+        Vector2 rayCastPos2 = new Vector2(parent.transform.position.x + arrayPosX, parent.transform.position.y - 1);
 
-        Debug.DrawRay(pos, Vector2.down * hit.distance, Color.green);
+        RaycastHit2D hit = Physics2D.Raycast(rayCastPos1, Vector2.down);
+        RaycastHit2D hit2 = Physics2D.Raycast(rayCastPos2, Vector2.down);
+
+        Debug.DrawRay(rayCastPos1, Vector2.down * hit.distance, Color.green);
+        Debug.DrawRay(rayCastPos2, Vector2.down * hit.distance, Color.green);
 
         if(actualCooldownAttack > 0)
         {
@@ -36,12 +46,15 @@ public class DroolantAttack : MonoBehaviour
 
         }
 
-        if (hit.collider.tag == "Player" && actualCooldownAttack <= 0)
+        if ((hit.collider.tag == "Player" || hit2.collider.tag == "Player") && actualCooldownAttack <= 0)
         {
+            attackSource.clip = attackClip;
             animator.SetBool("Shoot", true);
+            attackSource.Play();
             //Dispara
-            Instantiate(bullet, pos, Quaternion.identity);
+            Vector2 bulletPos = new Vector2(parent.transform.position.x, parent.transform.position.y - 1);
 
+            Instantiate(bullet, bulletPos, Quaternion.identity);
             actualCooldownAttack = cooldownAttack;
         }
     }
