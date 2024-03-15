@@ -50,7 +50,7 @@ public class ConveyerLogic : MonoBehaviour
     private void StartMoving()
     {
         effector.forceMagnitude = velocity;
-        animator.speed = velocity / 75; //100 is the base speed for the animator (mentira)
+        animator.speed = velocity / 65; //100 is the base speed for the animator (mentira)
     }
     private void Flip()
     {
