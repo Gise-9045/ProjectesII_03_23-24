@@ -26,14 +26,15 @@ public class ConveyerLogic : MonoBehaviour
         directionSprite.flipX = !goesLeft;
         conveyorSprite.flipX = !goesLeft;
     }
+
     private void Update()
     {
-        if(flipConveyor.GetIsToggled())
+        if (flipConveyor != null && flipConveyor.GetIsToggled())
         {
             Flip();
             flipConveyor.SetisToggled(false);
         }
-        if (stopConveyor.GetIsACtive())
+        if (stopConveyor != null && stopConveyor.GetIsACtive())
         {
             StopMoving();
         }
@@ -42,16 +43,19 @@ public class ConveyerLogic : MonoBehaviour
             StartMoving();
         }
     }
+
     private void StopMoving()
     {
         effector.forceMagnitude = 0;
         animator.speed = 0f;
     }
+
     private void StartMoving()
     {
         effector.forceMagnitude = velocity;
         animator.speed = velocity / 65; //100 is the base speed for the animator (mentira)
     }
+
     private void Flip()
     {
         goesLeft = !goesLeft;

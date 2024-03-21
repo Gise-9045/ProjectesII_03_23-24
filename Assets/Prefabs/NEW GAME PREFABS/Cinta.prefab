@@ -306,12 +306,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: 18
   goesLeft: 1
-  conveyorSprite: {fileID: 0}
+  conveyorSprite: {fileID: 8266285419410683620}
   directionSprite: {fileID: 2609762771251805132}
-  col: {fileID: 0}
-  effCol: {fileID: 0}
-  effector: {fileID: 0}
-  animator: {fileID: 0}
+  col: {fileID: 300406113713293642}
+  effCol: {fileID: 4515841121162440823}
+  effector: {fileID: 219074295725627796}
+  stopConveyor: {fileID: 0}
+  flipConveyor: {fileID: 0}
+  animator: {fileID: 7433804946509364769}
 --- !u!61 &300406113713293642
 BoxCollider2D:
   m_ObjectHideFlags: 0

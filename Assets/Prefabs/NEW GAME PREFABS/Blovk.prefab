@@ -119,7 +119,7 @@ Transform:
   - {fileID: 5943249545743414488}
   - {fileID: 1576272757330110923}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &1490120155649926685
 Rigidbody2D:
@@ -134,10 +134,10 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 3
-  m_LinearDrag: 3.5
+  m_LinearDrag: 5
   m_AngularDrag: 0.05
   m_GravityScale: 9.81
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 20e66013967b766488f67c2b1d080f37, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
