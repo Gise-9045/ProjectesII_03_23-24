@@ -44,6 +44,7 @@ public class ConveyerLogic : MonoBehaviour
         }
     }
 
+
     private void StopMoving()
     {
         effector.forceMagnitude = 0;
