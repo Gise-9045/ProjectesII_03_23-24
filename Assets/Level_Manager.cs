@@ -34,4 +34,11 @@ public class Level_Manager : MonoBehaviour
         PauseMenuScreen.SetActive(true);
         LevelSelectorScreen.SetActive(false);
     }
+
+    public void OpenSceneSelected(string  sceneNumber)
+    {
+       
+        string sceneManager = "Level " + sceneNumber; 
+        SceneManager.LoadScene(sceneManager); 
+    }
 }

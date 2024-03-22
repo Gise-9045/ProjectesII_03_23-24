@@ -6,12 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="d5e4e180-191c-480e-880d-17ecf1b9499d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.ProjectesII_03_23-24/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.ProjectesII_03_23-24/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/OLD GAME/Extra prefabs/UI.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/OLD GAME/Extra prefabs/UI.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/NEW GAME/Levels/TUTORIAL LEVELS/Level 1.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/NEW GAME/Levels/TUTORIAL LEVELS/Level 1.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Thanks.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Thanks.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/UI/PauseMenu/PauseManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/UI/PauseMenu/PauseManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Inputs/InputSystem.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Inputs/InputSystem.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Inputs/InputSystem.inputactions" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Inputs/InputSystem.inputactions" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Level_Manager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Level_Manager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/RenderPipeLine/Settings/UniversalRP.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/RenderPipeLine/Settings/UniversalRP.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/TextMesh Pro/Resources/Fonts &amp; Materials/LiberationSans SDF - Fallback.asset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,38 +23,38 @@
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/ab74fe8c3de74feeafac966c034df8aa171c00/e9/baa0f534/SceneManager.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 6
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2dhOwdhOV7ZzWhQixUcUEEb2BO0" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "feature/LevelSelector",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.lookFeel",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/LevelSelector&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "rider.external.source.directories": [
-      "C:\\Users\\GISELABENITOIZQUIERD\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\DecompilerCache",
-      "C:\\Users\\GISELABENITOIZQUIERD\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\SourcesCache",
-      "C:\\Users\\GISELABENITOIZQUIERD\\AppData\\Local\\Symbols\\src"
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;C:\\Users\\GISELABENITOIZQUIERD\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\DecompilerCache&quot;,
+      &quot;C:\\Users\\GISELABENITOIZQUIERD\\AppData\\Roaming\\JetBrains\\Rider2023.3\\resharper-host\\SourcesCache&quot;,
+      &quot;C:\\Users\\GISELABENITOIZQUIERD\\AppData\\Local\\Symbols\\src&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
     <configuration name="Standalone Player" type="RunUnityExe" factoryName="Unity Executable">
-      <option name="EXE_PATH" value="$PROJECT_DIR$/../LITTLE_THING_ProjectesII_03\ProjectesII_03_23-24.exe" />
+      <option name="EXE_PATH" value="$PROJECT_DIR$/../LITTLE_THING_ProjectesII_03/ProjectesII_03_23-24.exe" />
       <option name="PROGRAM_PARAMETERS" value="" />
       <option name="WORKING_DIRECTORY" value="C:\Users\Gisela\Desktop\LittleThings" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -111,6 +110,7 @@
       <workItem from="1710503127573" duration="1418000" />
       <workItem from="1710517293747" duration="3540000" />
       <workItem from="1711121582944" duration="5240000" />
+      <workItem from="1711132928485" duration="541000" />
     </task>
     <servers />
   </component>
