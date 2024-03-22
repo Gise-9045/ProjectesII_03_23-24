@@ -15,31 +15,31 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "KeyDownJump",
-                    "type": "Button",
-                    "id": "e52e246f-bb5e-4e25-af3b-408270e9e78d",
-                    "expectedControlType": "Button",
+                    "name": "JumpTap",
+                    "type": "Value",
+                    "id": "dbfa1034-0083-459d-8ca9-8034749a2365",
+                    "expectedControlType": "Digital",
                     "processors": "",
                     "interactions": "Tap",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
-                    "name": "KeyJump",
-                    "type": "Button",
-                    "id": "dbfa1034-0083-459d-8ca9-8034749a2365",
-                    "expectedControlType": "Button",
+                    "name": "JumpHold",
+                    "type": "Value",
+                    "id": "33d4761d-3067-4ced-b76c-774ead508c70",
+                    "expectedControlType": "Digital",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": false
+                    "initialStateCheck": true
                 },
                 {
-                    "name": "PowerUpKey",
+                    "name": "PowerUp",
                     "type": "Button",
                     "id": "eddf7af5-ee0b-44ec-af19-f21ff7862b9b",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Tap",
-                    "initialStateCheck": false
+                    "interactions": "",
+                    "initialStateCheck": true
                 },
                 {
                     "name": "Pause",
@@ -292,94 +292,6 @@
                 },
                 {
                     "name": "",
-                    "id": "67de44c8-77d3-47c9-ba2a-e97636c63bdd",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "KeyDownJump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "00f863fe-27ac-40fa-a9e0-9a8bec94ace9",
-                    "path": "<Gamepad>/buttonEast",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "KeyDownJump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "fdaecfb7-3fdd-41c9-8e21-14f724de9bec",
-                    "path": "<Gamepad>/buttonSouth",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "KeyDownJump",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "4b0b5049-ba24-46c6-b671-28f30c694e19",
-                    "path": "<Keyboard>/shift",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "PowerUpKey",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "b40b2d0f-2810-4003-be8c-15a8f4ff8717",
-                    "path": "<Keyboard>/rightShift",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "PowerUpKey",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "0d70ac16-e2dc-4165-9b3a-96b2b7d6b28f",
-                    "path": "<Gamepad>/leftTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "PowerUpKey",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "2c9c8f2d-c2fb-4c33-a496-b817963e5079",
-                    "path": "<Gamepad>/rightTrigger",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "PowerUpKey",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "ca00ded4-eb2b-4151-9c6b-beb79b847e02",
-                    "path": "<Gamepad>/buttonWest",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "PowerUpKey",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "a730b3d2-7ad8-41a8-8fd3-5207d58ad74e",
                     "path": "<Keyboard>/escape",
                     "interactions": "",
@@ -440,7 +352,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "KeyJump",
+                    "action": "JumpTap",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -451,7 +363,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "KeyJump",
+                    "action": "JumpTap",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -462,7 +374,95 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "KeyJump",
+                    "action": "JumpTap",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4b0b5049-ba24-46c6-b671-28f30c694e19",
+                    "path": "<Keyboard>/shift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PowerUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b40b2d0f-2810-4003-be8c-15a8f4ff8717",
+                    "path": "<Keyboard>/rightShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PowerUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0d70ac16-e2dc-4165-9b3a-96b2b7d6b28f",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PowerUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2c9c8f2d-c2fb-4c33-a496-b817963e5079",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PowerUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ca00ded4-eb2b-4151-9c6b-beb79b847e02",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "PowerUp",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cc2ec5b7-0572-4fad-95f6-25a7df28a8af",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "JumpHold",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "8f000e22-d455-4ca5-992f-7282ddca42df",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "JumpHold",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "de598d02-0e76-4cef-b38b-8f54011b647b",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "JumpHold",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

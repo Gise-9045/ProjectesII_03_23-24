@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 //using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class PlayerMovement : MonoBehaviour
@@ -64,18 +65,12 @@ public class PlayerMovement : MonoBehaviour
 
 
     Vector2 movementController;
-    bool jumpKeyDownController;
-    bool jumpKeyController;
+    bool jumpKeyTap;
+    bool jumpKeyHold;
     bool powerUpKey;
 
 
-    private InputSystem controller;
-
-    private void Awake()
-    {
-        controller = new InputSystem();
-        controller.Enable();
-    }
+    public PlayerInput playerInput;
 
     void Start()
     {
@@ -96,17 +91,50 @@ public class PlayerMovement : MonoBehaviour
         ground.OnLeaveGround += walkParticles.Stop;
 
         oldDead = false;
+
+        playerInput.actions["Player/JumpTap"].started += OnStartJumpIA;
+        playerInput.actions["Player/JumpTap"].canceled += OnStopJumpIA;
+
+        playerInput.actions["Player/JumpHold"].started += OnStartJumpHoldIA;
+        playerInput.actions["Player/JumpHold"].canceled += OnStopJumpHoldIA;
+
+        playerInput.actions["Player/PowerUp"].performed += OnPowerUpAI;
+        playerInput.actions["Player/PowerUp"].canceled += OnStopPowerUpAI;
+    }
+    
+    private void OnStartJumpIA(InputAction.CallbackContext context)
+    {
+        jumpKeyTap = true;
+    }
+    private void OnStopJumpIA(InputAction.CallbackContext context)
+    {
+        jumpKeyTap = false;
+    }
+
+
+    private void OnStartJumpHoldIA(InputAction.CallbackContext context)
+    {
+        jumpKeyHold = true;
+    }
+    private void OnStopJumpHoldIA(InputAction.CallbackContext context)
+    {
+        jumpKeyHold = false;
+    }
+
+    private void OnPowerUpAI(InputAction.CallbackContext context)
+    {
+        powerUpKey = true;
+    }
+    private void OnStopPowerUpAI(InputAction.CallbackContext context)
+    {
+        powerUpKey = false;
     }
 
     void Update()
     {
-        movementController = controller.Player.Move.ReadValue<Vector2>();
-        jumpKeyDownController = controller.Player.KeyDownJump.ReadValue<float>() > 0;
-        jumpKeyController = controller.Player.KeyJump.ReadValue<float>() > 0;
-        powerUpKey = controller.Player.PowerUpKey.ReadValue<float>() > 0;
-
-        //Debug.Log(jumpKeyDownController);
-        Debug.Log(movementController);
+        //jumpKeyDownController = jumpIA.triggered;
+        movementController = playerInput.actions["Player/Move"].ReadValue<Vector2>();
+        //Debug.Log(playerInput.actions["Player/Move"].ReadValue<Vector2>());
 
         if (player.GetDead())
         {
@@ -264,11 +292,11 @@ public class PlayerMovement : MonoBehaviour
         jumpParticles.Play();
 
         audioManager.PlaySFX(audioManager.jump);
-
-
     }
     void CheckJump()
     {
+        Debug.Log(jumpKeyTap);
+
         if (ground.OnGround())
         {
             actualCoyoteTime = coyoteTime;
@@ -280,18 +308,18 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        if (actualCoyoteTime > 0 && jumpKeyDownController && !isJumping)
+        if (actualCoyoteTime > 0 && jumpKeyTap && !isJumping)
         {
             Jump();
             actualCoyoteTime = 0f;
         }
-        else if (canDoubleJump && doubleJump < 1 && jumpKeyDownController)
+        else if (canDoubleJump && doubleJump < 1 && jumpKeyTap)
         {
             Jump();
             doubleJump++; // Incrementa el contador de saltos después de un doble salto
         }
 
-        if (jumpKeyController && isJumping)
+        if (jumpKeyHold && isJumping)
         {
             if (actualJumpTimeCounter > 0)
             {
@@ -306,7 +334,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (!jumpKeyDownController && isJumping)
+        if (!jumpKeyTap)
         {
             isJumping = false;
             actualCoyoteTime = 0f;
