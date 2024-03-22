@@ -32,7 +32,11 @@ public class ConveyerLogic : MonoBehaviour
         if (flipConveyor != null && flipConveyor.GetIsToggled())
         {
             Flip();
-            flipConveyor.SetisToggled(false);
+            if(flipConveyor.GetIsToggled() )
+            {
+                flipConveyor.SetisToggled(false);
+
+            }
         }
         if (stopConveyor != null && stopConveyor.GetIsACtive())
         {
