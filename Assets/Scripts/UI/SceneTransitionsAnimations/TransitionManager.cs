@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class TransitionManager : MonoBehaviour
 {
-    private CameraZoom cam;
+    CameraZoom cam;
     [SerializeField] private HoleTransition holeTransition;
 
     private enum Transition { NONE, UP, DOWN, LEFT, RIGHT, INTROHOLE, HOLE};
@@ -76,17 +76,19 @@ public class TransitionManager : MonoBehaviour
         }
     }
 
+
+
     public IEnumerator StartHole()
     {
         hole.SetActive(true);
-        cam.SetToPlayer();
+        //cam.SetToPlayer();
 
         holeTransition.ResetToZero();
-        player.SetStop(true);
+        //player.SetStop(true);
 
         holeTransition.Scale(4000);
-        cam.PlayerZoomOut();
-        player.SetStop(false);
+        //cam.PlayerZoomOut();
+        //player.SetStop(false);
 
 
         yield return new WaitForSeconds(3f);
@@ -113,8 +115,6 @@ public class TransitionManager : MonoBehaviour
         yield return new WaitForSeconds(3f);
         hole.SetActive(false);
     }
-
-
 
     void Update()
     {

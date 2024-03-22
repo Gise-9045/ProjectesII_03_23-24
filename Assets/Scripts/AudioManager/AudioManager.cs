@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class AudioManager : MonoBehaviour
 {
@@ -16,26 +15,31 @@ public class AudioManager : MonoBehaviour
     public AudioClip death;
     public AudioClip walk;
     public AudioClip jump;
+    public AudioClip dash;
     public AudioClip key;
     public AudioClip boxOpen;
     public AudioClip boxSliding;
     public AudioClip boxSurface;         
-
-    public AudioClip[] music;
-
-
-    int countMusic = 0;
+    public AudioClip doorOpens;         
+    public AudioClip findKey;
+    public AudioClip powerActive;
+    public AudioClip stairsClimb;
+    
+    public AudioClip music;
 
     [Header("----- UI -----")]
-    [SerializeField] private TextMeshProUGUI nameMusic;
     [SerializeField] private UnityEngine.UI.Image UISound;
     [SerializeField] private Sprite[] soundSprite;
 
+    private void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
     private void Start()
     {
-        musicSource.clip = music[0];
+        musicSource.clip = music;
         musicSource.Play();
-        nameMusic.text = musicSource.clip.name;
         UISound.sprite = soundSprite[0];
     }
 
@@ -55,52 +59,15 @@ public class AudioManager : MonoBehaviour
                 UISound.sprite = soundSprite[0];
             }
         }
-
-        if(Input.GetKeyDown(KeyCode.U))
-        {
-            if(countMusic == music.Length-1)
-            {
-                musicSource.Stop();
-                countMusic = 0;
-                musicSource.clip = music[countMusic];
-                musicSource.Play();
-            }
-            else
-            {
-                musicSource.Stop();
-                countMusic++;
-                musicSource.clip = music[countMusic];
-                musicSource.Play();
-            }
-
-            nameMusic.text = musicSource.clip.name;
-        }
-
-        if(Input.GetKeyDown(KeyCode.I))
-        {
-            if (countMusic == 0)
-            {
-                musicSource.Stop();
-                countMusic = music.Length - 1;
-                musicSource.clip = music[countMusic];
-                musicSource.Play();
-            }
-            else
-            {
-                musicSource.Stop();
-                countMusic--;
-                musicSource.clip = music[countMusic];
-                musicSource.Play();
-            }
-
-            nameMusic.text = musicSource.clip.name;
-        }
-
-       
     }
     public void PlaySFX(AudioClip clip)
     {
         SFXSource.PlayOneShot(clip);
+    }
+
+    public void StopSFX(AudioClip clip)
+    {
+        SFXSource.Stop();
     }
 
     public bool IsPlayingSFX()
