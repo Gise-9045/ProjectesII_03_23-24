@@ -12,7 +12,15 @@ public class Ladder : MonoBehaviour
 
     private Transform topPosition;
 
-    // Start is called before the first frame update
+    Vector2 movementController;
+    private InputSystem controller;
+
+    private void Awake()
+    {
+        controller = new InputSystem();
+        controller.Enable();
+    }
+
     void Start()
     {
         col = GetComponent<BoxCollider2D>();
@@ -28,11 +36,13 @@ public class Ladder : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKey(KeyCode.W))
+        movementController = controller.Player.Move.ReadValue<Vector2>();
+
+        if(movementController.y > 0)
         {
             platform.rotationalOffset = 0f;
         }
-        else if (Input.GetKey(KeyCode.S))
+        else if (movementController.y < 0)
         {
             platform.rotationalOffset = 180f;
         }
