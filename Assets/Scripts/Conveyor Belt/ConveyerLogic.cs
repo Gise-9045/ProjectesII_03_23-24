@@ -4,51 +4,68 @@ using UnityEngine;
 
 public class ConveyerLogic : MonoBehaviour
 {
-    [SerializeField]private float velocity;
-    [SerializeField] private bool flip;
-    [SerializeField] private Sprite startSprite;
-    [SerializeField] private Sprite endSprite;
+    [SerializeField] private float velocity = 100;
+    [SerializeField] private bool goesLeft = true;
+    [SerializeField] private SpriteRenderer conveyorSprite;
+    [SerializeField] public SpriteRenderer directionSprite;
+    [SerializeField] private BoxCollider2D col;
+    [SerializeField] private BoxCollider2D effCol;
+    [SerializeField] private AreaEffector2D effector;
+
+    //Buttons
     [SerializeField] private StopConveyor stopConveyor;
     [SerializeField] private FlipConveyor flipConveyor;
+    [SerializeField] private Animator animator;
 
-    private BoxCollider2D col;
-    private float dt;
-    private SpriteRenderer sp;
-
-    // Start is called before the first frame update
     void Start()
     {
-        col = GetComponent<BoxCollider2D>();
-        sp = GetComponentInChildren<SpriteRenderer>();
-       
-        col.size = new Vector2(sp.size.x, sp.size.y);
-        
+        col.size = new Vector2(conveyorSprite.size.x, col.size.y);
+        effCol.size = new Vector2(conveyorSprite.size.x, col.size.y);
+        StartMoving();
+        effector.forceAngle = goesLeft ? 180f : 0f;
+        directionSprite.flipX = !goesLeft;
+        conveyorSprite.flipX = !goesLeft;
     }
+
     private void Update()
     {
-        if (stopConveyor.GetIsACtive())
+        if (flipConveyor != null && flipConveyor.GetIsToggled())
         {
-            dt = 0;
+            Flip();
+            if(flipConveyor.GetIsToggled() )
+            {
+                flipConveyor.SetisToggled(false);
+
+            }
+        }
+        if (stopConveyor != null && stopConveyor.GetIsACtive())
+        {
+            StopMoving();
         }
         else
         {
-            dt = Time.deltaTime;
+            StartMoving();
         }
-        flip = flipConveyor.GetIsACtive();
-        
     }
-    private void OnCollisionStay2D(Collision2D collision)
+
+
+    private void StopMoving()
     {
-        if (flip)
-        {
-            collision.transform.localPosition += Vector3.right * velocity * dt;
+        effector.forceMagnitude = 0;
+        animator.speed = 0f;
+    }
 
-        }
-        else
-        {
-            collision.transform.localPosition += Vector3.left * velocity * dt;
+    private void StartMoving()
+    {
+        effector.forceMagnitude = velocity;
+        animator.speed = velocity / 65; //100 is the base speed for the animator (mentira)
+    }
 
-        }
-
+    private void Flip()
+    {
+        goesLeft = !goesLeft;
+        effector.forceAngle = goesLeft ? 180f : 0f;
+        directionSprite.flipX = !goesLeft;
+        conveyorSprite.flipX = !goesLeft;
     }
 }
