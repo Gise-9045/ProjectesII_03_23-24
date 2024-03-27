@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class PauseManager : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject levelSelectorScreen; 
     [SerializeField] GameObject horizontal;
     [SerializeField] GameObject vertical;
 
@@ -30,8 +31,6 @@ public class PauseManager : MonoBehaviour
         {
             pauseMenu.SetActive(false);
             Time.timeScale = 1.0f;
-
-
         }
 
     }
