@@ -28,6 +28,7 @@ public class PlayerMovement : MonoBehaviour
     private float actualCoyoteTime;
     private int doubleJump = 0;
     [SerializeField] private bool canDoubleJump = false;
+    [SerializeField] private bool canPickUp = false;
     private float slide;
 
     bool onStairs;
@@ -67,7 +68,6 @@ public class PlayerMovement : MonoBehaviour
     bool jumpKeyDownController;
     bool jumpKeyController;
     bool powerUpKey;
-
 
     private InputSystem controller;
 
@@ -348,6 +348,10 @@ public class PlayerMovement : MonoBehaviour
     {
         canDash = condition;
     }
+    public void SetPickUp(bool condition)
+    {
+        canPickUp = condition;
+    }
 
     void Stairs()
     {
@@ -389,6 +393,7 @@ public class PlayerMovement : MonoBehaviour
 
             stairsPos = collision.transform.position;
         }
+       
 
     }
 
@@ -402,6 +407,20 @@ public class PlayerMovement : MonoBehaviour
             usingStairs = false;
         }
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.tag == "PuzzleBox")
+        {
+            if (canPickUp)
+            {
+                collision.gameObject.GetComponent<Rigidbody2D>().mass = 0f;
+                PickUp(collision.transform, true);
+            }
+        } else
+        {
+            return;
+        }
+    }
     private void Dash()
     {
         actualDashTimer = dashTimer;
@@ -409,5 +428,12 @@ public class PlayerMovement : MonoBehaviour
         audioManager.PlaySFX(audioManager.dash);
         dashTrail.Play();
 
+    }
+    private void PickUp(Transform blovkPosition, bool isCarrying)
+    {
+        if (isCarrying)
+        {
+            blovkPosition.position = new Vector2(transform.position.x, transform.position.y + 1);
+        }
     }
 }
