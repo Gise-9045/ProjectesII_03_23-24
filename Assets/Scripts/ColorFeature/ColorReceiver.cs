@@ -35,16 +35,26 @@ public class ColorReceiver : MonoBehaviour
             {
                 boolManaging.SetDash(true);
                 boolManaging.SetDoubleJump(false);
+                boolManaging.SetPickUp(false);
+            }
+            else if (collision.collider.GetComponent<ColorSpreader>().GetColorType() == ColorTypes.PINK)
+            {
+                boolManaging.SetDash(false);
+                boolManaging.SetDoubleJump(false);
+                boolManaging.SetPickUp(true);
             }
             else if (collision.collider.GetComponent<ColorSpreader>().GetColorType() == ColorTypes.NULL)
             {
                 boolManaging.SetDash(false);
                 boolManaging.SetDoubleJump(false);
+                boolManaging.SetPickUp(false);
             }
             else
             {
                 boolManaging.SetDoubleJump(false);
                 boolManaging.SetDash(false);
+                boolManaging.SetPickUp(false);
+
             }
         }
     }

@@ -14,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D rb;
     private Transform tr;
-
+    private GameObject carriedBox;
     [SerializeField] private float jumpForce;
     [SerializeField] private float jumpTimeCounter;
     private float actualJumpTimeCounter;
@@ -29,6 +29,8 @@ public class PlayerMovement : MonoBehaviour
     private float actualCoyoteTime;
     private int doubleJump = 0;
     [SerializeField] private bool canDoubleJump = false;
+    [SerializeField] private bool canPickUp = false;
+    private bool isPicked = false;
     private float slide;
 
     bool onStairs;
@@ -63,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
     private Coroutine soundCoroutine;
     private bool isPlayingJumpSound = false;
 
-
+    private float storedMass;
     Vector2 movementController;
     bool jumpKeyTap;
     bool jumpKeyHold;
@@ -186,7 +188,13 @@ public class PlayerMovement : MonoBehaviour
 
         Walk();
         DashCheck();
-#region Movement
+        PickUp(carriedBox, isPicked);
+        if (powerUpKey && isPicked)
+        {
+            PickUp(carriedBox, false);
+            isPicked = false;
+        }
+        #region Movement
         if (onStairs)
         {
             if (usingStairs)
@@ -208,7 +216,7 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.gravityScale = 9.81f;
         }
-
+      
         CheckJump();
 #endregion
 
@@ -376,6 +384,10 @@ public class PlayerMovement : MonoBehaviour
     {
         canDash = condition;
     }
+    public void SetPickUp(bool condition)
+    {
+        canPickUp = condition;
+    }
 
     void Stairs()
     {
@@ -417,6 +429,7 @@ public class PlayerMovement : MonoBehaviour
 
             stairsPos = collision.transform.position;
         }
+       
 
     }
 
@@ -430,6 +443,25 @@ public class PlayerMovement : MonoBehaviour
             usingStairs = false;
         }
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.tag == "PuzzleBox" && isPicked == false)
+        {
+            if (canPickUp)
+            {
+                //si lo dejo activo al pillar dos cajas una desaparece porque no puede cambiar a false bastante rapido
+                collision.collider.isTrigger = true; 
+                storedMass = collision.rigidbody.mass;
+                collision.rigidbody.mass = 0f;
+                carriedBox = collision.collider.gameObject;
+                isPicked = true;
+                PickUp(carriedBox, isPicked);
+            }
+        } else
+        {
+            return;
+        }
+    }
     private void Dash()
     {
         actualDashTimer = dashTimer;
@@ -438,4 +470,21 @@ public class PlayerMovement : MonoBehaviour
         dashTrail.Play();
 
     }
+    private void PickUp(GameObject blovkPosition, bool isCarrying)
+    {
+        if (isCarrying && blovkPosition != null)
+        {
+            blovkPosition.transform.position = new Vector2(transform.position.x, transform.position.y + 1);
+        }
+        else if (blovkPosition != null && !isCarrying)
+        {
+           carriedBox.transform.position = new Vector2(transform.position.x +1.25f*transform.localScale.x, transform.position.y);
+            carriedBox = null;
+            blovkPosition.GetComponent<Collider2D>().isTrigger = false;
+            blovkPosition.GetComponent<Rigidbody2D>().mass = storedMass;
+            storedMass = 0;
+          
+        }
+    }
+
 }
