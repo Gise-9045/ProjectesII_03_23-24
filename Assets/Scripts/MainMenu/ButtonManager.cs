@@ -15,7 +15,7 @@ public class ButtonManager : MonoBehaviour
     [SerializeField] private Animator HorizontalTransition;
     [SerializeField] private Animator StartSceneUp;
 
-    //MENÚ DE INICIO
+    //MENï¿½ DE INICIO
     private void Start()
     {
         VerticalTransition.SetBool("ExitDownAnimation", true);
@@ -37,7 +37,7 @@ public class ButtonManager : MonoBehaviour
         VerticalTransition.SetBool("UpAnimation", true);
         StartSceneUp.SetBool("Up", true);
         yield return new WaitForSeconds(0.7f);
-        SceneManager.LoadScene("Level Tutorial");
+        SceneManager.LoadScene("Level 0");
     }
 
     public void SettingsButton()
