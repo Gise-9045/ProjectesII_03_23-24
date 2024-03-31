@@ -37,7 +37,7 @@ public class ColorReceiver : MonoBehaviour
                 boolManaging.SetDoubleJump(false);
                 boolManaging.SetPickUp(false);
             }
-            else if (collision.collider.GetComponent<ColorSpreader>().GetColorType() == ColorTypes.RED)
+            else if (collision.collider.GetComponent<ColorSpreader>().GetColorType() == ColorTypes.PINK)
             {
                 boolManaging.SetDash(false);
                 boolManaging.SetDoubleJump(false);
