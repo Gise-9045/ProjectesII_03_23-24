@@ -6592,17 +6592,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81ae6cc943697704f8f750c8a88488ce, type: 3}
---- !u!114 &720275909 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2362459097040718178, guid: a0c3f5071a6db2947a3d63566abd82d9, type: 3}
-  m_PrefabInstance: {fileID: 3640475007592834650}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: edb5b8813266d324ea1ddc146b210103, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &824190201
 GameObject:
   m_ObjectHideFlags: 0
@@ -7508,17 +7497,6 @@ Grid:
   m_CellGap: {x: 0, y: 0, z: 0}
   m_CellLayout: 0
   m_CellSwizzle: 0
---- !u!114 &1226142624 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7094388047964832788, guid: 7336d2e82439cc64e9219f1a9d368052, type: 3}
-  m_PrefabInstance: {fileID: 3487912408166753357}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ae1ca6233b516c448a35a9a37ef3407, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &1288853499 stripped
 BoxCollider2D:
   m_CorrespondingSourceObject: {fileID: 300406113713293642, guid: 7cf4c4ae751abc44c89f0992d6577a9e, type: 3}
@@ -8792,11 +8770,11 @@ PrefabInstance:
     - target: {fileID: 954235245722053424, guid: 7cf4c4ae751abc44c89f0992d6577a9e, type: 3}
       propertyPath: flipConveyor
       value: 
-      objectReference: {fileID: 720275909}
+      objectReference: {fileID: 0}
     - target: {fileID: 954235245722053424, guid: 7cf4c4ae751abc44c89f0992d6577a9e, type: 3}
       propertyPath: stopConveyor
       value: 
-      objectReference: {fileID: 1226142624}
+      objectReference: {fileID: 0}
     - target: {fileID: 954235245722053424, guid: 7cf4c4ae751abc44c89f0992d6577a9e, type: 3}
       propertyPath: conveyorSprite
       value: 
@@ -8931,7 +8909,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8266285419410683620, guid: 7cf4c4ae751abc44c89f0992d6577a9e, type: 3}
       propertyPath: m_Size.x
-      value: 8
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8266285419410683620, guid: 7cf4c4ae751abc44c89f0992d6577a9e, type: 3}
       propertyPath: m_Sprite

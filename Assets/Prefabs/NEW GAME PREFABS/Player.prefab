@@ -5091,6 +5091,7 @@ MonoBehaviour:
   walkParticles: {fileID: 6481496431267818245}
   jumpParticles: {fileID: 7029129437548754459}
   walkSoundDelay: 0.3
+  ClimbSoundDelay: 1
 --- !u!114 &1453456629046782491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5104,7 +5105,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keys: []
-  player: {fileID: 6347379661504714166}
+  playerTr: {fileID: 6347379661504714166}
+  player: {fileID: 2855868302909866203}
   distanceBetweenKeys: 0.7
   smoothness: 10
 --- !u!114 &1300749428106360260
