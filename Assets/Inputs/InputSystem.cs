@@ -37,31 +37,31 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""KeyDownJump"",
-                    ""type"": ""Button"",
-                    ""id"": ""e52e246f-bb5e-4e25-af3b-408270e9e78d"",
-                    ""expectedControlType"": ""Button"",
+                    ""name"": ""JumpTap"",
+                    ""type"": ""Value"",
+                    ""id"": ""dbfa1034-0083-459d-8ca9-8034749a2365"",
+                    ""expectedControlType"": ""Digital"",
                     ""processors"": """",
                     ""interactions"": ""Tap"",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""KeyJump"",
-                    ""type"": ""Button"",
-                    ""id"": ""dbfa1034-0083-459d-8ca9-8034749a2365"",
-                    ""expectedControlType"": ""Button"",
+                    ""name"": ""JumpHold"",
+                    ""type"": ""Value"",
+                    ""id"": ""33d4761d-3067-4ced-b76c-774ead508c70"",
+                    ""expectedControlType"": ""Digital"",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""PowerUpKey"",
+                    ""name"": ""PowerUp"",
                     ""type"": ""Button"",
                     ""id"": ""eddf7af5-ee0b-44ec-af19-f21ff7862b9b"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Tap"",
-                    ""initialStateCheck"": false
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""Pause"",
@@ -69,26 +69,17 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""id"": ""78ab5c0d-34d7-4092-aa43-881a3d09975c"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""interactions"": ""Tap"",
+                    ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""God Mode ACTIVE "",
+                    ""name"": ""God Mode"",
                     ""type"": ""Button"",
                     ""id"": ""9b67237d-9d5d-4e6b-8668-6fff526ccb9b"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""God Mode DESACTIVE"",
-                    ""type"": ""Button"",
-                    ""id"": ""db40baf7-fa49-4937-aff8-509a6f660778"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""interactions"": ""Tap"",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -314,94 +305,6 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""67de44c8-77d3-47c9-ba2a-e97636c63bdd"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""KeyDownJump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""00f863fe-27ac-40fa-a9e0-9a8bec94ace9"",
-                    ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""KeyDownJump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""fdaecfb7-3fdd-41c9-8e21-14f724de9bec"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""KeyDownJump"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""4b0b5049-ba24-46c6-b671-28f30c694e19"",
-                    ""path"": ""<Keyboard>/shift"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""PowerUpKey"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""b40b2d0f-2810-4003-be8c-15a8f4ff8717"",
-                    ""path"": ""<Keyboard>/rightShift"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""PowerUpKey"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""0d70ac16-e2dc-4165-9b3a-96b2b7d6b28f"",
-                    ""path"": ""<Gamepad>/leftTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""PowerUpKey"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""2c9c8f2d-c2fb-4c33-a496-b817963e5079"",
-                    ""path"": ""<Gamepad>/rightTrigger"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""PowerUpKey"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""ca00ded4-eb2b-4151-9c6b-beb79b847e02"",
-                    ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""PowerUpKey"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""a730b3d2-7ad8-41a8-8fd3-5207d58ad74e"",
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
@@ -436,22 +339,22 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""2f9c1131-4267-4b3b-b1c7-36dd0fa13463"",
-                    ""path"": ""<Keyboard>/8"",
+                    ""path"": ""<Keyboard>/g"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""God Mode ACTIVE "",
+                    ""action"": ""God Mode"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""8472697e-5814-4522-97b1-d8142a57cc1d"",
-                    ""path"": ""<Keyboard>/7"",
+                    ""id"": ""bb8aadfc-3a4a-402c-a1fd-bebdb584b565"",
+                    ""path"": ""<Gamepad>/rightStickPress"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""God Mode DESACTIVE"",
+                    ""action"": ""God Mode"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -462,7 +365,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""KeyJump"",
+                    ""action"": ""JumpTap"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -473,7 +376,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""KeyJump"",
+                    ""action"": ""JumpTap"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -484,7 +387,95 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""KeyJump"",
+                    ""action"": ""JumpTap"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4b0b5049-ba24-46c6-b671-28f30c694e19"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PowerUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b40b2d0f-2810-4003-be8c-15a8f4ff8717"",
+                    ""path"": ""<Keyboard>/rightShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PowerUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0d70ac16-e2dc-4165-9b3a-96b2b7d6b28f"",
+                    ""path"": ""<Gamepad>/leftTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PowerUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2c9c8f2d-c2fb-4c33-a496-b817963e5079"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PowerUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ca00ded4-eb2b-4151-9c6b-beb79b847e02"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PowerUp"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cc2ec5b7-0572-4fad-95f6-25a7df28a8af"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""JumpHold"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8f000e22-d455-4ca5-992f-7282ddca42df"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""JumpHold"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""de598d02-0e76-4cef-b38b-8f54011b647b"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""JumpHold"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -496,12 +487,11 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
-        m_Player_KeyDownJump = m_Player.FindAction("KeyDownJump", throwIfNotFound: true);
-        m_Player_KeyJump = m_Player.FindAction("KeyJump", throwIfNotFound: true);
-        m_Player_PowerUpKey = m_Player.FindAction("PowerUpKey", throwIfNotFound: true);
+        m_Player_JumpTap = m_Player.FindAction("JumpTap", throwIfNotFound: true);
+        m_Player_JumpHold = m_Player.FindAction("JumpHold", throwIfNotFound: true);
+        m_Player_PowerUp = m_Player.FindAction("PowerUp", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
-        m_Player_GodModeACTIVE = m_Player.FindAction("God Mode ACTIVE ", throwIfNotFound: true);
-        m_Player_GodModeDESACTIVE = m_Player.FindAction("God Mode DESACTIVE", throwIfNotFound: true);
+        m_Player_GodMode = m_Player.FindAction("God Mode", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -564,23 +554,21 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Move;
-    private readonly InputAction m_Player_KeyDownJump;
-    private readonly InputAction m_Player_KeyJump;
-    private readonly InputAction m_Player_PowerUpKey;
+    private readonly InputAction m_Player_JumpTap;
+    private readonly InputAction m_Player_JumpHold;
+    private readonly InputAction m_Player_PowerUp;
     private readonly InputAction m_Player_Pause;
-    private readonly InputAction m_Player_GodModeACTIVE;
-    private readonly InputAction m_Player_GodModeDESACTIVE;
+    private readonly InputAction m_Player_GodMode;
     public struct PlayerActions
     {
         private @InputSystem m_Wrapper;
         public PlayerActions(@InputSystem wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Player_Move;
-        public InputAction @KeyDownJump => m_Wrapper.m_Player_KeyDownJump;
-        public InputAction @KeyJump => m_Wrapper.m_Player_KeyJump;
-        public InputAction @PowerUpKey => m_Wrapper.m_Player_PowerUpKey;
+        public InputAction @JumpTap => m_Wrapper.m_Player_JumpTap;
+        public InputAction @JumpHold => m_Wrapper.m_Player_JumpHold;
+        public InputAction @PowerUp => m_Wrapper.m_Player_PowerUp;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
-        public InputAction @GodModeACTIVE => m_Wrapper.m_Player_GodModeACTIVE;
-        public InputAction @GodModeDESACTIVE => m_Wrapper.m_Player_GodModeDESACTIVE;
+        public InputAction @GodMode => m_Wrapper.m_Player_GodMode;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -593,24 +581,21 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
-            @KeyDownJump.started += instance.OnKeyDownJump;
-            @KeyDownJump.performed += instance.OnKeyDownJump;
-            @KeyDownJump.canceled += instance.OnKeyDownJump;
-            @KeyJump.started += instance.OnKeyJump;
-            @KeyJump.performed += instance.OnKeyJump;
-            @KeyJump.canceled += instance.OnKeyJump;
-            @PowerUpKey.started += instance.OnPowerUpKey;
-            @PowerUpKey.performed += instance.OnPowerUpKey;
-            @PowerUpKey.canceled += instance.OnPowerUpKey;
+            @JumpTap.started += instance.OnJumpTap;
+            @JumpTap.performed += instance.OnJumpTap;
+            @JumpTap.canceled += instance.OnJumpTap;
+            @JumpHold.started += instance.OnJumpHold;
+            @JumpHold.performed += instance.OnJumpHold;
+            @JumpHold.canceled += instance.OnJumpHold;
+            @PowerUp.started += instance.OnPowerUp;
+            @PowerUp.performed += instance.OnPowerUp;
+            @PowerUp.canceled += instance.OnPowerUp;
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
-            @GodModeACTIVE.started += instance.OnGodModeACTIVE;
-            @GodModeACTIVE.performed += instance.OnGodModeACTIVE;
-            @GodModeACTIVE.canceled += instance.OnGodModeACTIVE;
-            @GodModeDESACTIVE.started += instance.OnGodModeDESACTIVE;
-            @GodModeDESACTIVE.performed += instance.OnGodModeDESACTIVE;
-            @GodModeDESACTIVE.canceled += instance.OnGodModeDESACTIVE;
+            @GodMode.started += instance.OnGodMode;
+            @GodMode.performed += instance.OnGodMode;
+            @GodMode.canceled += instance.OnGodMode;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -618,24 +603,21 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
-            @KeyDownJump.started -= instance.OnKeyDownJump;
-            @KeyDownJump.performed -= instance.OnKeyDownJump;
-            @KeyDownJump.canceled -= instance.OnKeyDownJump;
-            @KeyJump.started -= instance.OnKeyJump;
-            @KeyJump.performed -= instance.OnKeyJump;
-            @KeyJump.canceled -= instance.OnKeyJump;
-            @PowerUpKey.started -= instance.OnPowerUpKey;
-            @PowerUpKey.performed -= instance.OnPowerUpKey;
-            @PowerUpKey.canceled -= instance.OnPowerUpKey;
+            @JumpTap.started -= instance.OnJumpTap;
+            @JumpTap.performed -= instance.OnJumpTap;
+            @JumpTap.canceled -= instance.OnJumpTap;
+            @JumpHold.started -= instance.OnJumpHold;
+            @JumpHold.performed -= instance.OnJumpHold;
+            @JumpHold.canceled -= instance.OnJumpHold;
+            @PowerUp.started -= instance.OnPowerUp;
+            @PowerUp.performed -= instance.OnPowerUp;
+            @PowerUp.canceled -= instance.OnPowerUp;
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
-            @GodModeACTIVE.started -= instance.OnGodModeACTIVE;
-            @GodModeACTIVE.performed -= instance.OnGodModeACTIVE;
-            @GodModeACTIVE.canceled -= instance.OnGodModeACTIVE;
-            @GodModeDESACTIVE.started -= instance.OnGodModeDESACTIVE;
-            @GodModeDESACTIVE.performed -= instance.OnGodModeDESACTIVE;
-            @GodModeDESACTIVE.canceled -= instance.OnGodModeDESACTIVE;
+            @GodMode.started -= instance.OnGodMode;
+            @GodMode.performed -= instance.OnGodMode;
+            @GodMode.canceled -= instance.OnGodMode;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -656,11 +638,10 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     public interface IPlayerActions
     {
         void OnMove(InputAction.CallbackContext context);
-        void OnKeyDownJump(InputAction.CallbackContext context);
-        void OnKeyJump(InputAction.CallbackContext context);
-        void OnPowerUpKey(InputAction.CallbackContext context);
+        void OnJumpTap(InputAction.CallbackContext context);
+        void OnJumpHold(InputAction.CallbackContext context);
+        void OnPowerUp(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
-        void OnGodModeACTIVE(InputAction.CallbackContext context);
-        void OnGodModeDESACTIVE(InputAction.CallbackContext context);
+        void OnGodMode(InputAction.CallbackContext context);
     }
 }
