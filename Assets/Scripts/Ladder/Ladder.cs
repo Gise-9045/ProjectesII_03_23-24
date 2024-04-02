@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Ladder : MonoBehaviour
 {
@@ -13,13 +14,9 @@ public class Ladder : MonoBehaviour
     private Transform topPosition;
 
     Vector2 movementController;
-    private InputSystem controller;
 
-    private void Awake()
-    {
-        controller = new InputSystem();
-        controller.Enable();
-    }
+    public PlayerInput playerInput;
+
 
     void Start()
     {
@@ -36,9 +33,10 @@ public class Ladder : MonoBehaviour
 
     void Update()
     {
-        movementController = controller.Player.Move.ReadValue<Vector2>();
+        //movementController = playerInput.actions["Player/Move"].ReadValue<Vector2>();
 
-        if(movementController.y > 0)
+
+        if (movementController.y > 0)
         {
             platform.rotationalOffset = 0f;
         }
