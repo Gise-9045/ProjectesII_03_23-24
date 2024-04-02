@@ -13,13 +13,13 @@ public class Ladder : MonoBehaviour
 
     private Transform topPosition;
 
-    Vector2 movementController;
-
-    public PlayerInput playerInput;
+    private InputController controller;
 
 
     void Start()
     {
+        controller = GameObject.FindWithTag("Player").GetComponent<InputController>();
+
         col = GetComponent<BoxCollider2D>();
         sp = GetComponentInChildren<SpriteRenderer>();
         topPosition = GetComponentInChildren<Transform>().Find("Top");
@@ -33,14 +33,11 @@ public class Ladder : MonoBehaviour
 
     void Update()
     {
-        //movementController = playerInput.actions["Player/Move"].ReadValue<Vector2>();
-
-
-        if (movementController.y > 0)
+        if (controller.GetMovement().y > 0)
         {
             platform.rotationalOffset = 0f;
         }
-        else if (movementController.y < 0)
+        else if (controller.GetMovement().y < 0)
         {
             platform.rotationalOffset = 180f;
         }

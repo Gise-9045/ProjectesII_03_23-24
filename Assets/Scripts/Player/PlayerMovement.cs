@@ -277,7 +277,7 @@ public class PlayerMovement : MonoBehaviour
             controller.SetJumpKeyTap(false);
 
         }
-        else if (canDoubleJump && doubleJump < 1 && controller.GetJumpKeyTap())
+        else if (canDoubleJump && doubleJump < 1 && controller.GetJumpKeyTap() && isJumping)
         {
             Jump();
             doubleJump++; // Incrementa el contador de saltos después de un doble salto
@@ -299,6 +299,8 @@ public class PlayerMovement : MonoBehaviour
                 isJumping = false;
             }
         }
+
+        //ARREGLAR
 
         if (!controller.GetJumpkeyHold())
         {
