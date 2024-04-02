@@ -33,7 +33,7 @@ public class Ladder : MonoBehaviour
 
     void Update()
     {
-        movementController = playerInput.actions["Player/Move"].ReadValue<Vector2>();
+        //movementController = playerInput.actions["Player/Move"].ReadValue<Vector2>();
 
 
         if (movementController.y > 0)

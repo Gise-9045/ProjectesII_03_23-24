@@ -69,26 +69,17 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""id"": ""78ab5c0d-34d7-4092-aa43-881a3d09975c"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""interactions"": ""Tap"",
+                    ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""God Mode ACTIVE "",
+                    ""name"": ""God Mode"",
                     ""type"": ""Button"",
                     ""id"": ""9b67237d-9d5d-4e6b-8668-6fff526ccb9b"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""God Mode DESACTIVE"",
-                    ""type"": ""Button"",
-                    ""id"": ""db40baf7-fa49-4937-aff8-509a6f660778"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""interactions"": ""Tap"",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -348,22 +339,22 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""2f9c1131-4267-4b3b-b1c7-36dd0fa13463"",
-                    ""path"": ""<Keyboard>/8"",
+                    ""path"": ""<Keyboard>/g"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""God Mode ACTIVE "",
+                    ""action"": ""God Mode"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""8472697e-5814-4522-97b1-d8142a57cc1d"",
-                    ""path"": ""<Keyboard>/7"",
+                    ""id"": ""bb8aadfc-3a4a-402c-a1fd-bebdb584b565"",
+                    ""path"": ""<Gamepad>/rightStickPress"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""God Mode DESACTIVE"",
+                    ""action"": ""God Mode"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -500,8 +491,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         m_Player_JumpHold = m_Player.FindAction("JumpHold", throwIfNotFound: true);
         m_Player_PowerUp = m_Player.FindAction("PowerUp", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
-        m_Player_GodModeACTIVE = m_Player.FindAction("God Mode ACTIVE ", throwIfNotFound: true);
-        m_Player_GodModeDESACTIVE = m_Player.FindAction("God Mode DESACTIVE", throwIfNotFound: true);
+        m_Player_GodMode = m_Player.FindAction("God Mode", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -568,8 +558,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_JumpHold;
     private readonly InputAction m_Player_PowerUp;
     private readonly InputAction m_Player_Pause;
-    private readonly InputAction m_Player_GodModeACTIVE;
-    private readonly InputAction m_Player_GodModeDESACTIVE;
+    private readonly InputAction m_Player_GodMode;
     public struct PlayerActions
     {
         private @InputSystem m_Wrapper;
@@ -579,8 +568,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         public InputAction @JumpHold => m_Wrapper.m_Player_JumpHold;
         public InputAction @PowerUp => m_Wrapper.m_Player_PowerUp;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
-        public InputAction @GodModeACTIVE => m_Wrapper.m_Player_GodModeACTIVE;
-        public InputAction @GodModeDESACTIVE => m_Wrapper.m_Player_GodModeDESACTIVE;
+        public InputAction @GodMode => m_Wrapper.m_Player_GodMode;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -605,12 +593,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @Pause.started += instance.OnPause;
             @Pause.performed += instance.OnPause;
             @Pause.canceled += instance.OnPause;
-            @GodModeACTIVE.started += instance.OnGodModeACTIVE;
-            @GodModeACTIVE.performed += instance.OnGodModeACTIVE;
-            @GodModeACTIVE.canceled += instance.OnGodModeACTIVE;
-            @GodModeDESACTIVE.started += instance.OnGodModeDESACTIVE;
-            @GodModeDESACTIVE.performed += instance.OnGodModeDESACTIVE;
-            @GodModeDESACTIVE.canceled += instance.OnGodModeDESACTIVE;
+            @GodMode.started += instance.OnGodMode;
+            @GodMode.performed += instance.OnGodMode;
+            @GodMode.canceled += instance.OnGodMode;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -630,12 +615,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @Pause.started -= instance.OnPause;
             @Pause.performed -= instance.OnPause;
             @Pause.canceled -= instance.OnPause;
-            @GodModeACTIVE.started -= instance.OnGodModeACTIVE;
-            @GodModeACTIVE.performed -= instance.OnGodModeACTIVE;
-            @GodModeACTIVE.canceled -= instance.OnGodModeACTIVE;
-            @GodModeDESACTIVE.started -= instance.OnGodModeDESACTIVE;
-            @GodModeDESACTIVE.performed -= instance.OnGodModeDESACTIVE;
-            @GodModeDESACTIVE.canceled -= instance.OnGodModeDESACTIVE;
+            @GodMode.started -= instance.OnGodMode;
+            @GodMode.performed -= instance.OnGodMode;
+            @GodMode.canceled -= instance.OnGodMode;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -660,7 +642,6 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         void OnJumpHold(InputAction.CallbackContext context);
         void OnPowerUp(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
-        void OnGodModeACTIVE(InputAction.CallbackContext context);
-        void OnGodModeDESACTIVE(InputAction.CallbackContext context);
+        void OnGodMode(InputAction.CallbackContext context);
     }
 }

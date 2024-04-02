@@ -47,26 +47,17 @@
                     "id": "78ab5c0d-34d7-4092-aa43-881a3d09975c",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
+                    "interactions": "Tap",
+                    "initialStateCheck": true
                 },
                 {
-                    "name": "God Mode ACTIVE ",
+                    "name": "God Mode",
                     "type": "Button",
                     "id": "9b67237d-9d5d-4e6b-8668-6fff526ccb9b",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "God Mode DESACTIVE",
-                    "type": "Button",
-                    "id": "db40baf7-fa49-4937-aff8-509a6f660778",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
+                    "interactions": "Tap",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -326,22 +317,22 @@
                 {
                     "name": "",
                     "id": "2f9c1131-4267-4b3b-b1c7-36dd0fa13463",
-                    "path": "<Keyboard>/8",
+                    "path": "<Keyboard>/g",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "God Mode ACTIVE ",
+                    "action": "God Mode",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "8472697e-5814-4522-97b1-d8142a57cc1d",
-                    "path": "<Keyboard>/7",
+                    "id": "bb8aadfc-3a4a-402c-a1fd-bebdb584b565",
+                    "path": "<Gamepad>/rightStickPress",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "God Mode DESACTIVE",
+                    "action": "God Mode",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

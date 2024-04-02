@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,56 +5,104 @@ using UnityEngine.InputSystem;
 
 public class InputController : MonoBehaviour
 {
-    //public static Action OnJump;
-    //public static Action<Vector2> OnMove;
+    public PlayerInput playerInput;
 
-    //private void Start()
-    //{
-    //    InputManager.Instance.jumpActionReference.action.performed += Jump;
-    //    InputManager.Instance.moveActionReference.action.performed += Move;
-    //}
+    Vector2 movementController;
+    bool jumpKeyTap;
+    bool jumpKeyHold;
+    bool powerUpKey;
+    bool pauseKey;
 
-    //private void OnDestroy()
-    //{
-    //    InputManager.Instance.jumpActionReference.action.performed -= Jump;
-    //    InputManager.Instance.moveActionReference.action.performed -= Move;
-    //}
-
-    //private void Jump(InputAction.CallbackContext callbackContext)
-    //{
-    //    if (callbackContext.performed)
-    //    {
-    //        OnJump?.Invoke();
-    //    }
-    //}
-
-    //private void Move(InputAction.CallbackContext callbackContext)
-    //{
-    //    if (callbackContext.performed)
-    //    {
-    //        //OnMove?.Invoke(callbackContext.);
-    //    }
-    //}
-
-
-    [SerializeField]
-    private InputActionReference movement, jump;
-
-    private GameObject player;
-
-    private void Start()
+    void Start()
     {
-        player = GameObject.FindWithTag("Player");
+        playerInput.actions["Player/JumpTap"].started += OnStartJumpIA;
+        playerInput.actions["Player/JumpTap"].canceled += OnStopJumpIA;
+
+        playerInput.actions["Player/JumpHold"].started += OnStartJumpHoldIA;
+        playerInput.actions["Player/JumpHold"].canceled += OnStopJumpHoldIA;
+
+        playerInput.actions["Player/PowerUp"].performed += OnPowerUpAI;
+        playerInput.actions["Player/PowerUp"].canceled += OnStopPowerUpAI;
+
+
+        playerInput.actions["Player/Pause"].canceled += OnStopPowerUpAI;
     }
 
-    private void Update()
+    public bool GetJumpKeyTap()
     {
-        //if((int)movement.action.ReadValue<Vector2>().x != 0)
-        //{
-        //    player.GetComponent<Player>().SetDirection((int)movement.action.ReadValue<Vector2>().x);
-        //}
-        //Debug.Log(movement.action.ReadValue<Vector2>());
+        return jumpKeyTap;
+    }
+
+    public bool GetJumpkeyHold()
+    {
+        return jumpKeyHold;
+    }
+
+    public bool GetPowerUpKey()
+    {
+        return powerUpKey;
+    }
+
+    public Vector2 GetMovement()
+    {
+        return movementController;
+    }
+
+    ///////----------///////
+
+    public void SetJumpKeyTap(bool tap)
+    {
+        jumpKeyTap = tap;
+    }
+
+    public void SetJumpkeyHold(bool hold)
+    {
+        jumpKeyHold = hold;
     }
 
 
+
+
+    private void OnStartJumpIA(InputAction.CallbackContext context)
+    {
+        jumpKeyTap = true;
+    }
+    private void OnStopJumpIA(InputAction.CallbackContext context)
+    {
+        jumpKeyTap = false;
+    }
+
+    private void OnStartJumpHoldIA(InputAction.CallbackContext context)
+    {
+        jumpKeyHold = true;
+    }
+    private void OnStopJumpHoldIA(InputAction.CallbackContext context)
+    {
+        jumpKeyHold = false;
+    }
+
+    private void OnPowerUpAI(InputAction.CallbackContext context)
+    {
+        powerUpKey = true;
+    }
+    private void OnStopPowerUpAI(InputAction.CallbackContext context)
+    {
+        powerUpKey = false;
+    }
+
+    private void OnPauseAI(InputAction.CallbackContext context)
+    {
+        pauseKey = true;
+    }
+
+    private void OnStopPauseAI(InputAction.CallbackContext context)
+    {
+        pauseKey = false;
+    }
+
+
+    void Update()
+    {
+        movementController = playerInput.actions["Player/Move"].ReadValue<Vector2>();
+    }
 }

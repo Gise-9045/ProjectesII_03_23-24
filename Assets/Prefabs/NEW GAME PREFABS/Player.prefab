@@ -4941,6 +4941,7 @@ GameObject:
   - component: {fileID: 6347379661504714166}
   - component: {fileID: 3052298248717793505}
   - component: {fileID: 8297331419958875687}
+  - component: {fileID: 465751228293826072}
   - component: {fileID: 2855868302909866203}
   - component: {fileID: 4699660460486079957}
   - component: {fileID: 1453456629046782491}
@@ -5048,6 +5049,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.65, y: 0.73}
   m_EdgeRadius: 0.05
+--- !u!114 &465751228293826072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4142734498769889216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d297a46c68d5744cab6a6b8918a59d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerInput: {fileID: 2889074906068948608}
 --- !u!114 &2855868302909866203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5083,6 +5097,7 @@ MonoBehaviour:
   isJumping: 0
   isWalking: 0
   canDoubleJump: 0
+  canPickUp: 0
   dashVelocity: 20
   dashTimer: 0.2
   canDash: 0
@@ -5093,7 +5108,6 @@ MonoBehaviour:
   jumpParticles: {fileID: 7029129437548754459}
   walkSoundDelay: 0.3
   ClimbSoundDelay: 1
-  playerInput: {fileID: 2889074906068948608}
 --- !u!114 &1453456629046782491
 MonoBehaviour:
   m_ObjectHideFlags: 0
