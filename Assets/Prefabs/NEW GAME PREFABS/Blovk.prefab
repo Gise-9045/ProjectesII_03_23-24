@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 6611439261658864652}
   - component: {fileID: 2014932676919405037}
   - component: {fileID: 3340152802382996064}
+  - component: {fileID: 7582303033498368076}
   m_Layer: 0
   m_Name: Blovk
   m_TagString: PuzzleBox
@@ -220,6 +221,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particleTr: {fileID: 1576272757330110923}
   boxParticles: {fileID: 8011983378853045468}
+--- !u!114 &7582303033498368076
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7839141263557164650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9dc83365118f334eaa406a1d7662496, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9180371331380576943
 GameObject:
   m_ObjectHideFlags: 0
