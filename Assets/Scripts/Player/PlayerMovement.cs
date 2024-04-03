@@ -96,7 +96,7 @@ public class PlayerMovement : MonoBehaviour
     
 
 
-    void Update()
+    void FixedUpdate()
     {
         if (player.GetDead())
         {
@@ -259,6 +259,8 @@ public class PlayerMovement : MonoBehaviour
 
     void CheckJump()
     {
+        //Debug.Log(controller.GetJumpKeyTap());
+
         if (ground.OnGround())
         {
             actualCoyoteTime = coyoteTime;
@@ -270,13 +272,13 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        if (actualCoyoteTime > 0 && controller.GetJumpKeyTap() && !isJumping )
+        if (actualCoyoteTime > 0 && controller.GetJumpKeyTap())
         {
             Jump();
             actualCoyoteTime = 0f;
             oldJump = true;
         }
-        else if (canDoubleJump && doubleJump < 1 && controller.GetJumpKeyTap())
+        else if (canDoubleJump && doubleJump < 1 && controller.GetJumpKeyTap() && !ground.OnGround())
         {
             Jump();
             doubleJump++; // Incrementa el contador de saltos después de un doble salto
