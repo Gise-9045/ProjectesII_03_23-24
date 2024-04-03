@@ -25,6 +25,8 @@ public class PlayerMovement : MonoBehaviour
     public bool isJumping;
     public bool isWalking;
 
+    private bool oldJump = false;
+
     private float coyoteTime;
     private float actualCoyoteTime;
     private int doubleJump = 0;
@@ -257,8 +259,6 @@ public class PlayerMovement : MonoBehaviour
 
     void CheckJump()
     {
-        Debug.Log(controller.GetJumpKeyTap());
-
         if (ground.OnGround())
         {
             actualCoyoteTime = coyoteTime;
@@ -270,23 +270,23 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        if (actualCoyoteTime > 0 && controller.GetJumpKeyTap() && !isJumping)
+        if (actualCoyoteTime > 0 && controller.GetJumpKeyTap() && !isJumping )
         {
             Jump();
             actualCoyoteTime = 0f;
-            controller.SetJumpKeyTap(false);
-
+            oldJump = true;
         }
-        else if (canDoubleJump && doubleJump < 1 && controller.GetJumpKeyTap() && isJumping)
+        else if (canDoubleJump && doubleJump < 1 && controller.GetJumpKeyTap())
         {
             Jump();
             doubleJump++; // Incrementa el contador de saltos después de un doble salto
-            controller.SetJumpKeyTap(false);
-
+            oldJump = true;
         }
 
         if (controller.GetJumpkeyHold() && isJumping)
         {
+            oldJump = true;
+
             if (actualJumpTimeCounter > 0)
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
@@ -300,14 +300,13 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        //ARREGLAR
 
-        if (!controller.GetJumpkeyHold())
+        if (!controller.GetJumpkeyHold() && oldJump)
         {
+            oldJump = false;
             isJumping = false;
             actualCoyoteTime = 0f;
             rb.gravityScale = 9.81f;
-            controller.SetJumpKeyTap(false);
         }
 
         isPlayingJumpSound = true;
