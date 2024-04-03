@@ -9,6 +9,7 @@ public class ButtonManager : MonoBehaviour
     [SerializeField] private GameObject options;
     [SerializeField] private GameObject exitDialog;
     [SerializeField] private GameObject controls;
+    [SerializeField] private GameObject volumen;
 
 
     [SerializeField] private Animator VerticalTransition;
@@ -96,10 +97,10 @@ public class ButtonManager : MonoBehaviour
 
 
     //CONTROLS
-    public void ControlsButton()
+    public void ControlsButton(GameObject newScene)
     {
         //StartCoroutine(Controls());
-        controls.SetActive(true);
+        newScene.SetActive(true);
         options.SetActive(false);
     }
 
@@ -112,10 +113,10 @@ public class ButtonManager : MonoBehaviour
     }
 
 
-    public void BackControlsButton()
+    public void BackControlsButton(GameObject currentScene)
     {
         //StartCoroutine(Settings2());
-        controls.SetActive(false);
+        currentScene.SetActive(false);
         options.SetActive(true);
     }
 
