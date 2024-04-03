@@ -31,15 +31,20 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.G))
+        if(Input.GetKeyDown(KeyCode.G) && !crownGodMode.activeSelf)
         {
             canDie = false;
             Debug.Log("GodMode");
             crownGodMode.SetActive(true);
         }
+        else if(Input.GetKeyDown(KeyCode.G) && crownGodMode.activeSelf)
+        {
+            canDie = true;
+            crownGodMode.SetActive(false);
+        }
 
 
-        if(Input.GetKeyDown(KeyCode.R)) { SceneManager.LoadScene(SceneManager.GetActiveScene().name);}
+        if(Input.GetKeyDown(KeyCode.R)) { SceneArguments.SceneManager.LoadScene(SceneManager.GetActiveScene().name, "NoTransition"); }
     }
 
     public void SetLife(int l) { life = l; }
@@ -87,8 +92,8 @@ public class Player : MonoBehaviour
     {
         audioManager.PlaySFX(audioManager.death);
         yield return new WaitForSecondsRealtime(1f);
-        var arguments = 1;
         SceneArguments.SceneManager.LoadScene(SceneManager.GetActiveScene().name, "NoTransition");
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         dead = false;
     }
 }

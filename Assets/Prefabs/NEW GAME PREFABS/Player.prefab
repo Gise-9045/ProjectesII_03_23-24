@@ -4941,12 +4941,14 @@ GameObject:
   - component: {fileID: 6347379661504714166}
   - component: {fileID: 3052298248717793505}
   - component: {fileID: 8297331419958875687}
+  - component: {fileID: 465751228293826072}
   - component: {fileID: 2855868302909866203}
   - component: {fileID: 4699660460486079957}
   - component: {fileID: 1453456629046782491}
   - component: {fileID: 1300749428106360260}
   - component: {fileID: 6038616916327065998}
   - component: {fileID: 8363614282636850496}
+  - component: {fileID: 2889074906068948608}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -5047,6 +5049,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.65, y: 0.73}
   m_EdgeRadius: 0.05
+--- !u!114 &465751228293826072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4142734498769889216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d297a46c68d5744cab6a6b8918a59d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerInput: {fileID: 2889074906068948608}
 --- !u!114 &2855868302909866203
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5078,8 +5093,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForce: 13
-  jumpTimeCounter: 0.13
+  jumpTimeCounter: 0.15
+  isJumping: 0
+  isWalking: 0
   canDoubleJump: 0
+  canPickUp: 0
   dashVelocity: 20
   dashTimer: 0.2
   canDash: 0
@@ -5089,6 +5107,7 @@ MonoBehaviour:
   walkParticles: {fileID: 6481496431267818245}
   jumpParticles: {fileID: 7029129437548754459}
   walkSoundDelay: 0.3
+  ClimbSoundDelay: 1
 --- !u!114 &1453456629046782491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5102,7 +5121,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keys: []
-  player: {fileID: 6347379661504714166}
+  keyAnim: []
+  player: {fileID: 2855868302909866203}
   distanceBetweenKeys: 0.7
   smoothness: 10
 --- !u!114 &1300749428106360260
@@ -5152,6 +5172,64 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a36bae03bbe058746b80974f92d70c83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2889074906068948608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4142734498769889216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: d215e79e73d06a74a85430c9b31a4040, type: 3}
+  m_NotificationBehavior: 3
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 4c7aec87-2c92-493b-91b0-a22ad8fd783d
+    m_ActionName: Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d,/SwitchProControllerHID/leftStick/up,/SwitchProControllerHID/leftStick/down,/SwitchProControllerHID/leftStick/left,/SwitchProControllerHID/leftStick/right,/SwitchProControllerHID/dpad/up,/SwitchProControllerHID/dpad/down,/SwitchProControllerHID/dpad/left,/SwitchProControllerHID/dpad/right,/Keyboard/upArrow,/Keyboard/downArrow,/Keyboard/leftArrow,/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: dbfa1034-0083-459d-8ca9-8034749a2365
+    m_ActionName: Player/Jump[/Keyboard/space,/SwitchProControllerHID/buttonEast,/SwitchProControllerHID/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: eddf7af5-ee0b-44ec-af19-f21ff7862b9b
+    m_ActionName: Player/PowerUp[/Keyboard/shift,/Keyboard/rightShift,/SwitchProControllerHID/leftTrigger,/SwitchProControllerHID/rightTrigger,/SwitchProControllerHID/buttonWest]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 33d4761d-3067-4ced-b76c-774ead508c70
+    m_ActionName: Player/KeyJumpHold[/Keyboard/space,/SwitchProControllerHID/buttonEast,/SwitchProControllerHID/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 78ab5c0d-34d7-4092-aa43-881a3d09975c
+    m_ActionName: Player/Pause[/Keyboard/escape,/SwitchProControllerHID/start,/SwitchProControllerHID/select]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9b67237d-9d5d-4e6b-8668-6fff526ccb9b
+    m_ActionName: Player/God Mode ACTIVE [/Keyboard/8]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: db40baf7-fa49-4937-aff8-509a6f660778
+    m_ActionName: Player/God Mode DESACTIVE[/Keyboard/7]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &4315104878681539709
 GameObject:
   m_ObjectHideFlags: 0

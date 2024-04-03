@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 //using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class PlayerMovement : MonoBehaviour
@@ -13,7 +14,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D rb;
     private Transform tr;
-
+    private GameObject carriedBox;
     [SerializeField] private float jumpForce;
     [SerializeField] private float jumpTimeCounter;
     private float actualJumpTimeCounter;
@@ -24,10 +25,14 @@ public class PlayerMovement : MonoBehaviour
     public bool isJumping;
     public bool isWalking;
 
+    private bool oldJump = false;
+
     private float coyoteTime;
     private float actualCoyoteTime;
     private int doubleJump = 0;
     [SerializeField] private bool canDoubleJump = false;
+    [SerializeField] public bool canPickUp = false;
+    private bool isPicked = false;
     private float slide;
 
     bool onStairs;
@@ -57,13 +62,20 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("----- Sound -----")]
     [SerializeField] private float walkSoundDelay = 1.0f;
+    [SerializeField] private float ClimbSoundDelay = 1.0f;
     private bool isPlayingSound = false;
     private Coroutine soundCoroutine;
     private bool isPlayingJumpSound = false;
 
+    private float storedMass;
+
+    public InputController controller;
+
+
     void Start()
     {
         player = GetComponent<Player>();
+        controller = GetComponent<InputController>();
         rb = GetComponent<Rigidbody2D>();
         ground = GetComponentInChildren<PlayerGroundDetection>();
         tr = GetComponentInChildren<Transform>();
@@ -81,6 +93,8 @@ public class PlayerMovement : MonoBehaviour
 
         oldDead = false;
     }
+    
+
 
     void Update()
     {
@@ -126,15 +140,16 @@ public class PlayerMovement : MonoBehaviour
 
         animator.SetFloat("FallVelocity", rb.velocity.y);
         animator.SetBool("Grounded", ground.OnGround() || onStairs);
-        animator.SetBool("Stairs", onStairs && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S)));
+        animator.SetBool("Stairs", onStairs && controller.GetMovement().y != 0);
         animator.SetBool("Dash", dashing);
         animator.SetFloat("DashVelocity", rb.velocity.x);
 
-        animator.SetBool("Walk", Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow));
+        animator.SetBool("Walk", controller.GetMovement().x != 0);
 
         Walk();
         DashCheck();
-
+        
+        #region Movement
         if (onStairs)
         {
             if (usingStairs)
@@ -144,20 +159,22 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                usingStairs = Input.GetKeyDown(KeyCode.W) || rb.velocity.y <= 0.0f;
+                usingStairs = controller.GetMovement().y > 0 || rb.velocity.y <= 0.0f;
             }
 
         }
-        else if (canDash && !dashing && Input.GetKeyDown(KeyCode.LeftShift) && actualDashCooldown <= 0)
+        else if (canDash && !dashing && controller.GetPowerUpKey() && actualDashCooldown <= 0)
         {
             Dash();
         }
-        else if(!dashing)
+        else if (!dashing)
         {
             rb.gravityScale = 9.81f;
         }
-
+      
         CheckJump();
+#endregion
+
     }
 
     void Walk()
@@ -173,24 +190,10 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        if (controller.GetMovement().x < 0 || controller.GetMovement().x > 0)
         {
             slide = 0.1f;
-            player.SetDirection(new Vector2(-1, player.GetDirection().y));
-
-            rb.velocity = new Vector2(player.GetDirection().x * player.GetSpeed(), rb.velocity.y);
-
-            if (!isPlayingSound && ground.OnGround())
-            {
-                soundCoroutine = StartCoroutine(PlaySoundRepeatedly());
-            }
-
-            isWalking = true;
-        }
-        else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
-        {
-            slide = 0.1f;
-            player.SetDirection(new Vector2(1, player.GetDirection().y));
+            player.SetDirection(new Vector2(controller.GetMovement().x, player.GetDirection().y));
 
             rb.velocity = new Vector2(player.GetDirection().x * player.GetSpeed(), rb.velocity.y);
 
@@ -203,13 +206,10 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-
             rb.velocity = new Vector2(player.GetDirection().x * (player.GetSpeed() * slide), rb.velocity.y);
-           
-
         }
 
-        if(Input.GetKeyUp(KeyCode.D)|| Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.LeftArrow))
+        if(controller.GetMovement().x < 0 || controller.GetMovement().x > 0)
         {
             if (soundCoroutine != null)
             {
@@ -220,7 +220,7 @@ public class PlayerMovement : MonoBehaviour
             isWalking = false;
         }
 
-        
+
     }
 
     IEnumerator PlaySoundRepeatedly()
@@ -229,7 +229,20 @@ public class PlayerMovement : MonoBehaviour
 
         while (true)
         {
-            audioManager.PlaySFX(audioManager.walk);
+            if(ground.OnGround())
+                audioManager.PlaySFX(audioManager.walk);
+            yield return new WaitForSeconds(walkSoundDelay);
+        }
+    }
+
+    IEnumerator PlaySoundRepeatedlyStairs()
+    {
+        isPlayingSound = true;
+
+        while (true)
+        {
+            if (ground.OnGround())
+                audioManager.PlaySFX(audioManager.stairsClimb);
             yield return new WaitForSeconds(walkSoundDelay);
         }
     }
@@ -240,11 +253,10 @@ public class PlayerMovement : MonoBehaviour
         actualJumpTimeCounter = jumpTimeCounter;
         rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         jumpParticles.Play();
-      
-        audioManager.PlaySFX(audioManager.jump);
-    
 
+        audioManager.PlaySFX(audioManager.jump);
     }
+
     void CheckJump()
     {
         if (ground.OnGround())
@@ -257,19 +269,24 @@ public class PlayerMovement : MonoBehaviour
             actualCoyoteTime -= Time.deltaTime;
         }
 
-        if (actualCoyoteTime > 0 && Input.GetKeyDown(KeyCode.Space) && !isJumping)
+
+        if (actualCoyoteTime > 0 && controller.GetJumpKeyTap() && !isJumping )
         {
             Jump();
             actualCoyoteTime = 0f;
+            oldJump = true;
         }
-        else if (canDoubleJump && doubleJump < 1 && Input.GetKeyDown(KeyCode.Space))
+        else if (canDoubleJump && doubleJump < 1 && controller.GetJumpKeyTap())
         {
             Jump();
             doubleJump++; // Incrementa el contador de saltos después de un doble salto
+            oldJump = true;
         }
 
-        if (Input.GetKey(KeyCode.Space) && isJumping)
+        if (controller.GetJumpkeyHold() && isJumping)
         {
+            oldJump = true;
+
             if (actualJumpTimeCounter > 0)
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
@@ -283,8 +300,10 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyUp(KeyCode.Space))
+
+        if (!controller.GetJumpkeyHold() && oldJump)
         {
+            oldJump = false;
             isJumping = false;
             actualCoyoteTime = 0f;
             rb.gravityScale = 9.81f;
@@ -307,41 +326,54 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(player.GetDirection().x * dashVelocity, 0);
             rb.gravityScale = 0f;
             actualDashTimer -= Time.deltaTime;
-            
+
         }
         else
         {
             dashing = false;
-           
+
         }
     }
 
-    
+
     public void SetDoubleJump(bool condition)
     {
         canDoubleJump = condition;
-    } 
+    }
     public void SetDash(bool condition)
     {
         canDash = condition;
     }
+    public void SetPickUp(bool condition)
+    {
+        canPickUp = condition;
+    }
 
     void Stairs()
     {
-        if((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.Space)) && !(Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow)))
+        if((controller.GetMovement().y < 0  || controller.GetMovement().y > 0) && controller.GetMovement().x == 0)
         {
-            tr.position = new Vector2((float)(tr.position.x + 0.05f * (stairsPos.x - tr.position.x)), tr.position.y);
+            tr.position = new Vector2((float)(tr.position.x + 0.05 * (stairsPos.x - tr.position.x)), tr.position.y);
         }
 
-        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
+        if (controller.GetMovement().y > 0)
         {
             rb.gravityScale = 0f;
             rb.velocity = new Vector2(rb.velocity.x, 5);
+            if (!isPlayingSound && ground.OnGround())
+            {
+                soundCoroutine = StartCoroutine(PlaySoundRepeatedlyStairs());
+            }
         }
-        else if(Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) 
+        else if(controller.GetMovement().y < 0)
         {
             rb.gravityScale = 0f;
             rb.velocity = new Vector2(rb.velocity.x, -5);
+            if (!isPlayingSound && ground.OnGround())
+            {
+                soundCoroutine = StartCoroutine(PlaySoundRepeatedlyStairs());
+            }
+
         }
         else
         {
@@ -357,6 +389,7 @@ public class PlayerMovement : MonoBehaviour
 
             stairsPos = collision.transform.position;
         }
+       
 
     }
 
@@ -364,10 +397,13 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.tag == "Ladder")
         {
+            audioManager.StopSFX(audioManager.stairsClimb);
+            StopCoroutine(PlaySoundRepeatedlyStairs());
             onStairs = false;
             usingStairs = false;
         }
     }
+   
     private void Dash()
     {
         actualDashTimer = dashTimer;
@@ -376,4 +412,6 @@ public class PlayerMovement : MonoBehaviour
         dashTrail.Play();
 
     }
+   
+
 }
