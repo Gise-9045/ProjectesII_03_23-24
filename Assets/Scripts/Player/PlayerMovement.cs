@@ -25,11 +25,13 @@ public class PlayerMovement : MonoBehaviour
     public bool isJumping;
     public bool isWalking;
 
+    private bool oldJump = false;
+
     private float coyoteTime;
     private float actualCoyoteTime;
     private int doubleJump = 0;
     [SerializeField] private bool canDoubleJump = false;
-    [SerializeField] private bool canPickUp = false;
+    [SerializeField] public bool canPickUp = false;
     private bool isPicked = false;
     private float slide;
 
@@ -67,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
 
     private float storedMass;
 
-    private InputController controller;
+    public InputController controller;
 
 
     void Start()
@@ -146,12 +148,7 @@ public class PlayerMovement : MonoBehaviour
 
         Walk();
         DashCheck();
-        PickUp(carriedBox, isPicked);
-        if (controller.GetPowerUpKey() && isPicked)
-        {
-            PickUp(carriedBox, false);
-            isPicked = false;
-        }
+        
         #region Movement
         if (onStairs)
         {
@@ -262,8 +259,6 @@ public class PlayerMovement : MonoBehaviour
 
     void CheckJump()
     {
-        Debug.Log(controller.GetJumpKeyTap());
-
         if (ground.OnGround())
         {
             actualCoyoteTime = coyoteTime;
@@ -275,23 +270,23 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        if (actualCoyoteTime > 0 && controller.GetJumpKeyTap() && !isJumping)
+        if (actualCoyoteTime > 0 && controller.GetJumpKeyTap() && !isJumping )
         {
             Jump();
             actualCoyoteTime = 0f;
-            controller.SetJumpKeyTap(false);
-
+            oldJump = true;
         }
         else if (canDoubleJump && doubleJump < 1 && controller.GetJumpKeyTap())
         {
             Jump();
             doubleJump++; // Incrementa el contador de saltos después de un doble salto
-            controller.SetJumpKeyTap(false);
-
+            oldJump = true;
         }
 
         if (controller.GetJumpkeyHold() && isJumping)
         {
+            oldJump = true;
+
             if (actualJumpTimeCounter > 0)
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
@@ -305,12 +300,13 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (!controller.GetJumpkeyHold())
+
+        if (!controller.GetJumpkeyHold() && oldJump)
         {
+            oldJump = false;
             isJumping = false;
             actualCoyoteTime = 0f;
             rb.gravityScale = 9.81f;
-            controller.SetJumpKeyTap(false);
         }
 
         isPlayingJumpSound = true;
@@ -407,25 +403,7 @@ public class PlayerMovement : MonoBehaviour
             usingStairs = false;
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.collider.tag == "PuzzleBox" && isPicked == false)
-        {
-            if (canPickUp)
-            {
-                //si lo dejo activo al pillar dos cajas una desaparece porque no puede cambiar a false bastante rapido
-                collision.collider.isTrigger = true; 
-                storedMass = collision.rigidbody.mass;
-                collision.rigidbody.mass = 0f;
-                carriedBox = collision.collider.gameObject;
-                isPicked = true;
-                PickUp(carriedBox, isPicked);
-            }
-        } else
-        {
-            return;
-        }
-    }
+   
     private void Dash()
     {
         actualDashTimer = dashTimer;
@@ -434,21 +412,6 @@ public class PlayerMovement : MonoBehaviour
         dashTrail.Play();
 
     }
-    private void PickUp(GameObject blovkPosition, bool isCarrying)
-    {
-        if (isCarrying && blovkPosition != null)
-        {
-            blovkPosition.transform.position = new Vector2(transform.position.x, transform.position.y + 1);
-        }
-        else if (blovkPosition != null && !isCarrying)
-        {
-           carriedBox.transform.position = new Vector2(transform.position.x +1.25f*transform.localScale.x, transform.position.y);
-            carriedBox = null;
-            blovkPosition.GetComponent<Collider2D>().isTrigger = false;
-            blovkPosition.GetComponent<Rigidbody2D>().mass = storedMass;
-            storedMass = 0;
-          
-        }
-    }
+   
 
 }

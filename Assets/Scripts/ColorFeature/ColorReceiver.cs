@@ -7,7 +7,7 @@ using UnityEngine;
 public class ColorReceiver : MonoBehaviour
 {
    [SerializeField] private SpriteRenderer _spriteRenderer;
-    [SerializeField] private PlayerMovement boolManaging;
+    [SerializeField] public PlayerMovement boolManaging;
    
    
     private void Awake()

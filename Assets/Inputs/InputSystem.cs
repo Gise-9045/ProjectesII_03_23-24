@@ -80,6 +80,15 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Tap"",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ColorsMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""23a32a2f-f6f0-4cfc-9c30-2c6066dc1833"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Tap"",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -317,7 +326,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""0678c271-ac73-4ad7-9d41-62f5b81e5ce6"",
-                    ""path"": ""<SwitchProControllerHID>/start"",
+                    ""path"": ""<Gamepad>/start"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -340,17 +349,6 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""2f9c1131-4267-4b3b-b1c7-36dd0fa13463"",
                     ""path"": ""<Keyboard>/g"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""God Mode"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""bb8aadfc-3a4a-402c-a1fd-bebdb584b565"",
-                    ""path"": ""<Gamepad>/rightStickPress"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -478,6 +476,28 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""action"": ""JumpHold"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c236edaf-cee7-47b1-b022-766b12553210"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ColorsMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1b918f53-fb72-4cb9-9027-b88a38ea7b07"",
+                    ""path"": ""<Gamepad>/rightStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ColorsMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -492,6 +512,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         m_Player_PowerUp = m_Player.FindAction("PowerUp", throwIfNotFound: true);
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         m_Player_GodMode = m_Player.FindAction("God Mode", throwIfNotFound: true);
+        m_Player_ColorsMenu = m_Player.FindAction("ColorsMenu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -559,6 +580,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_PowerUp;
     private readonly InputAction m_Player_Pause;
     private readonly InputAction m_Player_GodMode;
+    private readonly InputAction m_Player_ColorsMenu;
     public struct PlayerActions
     {
         private @InputSystem m_Wrapper;
@@ -569,6 +591,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         public InputAction @PowerUp => m_Wrapper.m_Player_PowerUp;
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputAction @GodMode => m_Wrapper.m_Player_GodMode;
+        public InputAction @ColorsMenu => m_Wrapper.m_Player_ColorsMenu;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -596,6 +619,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @GodMode.started += instance.OnGodMode;
             @GodMode.performed += instance.OnGodMode;
             @GodMode.canceled += instance.OnGodMode;
+            @ColorsMenu.started += instance.OnColorsMenu;
+            @ColorsMenu.performed += instance.OnColorsMenu;
+            @ColorsMenu.canceled += instance.OnColorsMenu;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -618,6 +644,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @GodMode.started -= instance.OnGodMode;
             @GodMode.performed -= instance.OnGodMode;
             @GodMode.canceled -= instance.OnGodMode;
+            @ColorsMenu.started -= instance.OnColorsMenu;
+            @ColorsMenu.performed -= instance.OnColorsMenu;
+            @ColorsMenu.canceled -= instance.OnColorsMenu;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -643,5 +672,6 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         void OnPowerUp(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnGodMode(InputAction.CallbackContext context);
+        void OnColorsMenu(InputAction.CallbackContext context);
     }
 }

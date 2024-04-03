@@ -5,32 +5,40 @@ using UnityEngine;
 public class Active_UI_Colors : MonoBehaviour
 {
     private Animator anim;
-    private bool isAcrive;
+    private bool isActive;
 
     private Coroutine coroutine;
     [SerializeField] private float delay = 5f;
 
+    private InputController controller;
+
+
     private void Awake()
     {
         anim = GetComponent<Animator>();
-        isAcrive = false;
+        isActive = false;
+    }
+
+    private void Start()
+    {
+        controller = GameObject.FindWithTag("Player").GetComponent<InputController>();
     }
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Tab))
+        if(controller.GetColorsMenu())
         {
-            if(!isAcrive)
+            if(!isActive)
             {
                 anim.SetBool("StartTab", true);
                 coroutine = StartCoroutine(DisappearAfterDelay(delay));
-                isAcrive = true;
+                isActive = true;
             }
-            else if (isAcrive)
+            else if (isActive)
             { 
                 StopCoroutine(coroutine);
                 anim.SetBool("StartTab", false); 
-                isAcrive = false;
+                isActive = false;
             }
         }
     }
@@ -39,6 +47,6 @@ public class Active_UI_Colors : MonoBehaviour
     {
         yield return new WaitForSeconds(delay); 
         anim.SetBool("StartTab", false);
-        isAcrive = false;
+        isActive = false;
     }
 }
