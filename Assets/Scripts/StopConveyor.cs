@@ -6,6 +6,8 @@ using UnityEngine.UI;
 public class StopConveyor : MonoBehaviour
 {
     [SerializeField] private bool isActive;
+    private bool usedOnce = false;
+    [SerializeField] private bool willBeUsedOnce;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,13 +23,21 @@ public class StopConveyor : MonoBehaviour
     {
         if (collision.CompareTag("Player") || collision.CompareTag("PuzzleBox"))
         {
-            Toggle();
+            if (!usedOnce)
+            {
+                Toggle();
+            }
+            
         }
     }
 
     void Toggle()
     {
         isActive = !isActive;
+        if(willBeUsedOnce)
+        {
+            usedOnce = true;
+        }
     }
     public bool GetIsACtive() { return isActive; }
 }
