@@ -17,7 +17,7 @@ public class ShortCutsLevels : MonoBehaviour
        
         if(Input.GetKeyDown(KeyCode.Alpha1))
         {
-            SceneManager.LoadScene("Level Tutorial");
+            SceneManager.LoadScene("Level 0");
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
