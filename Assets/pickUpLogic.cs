@@ -38,7 +38,7 @@ public class pickUpLogic : MonoBehaviour
     {
         if (amPicked)
         {
-            // Solo actualizar la posición mientras se lleva el objeto
+            // Solo actualizar la posiciï¿½n mientras se lleva el objeto
             transform.position = new Vector2(player.transform.position.x,player.transform.position.y+1f);
         }
         else
@@ -60,7 +60,7 @@ public class pickUpLogic : MonoBehaviour
 
     private void Drop()
     {
-        if (beingCarried && colorCheck.controller.GetPowerUpKey()) // Solo suelta si se presiona el botón de soltar
+        if (beingCarried && colorCheck.controller.GetPowerUpKey()) // Solo suelta si se presiona el botï¿½n de soltar
         {
             transform.position = new Vector2(transform.position.x + 1.25f * transform.localScale.x, transform.position.y);
             player = null;

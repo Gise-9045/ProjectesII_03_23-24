@@ -15,6 +15,7 @@ public class PauseManager : MonoBehaviour
 
     private InputController controller;
 
+    private bool oldPauseButton;
 
     void Start()
     {
@@ -26,16 +27,22 @@ public class PauseManager : MonoBehaviour
 
     private void Update()
     {
-        if (!pauseMenu.activeSelf && controller.GetPause())
+        if (!pauseMenu.activeSelf && controller.GetPause() && oldPauseButton)
         {
             pauseMenu.SetActive(true);
             Time.timeScale = 0.0f;
+            oldPauseButton = false;
 
         }
-        else if (pauseMenu.activeSelf && controller.GetPause())
+        else if (pauseMenu.activeSelf && controller.GetPause() && oldPauseButton)
         {
             pauseMenu.SetActive(false);
             Time.timeScale = 1.0f;
+            oldPauseButton = false;
+        }
+        else if(!controller.GetPause())
+        {
+            oldPauseButton = true;
         }
 
     }
