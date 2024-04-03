@@ -13,7 +13,7 @@ public class pickUpLogic : MonoBehaviour
     void Start()
     {
         colorCheck = FindObjectOfType<PlayerMovement>();
-        offset = transform.position - player.transform.position;
+        //offset = transform.position - player.transform.position;
     }
 
     private void OnCollisionStay2D(Collision2D collision)
