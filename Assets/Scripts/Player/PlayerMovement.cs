@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 //using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class PlayerMovement : MonoBehaviour
@@ -24,11 +25,13 @@ public class PlayerMovement : MonoBehaviour
     public bool isJumping;
     public bool isWalking;
 
+    private bool oldJump = false;
+
     private float coyoteTime;
     private float actualCoyoteTime;
     private int doubleJump = 0;
     [SerializeField] private bool canDoubleJump = false;
-    [SerializeField] private bool canPickUp = false;
+    [SerializeField] public bool canPickUp = false;
     private bool isPicked = false;
     private float slide;
 
@@ -65,22 +68,14 @@ public class PlayerMovement : MonoBehaviour
     private bool isPlayingJumpSound = false;
 
     private float storedMass;
-    Vector2 movementController;
-    bool jumpKeyDownController;
-    bool jumpKeyController;
-    bool powerUpKey;
 
-    private InputSystem controller;
+    public InputController controller;
 
-    private void Awake()
-    {
-        controller = new InputSystem();
-        controller.Enable();
-    }
 
     void Start()
     {
         player = GetComponent<Player>();
+        controller = GetComponent<InputController>();
         rb = GetComponent<Rigidbody2D>();
         ground = GetComponentInChildren<PlayerGroundDetection>();
         tr = GetComponentInChildren<Transform>();
@@ -98,17 +93,11 @@ public class PlayerMovement : MonoBehaviour
 
         oldDead = false;
     }
+    
+
 
     void Update()
     {
-        movementController = controller.Player.Move.ReadValue<Vector2>();
-        jumpKeyDownController = controller.Player.KeyDownJump.ReadValue<float>() > 0;
-        jumpKeyController = controller.Player.KeyJump.ReadValue<float>() > 0;
-        powerUpKey = controller.Player.PowerUpKey.ReadValue<float>() > 0;
-
-        //Debug.Log(jumpKeyDownController);
-        Debug.Log(movementController);
-
         if (player.GetDead())
         {
             animator.SetBool("Stairs", false);
@@ -151,20 +140,15 @@ public class PlayerMovement : MonoBehaviour
 
         animator.SetFloat("FallVelocity", rb.velocity.y);
         animator.SetBool("Grounded", ground.OnGround() || onStairs);
-        animator.SetBool("Stairs", onStairs && movementController.y != 0);
+        animator.SetBool("Stairs", onStairs && controller.GetMovement().y != 0);
         animator.SetBool("Dash", dashing);
         animator.SetFloat("DashVelocity", rb.velocity.x);
 
-        animator.SetBool("Walk", movementController.x != 0);
+        animator.SetBool("Walk", controller.GetMovement().x != 0);
 
         Walk();
         DashCheck();
-        PickUp(carriedBox, isPicked);
-        if (powerUpKey && isPicked)
-        {
-            PickUp(carriedBox, false);
-            isPicked = false;
-        }
+        
         #region Movement
         if (onStairs)
         {
@@ -175,11 +159,11 @@ public class PlayerMovement : MonoBehaviour
             }
             else
             {
-                usingStairs = movementController.y > 0 || rb.velocity.y <= 0.0f;
+                usingStairs = controller.GetMovement().y > 0 || rb.velocity.y <= 0.0f;
             }
 
         }
-        else if (canDash && !dashing && powerUpKey && actualDashCooldown <= 0)
+        else if (canDash && !dashing && controller.GetPowerUpKey() && actualDashCooldown <= 0)
         {
             Dash();
         }
@@ -206,10 +190,10 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        if (movementController.x < 0 || movementController.x > 0)
+        if (controller.GetMovement().x < 0 || controller.GetMovement().x > 0)
         {
             slide = 0.1f;
-            player.SetDirection(new Vector2(movementController.x, player.GetDirection().y));
+            player.SetDirection(new Vector2(controller.GetMovement().x, player.GetDirection().y));
 
             rb.velocity = new Vector2(player.GetDirection().x * player.GetSpeed(), rb.velocity.y);
 
@@ -225,7 +209,7 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(player.GetDirection().x * (player.GetSpeed() * slide), rb.velocity.y);
         }
 
-        if(movementController.x < 0 || movementController.x > 0)
+        if(controller.GetMovement().x < 0 || controller.GetMovement().x > 0)
         {
             if (soundCoroutine != null)
             {
@@ -271,9 +255,8 @@ public class PlayerMovement : MonoBehaviour
         jumpParticles.Play();
 
         audioManager.PlaySFX(audioManager.jump);
-
-
     }
+
     void CheckJump()
     {
         if (ground.OnGround())
@@ -287,19 +270,23 @@ public class PlayerMovement : MonoBehaviour
         }
 
 
-        if (actualCoyoteTime > 0 && jumpKeyDownController && !isJumping)
+        if (actualCoyoteTime > 0 && controller.GetJumpKeyTap() && !isJumping )
         {
             Jump();
             actualCoyoteTime = 0f;
+            oldJump = true;
         }
-        else if (canDoubleJump && doubleJump < 1 && jumpKeyDownController)
+        else if (canDoubleJump && doubleJump < 1 && controller.GetJumpKeyTap())
         {
             Jump();
             doubleJump++; // Incrementa el contador de saltos después de un doble salto
+            oldJump = true;
         }
 
-        if (jumpKeyController && isJumping)
+        if (controller.GetJumpkeyHold() && isJumping)
         {
+            oldJump = true;
+
             if (actualJumpTimeCounter > 0)
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
@@ -313,8 +300,10 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
-        if (!jumpKeyDownController && isJumping)
+
+        if (!controller.GetJumpkeyHold() && oldJump)
         {
+            oldJump = false;
             isJumping = false;
             actualCoyoteTime = 0f;
             rb.gravityScale = 9.81f;
@@ -362,12 +351,12 @@ public class PlayerMovement : MonoBehaviour
 
     void Stairs()
     {
-        if((movementController.y < 0  || movementController.y > 0) && movementController.x == 0)
+        if((controller.GetMovement().y < 0  || controller.GetMovement().y > 0) && controller.GetMovement().x == 0)
         {
             tr.position = new Vector2((float)(tr.position.x + 0.05 * (stairsPos.x - tr.position.x)), tr.position.y);
         }
 
-        if (movementController.y > 0)
+        if (controller.GetMovement().y > 0)
         {
             rb.gravityScale = 0f;
             rb.velocity = new Vector2(rb.velocity.x, 5);
@@ -376,7 +365,7 @@ public class PlayerMovement : MonoBehaviour
                 soundCoroutine = StartCoroutine(PlaySoundRepeatedlyStairs());
             }
         }
-        else if(movementController.y < 0)
+        else if(controller.GetMovement().y < 0)
         {
             rb.gravityScale = 0f;
             rb.velocity = new Vector2(rb.velocity.x, -5);
@@ -414,25 +403,7 @@ public class PlayerMovement : MonoBehaviour
             usingStairs = false;
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.collider.tag == "PuzzleBox" && isPicked == false)
-        {
-            if (canPickUp)
-            {
-                //si lo dejo activo al pillar dos cajas una desaparece porque no puede cambiar a false bastante rapido
-                collision.collider.isTrigger = true; 
-                storedMass = collision.rigidbody.mass;
-                collision.rigidbody.mass = 0f;
-                carriedBox = collision.collider.gameObject;
-                isPicked = true;
-                PickUp(carriedBox, isPicked);
-            }
-        } else
-        {
-            return;
-        }
-    }
+   
     private void Dash()
     {
         actualDashTimer = dashTimer;
@@ -441,21 +412,6 @@ public class PlayerMovement : MonoBehaviour
         dashTrail.Play();
 
     }
-    private void PickUp(GameObject blovkPosition, bool isCarrying)
-    {
-        if (isCarrying && blovkPosition != null)
-        {
-            blovkPosition.transform.position = new Vector2(transform.position.x, transform.position.y + 1);
-        }
-        else if (blovkPosition != null && !isCarrying)
-        {
-           carriedBox.transform.position = new Vector2(transform.position.x +1.25f*transform.localScale.x, transform.position.y);
-            carriedBox = null;
-            blovkPosition.GetComponent<Collider2D>().isTrigger = false;
-            blovkPosition.GetComponent<Rigidbody2D>().mass = storedMass;
-            storedMass = 0;
-          
-        }
-    }
+   
 
 }
