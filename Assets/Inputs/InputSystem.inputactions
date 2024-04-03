@@ -58,6 +58,15 @@
                     "processors": "",
                     "interactions": "Tap",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "ColorsMenu",
+                    "type": "Button",
+                    "id": "23a32a2f-f6f0-4cfc-9c30-2c6066dc1833",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Tap",
+                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -327,17 +336,6 @@
                 },
                 {
                     "name": "",
-                    "id": "bb8aadfc-3a4a-402c-a1fd-bebdb584b565",
-                    "path": "<Gamepad>/rightStickPress",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "God Mode",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "e299af62-8135-46fc-8f5f-bb36cd2b539b",
                     "path": "<Keyboard>/space",
                     "interactions": "",
@@ -454,6 +452,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "JumpHold",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c236edaf-cee7-47b1-b022-766b12553210",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ColorsMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1b918f53-fb72-4cb9-9027-b88a38ea7b07",
+                    "path": "<Gamepad>/rightStickPress",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ColorsMenu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
