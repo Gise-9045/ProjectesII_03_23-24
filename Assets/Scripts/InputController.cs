@@ -8,13 +8,13 @@ public class InputController : MonoBehaviour
     public PlayerInput playerInput;
 
     Vector2 movementController;
-    bool jumpKeyTap;
-    bool jumpKeyHold;
-    bool powerUpKey;
-    bool pauseKey;
-    bool colorsMenuKey;
+    bool jumpKeyTap = false;
+    bool jumpKeyHold = false;
+    bool powerUpKey = false;
+    bool pauseKey = false;
+    bool colorsMenuKey = false;
 
-    void Start()
+    private void Awake()
     {
         playerInput.actions["Player/JumpTap"].started += OnStartJumpIA;
         playerInput.actions["Player/JumpTap"].canceled += OnStopJumpIA;
@@ -114,15 +114,18 @@ public class InputController : MonoBehaviour
         colorsMenuKey = false;
     }
 
-
-    void Update()
+    private void FixedUpdate()
     {
         movementController = playerInput.actions["Player/Move"].ReadValue<Vector2>();
-        jumpKeyTap = false;
-        pauseKey = false;
-        colorsMenuKey = false;
 
-        //Debug.Log(pauseKey);
+        if (jumpKeyTap)
+        {
+            jumpKeyTap = false;
+        }
 
+        if (colorsMenuKey)
+        {
+            colorsMenuKey = false;
+        }
     }
 }
