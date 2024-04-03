@@ -23,7 +23,7 @@ public class ColorReceiver : MonoBehaviour
     {
         if (collision.collider.CompareTag("ColorChange"))
         {
-            Debug.Log("BEEP");
+            //Debug.Log("BEEP");
             ChangeColor(collision.collider.GetComponent<ColorSpreader>().GetColor());
 
             //ENCONTRAR MANERA MAS LIMPIA DE HACER ESTO

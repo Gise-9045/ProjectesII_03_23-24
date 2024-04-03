@@ -59,7 +59,10 @@ public class ConveyerLogic : MonoBehaviour
     {
         if (transform.rotation.eulerAngles.z == 0f)
         {
-            effector.forceAngle = 180f;
+            if(goesLeft)
+            {
+                effector.forceMagnitude = -1 * effector.forceMagnitude;
+            }
             effector.forceMagnitude = velocity;
             animator.speed = velocity / 65; // Adjust this value as needed
         }
