@@ -12,6 +12,7 @@ public class InputController : MonoBehaviour
     bool jumpKeyHold;
     bool powerUpKey;
     bool pauseKey;
+    bool colorsMenuKey;
 
     void Start()
     {
@@ -27,6 +28,9 @@ public class InputController : MonoBehaviour
 
         playerInput.actions["Player/Pause"].performed += OnPauseAI;
         playerInput.actions["Player/Pause"].canceled += OnStopPauseAI;
+
+        playerInput.actions["Player/ColorsMenu"].performed += OnColorsAI;
+        playerInput.actions["Player/ColorsMenu"].canceled += OnStopColorsAI;
     }
 
     public bool GetJumpKeyTap()
@@ -54,17 +58,11 @@ public class InputController : MonoBehaviour
         return pauseKey;
     }
 
-    ///////----------///////
-
-    public void SetJumpKeyTap(bool tap)
+    public bool GetColorsMenu()
     {
-        jumpKeyTap = tap;
+        return colorsMenuKey;
     }
 
-    public void SetJumpkeyHold(bool hold)
-    {
-        jumpKeyHold = hold;
-    }
 
 
 
@@ -106,12 +104,25 @@ public class InputController : MonoBehaviour
         pauseKey = false;
     }
 
+    private void OnColorsAI(InputAction.CallbackContext context)
+    {
+        colorsMenuKey = true;
+    }
+
+    private void OnStopColorsAI(InputAction.CallbackContext context)
+    {
+        colorsMenuKey = false;
+    }
+
 
     void Update()
     {
         movementController = playerInput.actions["Player/Move"].ReadValue<Vector2>();
         jumpKeyTap = false;
         pauseKey = false;
+        colorsMenuKey = false;
+
+        //Debug.Log(pauseKey);
 
     }
 }
