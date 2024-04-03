@@ -77,7 +77,7 @@ SpriteRenderer:
   m_Color: {r: 1, g: 0, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
-  m_DrawMode: 0
+  m_DrawMode: 2
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
@@ -98,6 +98,7 @@ GameObject:
   - component: {fileID: 2014932676919405037}
   - component: {fileID: 3340152802382996064}
   - component: {fileID: 7582303033498368076}
+  - component: {fileID: 8314634885710766106}
   m_Layer: 0
   m_Name: Blovk
   m_TagString: PuzzleBox
@@ -148,7 +149,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &6611439261658864652
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -231,6 +232,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9dc83365118f334eaa406a1d7662496, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8314634885710766106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7839141263557164650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8d640af43b7b472429ecf6ccf44a9c41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &9180371331380576943
