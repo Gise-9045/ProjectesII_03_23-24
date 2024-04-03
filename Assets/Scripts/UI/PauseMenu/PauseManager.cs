@@ -13,21 +13,26 @@ public class PauseManager : MonoBehaviour
     private Animator verticalAnim;
     private Animator horizontalAnim;
 
+    private InputController controller;
+
+
     void Start()
     {
         verticalAnim = vertical.GetComponentInChildren<Animator>();
         horizontalAnim = horizontal.GetComponentInChildren<Animator>();
+
+        controller = GameObject.FindWithTag("Player").GetComponent<InputController>();
     }
 
     private void Update()
     {
-        if (!pauseMenu.activeSelf && Input.GetKeyDown(KeyCode.Escape))
+        if (!pauseMenu.activeSelf && controller.GetPause())
         {
             pauseMenu.SetActive(true);
             Time.timeScale = 0.0f;
 
         }
-        else if (pauseMenu.activeSelf && Input.GetKeyDown(KeyCode.Escape))
+        else if (pauseMenu.activeSelf && controller.GetPause())
         {
             pauseMenu.SetActive(false);
             Time.timeScale = 1.0f;

@@ -317,7 +317,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""0678c271-ac73-4ad7-9d41-62f5b81e5ce6"",
-                    ""path"": ""<SwitchProControllerHID>/start"",
+                    ""path"": ""<Gamepad>/start"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",

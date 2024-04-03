@@ -25,7 +25,8 @@ public class InputController : MonoBehaviour
         playerInput.actions["Player/PowerUp"].canceled += OnStopPowerUpAI;
 
 
-        playerInput.actions["Player/Pause"].canceled += OnStopPowerUpAI;
+        playerInput.actions["Player/Pause"].performed += OnPauseAI;
+        playerInput.actions["Player/Pause"].canceled += OnStopPauseAI;
     }
 
     public bool GetJumpKeyTap()
@@ -46,6 +47,11 @@ public class InputController : MonoBehaviour
     public Vector2 GetMovement()
     {
         return movementController;
+    }
+
+    public bool GetPause()
+    {
+        return pauseKey;
     }
 
     ///////----------///////
@@ -104,5 +110,8 @@ public class InputController : MonoBehaviour
     void Update()
     {
         movementController = playerInput.actions["Player/Move"].ReadValue<Vector2>();
+        jumpKeyTap = false;
+        pauseKey = false;
+
     }
 }
