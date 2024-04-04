@@ -6,8 +6,10 @@ public class DroolantBullet : MonoBehaviour
 {
     Rigidbody2D rb;
 
+
     void Start()
     {
+        
         rb = GetComponent<Rigidbody2D>();
 
     }
@@ -16,7 +18,8 @@ public class DroolantBullet : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            collision.GetComponent<PlayerStats>().TakeDamage(1, 20.0f, Mathf.Sign(collision.gameObject.transform.position.x - gameObject.transform.position.x));
+            collision.gameObject.GetComponent<Player>().TakeDamage();
+            //collision.GetComponent<PlayerStats>().TakeDamage(1, 20.0f, Mathf.Sign(collision.gameObject.transform.position.x - gameObject.transform.position.x));
             Destroy(gameObject);
         }
 
