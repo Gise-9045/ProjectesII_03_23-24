@@ -73,36 +73,46 @@ public class BlovkMovement : MonoBehaviour
         float distance = Mathf.Sqrt(Mathf.Pow(tr.position.x - playerTr.position.x, 2) + Mathf.Pow(tr.position.y - playerTr.position.y, 2) + Mathf.Pow(tr.position.z - playerTr.position.z, 2));
 
 
-        if(wallDetection.GetWallDetection() && playerOldPos == 0f && picking)
-        {
-            rb.gravityScale = 0f;
-            playerOldPos = playerTr.position.x;
-            playerOldDirection = player.GetDirection();
-        }
+        //if(wallDetection.GetWallDetection() && playerOldPos == 0f && picking)
+        //{
+        //    rb.gravityScale = 0f;
+        //    playerOldPos = playerTr.position.x;
+        //    playerOldDirection = player.GetDirection();
+        //}
 
-        if(wallDetection.GetWallDetection() && playerOldDirection.x > 0 && playerTr.position.x < playerOldPos && picking)
-        {
-            PickUp();
-            rb.gravityScale = 0f;
-        }
-        else if(wallDetection.GetWallDetection() && playerOldDirection.x < 0 && playerTr.position.x > playerOldPos && picking)
-        {
-            PickUp();
-            rb.gravityScale = 0f;
-        }
-        else if(!wallDetection.GetWallDetection() && picking)
+            //if(wallDetection.GetWallDetection() && playerOldDirection.x > 0 && playerTr.position.x < playerOldPos && picking)
+            //{
+            //    PickUp();
+            //    rb.gravityScale = 0f;
+            //}
+            //else if(wallDetection.GetWallDetection() && playerOldDirection.x < 0 && playerTr.position.x > playerOldPos && picking)
+            //{
+            //    PickUp();
+            //    rb.gravityScale = 0f;
+            //}
+            //else if(!wallDetection.GetWallDetection() && picking)
+            //{
+            //    PickUp();
+            //    rb.gravityScale = 0f;
+            //    playerOldPos = 0f;
+
+            //}
+
+            //if(distance > 1.5f && picking)
+            //{
+            //    picking = false;
+            //    playerOldPos = 0f;
+            //    Drop();
+            //}
+
+
+
+        if (picking)
         {
             PickUp();
             rb.gravityScale = 0f;
             playerOldPos = 0f;
 
-        }
-
-        if(distance > 1.5f && picking)
-        {
-            picking = false;
-            playerOldPos = 0f;
-            Drop();
         }
 
     }
