@@ -96,7 +96,7 @@ public class PlayerMovement : MonoBehaviour
     
 
 
-    void FixedUpdate()
+    void Update()
     {
         if (player.GetDead())
         {
