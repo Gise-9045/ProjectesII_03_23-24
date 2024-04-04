@@ -123,6 +123,11 @@ public class InputController : MonoBehaviour
             jumpKeyTap = false;
         }
 
+        if(powerUpKey)
+        {
+            powerUpKey = false;
+        }
+
         if (colorsMenuKey)
         {
             colorsMenuKey = false;
