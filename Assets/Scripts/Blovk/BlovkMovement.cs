@@ -58,7 +58,7 @@ public class BlovkMovement : MonoBehaviour
         {
             picking = true;
         }
-        else if(controller.GetPowerUpKey() && picking)
+        else if(controller.GetPowerUpKey() && picking && !wallDetection.GetWallDetection())
         {
             picking = false;
             Drop();
