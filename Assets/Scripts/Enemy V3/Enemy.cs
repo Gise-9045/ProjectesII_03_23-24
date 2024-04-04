@@ -5,8 +5,8 @@ using static UnityEngine.ParticleSystem;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private AudioSource hurtSource;
-    [SerializeField] private AudioClip hurtClip;
+    //[SerializeField] private AudioSource hurtSource;
+    //[SerializeField] private AudioClip hurtClip;
     [SerializeField, Range(0f, 3f)] private float volumeAudio = 0.2f;
     [SerializeField] private int life;
     [SerializeField] private int maxLife;
@@ -31,7 +31,7 @@ public class Enemy : MonoBehaviour
 
     private void Start()
     {
-        hurtSource.clip = hurtClip;
+        //hurtSource.clip = hurtClip;
         life = maxLife;
         rotation = 0;
         SetDirection(direction);
@@ -112,11 +112,11 @@ public class Enemy : MonoBehaviour
 
         if (life <= 0 )
         {
-            hurtSource.clip = hurtClip;
+            //hurtSource.clip = hurtClip;
             CinemachineShake.Instance.ShakeCamera(5f, 0.5f);
             HitStop.Instance.StopTime(0.15f, 0.5f);
             Destroy(gameObject);
-            hurtSource.Play();
+            //hurtSource.Play();
         }
     }
 
@@ -126,12 +126,18 @@ public class Enemy : MonoBehaviour
         knockback = false;
     }
 
-
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.CompareTag("Player"))
+        {
+            collision.collider.gameObject.GetComponent<Player>().TakeDamage();
+        }
+    }
 
     private void Update()
     {
         //EnemyDirection
-        hurtSource.volume = volumeAudio;
+       // hurtSource.volume = volumeAudio;
 
         //EnemyRotation
     }
