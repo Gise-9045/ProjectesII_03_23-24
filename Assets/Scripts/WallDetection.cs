@@ -4,31 +4,29 @@ using UnityEngine;
 
 public class WallDetection : MonoBehaviour
 {
-    private Enemy enemy;
     private bool detection;
 
     private void Start()
     {
-        enemy = GetComponent<Enemy>();
+        detection = false;
     }
 
-    public bool Detection()
+    public bool GetWallDetection()
     {
         return detection;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Ground") || collision.CompareTag("Lever") || collision.CompareTag("Enemy"))
+        if(collision.tag == "Ground")
         {
             detection = true;
-
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Ground") || collision.CompareTag("Lever") || collision.CompareTag("Enemy"))
+        if(collision.tag == "Ground")
         {
             detection = false;
 

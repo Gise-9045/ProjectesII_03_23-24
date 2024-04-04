@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class pickUpLogic : MonoBehaviour
 {
-    private PlayerMovement colorCheck;
+/*    private PlayerMovement colorCheck;
     private GameObject player;
     private bool amPicked;
     bool beingCarried;
@@ -69,5 +69,5 @@ public class pickUpLogic : MonoBehaviour
             GetComponent<Rigidbody2D>().mass = storedMass;
             storedMass = 0;
         }
-    }
+    }*/
 }
