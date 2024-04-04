@@ -1,7 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,7 +6,9 @@ public class AudioManager : MonoBehaviour
 {
     [Header("----- Audio Source -----")]
     [SerializeField] private AudioSource musicSource;
-    [SerializeField] private AudioSource SFXSource;
+    [SerializeField] private AudioSource sfxSource;
+
+    [SerializeField] private VolumeSettings volumeSettings;
 
     [Header("----- Audio Clip -----")]
     //public AudioClip music;
@@ -54,6 +53,8 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
+        volumeSettings.StartVolumeSettings();
+        
         musicSource.clip = musicMainMenu; 
         musicSource.Play();
         UISound.sprite = soundSprite[0];
@@ -135,17 +136,17 @@ public class AudioManager : MonoBehaviour
     
     public void PlaySFX(AudioClip clip)
     {
-        SFXSource.PlayOneShot(clip);
+        sfxSource.PlayOneShot(clip);
     }
 
     public void StopSFX(AudioClip clip)
     {
-        SFXSource.Stop();
+        sfxSource.Stop();
     }
 
     public bool IsPlayingSFX()
     {
-        return SFXSource.isPlaying;
+        return sfxSource.isPlaying;
     }
 
     public bool IsPlayingMusic()
