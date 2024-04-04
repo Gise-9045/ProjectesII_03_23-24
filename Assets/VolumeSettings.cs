@@ -35,7 +35,7 @@ public class VolumeSettings : MonoBehaviour
     {
         float volume = musicSlider.value; 
         audioMixer.SetFloat("MusicVolume", Mathf.Log10(volume)*20);
-        musicTextNumber.text = Mathf.RoundToInt(volume).ToString() + " %";
+        musicTextNumber.text = ((int)(volume* 100)).ToString() + " %";
         PlayerPrefs.SetFloat(("MusicVolume"), volume);
     }
     
@@ -43,7 +43,7 @@ public class VolumeSettings : MonoBehaviour
     {
         float volume = effectsSlider.value; 
         audioMixer.SetFloat("SFXVolume", Mathf.Log10(volume)*20);
-        effectsTextNumber.text = Mathf.RoundToInt(volume).ToString() + " %";
+        effectsTextNumber.text = ((int)(volume* 100)).ToString() + " %";
         PlayerPrefs.SetFloat(("SFXVolume"),volume);
     }
 
