@@ -7,6 +7,7 @@ public class PauseManager : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject levelSelectorScreen; 
+    [SerializeField] private GameObject SettingsScene; 
     [SerializeField] GameObject horizontal;
     [SerializeField] GameObject vertical;
 
