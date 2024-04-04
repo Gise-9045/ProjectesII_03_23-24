@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class pickUpLogic : MonoBehaviour
 {
-    private PlayerMovement colorCheck;
+/*    private PlayerMovement colorCheck;
     private GameObject player;
     private bool amPicked;
     bool beingCarried;
@@ -34,14 +34,14 @@ public class pickUpLogic : MonoBehaviour
         }
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (amPicked)
         {
             // Solo actualizar la posici�n mientras se lleva el objeto
             transform.position = new Vector2(player.transform.position.x,player.transform.position.y+1f);
         }
-        else
+        else if(amPicked && colorCheck.controller.GetPowerUpKey())
         {
             Drop();
         }
@@ -62,12 +62,12 @@ public class pickUpLogic : MonoBehaviour
     {
         if (beingCarried && colorCheck.controller.GetPowerUpKey()) // Solo suelta si se presiona el bot�n de soltar
         {
-            transform.position = new Vector2(transform.position.x + 1.25f * transform.localScale.x, transform.position.y);
+            transform.position = new Vector2(transform.position.x + 1.15f * transform.localScale.x, transform.position.y);
             player = null;
             amPicked = false;
             GetComponent<Collider2D>().isTrigger = false;
             GetComponent<Rigidbody2D>().mass = storedMass;
             storedMass = 0;
         }
-    }
+    }*/
 }

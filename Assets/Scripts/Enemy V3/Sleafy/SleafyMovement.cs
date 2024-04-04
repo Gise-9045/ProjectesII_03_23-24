@@ -76,7 +76,7 @@ public class SleafyMovement : MonoBehaviour
             }
         }
 
-        if (!groundDetection.OnGround() || wallDetection.Detection())
+        if (!groundDetection.OnGround() || wallDetection.GetWallDetection())
         {
             animator.SetBool("Enabled", false);
             persue = false;

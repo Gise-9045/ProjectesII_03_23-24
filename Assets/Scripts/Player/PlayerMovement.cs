@@ -69,7 +69,7 @@ public class PlayerMovement : MonoBehaviour
 
     private float storedMass;
 
-    public InputController controller;
+    private InputController controller;
 
 
     void Start()
