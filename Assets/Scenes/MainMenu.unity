@@ -2586,6 +2586,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: c3646aaff2aabd443901517813c38bf8, type: 3}
     - target: {fileID: 3248344774244174726, guid: 698bd860d70756c43ba71c529cc5e683, type: 3}
+      propertyPath: sfxSource
+      value: 
+      objectReference: {fileID: 1298777315}
+    - target: {fileID: 3248344774244174726, guid: 698bd860d70756c43ba71c529cc5e683, type: 3}
       propertyPath: musicMainMenu
       value: 
       objectReference: {fileID: 8300000, guid: 6bd5c6f08d8cf6c42a9efb335dc67d4f, type: 3}
@@ -2677,6 +2681,10 @@ PrefabInstance:
       propertyPath: music.Array.data[19]
       value: 
       objectReference: {fileID: 8300000, guid: 0d7f59a5020ac394382964564e33d23e, type: 3}
+    - target: {fileID: 7511654354629737879, guid: 698bd860d70756c43ba71c529cc5e683, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 4678191705598115477, guid: 295a0a5edbd03db41b13dde66f1f9023, type: 2}
     - target: {fileID: 7665806839036162660, guid: 698bd860d70756c43ba71c529cc5e683, type: 3}
       propertyPath: m_Name
       value: Audio Manager
@@ -5298,6 +5306,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1298536554}
   m_CullTransparentMesh: 1
+--- !u!82 &1298777315 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4280445793478339297, guid: 698bd860d70756c43ba71c529cc5e683, type: 3}
+  m_PrefabInstance: {fileID: 847746538}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1355962453
 GameObject:
   m_ObjectHideFlags: 0
@@ -6721,10 +6734,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 830009024}
   m_HandleRect: {fileID: 595332102}
   m_Direction: 0
-  m_MinValue: 0.0001
+  m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.0001
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
