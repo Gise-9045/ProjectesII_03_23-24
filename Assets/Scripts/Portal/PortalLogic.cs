@@ -10,14 +10,14 @@ public class PortalLogic : MonoBehaviour
     public float distance = 0.2f;
     private void Start()
     {
-        if (!isOrange)
-        {
-            PortalPosition = GameObject.FindGameObjectWithTag("OrangePortal").GetComponent<Transform>();
-        }
-        else if(isOrange) 
-        {
-            PortalPosition = GameObject.FindGameObjectWithTag("BluePortal").GetComponent<Transform>();
-        }
+        //if (!isOrange)
+        //{
+        //    PortalPosition = GameObject.FindGameObjectWithTag("OrangePortal").GetComponent<Transform>();
+        //}
+        //else if(isOrange) 
+        //{
+        //    PortalPosition = GameObject.FindGameObjectWithTag("BluePortal").GetComponent<Transform>();
+        //}
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
