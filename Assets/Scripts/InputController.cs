@@ -73,7 +73,7 @@ public class InputController : MonoBehaviour
     }
     private void OnStopJumpIA(InputAction.CallbackContext context)
     {
-        jumpKeyTap = false;
+        //jumpKeyTap = false;
     }
 
     private void OnStartJumpHoldIA(InputAction.CallbackContext context)
@@ -121,6 +121,11 @@ public class InputController : MonoBehaviour
         if (jumpKeyTap)
         {
             jumpKeyTap = false;
+        }
+
+        if(powerUpKey)
+        {
+            powerUpKey = false;
         }
 
         if (colorsMenuKey)
