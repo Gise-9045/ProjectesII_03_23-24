@@ -91,7 +91,7 @@ public class InputController : MonoBehaviour
     }
     private void OnStopPowerUpAI(InputAction.CallbackContext context)
     {
-        powerUpKey = false;
+        //powerUpKey = false;
     }
 
     private void OnPauseAI(InputAction.CallbackContext context)
@@ -116,6 +116,8 @@ public class InputController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        Debug.Log(jumpKeyTap);
+
         movementController = playerInput.actions["Player/Move"].ReadValue<Vector2>();
 
         if (jumpKeyTap)
