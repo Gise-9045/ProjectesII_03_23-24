@@ -118,6 +118,8 @@ public class InputController : MonoBehaviour
     {
         movementController = playerInput.actions["Player/Move"].ReadValue<Vector2>();
 
+        Debug.Log(jumpKeyTap);
+
         if (jumpKeyTap)
         {
             jumpKeyTap = false;
