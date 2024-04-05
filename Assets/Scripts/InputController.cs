@@ -114,7 +114,7 @@ public class InputController : MonoBehaviour
         colorsMenuKey = false;
     }
 
-    private void FixedUpdate()
+    private void LateUpdate()
     {
         movementController = playerInput.actions["Player/Move"].ReadValue<Vector2>();
 

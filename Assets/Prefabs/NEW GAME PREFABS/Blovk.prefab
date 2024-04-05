@@ -150,7 +150,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.25}
+  m_Offset: {x: 0, y: 0.15}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -161,7 +161,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 0.5}
+  m_Size: {x: 1.2, y: 0.5}
   m_EdgeRadius: 0
 --- !u!114 &3894220184065871477
 MonoBehaviour:
@@ -199,8 +199,9 @@ GameObject:
   - component: {fileID: 1490120155649926685}
   - component: {fileID: 6611439261658864652}
   - component: {fileID: 518281163516087084}
-  - component: {fileID: 2014932676919405037}
+  - component: {fileID: 4557993500824378287}
   - component: {fileID: 3340152802382996064}
+  - component: {fileID: 2014932676919405037}
   m_Layer: 0
   m_Name: Blovk
   m_TagString: PuzzleBox
@@ -252,7 +253,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 1
-  m_Constraints: 4
+  m_Constraints: 0
 --- !u!61 &6611439261658864652
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -311,8 +312,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerOldPos: 0
-  picking: 0
---- !u!114 &2014932676919405037
+--- !u!114 &4557993500824378287
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -321,10 +321,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7839141263557164650}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 274b0f829dee63f498f70c22b450ca73, type: 3}
+  m_Script: {fileID: 11500000, guid: aa929c77dc4796741b6850d0f6a7dc2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeDelay: 1
+  respawn: {fileID: 0}
 --- !u!114 &3340152802382996064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -339,6 +339,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particleTr: {fileID: 1576272757330110923}
   boxParticles: {fileID: 8011983378853045468}
+--- !u!114 &2014932676919405037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7839141263557164650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 274b0f829dee63f498f70c22b450ca73, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeDelay: 1
 --- !u!1 &9180371331380576943
 GameObject:
   m_ObjectHideFlags: 0
