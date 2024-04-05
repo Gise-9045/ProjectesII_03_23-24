@@ -1,4 +1,7 @@
 
+using System.Net;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -25,7 +28,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip powerActive;
     public AudioClip stairsClimb;
     
-    public AudioClip music;
+    public AudioClip[] music;
     public AudioClip musicMainMenu;
     public AudioClip musicFall; 
 
@@ -35,8 +38,11 @@ public class AudioManager : MonoBehaviour
 
     private bool inMainMenu; // This is a bool to check if the scene is the main menu again or not
     private int countMusic= 0;
+    private int sceneCount = 0; 
 
     private bool isMenu = true;
+    private bool isPlaying = false;
+    private SceneManager currentScene;
 
     public AudioManager Instance { get; private set; }
 
@@ -62,21 +68,43 @@ public class AudioManager : MonoBehaviour
 
     private void Update()
     {
+        sceneCount = SceneManager.GetActiveScene().buildIndex;
+        Debug.Log(sceneCount);
+
         if (SceneManager.GetSceneByName("MainMenu").isLoaded && !isMenu)
         {
-            musicSource.clip = musicMainMenu; 
+            musicSource.clip = musicMainMenu;
             musicSource.Play();
-            isMenu = true; 
-
-            //Menu music
-        } else if (!SceneManager.GetSceneByName("MainMenu").isLoaded && isMenu)
+            isMenu = true;
+        }
+        else if (!SceneManager.GetSceneByName("MainMenu").isLoaded && isMenu)
         {
-            musicSource.clip = music;
-            musicSource.Play();
+            if (SceneManager.GetSceneByName("Level 0").isLoaded)
+            {
+                ChangeMusic();
+            }
+            else if (sceneCount % 10 == 0 && !isPlaying)
+            {
+                ChangeMusic();
+            }
+            else
+            {
+                isPlaying = false;
+            }
+            
             isMenu = false; 
-            //Gameplay music
         }
         
+        // else if (!SceneManager.GetSceneByName("MainMenu").isLoaded && isMenu)
+        // {
+        //     musicSource.clip = music[0];
+        //     musicSource.Play();
+        //     isMenu = false;
+        //     //Gameplay music
+        // }
+
+        
+
         if(Input.GetKeyDown(KeyCode.M))
         {
             if(musicSource.isPlaying)
@@ -153,4 +181,25 @@ public class AudioManager : MonoBehaviour
     {
         return musicSource.isPlaying;
     }
+
+    private void ChangeMusic()
+    {
+        if (countMusic == 0)
+        { 
+            musicSource.Stop(); 
+            countMusic = music.Length - 1; 
+            musicSource.clip = music[countMusic]; 
+            musicSource.Play();
+        }
+        else 
+        {
+            musicSource.Stop();
+            countMusic--; 
+            musicSource.clip = music[countMusic];
+            musicSource.Play();
+        }
+        isPlaying = true; 
+
+    }
 }
+
