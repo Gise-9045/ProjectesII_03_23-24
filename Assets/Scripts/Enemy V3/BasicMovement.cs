@@ -51,7 +51,7 @@ public class BasicMovement : MonoBehaviour
             rb.velocity = new Vector2(enemy.GetDirection().x * enemy.GetSpeed(), rb.velocity.y);
         }
 
-        if (!groundDetection.OnGround() || wallDetection.Detection())
+        if (!groundDetection.OnGround() || wallDetection.GetWallDetection())
         {
             enemy.SetDirection(new Vector2(enemy.GetDirection().x * -1, 1));
         }
