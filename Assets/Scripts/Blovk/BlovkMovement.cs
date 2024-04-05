@@ -27,7 +27,7 @@ public class BlovkMovement : MonoBehaviour
     private Vector2 playerOldDirection;
 
 
-    private bool picking;
+    private bool picking = false;
 
     void Start()
     {
@@ -58,8 +58,21 @@ public class BlovkMovement : MonoBehaviour
         {
             picking = true;
         }
-        else if(controller.GetPowerUpKey() && picking && !wallDetection.GetWallDetection())
+        else if(controller.GetPowerUpKey() && picking)
         {
+            if(wallDetection.GetWallDetection())
+            {
+                Vector2 oldBoxPos = tr.position;
+                Vector2 oldPlayerPos = playerTr.position;
+
+                tr.position = oldPlayerPos;
+                playerTr.position = oldBoxPos;
+            }
+            else
+            {
+                tr.position = new Vector2(player.GetDirection().x + playerTr.position.x, playerTr.position.y);
+            }
+
             picking = false;
             Drop();
         }
@@ -70,44 +83,28 @@ public class BlovkMovement : MonoBehaviour
         }
 
 
+
         float distance = Mathf.Sqrt(Mathf.Pow(tr.position.x - playerTr.position.x, 2) + Mathf.Pow(tr.position.y - playerTr.position.y, 2) + Mathf.Pow(tr.position.z - playerTr.position.z, 2));
 
 
-        //if(wallDetection.GetWallDetection() && playerOldPos == 0f && picking)
-        //{
-        //    rb.gravityScale = 0f;
-        //    playerOldPos = playerTr.position.x;
-        //    playerOldDirection = player.GetDirection();
-        //}
+        if (wallDetection.GetWallDetection() && playerOldPos == 0f && picking)
+        {
+            rb.gravityScale = 0f;
+            playerOldPos = playerTr.position.x;
+            playerOldDirection = player.GetDirection();
+        }
 
-            //if(wallDetection.GetWallDetection() && playerOldDirection.x > 0 && playerTr.position.x < playerOldPos && picking)
-            //{
-            //    PickUp();
-            //    rb.gravityScale = 0f;
-            //}
-            //else if(wallDetection.GetWallDetection() && playerOldDirection.x < 0 && playerTr.position.x > playerOldPos && picking)
-            //{
-            //    PickUp();
-            //    rb.gravityScale = 0f;
-            //}
-            //else if(!wallDetection.GetWallDetection() && picking)
-            //{
-            //    PickUp();
-            //    rb.gravityScale = 0f;
-            //    playerOldPos = 0f;
-
-            //}
-
-            //if(distance > 1.5f && picking)
-            //{
-            //    picking = false;
-            //    playerOldPos = 0f;
-            //    Drop();
-            //}
-
-
-
-        if (picking)
+        if (wallDetection.GetWallDetection() && playerOldDirection.x > 0 && playerTr.position.x < playerOldPos && picking)
+        {
+            PickUp();
+            rb.gravityScale = 0f;
+        }
+        else if (wallDetection.GetWallDetection() && playerOldDirection.x < 0 && playerTr.position.x > playerOldPos && picking)
+        {
+            PickUp();
+            rb.gravityScale = 0f;
+        }
+        else if (!wallDetection.GetWallDetection() && picking)
         {
             PickUp();
             rb.gravityScale = 0f;
@@ -115,19 +112,34 @@ public class BlovkMovement : MonoBehaviour
 
         }
 
+        if (wallDetection.GetWallDetection() && distance > 1.5f && picking)
+        {
+            picking = false;
+            playerOldPos = 0f;
+            Drop();
+        }
+
+
+
+        //if (picking)
+        //{
+        //    PickUp();
+        //    rb.gravityScale = 0f;
+        //    playerOldPos = 0f;
+
+        //}
+
     }
 
 
     void PickUp()
     {
         tr.position = new Vector2(playerTr.position.x, playerTr.position.y + 1f);
+        tr.rotation = Quaternion.Euler(0, 0, 0);
     }
 
     void Drop()
     {
-        //tr.position = new Vector2(player.position.x, player.position.y - 1f);
-        //player.position = new Vector2(player.position.x, player.position.y + 1f);
-
         rb.gravityScale = 9.81f;
     }
 }
