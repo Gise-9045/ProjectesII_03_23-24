@@ -6,8 +6,6 @@ using UnityEngine.SceneManagement;
 public class PauseManager : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
-    [SerializeField] private GameObject levelSelectorScreen; 
-    [SerializeField] private GameObject SettingsScene; 
     [SerializeField] GameObject horizontal;
     [SerializeField] GameObject vertical;
 
@@ -48,6 +46,7 @@ public class PauseManager : MonoBehaviour
 
     }
 
+    #region Continue & Exit Game
 
     public void ContinueGame()
     {
@@ -71,4 +70,30 @@ public class PauseManager : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
         Time.timeScale = 1.0f;
     }
+
+    #endregion
+
+    #region button manager
+
+    public void ButtonActive(GameObject newScene)
+    {
+        pauseMenu.SetActive(false);
+        newScene.SetActive(true);
+      
+    }
+    
+    public void ExitSceneSelected(GameObject currentScene)
+    {
+        pauseMenu.SetActive(true);
+        currentScene.SetActive(false);
+    }
+
+    public void OpenSceneSelected(string  sceneNumber)
+    {
+        string sceneManager = "Level " + sceneNumber; 
+        SceneManager.LoadScene(sceneManager); 
+    }
+
+    #endregion
+    
 }
