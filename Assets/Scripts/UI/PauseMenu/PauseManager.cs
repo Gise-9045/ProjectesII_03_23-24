@@ -12,30 +12,41 @@ public class PauseManager : MonoBehaviour
     private Animator verticalAnim;
     private Animator horizontalAnim;
 
+    private InputController controller;
+
+    private bool oldPauseButton;
+
     void Start()
     {
         verticalAnim = vertical.GetComponentInChildren<Animator>();
         horizontalAnim = horizontal.GetComponentInChildren<Animator>();
+
+        controller = GameObject.FindWithTag("Player").GetComponent<InputController>();
     }
 
-        private void Update()
+    private void Update()
     {
-        if (!pauseMenu.activeSelf && Input.GetKeyDown(KeyCode.Escape))
+        if (!pauseMenu.activeSelf && controller.GetPause() && oldPauseButton)
         {
             pauseMenu.SetActive(true);
             Time.timeScale = 0.0f;
+            oldPauseButton = false;
 
         }
-        else if (pauseMenu.activeSelf && Input.GetKeyDown(KeyCode.Escape))
+        else if (pauseMenu.activeSelf && controller.GetPause() && oldPauseButton)
         {
             pauseMenu.SetActive(false);
             Time.timeScale = 1.0f;
-
-
+            oldPauseButton = false;
+        }
+        else if(!controller.GetPause())
+        {
+            oldPauseButton = true;
         }
 
     }
 
+    #region Continue & Exit Game
 
     public void ContinueGame()
     {
@@ -59,4 +70,30 @@ public class PauseManager : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
         Time.timeScale = 1.0f;
     }
+
+    #endregion
+
+    #region button manager
+
+    public void ButtonActive(GameObject newScene)
+    {
+        pauseMenu.SetActive(false);
+        newScene.SetActive(true);
+      
+    }
+    
+    public void ExitSceneSelected(GameObject currentScene)
+    {
+        pauseMenu.SetActive(true);
+        currentScene.SetActive(false);
+    }
+
+    public void OpenSceneSelected(string  sceneNumber)
+    {
+        string sceneManager = "Level " + sceneNumber; 
+        SceneManager.LoadScene(sceneManager); 
+    }
+
+    #endregion
+    
 }

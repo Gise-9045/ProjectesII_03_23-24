@@ -9,13 +9,14 @@ public class ButtonManager : MonoBehaviour
     [SerializeField] private GameObject options;
     [SerializeField] private GameObject exitDialog;
     [SerializeField] private GameObject controls;
+    [SerializeField] private GameObject volumen;
 
 
     [SerializeField] private Animator VerticalTransition;
     [SerializeField] private Animator HorizontalTransition;
     [SerializeField] private Animator StartSceneUp;
 
-    //MENÚ DE INICIO
+    //MENï¿½ DE INICIO
     private void Start()
     {
         VerticalTransition.SetBool("ExitDownAnimation", true);
@@ -37,7 +38,7 @@ public class ButtonManager : MonoBehaviour
         VerticalTransition.SetBool("UpAnimation", true);
         StartSceneUp.SetBool("Up", true);
         yield return new WaitForSeconds(0.7f);
-        SceneManager.LoadScene("Level Tutorial");
+        SceneManager.LoadScene("Level 0");
     }
 
     public void SettingsButton()
@@ -96,10 +97,10 @@ public class ButtonManager : MonoBehaviour
 
 
     //CONTROLS
-    public void ControlsButton()
+    public void ControlsButton(GameObject newScene)
     {
         //StartCoroutine(Controls());
-        controls.SetActive(true);
+        newScene.SetActive(true);
         options.SetActive(false);
     }
 
@@ -112,10 +113,10 @@ public class ButtonManager : MonoBehaviour
     }
 
 
-    public void BackControlsButton()
+    public void BackControlsButton(GameObject currentScene)
     {
         //StartCoroutine(Settings2());
-        controls.SetActive(false);
+        currentScene.SetActive(false);
         options.SetActive(true);
     }
 

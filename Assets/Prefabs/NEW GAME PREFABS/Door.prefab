@@ -95,6 +95,7 @@ GameObject:
   - component: {fileID: 6704505605561849792}
   - component: {fileID: 2304022888298752047}
   - component: {fileID: 6136389294209927114}
+  - component: {fileID: 7583558940446338581}
   m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
@@ -116,7 +117,7 @@ Transform:
   m_Children:
   - {fileID: 2482532236199815197}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &2304022888298752047
 BoxCollider2D:
@@ -175,7 +176,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa70c339f243a5346a433acf366226d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  transitions: {fileID: 0}
   currentScene:
     m_Handle: 0
   keySaverList: {fileID: 0}
+  horizontal: {fileID: 0}
+  vertical: {fileID: 0}
+  transition: 0
+--- !u!114 &7583558940446338581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5782121520602112732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b54d4c6d4120444ea7f04d9cc9970de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animKey: {fileID: 0}
+  audioManager: {fileID: 0}
