@@ -66,7 +66,7 @@ public class MauriceJrMovement : MonoBehaviour
             }
         }
 
-        if (wallDetection.Detection())
+        if (wallDetection.GetWallDetection())
         {
             enemy.SetDirection(new Vector2(enemy.GetDirection().x * -1, 1));
         }

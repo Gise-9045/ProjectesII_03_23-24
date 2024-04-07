@@ -17,9 +17,9 @@ public class DroolantAttack : MonoBehaviour
 
     [SerializeField] float arrayPosX;
 
-    [SerializeField] private AudioClip attackClip;
-    [SerializeField] private AudioSource attackSource;
-    [SerializeField, Range(0f, 3f)] private float volumeAudio = 0.2f;
+    //[SerializeField] private AudioClip attackClip;
+    //[SerializeField] private AudioSource attackSource;
+    //[SerializeField, Range(0f, 3f)] private float volumeAudio = 0.2f;
 
     private void Start()
     {
@@ -48,9 +48,9 @@ public class DroolantAttack : MonoBehaviour
 
         if ((hit.collider.tag == "Player" || hit2.collider.tag == "Player") && actualCooldownAttack <= 0)
         {
-            attackSource.clip = attackClip;
-            animator.SetBool("Shoot", true);
-            attackSource.Play();
+            //attackSource.clip = attackClip;
+            //animator.SetBool("Shoot", true);
+            //attackSource.Play();
             //Dispara
             Vector2 bulletPos = new Vector2(parent.transform.position.x, parent.transform.position.y - 1);
 

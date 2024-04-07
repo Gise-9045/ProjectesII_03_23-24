@@ -1,14 +1,17 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+
+using System.Net;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
     [Header("----- Audio Source -----")]
-    [SerializeField] private AudioSource musicSource;
-    [SerializeField] private AudioSource SFXSource;
+    [SerializeField] public AudioSource musicSource;
+    [SerializeField] private AudioSource sfxSource;
+
+    [SerializeField] private VolumeSettings volumeSettings;
 
     [Header("----- Audio Clip -----")]
     //public AudioClip music;
@@ -25,21 +28,68 @@ public class AudioManager : MonoBehaviour
     public AudioClip powerActive;
     public AudioClip stairsClimb;
     
-    public AudioClip music;
+    public AudioClip[] music;
+    public AudioClip musicMainMenu;
+    public AudioClip musicFall; 
 
     [Header("----- UI -----")]
     [SerializeField] private UnityEngine.UI.Image UISound;
     [SerializeField] private Sprite[] soundSprite;
 
+    private bool inMainMenu; // This is a bool to check if the scene is the main menu again or not
+    private int countMusic= 0;
+    private int sceneCount = 0; 
+
+    private bool isMenu = true;
+    private bool isPlaying = false;
+    private SceneManager currentScene;
+
+    public AudioManager Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance == null)
+        {
+            DontDestroyOnLoad(gameObject);
+            Instance = this;
+        }
+        else
+            Destroy(this.gameObject);
+    }
+
     private void Start()
     {
-        musicSource.clip = music;
+        volumeSettings.StartVolumeSettings();
+
+        countMusic = 0; 
+        
+        musicSource.clip = musicMainMenu; 
         musicSource.Play();
-        UISound.sprite = soundSprite[0];
     }
+
+    private bool musicChanged = false;
 
     private void Update()
     {
+        sceneCount = SceneManager.GetActiveScene().buildIndex;
+        string sceneName = SceneManager.GetActiveScene().name;
+
+        if (SceneManager.GetSceneByName("MainMenu").isLoaded && !isMenu)
+        {
+            musicSource.clip = musicMainMenu;
+            musicSource.Play();
+            isMenu = true;
+        }
+        else if (!SceneManager.GetSceneByName("MainMenu").isLoaded && isMenu)
+        {
+            if (SceneManager.GetSceneByName("Level 0").isLoaded)
+            {
+                ChangeMusic();
+            }
+            isMenu = false; 
+        }
+        
+        
         if(Input.GetKeyDown(KeyCode.M))
         {
             if(musicSource.isPlaying)
@@ -54,24 +104,50 @@ public class AudioManager : MonoBehaviour
                 UISound.sprite = soundSprite[0];
             }
         }
+        
+
     }
+    
     public void PlaySFX(AudioClip clip)
     {
-        SFXSource.PlayOneShot(clip);
+        sfxSource.PlayOneShot(clip);
     }
 
     public void StopSFX(AudioClip clip)
     {
-        SFXSource.Stop();
+        sfxSource.Stop();
     }
 
     public bool IsPlayingSFX()
     {
-        return SFXSource.isPlaying;
+        return sfxSource.isPlaying;
     }
 
     public bool IsPlayingMusic()
     {
         return musicSource.isPlaying;
     }
+
+    public void ChangeMusic()
+    {
+        if (countMusic >= 0)
+        {
+            if (countMusic >= music.Length)
+            {
+                countMusic = 0;
+                musicSource.Stop();
+                musicSource.clip = music[countMusic];
+                musicSource.Play();
+            }
+            else
+            {
+                musicSource.Stop();
+                musicSource.clip = music[countMusic];
+                countMusic += 1; 
+                musicSource.Play();
+            }
+        }
+
+    }
 }
+

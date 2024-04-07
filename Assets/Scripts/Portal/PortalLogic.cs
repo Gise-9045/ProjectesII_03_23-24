@@ -1,61 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public class PortalLogic : MonoBehaviour
 {
-    public Collider2D myCollider;
-    [SerializeField] private PortalLogic PortalB;
-    private bool canTeleport;
-    private  WaitForSeconds delayBetweenPortals = new WaitForSeconds(0.5f);
-    private GameObject objectBeingTeleported;
-    [SerializeField] private GameObject lastEnteredPortal; // Referencia al último portal por el que entró el objeto
-
+    public Transform PortalPosition;
+    public bool isOrange;
+    public float distance = 0.2f;
+  
+    private void Start()
+    {
+        
+        //if (!isOrange)
+        //{
+        //    PortalPosition = GameObject.FindGameObjectWithTag("OrangePortal").GetComponent<Transform>();
+        //}
+        //else if(isOrange) 
+        //{
+        //    PortalPosition = GameObject.FindGameObjectWithTag("BluePortal").GetComponent<Transform>();
+        //}
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-       
-
-        if (canTeleport && (collision.CompareTag("Player") || collision.CompareTag("PuzzleBox")))
+        if(Vector2.Distance (transform.position,collision.transform.position) > distance)
         {
-            //StartCoroutine(TeleportDelay(collision.gameObject));
-
-            canTeleport = false;
-           // objectBeingTeleported = collision.gameObject;
-            PassPortal(collision.gameObject);
-           // lastEnteredPortal = gameObject;
-        }
-    }
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        canTeleport = true;
-    }
-    void PassPortal(GameObject obj)
-    {
-        
-        obj.transform.position =PortalB.transform.position;
-        //obj.transform.position = new Vector2((PortalB.transform.position.x+0.5f),PortalB.transform.position.y);
-        //PortalB.StartTeleport(obj);
-    }
-
-    public void StartTeleport(GameObject obj)
-    {
-        if (obj == objectBeingTeleported)
-        {
-            StartCoroutine(TeleportDelay(obj));
-        }
-    }
-
-    IEnumerator TeleportDelay(GameObject obj)
-    {
-        
-        canTeleport = false;
-        yield return delayBetweenPortals;
-        if (lastEnteredPortal != gameObject)
-        {            
-            PortalB.myCollider.enabled = false;
-            PassPortal(obj);
            
-            PortalB.myCollider.enabled = true;
+                collision.transform.position = new Vector2(PortalPosition.position.x, PortalPosition.position.y);
+            
         }
     }
 }

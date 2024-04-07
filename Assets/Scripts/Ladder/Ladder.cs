@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Ladder : MonoBehaviour
 {
@@ -12,9 +13,13 @@ public class Ladder : MonoBehaviour
 
     private Transform topPosition;
 
-    // Start is called before the first frame update
+    private InputController controller;
+
+
     void Start()
     {
+        controller = GameObject.FindWithTag("Player").GetComponent<InputController>();
+
         col = GetComponent<BoxCollider2D>();
         sp = GetComponentInChildren<SpriteRenderer>();
         topPosition = GetComponentInChildren<Transform>().Find("Top");
@@ -28,11 +33,11 @@ public class Ladder : MonoBehaviour
 
     void Update()
     {
-        if(Input.GetKey(KeyCode.W))
+        if (controller.GetMovement().y > 0)
         {
             platform.rotationalOffset = 0f;
         }
-        else if (Input.GetKey(KeyCode.S))
+        else if (controller.GetMovement().y < 0)
         {
             platform.rotationalOffset = 180f;
         }
