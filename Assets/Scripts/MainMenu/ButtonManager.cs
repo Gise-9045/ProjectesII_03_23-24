@@ -11,15 +11,28 @@ public class ButtonManager : MonoBehaviour
     [SerializeField] private GameObject controls;
     [SerializeField] private GameObject volumen;
 
+    [SerializeField] private GameObject VerticalTransition;
+    [SerializeField] private GameObject HorizontalTransition;
 
-    [SerializeField] private Animator VerticalTransition;
-    [SerializeField] private Animator HorizontalTransition;
+    private Animator VerticalTransitionAnim;
+    private Animator HorizontalTransitionAnim;
     [SerializeField] private Animator StartSceneUp;
+
+    void Awake()
+    {
+        VerticalTransition.SetActive(true);
+        HorizontalTransition.SetActive(true);
+    }
+
 
     //MEN� DE INICIO
     private void Start()
     {
-        VerticalTransition.SetBool("ExitDownAnimation", true);
+        VerticalTransitionAnim = VerticalTransition.GetComponentInChildren<Animator>();
+        HorizontalTransitionAnim = HorizontalTransition.GetComponentInChildren<Animator>();
+
+
+        VerticalTransitionAnim.SetBool("ExitDownAnimation", true);
         StartSceneUp.SetBool("Down", true);
 
     }
@@ -27,7 +40,7 @@ public class ButtonManager : MonoBehaviour
 
     public void PlayButton()
     {
-        VerticalTransition.SetBool("ExitDownAnimation", false);
+        VerticalTransitionAnim.SetBool("ExitDownAnimation", false);
         StartSceneUp.SetBool("Down", false);
         StartCoroutine(Play());
     }
@@ -35,7 +48,7 @@ public class ButtonManager : MonoBehaviour
     IEnumerator Play()
     {
 
-        VerticalTransition.SetBool("UpAnimation", true);
+        VerticalTransitionAnim.SetBool("UpAnimation", true);
         StartSceneUp.SetBool("Up", true);
         yield return new WaitForSeconds(0.7f);
         SceneManager.LoadScene("Level 0");
@@ -50,12 +63,11 @@ public class ButtonManager : MonoBehaviour
 
     IEnumerator Settings()
     {
-        HorizontalTransition.SetBool("LeftAnimation", true);
+        HorizontalTransitionAnim.SetBool("LeftAnimation", true);
         yield return new WaitForSeconds(0.5f);
-        HorizontalTransition.SetBool("LeftAnimation", false);
+        HorizontalTransitionAnim.SetBool("LeftAnimation", false);
         mainMenu.SetActive(false);
         options.SetActive(true);
-
     }
 
     public void ExitButton()
@@ -88,9 +100,9 @@ public class ButtonManager : MonoBehaviour
 
     IEnumerator Menu()
     {
-        HorizontalTransition.SetBool("RightAnimation", true);
+        HorizontalTransitionAnim.SetBool("RightAnimation", true);
         yield return new WaitForSeconds(0.5f);
-        HorizontalTransition.SetBool("RightAnimation", false);
+        HorizontalTransitionAnim.SetBool("RightAnimation", false);
         mainMenu.SetActive(true);
         options.SetActive(false);
     }
@@ -106,9 +118,9 @@ public class ButtonManager : MonoBehaviour
 
     IEnumerator Controls()
     {
-        HorizontalTransition.SetBool("LeftAnimation", true);
+        HorizontalTransitionAnim.SetBool("LeftAnimation", true);
         yield return new WaitForSeconds(0.5f);
-        HorizontalTransition.SetBool("LeftAnimation", false);
+        HorizontalTransitionAnim.SetBool("LeftAnimation", false);
 
     }
 
@@ -123,9 +135,9 @@ public class ButtonManager : MonoBehaviour
 
     IEnumerator Settings2()
     {
-        HorizontalTransition.SetBool("RightAnimation", true);
+        HorizontalTransitionAnim.SetBool("RightAnimation", true);
         yield return new WaitForSeconds(0.5f);
-        HorizontalTransition.SetBool("RightAnimation", false);
+        HorizontalTransitionAnim.SetBool("RightAnimation", false);
 
     }
 
