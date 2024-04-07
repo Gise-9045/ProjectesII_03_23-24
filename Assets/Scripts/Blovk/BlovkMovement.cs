@@ -40,7 +40,7 @@ public class BlovkMovement : MonoBehaviour
         BlovkCollider = GetComponent<BoxCollider2D>();
         BlovkRenderer = GetComponentInChildren<SpriteRenderer>();
         BlovkParticles = GetComponentInChildren<ParticleSystem>();
-        BlovkCollider.size = new Vector2 (BlovkRenderer.size.x, BlovkRenderer.size.y);
+        BlovkCollider.size = new Vector2 (BlovkRenderer.size.x - 0.1f, BlovkRenderer.size.y - 0.1f);
 
         playerDetection = GetComponentInChildren<PlayerDetection>();
         wallDetection = GetComponentInChildren<WallDetection>();
