@@ -67,44 +67,42 @@ public class AudioManager : MonoBehaviour
         musicSource.Play();
     }
 
+    private bool musicChanged = false;
+
     private void Update()
     {
         sceneCount = SceneManager.GetActiveScene().buildIndex;
-        Debug.Log(sceneCount);
+        string sceneName = SceneManager.GetActiveScene().name;
 
-        if (SceneManager.GetSceneByName("MainMenu").isLoaded && !isMenu)
+        if (sceneName == "MainMenu")
         {
-            musicSource.clip = musicMainMenu;
-            musicSource.Play();
-            isMenu = true;
+            if (!isMenu)
+            {
+                musicSource.clip = musicMainMenu;
+                musicSource.Play();
+                isMenu = true;
+                musicChanged = false; // Reiniciar el indicador de cambio de música
+            }
         }
-        else if (!SceneManager.GetSceneByName("MainMenu").isLoaded && isMenu)
+        else
         {
-            if (SceneManager.GetSceneByName("Level 0").isLoaded)
+            if (isMenu)
+            {
+                isMenu = false;
+            }
+            // Cambiar la música dependiendo del nombre de la escena
+            if (sceneName == "Level 0" && !musicChanged)
             {
                 ChangeMusic();
+                musicChanged = true; // Marcar que la música ha sido cambiada
             }
-            else if (sceneCount % 10 == 0 && !isPlaying)
+            else if (sceneName == "Level 10" && !musicChanged)
             {
                 ChangeMusic();
+                musicChanged = true; // Marcar que la música ha sido cambiada
             }
-            else
-            {
-                isPlaying = false;
-            }
-            
-            isMenu = false; 
+            // Agrega más condiciones según sea necesario para otras escenas
         }
-        
-        // else if (!SceneManager.GetSceneByName("MainMenu").isLoaded && isMenu)
-        // {
-        //     musicSource.clip = music[0];
-        //     musicSource.Play();
-        //     isMenu = false;
-        //     //Gameplay music
-        // }
-
-        
 
         if(Input.GetKeyDown(KeyCode.M))
         {
@@ -146,7 +144,7 @@ public class AudioManager : MonoBehaviour
     {
         if (countMusic >= 0)
         {
-            if (countMusic == music.Length)
+            if (countMusic >= music.Length)
             {
                 countMusic = 0;
                 musicSource.Stop();
@@ -155,9 +153,9 @@ public class AudioManager : MonoBehaviour
             }
             else
             {
-                countMusic++; 
                 musicSource.Stop();
                 musicSource.clip = music[countMusic];
+                countMusic += 1; 
                 musicSource.Play();
             }
         }
