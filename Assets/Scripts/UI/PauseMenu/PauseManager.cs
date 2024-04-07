@@ -80,18 +80,15 @@ public class PauseManager : MonoBehaviour
     #endregion
 
     #region button manager
-
-    public void ButtonActive(GameObject newScene)
-    {
-        pauseMenu.SetActive(false);
-        newScene.SetActive(true);
-      
-    }
     
-    public void ExitSceneSelected(GameObject currentScene)
+    public void ShowScene(GameObject sceneToChange)
     {
-        pauseMenu.SetActive(true);
-        currentScene.SetActive(false);
+        sceneToChange.SetActive(true);
+    }
+
+    public void HideScene(GameObject sceneToHide)
+    {
+        sceneToHide.SetActive(false);
     }
 
     public void OpenSceneSelected(string  sceneNumber)
