@@ -33,7 +33,11 @@ public class Feedback_Key : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            animKey.SetBool("TouchDoor", false);
+            if (animKey != null)
+            {
+                animKey.SetBool("TouchDoor", false);
+            }
+      
             if (soundCoroutine != null)
             {
                 StopCoroutine(soundCoroutine);
