@@ -60,10 +60,11 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         volumeSettings.StartVolumeSettings();
+
+        countMusic = 0; 
         
         musicSource.clip = musicMainMenu; 
         musicSource.Play();
-        UISound.sprite = soundSprite[0];
     }
 
     private void Update()
@@ -119,47 +120,6 @@ public class AudioManager : MonoBehaviour
                 UISound.sprite = soundSprite[0];
             }
         }
-        
-        // if(Input.GetKeyDown(KeyCode.U))
-        // {
-        //     if(countMusic == music.Length-1)
-        //     {
-        //         musicSource.Stop();
-        //         countMusic = 0;
-        //         musicSource.clip = music[countMusic];
-        //         musicSource.Play();
-        //     }
-        //     else
-        //     {
-        //         musicSource.Stop();
-        //         countMusic++;
-        //         musicSource.clip = music[countMusic];
-        //         musicSource.Play();
-        //     }
-
-           // nameMusic.text = musicSource.clip.name;
-        
-
-        // if(Input.GetKeyDown(KeyCode.I))
-        // {
-        //     if (countMusic == 0)
-        //     {
-        //         musicSource.Stop();
-        //         countMusic = music.Length - 1;
-        //         musicSource.clip = music[countMusic];
-        //         musicSource.Play();
-        //     }
-        //     else
-        //     {
-        //         musicSource.Stop();
-        //         countMusic--;
-        //         musicSource.clip = music[countMusic];
-        //         musicSource.Play();
-        //     }
-        //
-        //    // nameMusic.text = musicSource.clip.name;
-        // }
-
     }
     
     public void PlaySFX(AudioClip clip)
@@ -184,20 +144,24 @@ public class AudioManager : MonoBehaviour
 
     private void ChangeMusic()
     {
-        if (countMusic == 0)
-        { 
-            musicSource.Stop(); 
-            countMusic = music.Length - 1; 
-            musicSource.clip = music[countMusic]; 
-            musicSource.Play();
-        }
-        else 
+        if (countMusic >= 0)
         {
-            musicSource.Stop();
-            countMusic--; 
-            musicSource.clip = music[countMusic];
-            musicSource.Play();
+            if (countMusic == music.Length)
+            {
+                countMusic = 0;
+                musicSource.Stop();
+                musicSource.clip = music[countMusic];
+                musicSource.Play();
+            }
+            else
+            {
+                countMusic++; 
+                musicSource.Stop();
+                musicSource.clip = music[countMusic];
+                musicSource.Play();
+            }
         }
+        
         isPlaying = true; 
 
     }

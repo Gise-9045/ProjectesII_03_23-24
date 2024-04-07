@@ -1,13 +1,16 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PauseManager : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
-    [SerializeField] GameObject horizontal;
-    [SerializeField] GameObject vertical;
+    [SerializeField] private GameObject levelSelector;
+    [SerializeField] private GameObject horizontal;
+    [SerializeField] private GameObject vertical;
+
+    [SerializeField] private Button startButtonSelect;
 
     private Animator verticalAnim;
     private Animator horizontalAnim;
@@ -28,6 +31,8 @@ public class PauseManager : MonoBehaviour
     {
         if (!pauseMenu.activeSelf && controller.GetPause() && oldPauseButton)
         {
+            startButtonSelect.Select();
+
             pauseMenu.SetActive(true);
             Time.timeScale = 0.0f;
             oldPauseButton = false;
@@ -36,6 +41,7 @@ public class PauseManager : MonoBehaviour
         else if (pauseMenu.activeSelf && controller.GetPause() && oldPauseButton)
         {
             pauseMenu.SetActive(false);
+            levelSelector.SetActive(false);
             Time.timeScale = 1.0f;
             oldPauseButton = false;
         }
