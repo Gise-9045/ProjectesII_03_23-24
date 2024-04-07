@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 public class AudioManager : MonoBehaviour
 {
     [Header("----- Audio Source -----")]
-    [SerializeField] private AudioSource musicSource;
+    [SerializeField] public AudioSource musicSource;
     [SerializeField] private AudioSource sfxSource;
 
     [SerializeField] private VolumeSettings volumeSettings;
@@ -74,36 +74,22 @@ public class AudioManager : MonoBehaviour
         sceneCount = SceneManager.GetActiveScene().buildIndex;
         string sceneName = SceneManager.GetActiveScene().name;
 
-        if (sceneName == "MainMenu")
+        if (SceneManager.GetSceneByName("MainMenu").isLoaded && !isMenu)
         {
-            if (!isMenu)
-            {
-                musicSource.clip = musicMainMenu;
-                musicSource.Play();
-                isMenu = true;
-                musicChanged = false; // Reiniciar el indicador de cambio de música
-            }
+            musicSource.clip = musicMainMenu;
+            musicSource.Play();
+            isMenu = true;
         }
-        else
+        else if (!SceneManager.GetSceneByName("MainMenu").isLoaded && isMenu)
         {
-            if (isMenu)
-            {
-                isMenu = false;
-            }
-            // Cambiar la música dependiendo del nombre de la escena
-            if (sceneName == "Level 0" && !musicChanged)
+            if (SceneManager.GetSceneByName("Level 0").isLoaded)
             {
                 ChangeMusic();
-                musicChanged = true; // Marcar que la música ha sido cambiada
             }
-            else if (sceneName == "Level 10" && !musicChanged)
-            {
-                ChangeMusic();
-                musicChanged = true; // Marcar que la música ha sido cambiada
-            }
-            // Agrega más condiciones según sea necesario para otras escenas
+            isMenu = false; 
         }
-
+        
+        
         if(Input.GetKeyDown(KeyCode.M))
         {
             if(musicSource.isPlaying)
@@ -118,6 +104,8 @@ public class AudioManager : MonoBehaviour
                 UISound.sprite = soundSprite[0];
             }
         }
+        
+
     }
     
     public void PlaySFX(AudioClip clip)
@@ -140,7 +128,7 @@ public class AudioManager : MonoBehaviour
         return musicSource.isPlaying;
     }
 
-    private void ChangeMusic()
+    public void ChangeMusic()
     {
         if (countMusic >= 0)
         {
@@ -159,8 +147,6 @@ public class AudioManager : MonoBehaviour
                 musicSource.Play();
             }
         }
-        
-        isPlaying = true; 
 
     }
 }
