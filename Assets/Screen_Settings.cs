@@ -4,20 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 public class Screen_Settings : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    
+    public void SetFullScreen()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    public void SetFullScreen(bool isFullScreen)
-    {
-        Screen.fullScreen = isFullScreen;
+        Screen.fullScreen = !Screen.fullScreen;
     }
 }
