@@ -61,15 +61,16 @@ public class PlayerMovement : MonoBehaviour
     private bool oldDead;
 
     [Header("----- Sound -----")]
-    [SerializeField] private float walkSoundDelay = 1.0f;
-    [SerializeField] private float ClimbSoundDelay = 1.0f;
+    [SerializeField] private float walkSoundDelay;
+    [SerializeField] private float actualWalkSoundDelay;
+    [SerializeField] private float ClimbSoundDelay;
     private bool isPlayingSound = false;
-    private Coroutine soundCoroutine;
     private bool isPlayingJumpSound = false;
+    private Coroutine soundCoroutine;
 
     private float storedMass;
 
-    public InputController controller;
+    private InputController controller;
 
 
     void Start()
@@ -96,7 +97,7 @@ public class PlayerMovement : MonoBehaviour
     
 
 
-    void FixedUpdate()
+    void Update()
     {
         if (player.GetDead())
         {
@@ -179,7 +180,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Walk()
     {
-
         if(slide > 0)
         {
             slide -= Time.deltaTime;
@@ -187,6 +187,16 @@ public class PlayerMovement : MonoBehaviour
         else if(slide < 0)
         {
             slide = 0;
+        }
+
+        if(actualWalkSoundDelay < 0 && ground.OnGround() && (controller.GetMovement().x < 0 || controller.GetMovement().x > 0))
+        {
+            audioManager.PlaySFX(audioManager.walk);
+            actualWalkSoundDelay = walkSoundDelay;
+        }
+        else
+        {
+            actualWalkSoundDelay -= Time.deltaTime;
         }
 
 
@@ -197,30 +207,14 @@ public class PlayerMovement : MonoBehaviour
 
             rb.velocity = new Vector2(player.GetDirection().x * player.GetSpeed(), rb.velocity.y);
 
-            if (!isPlayingSound && ground.OnGround())
-            {
-                soundCoroutine = StartCoroutine(PlaySoundRepeatedly());
-            }
-
             isWalking = true;
         }
         else
         {
             rb.velocity = new Vector2(player.GetDirection().x * (player.GetSpeed() * slide), rb.velocity.y);
-        }
-
-        if(controller.GetMovement().x < 0 || controller.GetMovement().x > 0)
-        {
-            if (soundCoroutine != null)
-            {
-                StopCoroutine(soundCoroutine);
-            }
-            isPlayingSound = false;
 
             isWalking = false;
         }
-
-
     }
 
     IEnumerator PlaySoundRepeatedly()

@@ -407,7 +407,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   musicSource: {fileID: 7511654354629737879}
-  SFXSource: {fileID: 4280445793478339297}
+  sfxSource: {fileID: 4280445793478339297}
+  volumeSettings: {fileID: 0}
   death: {fileID: 8300000, guid: 9691606ceac47a94a80ed5695411b7f1, type: 3}
   walk: {fileID: 8300000, guid: a68491487a70e6942b1edef842e2e878, type: 3}
   jump: {fileID: 8300000, guid: 6fb2a1a1d9e1f3d4f93ac8a06492cebf, type: 3}
@@ -420,7 +421,13 @@ MonoBehaviour:
   findKey: {fileID: 8300000, guid: 6ddea9c79016feb4aa7a19b08d769027, type: 3}
   powerActive: {fileID: 8300000, guid: 204c9c3a5ead0594698bd23da42dfe41, type: 3}
   stairsClimb: {fileID: 8300000, guid: ab54a9b0ce594054dbf7d4b6a6d868ca, type: 3}
-  music: {fileID: 8300000, guid: df402192257a9544c8d073233c9bff6e, type: 3}
+  music:
+  - {fileID: 8300000, guid: 82ce09f5da35bfc4f838518e8040b7ad, type: 3}
+  - {fileID: 8300000, guid: fe771c61c1a7b4240aa6b62b33f45fb5, type: 3}
+  - {fileID: 8300000, guid: b348b58151706ab4194b63ad2935a67d, type: 3}
+  - {fileID: 8300000, guid: 766dde38873e4f745bb6d3414bf9dce8, type: 3}
+  - {fileID: 8300000, guid: 998e71682ab2be44281dddb5ea2cea48, type: 3}
+  - {fileID: 8300000, guid: 829e4d728e3d5f547a5f5c8dd15d5823, type: 3}
   musicMainMenu: {fileID: 8300000, guid: 6bd5c6f08d8cf6c42a9efb335dc67d4f, type: 3}
   musicFall: {fileID: 8300000, guid: c3646aaff2aabd443901517813c38bf8, type: 3}
   UISound: {fileID: 4532678261763847737}
@@ -460,10 +467,10 @@ RectTransform:
   m_Father: {fileID: 674155683583354245}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -894.72986, y: -506.49997}
-  m_SizeDelta: {x: 37.6576, y: 45}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 59, y: 58.100006}
+  m_SizeDelta: {x: 37.657593, y: 45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4727514798558517623
 CanvasRenderer:
@@ -493,7 +500,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 1302730471, guid: cd064291c4987914c8ea5bcec9b93985, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

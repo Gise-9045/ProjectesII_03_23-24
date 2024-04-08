@@ -1,15 +1,16 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PauseManager : MonoBehaviour
 {
     [SerializeField] private GameObject pauseMenu;
-    [SerializeField] private GameObject levelSelectorScreen; 
-    [SerializeField] private GameObject SettingsScene; 
-    [SerializeField] GameObject horizontal;
-    [SerializeField] GameObject vertical;
+    [SerializeField] private GameObject levelSelector;
+    [SerializeField] private GameObject horizontal;
+    [SerializeField] private GameObject vertical;
+
+    [SerializeField] private Button startButtonSelect;
 
     private Animator verticalAnim;
     private Animator horizontalAnim;
@@ -30,6 +31,8 @@ public class PauseManager : MonoBehaviour
     {
         if (!pauseMenu.activeSelf && controller.GetPause() && oldPauseButton)
         {
+            startButtonSelect.Select();
+
             pauseMenu.SetActive(true);
             Time.timeScale = 0.0f;
             oldPauseButton = false;
@@ -38,6 +41,7 @@ public class PauseManager : MonoBehaviour
         else if (pauseMenu.activeSelf && controller.GetPause() && oldPauseButton)
         {
             pauseMenu.SetActive(false);
+            levelSelector.SetActive(false);
             Time.timeScale = 1.0f;
             oldPauseButton = false;
         }
@@ -48,6 +52,7 @@ public class PauseManager : MonoBehaviour
 
     }
 
+    #region Continue & Exit Game
 
     public void ContinueGame()
     {
@@ -71,4 +76,27 @@ public class PauseManager : MonoBehaviour
         SceneManager.LoadScene("MainMenu");
         Time.timeScale = 1.0f;
     }
+
+    #endregion
+
+    #region button manager
+    
+    public void ShowScene(GameObject sceneToChange)
+    {
+        sceneToChange.SetActive(true);
+    }
+
+    public void HideScene(GameObject sceneToHide)
+    {
+        sceneToHide.SetActive(false);
+    }
+
+    public void OpenSceneSelected(string  sceneNumber)
+    {
+        string sceneManager = "Level " + sceneNumber; 
+        SceneManager.LoadScene(sceneManager); 
+    }
+
+    #endregion
+    
 }

@@ -29,11 +29,11 @@ Transform:
   m_GameObject: {fileID: 5243861791936651828}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.3374088, y: 1.7171931, z: 0.39186758}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3066194850191733906
 SpriteRenderer:
@@ -99,11 +99,11 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 3
+  m_Mass: 2
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 9.81
-  m_Material: {fileID: 6200000, guid: cd50139dc7aa3fa4da7c1603f0890b85, type: 2}
+  m_Material: {fileID: 6200000, guid: 20e66013967b766488f67c2b1d080f37, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0

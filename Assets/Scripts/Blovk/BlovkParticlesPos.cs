@@ -8,7 +8,7 @@ public class BlovkParticlesPos : MonoBehaviour
     [SerializeField] private Transform particleTr;
     private Rigidbody2D rb;
     [SerializeField] private ParticleSystem boxParticles;
-
+    SpriteRenderer BlovkRenderer;
 
     private bool onGround;
 
@@ -16,6 +16,7 @@ public class BlovkParticlesPos : MonoBehaviour
     {
         tr = GetComponent<Transform>();
         rb = GetComponent<Rigidbody2D>();
+        BlovkRenderer = GetComponentInChildren<SpriteRenderer>();
 
         onGround = true;
     }
@@ -24,7 +25,7 @@ public class BlovkParticlesPos : MonoBehaviour
     {
         if(rb.velocity.x > 1 && onGround)
         {
-            particleTr.position = new Vector2(tr.position.x - 0.5f, tr.position.y -0.5f);
+            particleTr.position = new Vector2(tr.position.x - 0.5f, tr.position.y -0.5f*BlovkRenderer.size.y);
 
             if(!boxParticles.isPlaying)
             {
@@ -34,7 +35,7 @@ public class BlovkParticlesPos : MonoBehaviour
         }
         else if (rb.velocity.x < -1 && onGround)
         {
-            particleTr.position = new Vector2(tr.position.x + 0.5f, tr.position.y -0.5f);
+            particleTr.position = new Vector2(tr.position.x + 0.5f, tr.position.y -0.5f * BlovkRenderer.size.y);
 
             if(!boxParticles.isPlaying)
             {
