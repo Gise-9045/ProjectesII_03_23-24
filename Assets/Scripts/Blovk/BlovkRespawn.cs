@@ -15,8 +15,11 @@ public class Blovkrespawn : MonoBehaviour
     }
     void MoveBlovk(Transform collision)
     {
+        if(respawn != null)
+        {
+            collision.position = respawn.position;
 
-        collision.position = respawn.position;
+        }
 
     }
 }
