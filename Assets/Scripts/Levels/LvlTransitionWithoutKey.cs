@@ -19,6 +19,8 @@ public class LvlTransitionWithoutKey : MonoBehaviour
 
     private AudioManager audioManager;
 
+    public bool activeSound = true; 
+
 
     void Start()
     {
@@ -38,7 +40,11 @@ public class LvlTransitionWithoutKey : MonoBehaviour
         //transitions.SetTrigger("LvlPassed");
         if (collision.CompareTag("Player"))
         {
-            audioManager.PlaySFX(audioManager.doorOpens);
+            if (activeSound)
+            {
+                audioManager.PlaySFX(audioManager.doorOpens);
+            }
+            
 
             Time.timeScale = 0.0f;
             horizontalAnim.SetBool("ExitLeftAnimation", false);
