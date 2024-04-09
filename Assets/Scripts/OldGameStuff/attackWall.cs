@@ -6,7 +6,7 @@ using UnityEngine;
 public class attackWall : MonoBehaviour
 {
     //[SerializeField] private Attack controllerAtk;
-    private bool playerIsHitting = false; // Track the previous state of the player's attack action
+   
     public TextMeshProUGUI touchCounterText;
     public bool isActive;
     public void Start()

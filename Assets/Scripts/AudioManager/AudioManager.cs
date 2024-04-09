@@ -67,7 +67,6 @@ public class AudioManager : MonoBehaviour
         musicSource.Play();
     }
 
-    private bool musicChanged = false;
 
     private void Update()
     {
