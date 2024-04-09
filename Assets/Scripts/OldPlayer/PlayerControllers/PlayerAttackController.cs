@@ -11,7 +11,7 @@ public class PlayerAttackController : MonoBehaviour
     [SerializeField, Range(0f, 1f)] private float volumeAudio = 0.2f;
     [SerializeField] Animator anim;
     [SerializeField] private ParticleSystem attackParticles;
-    private bool isScreamPlaying = false;
+    
 
     private Enemy enemy;
     private Bullet bullet;
@@ -41,7 +41,7 @@ public class PlayerAttackController : MonoBehaviour
     private void PlayScreamAudio()
     {
         
-        isScreamPlaying = true;
+        
         scream.Play();
         // Assuming scream.clip.length returns the length of the audio clip
         StartCoroutine(ResetScreamFlag(scream.clip.length));
@@ -50,7 +50,7 @@ public class PlayerAttackController : MonoBehaviour
     private IEnumerator ResetScreamFlag(float delay)
     {
         yield return new WaitForSeconds(delay);
-        isScreamPlaying = false;
+        
         anim.SetBool("isAttacking", false);
     }
 

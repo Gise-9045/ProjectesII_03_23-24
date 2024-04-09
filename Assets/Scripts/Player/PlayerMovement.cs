@@ -32,7 +32,6 @@ public class PlayerMovement : MonoBehaviour
     private int doubleJump = 0;
     [SerializeField] private bool canDoubleJump = false;
     [SerializeField] public bool canPickUp = false;
-    private bool isPicked = false;
     private float slide;
 
     bool onStairs;

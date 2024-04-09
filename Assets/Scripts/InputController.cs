@@ -116,11 +116,7 @@ public class InputController : MonoBehaviour
 
     private void LateUpdate()
     {
-        Debug.Log(jumpKeyTap);
-
         movementController = playerInput.actions["Player/Move"].ReadValue<Vector2>();
-
-        Debug.Log(jumpKeyTap);
 
         if (jumpKeyTap)
         {
