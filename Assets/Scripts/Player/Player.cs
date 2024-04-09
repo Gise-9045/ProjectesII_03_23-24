@@ -6,8 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-    private float knockbackVel;
-    private bool knockback;
+  
 
     [SerializeField] private int life;
     [SerializeField] int speed;
@@ -82,18 +81,13 @@ public class Player : MonoBehaviour
         return direction;
     }
 
-    private IEnumerator KnockBack()
-    {
-        yield return new WaitForSecondsRealtime(0.1f);
-        knockback = false;
-    }
+    
 
     private IEnumerator Death()
     {
         audioManager.PlaySFX(audioManager.death);
         yield return new WaitForSecondsRealtime(1f);
         SceneArguments.SceneManager.LoadScene(SceneManager.GetActiveScene().name, "NoTransition");
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         dead = false;
     }
 }

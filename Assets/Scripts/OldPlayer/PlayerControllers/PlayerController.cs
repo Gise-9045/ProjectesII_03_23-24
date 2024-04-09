@@ -25,7 +25,7 @@ public class PlayerController : MonoBehaviour
     public bool canMove;
     public bool canJump;
 
-    private float deathCooldownTime = 0.5f;
+    
     public float deathEndTime = 0;
 
     //[SerializeField] public bool _canDash { get; private set; }
