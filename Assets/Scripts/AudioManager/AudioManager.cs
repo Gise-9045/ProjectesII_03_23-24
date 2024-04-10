@@ -18,6 +18,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip death;
     public AudioClip walk;
     public AudioClip jump;
+    public AudioClip fallToGround;
     public AudioClip dash;
     public AudioClip key;
     public AudioClip boxOpen;

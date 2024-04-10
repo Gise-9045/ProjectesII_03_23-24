@@ -19,12 +19,15 @@ public class Player : MonoBehaviour
 
     private AudioManager audioManager;
     [SerializeField] private GameObject crownGodMode;
+
+    private InputController controller;
     
     void Start()
     {
         direction= new Vector2(1, 1);
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-        canDie = true; 
+        canDie = true;
+        controller = GetComponent<InputController>();
 
     }
 
@@ -43,7 +46,7 @@ public class Player : MonoBehaviour
         }
 
 
-        if(Input.GetKeyDown(KeyCode.R)) { SceneArguments.SceneManager.LoadScene(SceneManager.GetActiveScene().name, "NoTransition"); }
+        if(controller.GetRestart()) { SceneArguments.SceneManager.LoadScene(SceneManager.GetActiveScene().name, "NoTransition"); }
     }
 
     public void SetLife(int l) { life = l; }

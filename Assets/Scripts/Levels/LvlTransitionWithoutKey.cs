@@ -64,7 +64,7 @@ public class LvlTransitionWithoutKey : MonoBehaviour
 
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        Debug.Log("LvlPassed");
+        //Debug.Log("LvlPassed");
 
     }
 }
