@@ -60,9 +60,13 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("----- Sound -----")]
     [SerializeField] private float walkSoundDelay;
-    [SerializeField] private float actualWalkSoundDelay;
+    private float actualWalkSoundDelay;
+
     [SerializeField] private bool fallToGroundSound;
-    [SerializeField] private float ClimbSoundDelay;
+
+    [SerializeField] private float climbSoundDelay;
+    private float actualClimbSoundDelay;
+
     private bool isPlayingSound = false;
     private bool isPlayingJumpSound = false;
     private Coroutine soundCoroutine;
@@ -216,29 +220,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    IEnumerator PlaySoundRepeatedly()
-    {
-        isPlayingSound = true;
-
-        while (true)
-        {
-            if(ground.OnGround())
-                audioManager.PlaySFX(audioManager.walk);
-            yield return new WaitForSeconds(walkSoundDelay);
-        }
-    }
-
-    IEnumerator PlaySoundRepeatedlyStairs()
-    {
-        isPlayingSound = true;
-
-        while (true)
-        {
-            if (ground.OnGround())
-                audioManager.PlaySFX(audioManager.stairsClimb);
-            yield return new WaitForSeconds(walkSoundDelay);
-        }
-    }
 
     void Jump()
     {
@@ -252,8 +233,6 @@ public class PlayerMovement : MonoBehaviour
 
     void CheckJump()
     {
-        //Debug.Log(controller.GetJumpKeyTap());
-
         if (ground.OnGround())
         {
             actualCoyoteTime = coyoteTime;
@@ -262,8 +241,7 @@ public class PlayerMovement : MonoBehaviour
             {
                 fallToGroundSound = true;
 
-                //CAMBIAR POR SONIDO FINAL
-                audioManager.PlaySFX(audioManager.boxSurface);
+                audioManager.PlaySFX(audioManager.fallToGround);
             }
         }
         else
@@ -354,7 +332,19 @@ public class PlayerMovement : MonoBehaviour
 
     void Stairs()
     {
-        if((controller.GetMovement().y < 0  || controller.GetMovement().y > 0) && controller.GetMovement().x == 0)
+        //ARREGLAR
+        if (actualClimbSoundDelay < 0 && onStairs && (controller.GetMovement().y < 0 || controller.GetMovement().y > 0))
+        {
+            audioManager.PlaySFX(audioManager.stairsClimb);
+            actualClimbSoundDelay = climbSoundDelay;
+        }
+        else
+        {
+            actualClimbSoundDelay -= Time.deltaTime;
+        }
+
+
+        if ((controller.GetMovement().y < 0  || controller.GetMovement().y > 0) && controller.GetMovement().x == 0)
         {
             tr.position = new Vector2((float)(tr.position.x + 0.05 * (stairsPos.x - tr.position.x)), tr.position.y);
         }
@@ -363,20 +353,11 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.gravityScale = 0f;
             rb.velocity = new Vector2(rb.velocity.x, 5);
-            if (!isPlayingSound && ground.OnGround())
-            {
-                soundCoroutine = StartCoroutine(PlaySoundRepeatedlyStairs());
-            }
         }
         else if(controller.GetMovement().y < 0)
         {
             rb.gravityScale = 0f;
             rb.velocity = new Vector2(rb.velocity.x, -5);
-            if (!isPlayingSound && ground.OnGround())
-            {
-                soundCoroutine = StartCoroutine(PlaySoundRepeatedlyStairs());
-            }
-
         }
         else
         {
@@ -401,7 +382,6 @@ public class PlayerMovement : MonoBehaviour
         if (collision.tag == "Ladder")
         {
             audioManager.StopSFX(audioManager.stairsClimb);
-            StopCoroutine(PlaySoundRepeatedlyStairs());
             onStairs = false;
             usingStairs = false;
         }
@@ -413,7 +393,6 @@ public class PlayerMovement : MonoBehaviour
         rb.gravityScale = 0f;
         audioManager.PlaySFX(audioManager.dash);
         dashTrail.Play();
-
     }
    
 

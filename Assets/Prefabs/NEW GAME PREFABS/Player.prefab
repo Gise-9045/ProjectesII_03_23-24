@@ -5107,8 +5107,8 @@ MonoBehaviour:
   walkParticles: {fileID: 6481496431267818245}
   jumpParticles: {fileID: 7029129437548754459}
   walkSoundDelay: 0.25
-  actualWalkSoundDelay: 0
-  ClimbSoundDelay: 1
+  fallToGroundSound: 0
+  climbSoundDelay: 0.25
 --- !u!114 &1453456629046782491
 MonoBehaviour:
   m_ObjectHideFlags: 0
