@@ -14,7 +14,6 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D rb;
     private Transform tr;
-    private GameObject carriedBox;
     [SerializeField] private float jumpForce;
     [SerializeField] private float jumpTimeCounter;
     private float actualJumpTimeCounter;
@@ -62,6 +61,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("----- Sound -----")]
     [SerializeField] private float walkSoundDelay;
     [SerializeField] private float actualWalkSoundDelay;
+    [SerializeField] private bool fallToGroundSound;
     [SerializeField] private float ClimbSoundDelay;
     private bool isPlayingSound = false;
     private bool isPlayingJumpSound = false;
@@ -258,10 +258,18 @@ public class PlayerMovement : MonoBehaviour
         {
             actualCoyoteTime = coyoteTime;
             doubleJump = 0;
+            if(!fallToGroundSound)
+            {
+                fallToGroundSound = true;
+
+                //CAMBIAR POR SONIDO FINAL
+                audioManager.PlaySFX(audioManager.boxSurface);
+            }
         }
         else
         {
             actualCoyoteTime -= Time.deltaTime;
+            fallToGroundSound = false;
         }
 
 
