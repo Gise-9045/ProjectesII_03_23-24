@@ -89,6 +89,15 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": ""Tap"",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Restart"",
+                    ""type"": ""Button"",
+                    ""id"": ""795eca05-5e34-4bb1-8e04-3bf5900735d7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Tap"",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -491,11 +500,33 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""1b918f53-fb72-4cb9-9027-b88a38ea7b07"",
-                    ""path"": ""<Gamepad>/rightStickPress"",
+                    ""path"": ""<Gamepad>/leftStickPress"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""ColorsMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a9e992e2-44ef-4003-8552-45a0aa518fb9"",
+                    ""path"": ""<Keyboard>/r"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Restart"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0dd9148d-707b-4c95-9c94-5cbf4af3cba6"",
+                    ""path"": ""<Gamepad>/rightStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Restart"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -513,6 +544,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
         m_Player_GodMode = m_Player.FindAction("God Mode", throwIfNotFound: true);
         m_Player_ColorsMenu = m_Player.FindAction("ColorsMenu", throwIfNotFound: true);
+        m_Player_Restart = m_Player.FindAction("Restart", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -581,6 +613,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Pause;
     private readonly InputAction m_Player_GodMode;
     private readonly InputAction m_Player_ColorsMenu;
+    private readonly InputAction m_Player_Restart;
     public struct PlayerActions
     {
         private @InputSystem m_Wrapper;
@@ -592,6 +625,7 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         public InputAction @Pause => m_Wrapper.m_Player_Pause;
         public InputAction @GodMode => m_Wrapper.m_Player_GodMode;
         public InputAction @ColorsMenu => m_Wrapper.m_Player_ColorsMenu;
+        public InputAction @Restart => m_Wrapper.m_Player_Restart;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -622,6 +656,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @ColorsMenu.started += instance.OnColorsMenu;
             @ColorsMenu.performed += instance.OnColorsMenu;
             @ColorsMenu.canceled += instance.OnColorsMenu;
+            @Restart.started += instance.OnRestart;
+            @Restart.performed += instance.OnRestart;
+            @Restart.canceled += instance.OnRestart;
         }
 
         private void UnregisterCallbacks(IPlayerActions instance)
@@ -647,6 +684,9 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
             @ColorsMenu.started -= instance.OnColorsMenu;
             @ColorsMenu.performed -= instance.OnColorsMenu;
             @ColorsMenu.canceled -= instance.OnColorsMenu;
+            @Restart.started -= instance.OnRestart;
+            @Restart.performed -= instance.OnRestart;
+            @Restart.canceled -= instance.OnRestart;
         }
 
         public void RemoveCallbacks(IPlayerActions instance)
@@ -673,5 +713,6 @@ public partial class @InputSystem: IInputActionCollection2, IDisposable
         void OnPause(InputAction.CallbackContext context);
         void OnGodMode(InputAction.CallbackContext context);
         void OnColorsMenu(InputAction.CallbackContext context);
+        void OnRestart(InputAction.CallbackContext context);
     }
 }

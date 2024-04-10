@@ -11,7 +11,7 @@ public class DetectPlayer : MonoBehaviour
         if(collision.gameObject.CompareTag("Player"))
         {
             player.TakeDamage();
-            Debug.Log("Damage"); 
+            //Debug.Log("Damage"); 
         }
     }
 }

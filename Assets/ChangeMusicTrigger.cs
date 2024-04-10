@@ -22,7 +22,7 @@ public class ChangeMusicTrigger : MonoBehaviour
                 audioManager.musicSource.Stop();
                 audioManager.ChangeMusic();
                 falling = false;
-                Debug.Log("change music");
+                //Debug.Log("change music");
                 lastSceneName = SceneManager.GetActiveScene().name;
                 PlayerPrefs.SetString("LastSceneName", lastSceneName);
 

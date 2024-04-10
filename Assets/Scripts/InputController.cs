@@ -13,6 +13,7 @@ public class InputController : MonoBehaviour
     bool powerUpKey = false;
     bool pauseKey = false;
     bool colorsMenuKey = false;
+    bool restart = false;
 
     private void Awake()
     {
@@ -30,7 +31,8 @@ public class InputController : MonoBehaviour
         playerInput.actions["Player/Pause"].canceled += OnStopPauseAI;
 
         playerInput.actions["Player/ColorsMenu"].performed += OnColorsAI;
-        playerInput.actions["Player/ColorsMenu"].canceled += OnStopColorsAI;
+
+        playerInput.actions["Player/Restart"].performed += OnRestartAI;
     }
 
     public bool GetJumpKeyTap()
@@ -61,6 +63,11 @@ public class InputController : MonoBehaviour
     public bool GetColorsMenu()
     {
         return colorsMenuKey;
+    }
+
+    public bool GetRestart()
+    {
+        return restart;
     }
 
 
@@ -109,9 +116,9 @@ public class InputController : MonoBehaviour
         colorsMenuKey = true;
     }
 
-    private void OnStopColorsAI(InputAction.CallbackContext context)
+    private void OnRestartAI(InputAction.CallbackContext context)
     {
-        colorsMenuKey = false;
+        restart = true;
     }
 
     private void LateUpdate()
@@ -131,6 +138,11 @@ public class InputController : MonoBehaviour
         if (colorsMenuKey)
         {
             colorsMenuKey = false;
+        }
+
+        if (restart)
+        {
+            restart = false;
         }
     }
 }
