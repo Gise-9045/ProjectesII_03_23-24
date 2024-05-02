@@ -19,6 +19,8 @@ public class LvlTransitionWithoutKey : MonoBehaviour
 
     private AudioManager audioManager;
 
+    public bool activeSound = true; 
+
 
     void Start()
     {
@@ -28,20 +30,20 @@ public class LvlTransitionWithoutKey : MonoBehaviour
 
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //transitions.SetTrigger("LvlPassed");
+        
         if (collision.CompareTag("Player"))
         {
-            audioManager.PlaySFX(audioManager.doorOpens);
+            if (activeSound)
+            {
+                audioManager.PlaySFX(audioManager.doorOpens);
+            }
+            
 
             Time.timeScale = 0.0f;
-            horizontalAnim.SetBool("ExitLeftAnimation", false);
+           
             StartCoroutine(LevelTransition());
  
         }
@@ -62,7 +64,7 @@ public class LvlTransitionWithoutKey : MonoBehaviour
 
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        Debug.Log("LvlPassed");
+        //Debug.Log("LvlPassed");
 
     }
 }

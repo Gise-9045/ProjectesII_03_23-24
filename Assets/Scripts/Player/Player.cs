@@ -6,8 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-    private float knockbackVel;
-    private bool knockback;
+  
 
     [SerializeField] private int life;
     [SerializeField] int speed;
@@ -20,12 +19,15 @@ public class Player : MonoBehaviour
 
     private AudioManager audioManager;
     [SerializeField] private GameObject crownGodMode;
+
+    private InputController controller;
     
     void Start()
     {
         direction= new Vector2(1, 1);
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-        canDie = true; 
+        canDie = true;
+        controller = GetComponent<InputController>();
 
     }
 
@@ -44,7 +46,7 @@ public class Player : MonoBehaviour
         }
 
 
-        if(Input.GetKeyDown(KeyCode.R)) { SceneArguments.SceneManager.LoadScene(SceneManager.GetActiveScene().name, "NoTransition"); }
+        if(controller.GetRestart()) { SceneArguments.SceneManager.LoadScene(SceneManager.GetActiveScene().name, "NoTransition"); }
     }
 
     public void SetLife(int l) { life = l; }
@@ -82,18 +84,13 @@ public class Player : MonoBehaviour
         return direction;
     }
 
-    private IEnumerator KnockBack()
-    {
-        yield return new WaitForSecondsRealtime(0.1f);
-        knockback = false;
-    }
+    
 
     private IEnumerator Death()
     {
         audioManager.PlaySFX(audioManager.death);
         yield return new WaitForSecondsRealtime(1f);
         SceneArguments.SceneManager.LoadScene(SceneManager.GetActiveScene().name, "NoTransition");
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         dead = false;
     }
 }
