@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-
+//HAY QUE CAMBIAR EL COMO FUNCIONAN LOS POWERUPS
 public class ColorReceiver : MonoBehaviour
 {
    [SerializeField] private SpriteRenderer _spriteRenderer;

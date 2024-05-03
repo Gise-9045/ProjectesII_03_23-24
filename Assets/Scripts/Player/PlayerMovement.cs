@@ -8,6 +8,14 @@ using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    //SE UTILIZARÁ PROXIMAMENTE
+    public enum PlayerStates { WAIT, JUMP, WALK, DASH, STAIRS}
+
+
+
+
+
+
     private Player player;
 
     private Vector2 stairsPos;
@@ -75,6 +83,8 @@ public class PlayerMovement : MonoBehaviour
 
     private InputController controller;
 
+    [SerializeField] private PlayerJump playerJump;
+
 
     void Start()
     {
@@ -90,7 +100,7 @@ public class PlayerMovement : MonoBehaviour
 
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
 
-        ground.OnGroundTouchdown += jumpParticles.Play;
+        //ground.OnGroundTouchdown += jumpParticles.Play;
         ground.OnGroundTouchdown += walkParticles.Play;
 
         ground.OnLeaveGround += walkParticles.Stop;
@@ -175,8 +185,11 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.gravityScale = 9.81f;
         }
-      
-        CheckJump();
+
+        //AHORA MISMO NO SE PUEDE HACER DOUBLE JUMP, SE ARREGLARÁ CUANDO SE CAMBIE EL METODO DE OBTENER LOS POWERUPS
+        playerJump.CheckJump();
+
+        //CheckJump();
 #endregion
 
     }

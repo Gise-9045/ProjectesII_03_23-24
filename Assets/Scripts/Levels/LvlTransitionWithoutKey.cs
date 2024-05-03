@@ -14,6 +14,8 @@ public class LvlTransitionWithoutKey : MonoBehaviour
     private Animator verticalAnim;
     private Animator horizontalAnim;
 
+    private Animator doorAnim;
+
     private enum Transition { NONE, LEFT };
     [SerializeField] private Transition transition;
 
@@ -27,7 +29,7 @@ public class LvlTransitionWithoutKey : MonoBehaviour
         verticalAnim = vertical.GetComponentInChildren<Animator>();
         horizontalAnim = horizontal.GetComponentInChildren<Animator>();
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-
+        doorAnim = GetComponentInChildren<Animator>();
     }
 
     
@@ -38,13 +40,15 @@ public class LvlTransitionWithoutKey : MonoBehaviour
         {
             if (activeSound)
             {
-                audioManager.PlaySFX(audioManager.doorOpens);
+                //audioManager.PlaySFX(audioManager.doorOpens);
             }
             
 
-            Time.timeScale = 0.0f;
+            //Time.timeScale = 0.0f;
            
-            StartCoroutine(LevelTransition());
+            //StartCoroutine(LevelTransition());
+
+            doorAnim.SetBool("CloseDoor", true);
  
         }
 
