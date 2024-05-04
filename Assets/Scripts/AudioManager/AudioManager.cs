@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class AudioManager : MonoBehaviour
 {
@@ -49,14 +50,20 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
+
+        AudioManager[] audioManagers = FindObjectsOfType<AudioManager>();
+        if (audioManagers.Length > 1)
         {
-            DontDestroyOnLoad(gameObject);
-            Instance = this;
+            Destroy(gameObject);
+            return;
         }
-        else
-            Destroy(this.gameObject);
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
+
+
+
 
     private void Start()
     {
