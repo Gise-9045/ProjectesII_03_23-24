@@ -4,7 +4,6 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class AudioManager : MonoBehaviour
 {
@@ -91,7 +90,12 @@ public class AudioManager : MonoBehaviour
         {
             if (SceneManager.GetSceneByName("Level 0").isLoaded)
             {
-                ChangeMusic();
+                
+                
+                    ChangeMusic();
+
+                
+
             }
             isMenu = false; 
         }
@@ -150,8 +154,18 @@ public class AudioManager : MonoBehaviour
             {
                 musicSource.Stop();
                 musicSource.clip = music[countMusic];
-                countMusic += 1; 
-                musicSource.Play();
+                if(countMusic >= 5)
+                {
+                    countMusic = 1;
+                    musicSource.Play();
+
+                }
+                else
+                {
+                    countMusic += 1;
+                    musicSource.Play();
+                }
+               
             }
         }
 
