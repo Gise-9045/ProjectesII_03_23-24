@@ -25,6 +25,8 @@ public class PlayerJump : MonoBehaviour
 
     private AudioManager audioManager;
 
+    private PlayerPowerUpManager powerUpManager;
+
 
     void Start()
     {
@@ -33,6 +35,8 @@ public class PlayerJump : MonoBehaviour
         ground = GetComponentInChildren<PlayerGroundDetection>();
         ground.OnGroundTouchdown += jumpParticles.Play;
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        powerUpManager = GetComponent<PlayerPowerUpManager>();
+
         coyoteTime = 0.3f;
         isJumping = false;
         
@@ -40,7 +44,14 @@ public class PlayerJump : MonoBehaviour
 
     void Update()
     {
-        
+        if(powerUpManager.GetPowerUp() == ColorTypes.BLUE)
+        {
+            canDoubleJump = true;
+        }
+        else
+        {
+            canDoubleJump = false;
+        }
     }
 
     void Jump()
@@ -112,12 +123,7 @@ public class PlayerJump : MonoBehaviour
             rb.gravityScale = 9.81f;
         }
 
-        //isPlayingJumpSound = true;
-    }
 
-    //CUANDO SE CAMBIE EL COMO FUNCIONAN LOS POWERUPS, ESTO TIENE QUE DESAPARECER
-    public void SetDoubleJump(bool condition)
-    {
-        canDoubleJump = condition;
+        //isPlayingJumpSound = true;
     }
 }

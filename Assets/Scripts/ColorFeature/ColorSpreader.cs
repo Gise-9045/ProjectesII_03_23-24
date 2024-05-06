@@ -39,10 +39,11 @@ public class ColorSpreader : MonoBehaviour
 
     private void Start()
     {
-
         _spriteRenderer = GetComponent<Tilemap>();
+
         // Buscar el color correspondiente en la base de datos y asignarlo
         ColorProperty colorProperty = colorDatabase.colorList.Find(c => c.colorScheme == colorType);
+        
         if (colorProperty != null)
         {
             _spriteRenderer.color = colorProperty.color;

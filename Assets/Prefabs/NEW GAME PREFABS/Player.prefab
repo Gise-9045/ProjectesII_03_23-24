@@ -4944,7 +4944,9 @@ GameObject:
   - component: {fileID: 465751228293826072}
   - component: {fileID: 2855868302909866203}
   - component: {fileID: 4699660460486079957}
+  - component: {fileID: 1725291386264671258}
   - component: {fileID: 8423275515645597270}
+  - component: {fileID: 4748464295642078719}
   - component: {fileID: 1453456629046782491}
   - component: {fileID: 1300749428106360260}
   - component: {fileID: 6038616916327065998}
@@ -5111,6 +5113,21 @@ MonoBehaviour:
   fallToGroundSound: 0
   climbSoundDelay: 0.25
   playerJump: {fileID: 8423275515645597270}
+  playerWalk: {fileID: 1725291386264671258}
+  playerStairs: {fileID: 4748464295642078719}
+--- !u!114 &1725291386264671258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4142734498769889216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 826ff62998c90c883a80a93c62b4c763, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  walkSoundDelay: 0.25
 --- !u!114 &8423275515645597270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5128,6 +5145,19 @@ MonoBehaviour:
   fallToGroundSound: 0
   canDoubleJump: 0
   jumpParticles: {fileID: 7029129437548754459}
+--- !u!114 &4748464295642078719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4142734498769889216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c176384eda3d8718bad727c84363a7fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  climbSoundDelay: 0.25
 --- !u!114 &1453456629046782491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5157,8 +5187,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62b06c0f1ad325f48b2d6761d8918926, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spriteRenderer: {fileID: 7750458099682802608}
-  boolManaging: {fileID: 4699660460486079957}
 --- !u!95 &6038616916327065998
 Animator:
   serializedVersion: 5

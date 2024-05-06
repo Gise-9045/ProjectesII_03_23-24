@@ -83,7 +83,14 @@ public class PlayerMovement : MonoBehaviour
 
     private InputController controller;
 
+
+
+
+
+
     [SerializeField] private PlayerJump playerJump;
+    [SerializeField] private PlayerWalk playerWalk;
+    [SerializeField] private PlayerStairs playerStairs;
 
 
     void Start()
@@ -112,6 +119,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        //NOTA PARA ADRI POR ADRI. ESTO ES UNA GUARRERÍA ARREGLALO CUANTO ANTES
         if (player.GetDead())
         {
             animator.SetBool("Stairs", false);
@@ -153,27 +161,28 @@ public class PlayerMovement : MonoBehaviour
         }
 
         animator.SetFloat("FallVelocity", rb.velocity.y);
-        animator.SetBool("Grounded", ground.OnGround() || onStairs);
-        animator.SetBool("Stairs", onStairs && controller.GetMovement().y != 0);
+        animator.SetBool("Grounded", ground.OnGround() || playerStairs.GetOnStairs());
+        animator.SetBool("Stairs", playerStairs.GetOnStairs() && controller.GetMovement().y != 0);
         animator.SetBool("Dash", dashing);
         animator.SetFloat("DashVelocity", rb.velocity.x);
 
         animator.SetBool("Walk", controller.GetMovement().x != 0);
 
-        Walk();
+        playerWalk.Walk();
+        //Walk();
         DashCheck();
         
-        #region Movement
-        if (onStairs)
+        if (playerStairs.GetOnStairs())
         {
-            if (usingStairs)
+            if (playerStairs.GetUsingStairs())
             {
-                Stairs();
+                playerStairs.Stairs();
+                //Stairs();
                 rb.gravityScale = 0f;
             }
             else
             {
-                usingStairs = controller.GetMovement().y > 0 || rb.velocity.y <= 0.0f;
+                playerStairs.SetUsingStairs(controller.GetMovement().y > 0 || rb.velocity.y <= 0.0f);
             }
 
         }
@@ -186,125 +195,11 @@ public class PlayerMovement : MonoBehaviour
             rb.gravityScale = 9.81f;
         }
 
-        //AHORA MISMO NO SE PUEDE HACER DOUBLE JUMP, SE ARREGLARÁ CUANDO SE CAMBIE EL METODO DE OBTENER LOS POWERUPS
         playerJump.CheckJump();
 
         //CheckJump();
-#endregion
-
     }
 
-    void Walk()
-    {
-        if(slide > 0)
-        {
-            slide -= Time.deltaTime;
-        }
-        else if(slide < 0)
-        {
-            slide = 0;
-        }
-
-        if(actualWalkSoundDelay < 0 && ground.OnGround() && (controller.GetMovement().x < 0 || controller.GetMovement().x > 0))
-        {
-            audioManager.PlaySFX(audioManager.walk);
-            actualWalkSoundDelay = walkSoundDelay;
-        }
-        else
-        {
-            actualWalkSoundDelay -= Time.deltaTime;
-        }
-
-
-        if (controller.GetMovement().x < 0 || controller.GetMovement().x > 0)
-        {
-            slide = 0.1f;
-            player.SetDirection(new Vector2(controller.GetMovement().x, player.GetDirection().y));
-
-            rb.velocity = new Vector2(player.GetDirection().x * player.GetSpeed(), rb.velocity.y);
-
-            isWalking = true;
-        }
-        else
-        {
-            rb.velocity = new Vector2(player.GetDirection().x * (player.GetSpeed() * slide), rb.velocity.y);
-
-            isWalking = false;
-        }
-    }
-
-
-    void Jump()
-    {
-        isJumping = true;
-        actualJumpTimeCounter = jumpTimeCounter;
-        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-        jumpParticles.Play();
-
-        audioManager.PlaySFX(audioManager.jump);
-    }
-
-    void CheckJump()
-    {
-        if (ground.OnGround())
-        {
-            actualCoyoteTime = coyoteTime;
-            doubleJump = 0;
-            if(!fallToGroundSound)
-            {
-                fallToGroundSound = true;
-
-                audioManager.PlaySFX(audioManager.fallToGround);
-            }
-        }
-        else
-        {
-            actualCoyoteTime -= Time.deltaTime;
-            fallToGroundSound = false;
-        }
-
-
-        if (actualCoyoteTime > 0 && controller.GetJumpKeyTap())
-        {
-            Jump();
-            actualCoyoteTime = 0f;
-            oldJump = true;
-        }
-        else if (canDoubleJump && doubleJump < 1 && controller.GetJumpKeyTap() && !ground.OnGround())
-        {
-            Jump();
-            doubleJump++; // Incrementa el contador de saltos después de un doble salto
-            oldJump = true;
-        }
-
-        if (controller.GetJumpkeyHold() && isJumping)
-        {
-            oldJump = true;
-
-            if (actualJumpTimeCounter > 0)
-            {
-                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-                rb.gravityScale = 0.0f;
-                actualJumpTimeCounter -= Time.deltaTime;
-            }
-            else
-            {
-                rb.gravityScale = 9.81f;
-                isJumping = false;
-            }
-        }
-
-
-        if (!controller.GetJumpkeyHold() && oldJump)
-        {
-            oldJump = false;
-            isJumping = false;
-            actualCoyoteTime = 0f;
-            rb.gravityScale = 9.81f;
-        }
-
-        isPlayingJumpSound = true;
-    }
 
     void DashCheck()
     {
@@ -330,10 +225,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    public void SetDoubleJump(bool condition)
-    {
-        canDoubleJump = condition;
-    }
+
     public void SetDash(bool condition)
     {
         canDash = condition;
@@ -341,63 +233,6 @@ public class PlayerMovement : MonoBehaviour
     public void SetPickUp(bool condition)
     {
         canPickUp = condition;
-    }
-
-    void Stairs()
-    {
-        //ARREGLAR
-        if (actualClimbSoundDelay < 0 && onStairs && (controller.GetMovement().y < 0 || controller.GetMovement().y > 0))
-        {
-            audioManager.PlaySFX(audioManager.stairsClimb);
-            actualClimbSoundDelay = climbSoundDelay;
-        }
-        else
-        {
-            actualClimbSoundDelay -= Time.deltaTime;
-        }
-
-
-        if ((controller.GetMovement().y < 0  || controller.GetMovement().y > 0) && controller.GetMovement().x == 0)
-        {
-            tr.position = new Vector2((float)(tr.position.x + 0.05 * (stairsPos.x - tr.position.x)), tr.position.y);
-        }
-
-        if (controller.GetMovement().y > 0)
-        {
-            rb.gravityScale = 0f;
-            rb.velocity = new Vector2(rb.velocity.x, 5);
-        }
-        else if(controller.GetMovement().y < 0)
-        {
-            rb.gravityScale = 0f;
-            rb.velocity = new Vector2(rb.velocity.x, -5);
-        }
-        else
-        {
-            rb.velocity = new Vector2(rb.velocity.x, 0);
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.tag == "Ladder")
-        {
-            onStairs = true;
-
-            stairsPos = collision.transform.position;
-        }
-       
-
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.tag == "Ladder")
-        {
-            audioManager.StopSFX(audioManager.stairsClimb);
-            onStairs = false;
-            usingStairs = false;
-        }
     }
    
     private void Dash()
@@ -407,6 +242,4 @@ public class PlayerMovement : MonoBehaviour
         audioManager.PlaySFX(audioManager.dash);
         dashTrail.Play();
     }
-   
-
 }
