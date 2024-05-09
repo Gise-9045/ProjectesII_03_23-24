@@ -5153,7 +5153,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0.1929782, b: 0.1929782, a: 1}
+      maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -8995,7 +8995,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0.19607843, b: 0.19607843, a: 1}
+      maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -9987,10 +9987,9 @@ MonoBehaviour:
   isJumping: 0
   isWalking: 0
   canPickUp: 0
-  dashTrail: {fileID: 2664831525850683291}
-  deathParticles: {fileID: 2654189308330648487}
+  deathParticles1: {fileID: 3104442984991272622}
+  deathParticles2: {fileID: 2654189308330648487}
   walkParticles: {fileID: 6481496431267818245}
-  jumpParticles: {fileID: 7029129437548754459}
   playerJump: {fileID: 8423275515645597270}
   playerWalk: {fileID: 1725291386264671258}
   playerStairs: {fileID: 4748464295642078719}
@@ -20182,7 +20181,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 1, g: 0.25, b: 0.25, a: 1}
+      maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}

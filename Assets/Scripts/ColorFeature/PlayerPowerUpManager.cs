@@ -8,10 +8,13 @@ public class PlayerPowerUpManager : MonoBehaviour
    private SpriteRenderer _spriteRenderer;
    
    ColorTypes actualColor;
+   Color actualColorRGB;
    
     void Start ()
     {
         _spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        actualColor = ColorTypes.NULL;
+        actualColorRGB = new Color(255, 255, 255, 1);
     }
 
    public ColorTypes GetPowerUp()
@@ -19,20 +22,25 @@ public class PlayerPowerUpManager : MonoBehaviour
         return actualColor;
    }
 
+   public Color GetColorRGB()
+   {
+        return actualColorRGB;
+   }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.collider.CompareTag("ColorChange"))
         {
             //Debug.Log("BEEP");
-            Color color = collision.collider.GetComponent<ColorSpreader>().GetColor();
+            actualColorRGB = collision.collider.GetComponent<ColorSpreader>().GetColor();
             
-            if (color == null) 
+            if (actualColorRGB == null) 
             {
                 return;
             }
 
             actualColor = collision.collider.GetComponent<ColorSpreader>().GetColorType();
-            _spriteRenderer.color = color;
+            _spriteRenderer.color = actualColorRGB;
         }
     }
 }

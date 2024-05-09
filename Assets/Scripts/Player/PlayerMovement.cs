@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     private Player player;
 
     private Rigidbody2D rb;
+    private SpriteRenderer childrenSprite;
 
 
     private PlayerGroundDetection ground;
@@ -50,6 +51,7 @@ public class PlayerMovement : MonoBehaviour
 
     PlayerStates actualState;
 
+    private PlayerPowerUpManager powerUpManager;
 
     void Start()
     {
@@ -62,14 +64,17 @@ public class PlayerMovement : MonoBehaviour
 
         actualState = PlayerStates.STOP;
 
+        childrenSprite = GetComponentInChildren<SpriteRenderer>();
+
         //ground.OnGroundTouchdown += jumpParticles.Play;
         ground.OnGroundTouchdown += walkParticles.Play;
 
         ground.OnLeaveGround += walkParticles.Stop;
 
         oldDead = false;
+        powerUpManager = GetComponent<PlayerPowerUpManager>();
     }
-    
+
 
 
     void Update()
@@ -83,12 +88,24 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("Grounded", true);
 
 
-            animator.SetBool("Death", true);
+            //animator.SetBool("Death", true);
 
             if(player.GetDead() && player.GetDead() != oldDead)
             {
+                var main = deathParticles1.main;
+                main.startColor = powerUpManager.GetColorRGB();
+
+                var trail = deathParticles1.trails;
+                trail.colorOverTrail = powerUpManager.GetColorRGB();
+                trail.colorOverLifetime = powerUpManager.GetColorRGB();
+
+                main = deathParticles2.main;
+                main.startColor = powerUpManager.GetColorRGB();
+
+
                 deathParticles1.Play();
                 deathParticles2.Play();
+                childrenSprite.enabled = false;
             }
 
             rb.gravityScale = 0f;

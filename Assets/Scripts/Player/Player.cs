@@ -62,8 +62,9 @@ public class Player : MonoBehaviour
     {
         if(canDie && !dead)
         {
-
             dead = true;
+            CinemachineShake.Instance.ShakeCamera(5f, 0.5f);
+
             StartCoroutine(Death());
 
         }
