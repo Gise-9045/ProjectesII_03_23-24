@@ -9,7 +9,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     //SE UTILIZARÁ PROXIMAMENTE
-    public enum PlayerStates { WAIT, JUMP, WALK, DASH, STAIRS}
+    public enum PlayerStates { HANDUP, STOP, JUMP, WALK, DASH, STAIRS}
 
 
 
@@ -18,13 +18,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Player player;
 
-    private Vector2 stairsPos;
-
     private Rigidbody2D rb;
-    private Transform tr;
-    [SerializeField] private float jumpForce;
-    [SerializeField] private float jumpTimeCounter;
-    private float actualJumpTimeCounter;
 
 
     private PlayerGroundDetection ground;
@@ -32,65 +26,29 @@ public class PlayerMovement : MonoBehaviour
     public bool isJumping;
     public bool isWalking;
 
-    private bool oldJump = false;
-
-    private float coyoteTime;
-    private float actualCoyoteTime;
-    private int doubleJump = 0;
-    [SerializeField] private bool canDoubleJump = false;
     [SerializeField] public bool canPickUp = false;
-    private float slide;
-
-    bool onStairs;
-    bool usingStairs = false;
-
-    bool dashing = false;
-    [SerializeField] float dashVelocity;
-    float actualDashTimer;
-    [SerializeField] float dashTimer;
-    [SerializeField] bool canDash;
-    [SerializeField] float dashCooldown;
-
-    private AudioManager audioManager;
-
 
     [Header("----- Particles -----")]
-    [SerializeField] private ParticleSystem dashTrail;
-    [SerializeField] private ParticleSystem deathParticles;
+    [SerializeField] private ParticleSystem deathParticles1;
+    [SerializeField] private ParticleSystem deathParticles2;
     [SerializeField] private ParticleSystem walkParticles;
-    [SerializeField] private ParticleSystem jumpParticles;
-
-    float actualDashCooldown = 0;
 
     private Animator animator;
 
     private bool oldDead;
 
-    [Header("----- Sound -----")]
-    [SerializeField] private float walkSoundDelay;
-    private float actualWalkSoundDelay;
 
-    [SerializeField] private bool fallToGroundSound;
-
-    [SerializeField] private float climbSoundDelay;
-    private float actualClimbSoundDelay;
-
-    private bool isPlayingSound = false;
-    private bool isPlayingJumpSound = false;
-    private Coroutine soundCoroutine;
-
-    private float storedMass;
 
     private InputController controller;
-
-
-
 
 
 
     [SerializeField] private PlayerJump playerJump;
     [SerializeField] private PlayerWalk playerWalk;
     [SerializeField] private PlayerStairs playerStairs;
+    [SerializeField] private PlayerDash playerDash;
+
+    PlayerStates actualState;
 
 
     void Start()
@@ -99,13 +57,10 @@ public class PlayerMovement : MonoBehaviour
         controller = GetComponent<InputController>();
         rb = GetComponent<Rigidbody2D>();
         ground = GetComponentInChildren<PlayerGroundDetection>();
-        tr = GetComponentInChildren<Transform>();
         isJumping = false;
-        onStairs = false;
-        coyoteTime = 0.3f;
         animator = GetComponent<Animator>();
 
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        actualState = PlayerStates.STOP;
 
         //ground.OnGroundTouchdown += jumpParticles.Play;
         ground.OnGroundTouchdown += walkParticles.Play;
@@ -132,7 +87,8 @@ public class PlayerMovement : MonoBehaviour
 
             if(player.GetDead() && player.GetDead() != oldDead)
             {
-                deathParticles.Play();
+                deathParticles1.Play();
+                deathParticles2.Play();
             }
 
             rb.gravityScale = 0f;
@@ -163,21 +119,20 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("FallVelocity", rb.velocity.y);
         animator.SetBool("Grounded", ground.OnGround() || playerStairs.GetOnStairs());
         animator.SetBool("Stairs", playerStairs.GetOnStairs() && controller.GetMovement().y != 0);
-        animator.SetBool("Dash", dashing);
+        animator.SetBool("Dash", playerDash.GetIsDashing());
         animator.SetFloat("DashVelocity", rb.velocity.x);
 
         animator.SetBool("Walk", controller.GetMovement().x != 0);
 
         playerWalk.Walk();
-        //Walk();
-        DashCheck();
+
+        playerDash.DashCheck();
         
         if (playerStairs.GetOnStairs())
         {
             if (playerStairs.GetUsingStairs())
             {
                 playerStairs.Stairs();
-                //Stairs();
                 rb.gravityScale = 0f;
             }
             else
@@ -186,60 +141,25 @@ public class PlayerMovement : MonoBehaviour
             }
 
         }
-        else if (canDash && !dashing && controller.GetPowerUpKey() && actualDashCooldown <= 0)
+        else if (controller.GetPowerUpKey())
         {
-            Dash();
+            playerDash.Dash();
         }
-        else if (!dashing)
+        else if (!playerDash.GetIsDashing())
         {
             rb.gravityScale = 9.81f;
         }
 
         playerJump.CheckJump();
-
-        //CheckJump();
     }
 
-
-    void DashCheck()
+    public void SetActualState(PlayerStates state)
     {
-        if (actualDashCooldown > 0)
-        {
-            actualDashCooldown -= Time.deltaTime;
-        }
-
-        if (actualDashTimer > 0)
-        {
-            dashing = true;
-            actualDashCooldown = 0.5f;
-            rb.velocity = new Vector2(player.GetDirection().x * dashVelocity, 0);
-            rb.gravityScale = 0f;
-            actualDashTimer -= Time.deltaTime;
-
-        }
-        else
-        {
-            dashing = false;
-
-        }
+        actualState = state;
     }
 
-
-
-    public void SetDash(bool condition)
+    public PlayerStates GetActualState()
     {
-        canDash = condition;
-    }
-    public void SetPickUp(bool condition)
-    {
-        canPickUp = condition;
-    }
-   
-    private void Dash()
-    {
-        actualDashTimer = dashTimer;
-        rb.gravityScale = 0f;
-        audioManager.PlaySFX(audioManager.dash);
-        dashTrail.Play();
+        return actualState;
     }
 }
