@@ -5,9 +5,7 @@ using static UnityEngine.ParticleSystem;
 
 public class Enemy : MonoBehaviour
 {
-    //[SerializeField] private AudioSource hurtSource;
-    //[SerializeField] private AudioClip hurtClip;
-    [SerializeField, Range(0f, 3f)] private float volumeAudio = 0.2f;
+    
     [SerializeField] private int life;
     [SerializeField] private int maxLife;
     [SerializeField] private Vector2 direction;
@@ -113,7 +111,7 @@ public class Enemy : MonoBehaviour
         if (life <= 0 )
         {
             //hurtSource.clip = hurtClip;
-            CinemachineShake.Instance.ShakeCamera(5f, 0.5f);
+            //CinemachineShake.Instance.ShakeCamera(5f, 0.5f);
             HitStop.Instance.StopTime(0.15f, 0.5f);
             Destroy(gameObject);
             //hurtSource.Play();
@@ -134,11 +132,5 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void Update()
-    {
-        //EnemyDirection
-       // hurtSource.volume = volumeAudio;
-
-        //EnemyRotation
-    }
+    
 }

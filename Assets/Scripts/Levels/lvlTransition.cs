@@ -27,19 +27,19 @@ public class lvlTransition : MonoBehaviour
 
     }
 
-    // Update is called once per frame
+    
     void Update()
     {
-        //Debug.Log(keySaverList.GetListKeys().Count);
+        
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //transitions.SetTrigger("LvlPassed");
+        
         if (collision.CompareTag("Player") && keySaverList.GetListKeys().Count != 0)
         {
             audioManager.PlaySFX(audioManager.doorOpens);
             Time.timeScale = 0.0f;
-            horizontalAnim.SetBool("ExitLeftAnimation", false);
+            
             StartCoroutine(LevelTransition());
         }
        
@@ -60,7 +60,7 @@ public class lvlTransition : MonoBehaviour
 
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        Debug.Log("LvlPassed");
+        
 
     }
 }

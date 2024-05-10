@@ -7,25 +7,21 @@ public class popuptext : MonoBehaviour
 {
     [SerializeField] GameObject dialogue;
     [SerializeField] GameObject textBubble;
-    // Start is called before the first frame update
+   
     void Start()
     {
-        dialogue.active = false;
-        textBubble.active = false;
+        dialogue.SetActive(false);
+        textBubble.SetActive(false);
 
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            dialogue.active = true;
-            textBubble.active = true;
+            dialogue.SetActive(true);
+            textBubble.SetActive(true);
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
 }

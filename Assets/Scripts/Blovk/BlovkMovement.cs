@@ -10,10 +10,11 @@ public class BlovkMovement : MonoBehaviour
 
     private PlayerDetection playerDetection;
     private WallDetection wallDetection;
+    private WallDetection topDetection;
 
     private InputController controller;
 
-    private PlayerMovement colorCheck;
+    private PlayerPowerUpManager powerUpManager;
 
     private Player player;
 
@@ -21,6 +22,10 @@ public class BlovkMovement : MonoBehaviour
 
     private Rigidbody2D rb;
     private Transform tr;
+
+    private Vector2 posVelocity;
+    private float smoothTime;
+
 
 
     [SerializeField]private float playerOldPos = 0f;
@@ -31,6 +36,11 @@ public class BlovkMovement : MonoBehaviour
 
     void Start()
     {
+        posVelocity = Vector2.zero;
+        smoothTime = 2f;
+
+
+
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
         playerTr = GameObject.FindWithTag("Player").GetComponent<Transform>();
 
@@ -43,24 +53,32 @@ public class BlovkMovement : MonoBehaviour
         BlovkCollider.size = new Vector2 (BlovkRenderer.size.x - 0.1f, BlovkRenderer.size.y - 0.1f);
 
         playerDetection = GetComponentInChildren<PlayerDetection>();
-        wallDetection = GetComponentInChildren<WallDetection>();
+
+        wallDetection = gameObject.transform.Find("WallDetection").GetComponent<WallDetection>();
+        topDetection = gameObject.transform.Find("TopDetection").GetComponent<WallDetection>();
+
         controller = GameObject.FindWithTag("Player").GetComponent<InputController>();
-        colorCheck = FindObjectOfType<PlayerMovement>();
+        powerUpManager = GameObject.FindWithTag("Player").GetComponent<PlayerPowerUpManager>();
     }
 
     void Update()
     {
-        //NOTA DE ADRIÁN PARA ADRIÁN
-        //Hay que hacer getter de los PowerUps que hay por que es muy guarro pillar una variable publica de PlayerMovement >:(
-
-
-        if(playerDetection.GetPlayerDetection() && controller.GetPowerUpKey() && colorCheck.canPickUp)
+        if(playerDetection.GetPlayerDetection() && !topDetection.GetWallDetection() && controller.GetPowerUpKey() && powerUpManager.GetPowerUp() == ColorTypes.PINK)
         {
             picking = true;
         }
         else if(controller.GetPowerUpKey() && picking)
         {
-            if(wallDetection.GetWallDetection())
+            //Arreglar!!!
+
+            Vector2 oldBoxPos = tr.position;
+            Vector2 oldPlayerPos = playerTr.position;
+
+            tr.position = oldPlayerPos;
+            playerTr.position = oldBoxPos;
+
+            //NO BORRAR
+/*            if(wallDetection.GetWallDetection())
             {
                 Vector2 oldBoxPos = tr.position;
                 Vector2 oldPlayerPos = playerTr.position;
@@ -71,12 +89,12 @@ public class BlovkMovement : MonoBehaviour
             else
             {
                 tr.position = new Vector2(player.GetDirection().x + playerTr.position.x, playerTr.position.y);
-            }
+            }*/
 
             picking = false;
             Drop();
         }
-        else if(!colorCheck.canPickUp)
+        else if(powerUpManager.GetPowerUp() != ColorTypes.PINK)
         {
             picking = false;
             Drop();
@@ -134,7 +152,10 @@ public class BlovkMovement : MonoBehaviour
 
     void PickUp()
     {
-        tr.position = new Vector2(playerTr.position.x, playerTr.position.y + 1f);
+        //tr.position = new Vector2(playerTr.position.x, playerTr.position.y + 1f);
+
+        tr.position = new Vector3(Mathf.SmoothDamp(tr.position.x, playerTr.position.x, ref posVelocity.x, smoothTime * Time.deltaTime), Mathf.SmoothDamp(tr.position.y, playerTr.position.y + 1, ref posVelocity.y, smoothTime * Time.deltaTime), -0.02f);
+
         tr.rotation = Quaternion.Euler(0, 0, 0);
     }
 

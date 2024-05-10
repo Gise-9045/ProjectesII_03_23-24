@@ -33,7 +33,7 @@ public class Ladder : MonoBehaviour
 
     void Update()
     {
-        if (controller.GetMovement().y > 0)
+        if (controller.GetMovement().y > 0 || controller.GetJumpKeyTap())
         {
             platform.rotationalOffset = 0f;
         }

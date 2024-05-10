@@ -18,12 +18,12 @@ public class TransitionManager : MonoBehaviour
 
     [SerializeField] private Transition transition;
 
-    Player player;
+    PlayerMovement player;
 
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
 
         Time.timeScale = 1.0f;
 
@@ -102,14 +102,15 @@ public class TransitionManager : MonoBehaviour
         cam.SetToPlayer();
 
         holeTransition.ResetToZero();
-        player.SetStop(true);
+        player.SetActualState(PlayerMovement.PlayerStates.HANDUP);
         holeTransition.Scale(500);
 
 
         yield return new WaitForSeconds(2f);
         holeTransition.Scale(4000);
         cam.PlayerZoomOut();
-        player.SetStop(false);
+        player.SetActualState(PlayerMovement.PlayerStates.IDLE);
+
 
 
         yield return new WaitForSeconds(3f);
