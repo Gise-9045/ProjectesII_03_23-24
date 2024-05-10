@@ -40,15 +40,15 @@ public class LvlTransitionWithoutKey : MonoBehaviour
         {
             if (activeSound)
             {
-                //audioManager.PlaySFX(audioManager.doorOpens);
+                audioManager.PlaySFX(audioManager.doorOpens);
             }
             
 
-            //Time.timeScale = 0.0f;
+            Time.timeScale = 0.0f;
            
-            //StartCoroutine(LevelTransition());
+            StartCoroutine(LevelTransition());
 
-            doorAnim.SetBool("CloseDoor", true);
+            //doorAnim.SetBool("CloseDoor", true);
  
         }
 

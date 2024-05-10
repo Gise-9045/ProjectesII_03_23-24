@@ -111,7 +111,7 @@ public class Enemy : MonoBehaviour
         if (life <= 0 )
         {
             //hurtSource.clip = hurtClip;
-            CinemachineShake.Instance.ShakeCamera(5f, 0.5f);
+            //CinemachineShake.Instance.ShakeCamera(5f, 0.5f);
             HitStop.Instance.StopTime(0.15f, 0.5f);
             Destroy(gameObject);
             //hurtSource.Play();

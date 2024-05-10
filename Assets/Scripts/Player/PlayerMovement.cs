@@ -9,12 +9,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     //SE UTILIZARÁ PROXIMAMENTE
-    public enum PlayerStates { HANDUP, STOP, JUMP, WALK, DASH, STAIRS}
-
-
-
-
-
+    public enum PlayerStates { IDLE, HANDUP, STOP}
 
     private Player player;
 
@@ -36,9 +31,6 @@ public class PlayerMovement : MonoBehaviour
 
     private Animator animator;
 
-    private bool oldDead;
-
-
 
     private InputController controller;
 
@@ -49,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private PlayerStairs playerStairs;
     [SerializeField] private PlayerDash playerDash;
 
-    PlayerStates actualState;
+    PlayerStates actualState = PlayerStates.IDLE;
 
     private PlayerPowerUpManager powerUpManager;
 
@@ -62,8 +54,6 @@ public class PlayerMovement : MonoBehaviour
         isJumping = false;
         animator = GetComponent<Animator>();
 
-        actualState = PlayerStates.STOP;
-
         childrenSprite = GetComponentInChildren<SpriteRenderer>();
 
         //ground.OnGroundTouchdown += jumpParticles.Play;
@@ -71,7 +61,6 @@ public class PlayerMovement : MonoBehaviour
 
         ground.OnLeaveGround += walkParticles.Stop;
 
-        oldDead = false;
         powerUpManager = GetComponent<PlayerPowerUpManager>();
     }
 
@@ -80,42 +69,16 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         //NOTA PARA ADRI POR ADRI. ESTO ES UNA GUARRERÍA ARREGLALO CUANTO ANTES
-        if (player.GetDead())
+        if (actualState == PlayerStates.STOP)
         {
             animator.SetBool("Stairs", false);
             animator.SetBool("Dash", false);
             animator.SetBool("Walk", false);
             animator.SetBool("Grounded", true);
 
-
-            //animator.SetBool("Death", true);
-
-            if(player.GetDead() && player.GetDead() != oldDead)
-            {
-                var main = deathParticles1.main;
-                main.startColor = powerUpManager.GetColorRGB();
-
-                var trail = deathParticles1.trails;
-                trail.colorOverTrail = powerUpManager.GetColorRGB();
-                trail.colorOverLifetime = powerUpManager.GetColorRGB();
-
-                main = deathParticles2.main;
-                main.startColor = powerUpManager.GetColorRGB();
-
-
-                deathParticles1.Play();
-                deathParticles2.Play();
-                childrenSprite.enabled = false;
-            }
-
-            rb.gravityScale = 0f;
-            rb.velocity = Vector2.zero;
-
-            oldDead = player.GetDead();
-
             return;
         }
-        else if(player.GetStop())
+        else if(actualState == PlayerStates.HANDUP)
         {
             animator.SetBool("Stairs", false);
             animator.SetBool("Dash", false);
@@ -126,11 +89,10 @@ public class PlayerMovement : MonoBehaviour
 
             return;
         }
-        else
+        else if(actualState == PlayerStates.IDLE)
         {
             animator.SetBool("Death", false);
             animator.SetBool("StartPose", false);
-            oldDead = player.GetDead();
         }
 
         animator.SetFloat("FallVelocity", rb.velocity.y);
@@ -178,5 +140,28 @@ public class PlayerMovement : MonoBehaviour
     public PlayerStates GetActualState()
     {
         return actualState;
+    }
+
+    public void Death()
+    {
+
+        var main = deathParticles1.main;
+        main.startColor = powerUpManager.GetColorRGB();
+
+        var trail = deathParticles1.trails;
+        trail.colorOverTrail = powerUpManager.GetColorRGB();
+        trail.colorOverLifetime = powerUpManager.GetColorRGB();
+
+        main = deathParticles2.main;
+        main.startColor = powerUpManager.GetColorRGB();
+
+
+        deathParticles1.Play();
+        deathParticles2.Play();
+        childrenSprite.enabled = false;
+            
+
+        rb.gravityScale = 0f;
+        rb.velocity = Vector2.zero;
     }
 }

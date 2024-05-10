@@ -27,11 +27,6 @@ public class PlayerWalk : MonoBehaviour
 
     void Update()
     {
-        
-    }
-
-    public void Walk()
-    {
         if(slide > 0)
         {
             slide -= Time.deltaTime;
@@ -39,8 +34,11 @@ public class PlayerWalk : MonoBehaviour
         else if(slide < 0)
         {
             slide = 0;
-        }
+        } 
+    }
 
+    public void Walk()
+    {
         if(actualWalkSoundDelay < 0 && ground.OnGround() && (controller.GetMovement().x < 0 || controller.GetMovement().x > 0))
         {
             audioManager.PlaySFX(audioManager.walk);

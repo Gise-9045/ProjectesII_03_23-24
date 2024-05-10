@@ -12,6 +12,8 @@ public class CameraShake : MonoBehaviour
     private float shakeTimerTotal;
     private float startingIntensity;
 
+    private Transform tr;
+
     private void Awake()
     {
         Instance = this;
@@ -23,6 +25,8 @@ public class CameraShake : MonoBehaviour
         //CinemachineImpulseManager.Instance.IgnoreTimeScale = true;
         //Camera.main.GetComponent<CinemachineBrain>().m_UpdateMethod = CinemachineBrain.UpdateMethod.LateUpdate;
         //Camera.main.GetComponent<CinemachineBrain>().m_IgnoreTimeScale = true;
+
+        tr = GetComponent<Transform>();
     }
 
     public void ShakeCamera(float intensity, float time)
@@ -38,7 +42,6 @@ public class CameraShake : MonoBehaviour
 
     private void Update()
     {
-
         if(shakeTimer > 0)
         {
 
@@ -48,7 +51,7 @@ public class CameraShake : MonoBehaviour
 
             //cinemachineBasicMultiChannelPerlin.m_AmplitudeGain = Mathf.Lerp(startingIntensity, 0f, 1 - (shakeTimer / shakeTimerTotal));
 
-
+            tr.position = new Vector3(Mathf.Lerp(startingIntensity, 0f, 1 - (shakeTimer / shakeTimerTotal)), 0, 0);
         }
     }
 }
