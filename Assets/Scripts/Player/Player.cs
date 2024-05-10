@@ -54,9 +54,6 @@ public class Player : MonoBehaviour
     public void SetSpeed(int s) { speed = s; }
     public int GetSpeed() { return speed; }
 
-    public void SetStop(bool s) { stop = s; }
-    public bool GetStop() { return stop; }
-
     public void TakeDamage()
     {
         if(canDie && !dead)
@@ -65,7 +62,7 @@ public class Player : MonoBehaviour
             playerMovement.Death();
             //CameraShake.Instance.ShakeCamera(5f, 0.5f);
             
-            //DeathPaintManager.Instance.CreateDeathPaint(new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z));
+            DeathPaintManager.Instance.CreateDeathPaint(new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z));
             StartCoroutine(Death());
 
         }

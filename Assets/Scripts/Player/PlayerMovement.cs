@@ -4,23 +4,22 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEditor.Searcher.SearcherWindow.Alignment;
 //using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class PlayerMovement : MonoBehaviour
 {
-    //SE UTILIZARÁ PROXIMAMENTE
-    public enum PlayerStates { IDLE, HANDUP, STOP}
+    public enum PlayerStates { IDLE, HANDUP, STOP, DOOR }
 
     private Player player;
 
     private Rigidbody2D rb;
+    private Transform tr;
     private SpriteRenderer childrenSprite;
 
 
     private PlayerGroundDetection ground;
 
-    public bool isJumping;
-    public bool isWalking;
 
     [SerializeField] public bool canPickUp = false;
 
@@ -45,13 +44,17 @@ public class PlayerMovement : MonoBehaviour
 
     private PlayerPowerUpManager powerUpManager;
 
+    private LvlTransitionWithoutKey doorWithoutKey;
+    private Transform doorTr;
+    private int doorDirection;
+
     void Start()
     {
         player = GetComponent<Player>();
         controller = GetComponent<InputController>();
         rb = GetComponent<Rigidbody2D>();
+        tr = GetComponent<Transform>();
         ground = GetComponentInChildren<PlayerGroundDetection>();
-        isJumping = false;
         animator = GetComponent<Animator>();
 
         childrenSprite = GetComponentInChildren<SpriteRenderer>();
@@ -68,13 +71,13 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        //NOTA PARA ADRI POR ADRI. ESTO ES UNA GUARRERÍA ARREGLALO CUANTO ANTES
         if (actualState == PlayerStates.STOP)
         {
             animator.SetBool("Stairs", false);
             animator.SetBool("Dash", false);
             animator.SetBool("Walk", false);
             animator.SetBool("Grounded", true);
+            rb.velocity = Vector2.zero;
 
             return;
         }
@@ -88,6 +91,23 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("StartPose", true);
 
             return;
+        }
+        else if(actualState == PlayerStates.DOOR)
+        {
+            rb.velocity = new Vector2(doorDirection * player.GetSpeed(), rb.velocity.y);
+
+            if(doorDirection == 1 && tr.transform.position.x > doorTr.transform.position.x + 1f)
+            {
+                actualState = PlayerStates.STOP;
+                doorWithoutKey.CloseDoor();
+            }
+            else if(doorDirection == -1 && tr.transform.position.x < doorTr.transform.position.x - 1f)
+            {
+                actualState = PlayerStates.STOP;
+                doorWithoutKey.CloseDoor();
+            }
+            return;
+
         }
         else if(actualState == PlayerStates.IDLE)
         {
@@ -163,5 +183,27 @@ public class PlayerMovement : MonoBehaviour
 
         rb.gravityScale = 0f;
         rb.velocity = Vector2.zero;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Door")
+        {
+            doorWithoutKey = collision.gameObject.GetComponent<LvlTransitionWithoutKey>();
+            doorTr = collision.gameObject.transform;
+
+            if (doorTr.position.x > tr.position.x)
+            {
+                doorDirection = 1;
+                doorWithoutKey.ShowBlackSquare(0.95f);
+            }
+            else
+            {
+                doorDirection = -1;
+                doorWithoutKey.ShowBlackSquare(-0.95f);
+            }
+
+            actualState = PlayerStates.DOOR;
+        }
     }
 }

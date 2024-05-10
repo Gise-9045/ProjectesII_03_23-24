@@ -21,7 +21,11 @@ public class LvlTransitionWithoutKey : MonoBehaviour
 
     private AudioManager audioManager;
 
-    public bool activeSound = true; 
+    public bool activeSound = true;
+
+    [SerializeField] private GameObject doorFrame;
+    [SerializeField] private GameObject door;
+    [SerializeField] private GameObject blackSquare;
 
 
     void Start()
@@ -35,7 +39,6 @@ public class LvlTransitionWithoutKey : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        
         if (collision.CompareTag("Player"))
         {
             if (activeSound)
@@ -44,11 +47,10 @@ public class LvlTransitionWithoutKey : MonoBehaviour
             }
             
 
-            Time.timeScale = 0.0f;
+            //Time.timeScale = 0.0f;
            
-            StartCoroutine(LevelTransition());
+            //StartCoroutine(LevelTransition());
 
-            //doorAnim.SetBool("CloseDoor", true);
  
         }
 
@@ -59,6 +61,12 @@ public class LvlTransitionWithoutKey : MonoBehaviour
         switch (transition)
         {
             case Transition.LEFT:
+
+                yield return new WaitForSecondsRealtime(0.3f);
+                doorAnim.SetBool("CloseDoor", true);
+
+                yield return new WaitForSecondsRealtime(0.5f);
+
                 horizontal.SetActive(true);
                 horizontalAnim.SetBool("LeftAnimation", true);
                 yield return new WaitForSecondsRealtime(0.7f);
@@ -66,9 +74,19 @@ public class LvlTransitionWithoutKey : MonoBehaviour
                 break;
         }
 
-
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         //Debug.Log("LvlPassed");
+    }
 
+    public void CloseDoor()
+    {
+        StartCoroutine(LevelTransition());
+    }
+
+    public void ShowBlackSquare(float pos)
+    {
+        blackSquare.transform.localPosition = new Vector2(pos, blackSquare.transform.localPosition.y);
+
+        blackSquare.SetActive(true);
     }
 }
