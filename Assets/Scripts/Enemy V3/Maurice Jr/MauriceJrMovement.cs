@@ -38,7 +38,7 @@ public class MauriceJrMovement : MonoBehaviour
         if (actualCooldownJump > 0 && ground.OnGround())
         {
             actualCooldownJump -= Time.deltaTime;
-            CinemachineShake.Instance.ShakeCamera(5f, 0.1f);
+            //CinemachineShake.Instance.ShakeCamera(5f, 0.1f);
         }
 
         if (ground.OnGround() && actualCooldownJump < 0)
