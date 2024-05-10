@@ -33,7 +33,7 @@ public class HoleTransition : MonoBehaviour
 
     }
 
-    void Update()
+    void FixedUpdate()
     {
         tr.position = cam.WorldToScreenPoint(player.localPosition);
 

@@ -14,7 +14,7 @@ public class BlovkMovement : MonoBehaviour
 
     private InputController controller;
 
-    private PlayerMovement colorCheck;
+    private PlayerPowerUpManager powerUpManager;
 
     private Player player;
 
@@ -58,16 +58,12 @@ public class BlovkMovement : MonoBehaviour
         topDetection = gameObject.transform.Find("TopDetection").GetComponent<WallDetection>();
 
         controller = GameObject.FindWithTag("Player").GetComponent<InputController>();
-        colorCheck = FindObjectOfType<PlayerMovement>();
+        powerUpManager = GameObject.FindWithTag("Player").GetComponent<PlayerPowerUpManager>();
     }
 
     void Update()
     {
-        //NOTA DE ADRIÁN PARA ADRIÁN
-        //Hay que hacer getter de los PowerUps que hay por que es muy guarro pillar una variable pública de PlayerMovement >:(
-
-
-        if(playerDetection.GetPlayerDetection() && !topDetection.GetWallDetection() && controller.GetPowerUpKey() && colorCheck.canPickUp)
+        if(playerDetection.GetPlayerDetection() && !topDetection.GetWallDetection() && controller.GetPowerUpKey() && powerUpManager.GetPowerUp() == ColorTypes.PINK)
         {
             picking = true;
         }
@@ -98,7 +94,7 @@ public class BlovkMovement : MonoBehaviour
             picking = false;
             Drop();
         }
-        else if(!colorCheck.canPickUp)
+        else if(powerUpManager.GetPowerUp() != ColorTypes.PINK)
         {
             picking = false;
             Drop();
