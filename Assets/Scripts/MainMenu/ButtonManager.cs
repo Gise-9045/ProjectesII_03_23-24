@@ -60,6 +60,10 @@ public class ButtonManager : MonoBehaviour
         mainMenu.SetActive(false);
         options.SetActive(true);
     }
+    public void CreditsScene()
+    {
+        SceneManager.LoadScene("Level Credits");
+    }
 
     IEnumerator Settings()
     {
