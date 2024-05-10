@@ -17,6 +17,11 @@ public class lvlTransition : MonoBehaviour
     private enum Transition { NONE, LEFT };
     [SerializeField] private Transition transition;
 
+
+    [SerializeField] private GameObject doorFrame;
+    [SerializeField] private GameObject door;
+    [SerializeField] private GameObject blackSquare;
+
     private AudioManager audioManager; 
     void Start()
     {
@@ -60,7 +65,17 @@ public class lvlTransition : MonoBehaviour
 
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        
+    }
 
+    public void CloseDoor()
+    {
+        StartCoroutine(LevelTransition());
+    }
+
+    public void ShowBlackSquare(float pos)
+    {
+        blackSquare.transform.localPosition = new Vector2(pos, blackSquare.transform.localPosition.y);
+
+        blackSquare.SetActive(true);
     }
 }
