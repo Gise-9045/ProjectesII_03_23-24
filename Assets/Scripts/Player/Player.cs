@@ -62,7 +62,7 @@ public class Player : MonoBehaviour
             playerMovement.Death();
             //CameraShake.Instance.ShakeCamera(5f, 0.5f);
             
-            DeathPaintManager.Instance.CreateDeathPaint(new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z));
+            //DeathPaintManager.Instance.CreateDeathPaint(new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z));
             StartCoroutine(Death());
 
         }

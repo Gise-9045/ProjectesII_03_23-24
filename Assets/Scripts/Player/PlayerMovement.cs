@@ -77,7 +77,6 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("Dash", false);
             animator.SetBool("Walk", false);
             animator.SetBool("Grounded", true);
-            rb.velocity = Vector2.zero;
 
             return;
         }
@@ -98,11 +97,13 @@ public class PlayerMovement : MonoBehaviour
 
             if(doorDirection == 1 && tr.transform.position.x > doorTr.transform.position.x + 1f)
             {
+                rb.velocity = Vector2.zero;
                 actualState = PlayerStates.STOP;
                 doorWithoutKey.CloseDoor();
             }
             else if(doorDirection == -1 && tr.transform.position.x < doorTr.transform.position.x - 1f)
             {
+                rb.velocity = Vector2.zero;
                 actualState = PlayerStates.STOP;
                 doorWithoutKey.CloseDoor();
             }
@@ -195,12 +196,12 @@ public class PlayerMovement : MonoBehaviour
             if (doorTr.position.x > tr.position.x)
             {
                 doorDirection = 1;
-                doorWithoutKey.ShowBlackSquare(0.95f);
+                doorWithoutKey.ShowBlackSquare(1.05f);
             }
             else
             {
                 doorDirection = -1;
-                doorWithoutKey.ShowBlackSquare(-0.95f);
+                doorWithoutKey.ShowBlackSquare(-1.05f);
             }
 
             actualState = PlayerStates.DOOR;

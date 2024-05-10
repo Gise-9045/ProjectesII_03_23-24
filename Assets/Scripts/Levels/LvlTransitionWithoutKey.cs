@@ -36,26 +36,6 @@ public class LvlTransitionWithoutKey : MonoBehaviour
         doorAnim = GetComponentInChildren<Animator>();
     }
 
-    
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            if (activeSound)
-            {
-                audioManager.PlaySFX(audioManager.doorOpens);
-            }
-            
-
-            //Time.timeScale = 0.0f;
-           
-            //StartCoroutine(LevelTransition());
-
- 
-        }
-
-    }
-
     IEnumerator LevelTransition()
     {
         switch (transition)
@@ -66,6 +46,11 @@ public class LvlTransitionWithoutKey : MonoBehaviour
                 doorAnim.SetBool("CloseDoor", true);
 
                 yield return new WaitForSecondsRealtime(0.5f);
+
+                if (activeSound)
+                {
+                    audioManager.PlaySFX(audioManager.doorOpens);
+                }
 
                 horizontal.SetActive(true);
                 horizontalAnim.SetBool("LeftAnimation", true);
