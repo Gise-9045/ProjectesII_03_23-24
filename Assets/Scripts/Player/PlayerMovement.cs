@@ -9,7 +9,7 @@ using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public enum PlayerStates { IDLE, HANDUP, STOP, DOOR }
+    public enum PlayerStates { IDLE, HANDUP, STOP, DOORWITHOUTKEY, DOORWITHKEY }
 
     private Player player;
 
@@ -45,8 +45,11 @@ public class PlayerMovement : MonoBehaviour
     private PlayerPowerUpManager powerUpManager;
 
     private LvlTransitionWithoutKey doorWithoutKey;
+    private lvlTransition doorWithKey;
     private Transform doorTr;
     private int doorDirection;
+
+    private KeySaver key;
 
     void Start()
     {
@@ -65,6 +68,8 @@ public class PlayerMovement : MonoBehaviour
         ground.OnLeaveGround += walkParticles.Stop;
 
         powerUpManager = GetComponent<PlayerPowerUpManager>();
+
+        key = GetComponent<KeySaver>();
     }
 
 
@@ -91,7 +96,7 @@ public class PlayerMovement : MonoBehaviour
 
             return;
         }
-        else if(actualState == PlayerStates.DOOR)
+        else if(actualState == PlayerStates.DOORWITHOUTKEY)
         {
             rb.velocity = new Vector2(doorDirection * player.GetSpeed(), rb.velocity.y);
 
@@ -108,7 +113,25 @@ public class PlayerMovement : MonoBehaviour
                 doorWithoutKey.CloseDoor();
             }
             return;
+        }
+        else if(actualState == PlayerStates.DOORWITHKEY)
+        {
+            rb.velocity = new Vector2(doorDirection * player.GetSpeed(), rb.velocity.y);
 
+            if(doorDirection == 1 && tr.transform.position.x > doorTr.transform.position.x + 2f)
+            {
+                rb.velocity = Vector2.zero;
+                actualState = PlayerStates.STOP;
+                doorWithKey.CloseDoor();
+            }
+            else if(doorDirection == -1 && tr.transform.position.x < doorTr.transform.position.x - 2f)
+            {
+                rb.velocity = Vector2.zero;
+                actualState = PlayerStates.STOP;
+                doorWithKey.CloseDoor();
+            }
+
+            return;
         }
         else if(actualState == PlayerStates.IDLE)
         {
@@ -204,7 +227,27 @@ public class PlayerMovement : MonoBehaviour
                 doorWithoutKey.ShowBlackSquare(-1.05f);
             }
 
-            actualState = PlayerStates.DOOR;
+            actualState = PlayerStates.DOORWITHOUTKEY;
+        }
+        else if(collision.gameObject.tag == "KeyDoor" && key.GetListKeys().Count > 0)
+        {
+            doorWithKey = collision.gameObject.GetComponent<lvlTransition>();
+            doorTr = collision.gameObject.transform;
+
+            if (doorTr.position.x > tr.position.x)
+            {
+                doorDirection = 1;
+                doorWithKey.ShowBlackSquare(1.4183f);
+                doorWithKey.OpenDoor();
+            }
+            else
+            {
+                doorDirection = -1;
+                doorWithKey.ShowBlackSquare(-1.4183f);
+                doorWithKey.OpenDoor();
+            }
+
+            actualState = PlayerStates.DOORWITHKEY;
         }
     }
 }
