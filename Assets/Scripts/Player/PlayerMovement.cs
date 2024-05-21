@@ -4,127 +4,83 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEditor.Searcher.SearcherWindow.Alignment;
 //using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class PlayerMovement : MonoBehaviour
 {
-    private Player player;
+    public enum PlayerStates { IDLE, HANDUP, STOP, DOOR }
 
-    private Vector2 stairsPos;
+    private Player player;
 
     private Rigidbody2D rb;
     private Transform tr;
-    [SerializeField] private float jumpForce;
-    [SerializeField] private float jumpTimeCounter;
-    private float actualJumpTimeCounter;
+    private SpriteRenderer childrenSprite;
 
 
     private PlayerGroundDetection ground;
 
-    public bool isJumping;
-    public bool isWalking;
 
-    private bool oldJump = false;
-
-    private float coyoteTime;
-    private float actualCoyoteTime;
-    private int doubleJump = 0;
-    [SerializeField] private bool canDoubleJump = false;
     [SerializeField] public bool canPickUp = false;
-    private float slide;
-
-    bool onStairs;
-    bool usingStairs = false;
-
-    bool dashing = false;
-    [SerializeField] float dashVelocity;
-    float actualDashTimer;
-    [SerializeField] float dashTimer;
-    [SerializeField] bool canDash;
-    [SerializeField] float dashCooldown;
-
-    private AudioManager audioManager;
-
 
     [Header("----- Particles -----")]
-    [SerializeField] private ParticleSystem dashTrail;
-    [SerializeField] private ParticleSystem deathParticles;
+    [SerializeField] private ParticleSystem deathParticles1;
+    [SerializeField] private ParticleSystem deathParticles2;
     [SerializeField] private ParticleSystem walkParticles;
-    [SerializeField] private ParticleSystem jumpParticles;
-
-    float actualDashCooldown = 0;
 
     private Animator animator;
 
-    private bool oldDead;
-
-    [Header("----- Sound -----")]
-    [SerializeField] private float walkSoundDelay;
-    private float actualWalkSoundDelay;
-
-    [SerializeField] private bool fallToGroundSound;
-
-    [SerializeField] private float climbSoundDelay;
-    private float actualClimbSoundDelay;
-
-    private bool isPlayingSound = false;
-    private bool isPlayingJumpSound = false;
-    private Coroutine soundCoroutine;
-
-    private float storedMass;
 
     private InputController controller;
 
+
+
+    [SerializeField] private PlayerJump playerJump;
+    [SerializeField] private PlayerWalk playerWalk;
+    [SerializeField] private PlayerStairs playerStairs;
+    [SerializeField] private PlayerDash playerDash;
+
+    PlayerStates actualState = PlayerStates.IDLE;
+
+    private PlayerPowerUpManager powerUpManager;
+
+    private LvlTransitionWithoutKey doorWithoutKey;
+    private Transform doorTr;
+    private int doorDirection;
 
     void Start()
     {
         player = GetComponent<Player>();
         controller = GetComponent<InputController>();
         rb = GetComponent<Rigidbody2D>();
+        tr = GetComponent<Transform>();
         ground = GetComponentInChildren<PlayerGroundDetection>();
-        tr = GetComponentInChildren<Transform>();
-        isJumping = false;
-        onStairs = false;
-        coyoteTime = 0.3f;
         animator = GetComponent<Animator>();
 
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+        childrenSprite = GetComponentInChildren<SpriteRenderer>();
 
-        ground.OnGroundTouchdown += jumpParticles.Play;
+        //ground.OnGroundTouchdown += jumpParticles.Play;
         ground.OnGroundTouchdown += walkParticles.Play;
 
         ground.OnLeaveGround += walkParticles.Stop;
 
-        oldDead = false;
+        powerUpManager = GetComponent<PlayerPowerUpManager>();
     }
-    
+
 
 
     void Update()
     {
-        if (player.GetDead())
+        if (actualState == PlayerStates.STOP)
         {
             animator.SetBool("Stairs", false);
             animator.SetBool("Dash", false);
             animator.SetBool("Walk", false);
             animator.SetBool("Grounded", true);
 
-
-            animator.SetBool("Death", true);
-
-            if(player.GetDead() && player.GetDead() != oldDead)
-            {
-                deathParticles.Play();
-            }
-
-            rb.gravityScale = 0f;
-            rb.velocity = Vector2.zero;
-
-            oldDead = player.GetDead();
-
             return;
         }
-        else if(player.GetStop())
+        else if(actualState == PlayerStates.HANDUP)
         {
             animator.SetBool("Stairs", false);
             animator.SetBool("Dash", false);
@@ -135,265 +91,120 @@ public class PlayerMovement : MonoBehaviour
 
             return;
         }
-        else
+        else if(actualState == PlayerStates.DOOR)
+        {
+            rb.velocity = new Vector2(doorDirection * player.GetSpeed(), rb.velocity.y);
+
+            if(doorDirection == 1 && tr.transform.position.x > doorTr.transform.position.x + 1f)
+            {
+                rb.velocity = Vector2.zero;
+                actualState = PlayerStates.STOP;
+                doorWithoutKey.CloseDoor();
+            }
+            else if(doorDirection == -1 && tr.transform.position.x < doorTr.transform.position.x - 1f)
+            {
+                rb.velocity = Vector2.zero;
+                actualState = PlayerStates.STOP;
+                doorWithoutKey.CloseDoor();
+            }
+            return;
+
+        }
+        else if(actualState == PlayerStates.IDLE)
         {
             animator.SetBool("Death", false);
             animator.SetBool("StartPose", false);
-            oldDead = player.GetDead();
         }
 
         animator.SetFloat("FallVelocity", rb.velocity.y);
-        animator.SetBool("Grounded", ground.OnGround() || onStairs);
-        animator.SetBool("Stairs", onStairs && controller.GetMovement().y != 0);
-        animator.SetBool("Dash", dashing);
+        animator.SetBool("Grounded", ground.OnGround() || playerStairs.GetOnStairs());
+        animator.SetBool("Stairs", playerStairs.GetOnStairs() && controller.GetMovement().y != 0);
+        animator.SetBool("Dash", playerDash.GetIsDashing());
         animator.SetFloat("DashVelocity", rb.velocity.x);
 
         animator.SetBool("Walk", controller.GetMovement().x != 0);
 
-        Walk();
-        DashCheck();
+        playerWalk.Walk();
+
+        playerDash.DashCheck();
         
-        #region Movement
-        if (onStairs)
+        if (playerStairs.GetOnStairs())
         {
-            if (usingStairs)
+            if (playerStairs.GetUsingStairs())
             {
-                Stairs();
+                playerStairs.Stairs();
                 rb.gravityScale = 0f;
             }
             else
             {
-                usingStairs = controller.GetMovement().y > 0 || rb.velocity.y <= 0.0f;
+                playerStairs.SetUsingStairs(controller.GetMovement().y > 0 || rb.velocity.y <= 0.0f);
             }
 
         }
-        else if (canDash && !dashing && controller.GetPowerUpKey() && actualDashCooldown <= 0)
+        else if (controller.GetPowerUpKey())
         {
-            Dash();
+            playerDash.Dash();
         }
-        else if (!dashing)
+        else if (!playerDash.GetIsDashing())
         {
             rb.gravityScale = 9.81f;
         }
-      
-        CheckJump();
-#endregion
 
+        playerJump.CheckJump();
     }
 
-    void Walk()
+    public void SetActualState(PlayerStates state)
     {
-        if(slide > 0)
-        {
-            slide -= Time.deltaTime;
-        }
-        else if(slide < 0)
-        {
-            slide = 0;
-        }
-
-        if(actualWalkSoundDelay < 0 && ground.OnGround() && (controller.GetMovement().x < 0 || controller.GetMovement().x > 0))
-        {
-            audioManager.PlaySFX(audioManager.walk);
-            actualWalkSoundDelay = walkSoundDelay;
-        }
-        else
-        {
-            actualWalkSoundDelay -= Time.deltaTime;
-        }
-
-
-        if (controller.GetMovement().x < 0 || controller.GetMovement().x > 0)
-        {
-            slide = 0.1f;
-            player.SetDirection(new Vector2(controller.GetMovement().x, player.GetDirection().y));
-
-            rb.velocity = new Vector2(player.GetDirection().x * player.GetSpeed(), rb.velocity.y);
-
-            isWalking = true;
-        }
-        else
-        {
-            rb.velocity = new Vector2(player.GetDirection().x * (player.GetSpeed() * slide), rb.velocity.y);
-
-            isWalking = false;
-        }
+        actualState = state;
     }
 
-
-    void Jump()
+    public PlayerStates GetActualState()
     {
-        isJumping = true;
-        actualJumpTimeCounter = jumpTimeCounter;
-        rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-        jumpParticles.Play();
-
-        audioManager.PlaySFX(audioManager.jump);
+        return actualState;
     }
 
-    void CheckJump()
+    public void Death()
     {
-        if (ground.OnGround())
-        {
-            actualCoyoteTime = coyoteTime;
-            doubleJump = 0;
-            if(!fallToGroundSound)
-            {
-                fallToGroundSound = true;
 
-                audioManager.PlaySFX(audioManager.fallToGround);
-            }
-        }
-        else
-        {
-            actualCoyoteTime -= Time.deltaTime;
-            fallToGroundSound = false;
-        }
+        var main = deathParticles1.main;
+        main.startColor = powerUpManager.GetColorRGB();
+
+        var trail = deathParticles1.trails;
+        trail.colorOverTrail = powerUpManager.GetColorRGB();
+        trail.colorOverLifetime = powerUpManager.GetColorRGB();
+
+        main = deathParticles2.main;
+        main.startColor = powerUpManager.GetColorRGB();
 
 
-        if (actualCoyoteTime > 0 && controller.GetJumpKeyTap())
-        {
-            Jump();
-            actualCoyoteTime = 0f;
-            oldJump = true;
-        }
-        else if (canDoubleJump && doubleJump < 1 && controller.GetJumpKeyTap() && !ground.OnGround())
-        {
-            Jump();
-            doubleJump++; // Incrementa el contador de saltos después de un doble salto
-            oldJump = true;
-        }
+        deathParticles1.Play();
+        deathParticles2.Play();
+        childrenSprite.enabled = false;
+            
 
-        if (controller.GetJumpkeyHold() && isJumping)
-        {
-            oldJump = true;
-
-            if (actualJumpTimeCounter > 0)
-            {
-                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-                rb.gravityScale = 0.0f;
-                actualJumpTimeCounter -= Time.deltaTime;
-            }
-            else
-            {
-                rb.gravityScale = 9.81f;
-                isJumping = false;
-            }
-        }
-
-
-        if (!controller.GetJumpkeyHold() && oldJump)
-        {
-            oldJump = false;
-            isJumping = false;
-            actualCoyoteTime = 0f;
-            rb.gravityScale = 9.81f;
-        }
-
-        isPlayingJumpSound = true;
-    }
-
-    void DashCheck()
-    {
-        if (actualDashCooldown > 0)
-        {
-            actualDashCooldown -= Time.deltaTime;
-        }
-
-        if (actualDashTimer > 0)
-        {
-            dashing = true;
-            actualDashCooldown = 0.5f;
-            rb.velocity = new Vector2(player.GetDirection().x * dashVelocity, 0);
-            rb.gravityScale = 0f;
-            actualDashTimer -= Time.deltaTime;
-
-        }
-        else
-        {
-            dashing = false;
-
-        }
-    }
-
-
-    public void SetDoubleJump(bool condition)
-    {
-        canDoubleJump = condition;
-    }
-    public void SetDash(bool condition)
-    {
-        canDash = condition;
-    }
-    public void SetPickUp(bool condition)
-    {
-        canPickUp = condition;
-    }
-
-    void Stairs()
-    {
-        //ARREGLAR
-        if (actualClimbSoundDelay < 0 && onStairs && (controller.GetMovement().y < 0 || controller.GetMovement().y > 0))
-        {
-            audioManager.PlaySFX(audioManager.stairsClimb);
-            actualClimbSoundDelay = climbSoundDelay;
-        }
-        else
-        {
-            actualClimbSoundDelay -= Time.deltaTime;
-        }
-
-
-        if ((controller.GetMovement().y < 0  || controller.GetMovement().y > 0) && controller.GetMovement().x == 0)
-        {
-            tr.position = new Vector2((float)(tr.position.x + 0.05 * (stairsPos.x - tr.position.x)), tr.position.y);
-        }
-
-        if (controller.GetMovement().y > 0)
-        {
-            rb.gravityScale = 0f;
-            rb.velocity = new Vector2(rb.velocity.x, 5);
-        }
-        else if(controller.GetMovement().y < 0)
-        {
-            rb.gravityScale = 0f;
-            rb.velocity = new Vector2(rb.velocity.x, -5);
-        }
-        else
-        {
-            rb.velocity = new Vector2(rb.velocity.x, 0);
-        }
+        rb.gravityScale = 0f;
+        rb.velocity = Vector2.zero;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Ladder")
+        if (collision.gameObject.tag == "Door")
         {
-            onStairs = true;
+            doorWithoutKey = collision.gameObject.GetComponent<LvlTransitionWithoutKey>();
+            doorTr = collision.gameObject.transform;
 
-            stairsPos = collision.transform.position;
+            if (doorTr.position.x > tr.position.x)
+            {
+                doorDirection = 1;
+                doorWithoutKey.ShowBlackSquare(1.05f);
+            }
+            else
+            {
+                doorDirection = -1;
+                doorWithoutKey.ShowBlackSquare(-1.05f);
+            }
+
+            actualState = PlayerStates.DOOR;
         }
-       
-
     }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.tag == "Ladder")
-        {
-            audioManager.StopSFX(audioManager.stairsClimb);
-            onStairs = false;
-            usingStairs = false;
-        }
-    }
-   
-    private void Dash()
-    {
-        actualDashTimer = dashTimer;
-        rb.gravityScale = 0f;
-        audioManager.PlaySFX(audioManager.dash);
-        dashTrail.Play();
-    }
-   
-
 }
