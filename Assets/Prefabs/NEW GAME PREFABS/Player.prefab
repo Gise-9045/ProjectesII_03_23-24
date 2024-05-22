@@ -9984,8 +9984,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 972e26beb2e8c0344bb725a61b461ae7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isJumping: 0
-  isWalking: 0
   canPickUp: 0
   deathParticles1: {fileID: 3104442984991272622}
   deathParticles2: {fileID: 2654189308330648487}
@@ -24843,9 +24841,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1634254561
-  m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 1166968686, guid: 2c75636cce5424540b395f76e9009cd4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

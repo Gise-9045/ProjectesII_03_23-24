@@ -3,16 +3,15 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class popuptext : MonoBehaviour
+public class ActivatePopuptext : MonoBehaviour
 {
     [SerializeField] GameObject dialogue;
     [SerializeField] GameObject textBubble;
    
-    void Start()
+    void Awake()
     {
         dialogue.SetActive(false);
         textBubble.SetActive(false);
-
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -22,6 +21,4 @@ public class popuptext : MonoBehaviour
             textBubble.SetActive(true);
         }
     }
-
-    
 }
