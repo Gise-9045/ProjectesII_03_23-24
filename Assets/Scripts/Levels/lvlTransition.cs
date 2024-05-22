@@ -78,10 +78,20 @@ public class lvlTransition : MonoBehaviour
         doorAnim.SetBool("OpenDoor", true);
     }
 
-    public void ShowBlackSquare(float pos)
+    public void ShowBlackSquare(float pos, bool flip)
     {
         blackSquare.transform.localPosition = new Vector2(pos, blackSquare.transform.localPosition.y);
 
+        if(flip)
+        {
+            blackSquare.transform.localRotation = Quaternion.Euler(0, 180, 0);
+        }
+        else
+        {
+            blackSquare.transform.localRotation = Quaternion.Euler(0, 0, 0);
+
+        }
+        
         blackSquare.SetActive(true);
     }
 }
