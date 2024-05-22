@@ -1291,12 +1291,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 2.9012814, z: 14.880962, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  _SortingLayer: 0
-  _SortingLayerID: 0
-  _SortingOrder: 0
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 444986166}
   m_maskType: 0
+  _SortingLayer: 0
+  _SortingLayerID: 0
+  _SortingOrder: 0
 --- !u!23 &444986166
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2916,7 +2916,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6704505605561849792, guid: 5dabb304a592e1d4b948101024cf52b6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15.453148
+      value: 15.46
       objectReference: {fileID: 0}
     - target: {fileID: 6704505605561849792, guid: 5dabb304a592e1d4b948101024cf52b6, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4668,7 +4668,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16

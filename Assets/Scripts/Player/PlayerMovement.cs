@@ -1,26 +1,27 @@
 using Cinemachine.Utility;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEditor.Searcher.SearcherWindow.Alignment;
 //using static UnityEditor.Searcher.SearcherWindow.Alignment;
 
 public class PlayerMovement : MonoBehaviour
 {
-    //SE UTILIZARÁ PROXIMAMENTE
-    public enum PlayerStates { IDLE, HANDUP, STOP}
+    public enum PlayerStates { IDLE, HANDUP, STOP, DOORWITHOUTKEY, DOORWITHKEY }
 
     private Player player;
+    private BoxCollider2D col;
 
     private Rigidbody2D rb;
+    private Transform tr;
     private SpriteRenderer childrenSprite;
 
 
     private PlayerGroundDetection ground;
 
-    public bool isJumping;
-    public bool isWalking;
 
     [SerializeField] public bool canPickUp = false;
 
@@ -45,13 +46,24 @@ public class PlayerMovement : MonoBehaviour
 
     private PlayerPowerUpManager powerUpManager;
 
+    private LvlTransitionWithoutKey doorWithoutKey;
+    private lvlTransition doorWithKey;
+    private Transform doorTr;
+    private int doorDirection;
+
+    private KeySaver key;
+    private Vector2 posVelocity;
+
+
+
     void Start()
     {
         player = GetComponent<Player>();
         controller = GetComponent<InputController>();
         rb = GetComponent<Rigidbody2D>();
+        tr = GetComponent<Transform>();
+        col = GetComponent<BoxCollider2D>();
         ground = GetComponentInChildren<PlayerGroundDetection>();
-        isJumping = false;
         animator = GetComponent<Animator>();
 
         childrenSprite = GetComponentInChildren<SpriteRenderer>();
@@ -62,13 +74,17 @@ public class PlayerMovement : MonoBehaviour
         ground.OnLeaveGround += walkParticles.Stop;
 
         powerUpManager = GetComponent<PlayerPowerUpManager>();
+
+        key = GetComponent<KeySaver>();
+
+        posVelocity = Vector2.zero;
+
     }
 
 
 
     void Update()
     {
-        //NOTA PARA ADRI POR ADRI. ESTO ES UNA GUARRERÍA ARREGLALO CUANTO ANTES
         if (actualState == PlayerStates.STOP)
         {
             animator.SetBool("Stairs", false);
@@ -87,6 +103,52 @@ public class PlayerMovement : MonoBehaviour
 
             animator.SetBool("StartPose", true);
 
+            return;
+        }
+        else if(actualState == PlayerStates.DOORWITHOUTKEY || actualState == PlayerStates.DOORWITHKEY)
+        {
+            rb.velocity = new Vector2(doorDirection * player.GetSpeed(), 0f);
+
+            //El jugador se alinea con la puerta en el eje Y
+            transform.position = new Vector2(transform.position.x, Mathf.SmoothDamp(transform.position.y, doorTr.transform.position.y, ref posVelocity.y, 0f, 1000f));
+
+            //Espera a que el jugador se alinee con la puerta
+            if(transform.position.y == doorTr.transform.position.y)
+            {
+                rb.constraints = RigidbodyConstraints2D.FreezePositionY;
+                col.enabled = false;
+            }
+
+            if(actualState == PlayerStates.DOORWITHOUTKEY)
+            {
+                if(doorDirection == 1 && tr.transform.position.x > doorTr.transform.position.x + 1f)
+                {
+                    rb.velocity = Vector2.zero;
+                    actualState = PlayerStates.STOP;
+                    doorWithoutKey.CloseDoor();
+                }
+                else if(doorDirection == -1 && tr.transform.position.x < doorTr.transform.position.x - 1f)
+                {
+                    rb.velocity = Vector2.zero;
+                    actualState = PlayerStates.STOP;
+                    doorWithoutKey.CloseDoor();
+                }
+            }
+            else if(actualState == PlayerStates.DOORWITHKEY)
+            {
+                if(doorDirection == 1 && tr.transform.position.x > doorTr.transform.position.x + 2f)
+                {
+                    rb.velocity = Vector2.zero;
+                    actualState = PlayerStates.STOP;
+                    doorWithKey.CloseDoor();
+                }
+                else if(doorDirection == -1 && tr.transform.position.x < doorTr.transform.position.x - 2f)
+                {
+                    rb.velocity = Vector2.zero;
+                    actualState = PlayerStates.STOP;
+                    doorWithKey.CloseDoor();
+                }
+            }
             return;
         }
         else if(actualState == PlayerStates.IDLE)
@@ -144,7 +206,6 @@ public class PlayerMovement : MonoBehaviour
 
     public void Death()
     {
-
         var main = deathParticles1.main;
         main.startColor = powerUpManager.GetColorRGB();
 
@@ -163,5 +224,49 @@ public class PlayerMovement : MonoBehaviour
 
         rb.gravityScale = 0f;
         rb.velocity = Vector2.zero;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Door")
+        {
+            doorWithoutKey = collision.gameObject.GetComponent<LvlTransitionWithoutKey>();
+            doorTr = collision.gameObject.transform;
+
+            if (doorTr.position.x > tr.position.x)
+            {
+                doorDirection = 1;
+                doorWithoutKey.ShowBlackSquare(1.2f, false);
+            }
+            else
+            {
+                doorDirection = -1;
+                doorWithoutKey.ShowBlackSquare(-1.2f, true);
+            }
+
+            actualState = PlayerStates.DOORWITHOUTKEY;
+        }
+        else if(collision.gameObject.tag == "KeyDoor" && key.GetListKeys().Count > 0)
+        {
+            doorWithKey = collision.gameObject.GetComponent<lvlTransition>();
+            doorTr = collision.gameObject.transform;
+
+            if (doorTr.position.x > tr.position.x)
+            {
+                player.SetDirection(new Vector2(1, player.GetDirection().y));
+                doorDirection = 1;
+                doorWithKey.ShowBlackSquare(1.2f, false);
+                doorWithKey.OpenDoor();
+            }
+            else
+            {
+                player.SetDirection(new Vector2(-1, player.GetDirection().y));
+                doorDirection = -1;
+                doorWithKey.ShowBlackSquare(-1.2f, true);
+                doorWithKey.OpenDoor();
+            }
+
+            actualState = PlayerStates.DOORWITHKEY;
+        }
     }
 }
