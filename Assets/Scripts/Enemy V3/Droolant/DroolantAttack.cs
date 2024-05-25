@@ -52,7 +52,7 @@ public class DroolantAttack : MonoBehaviour
             //animator.SetBool("Shoot", true);
             //attackSource.Play();
             //Dispara
-            Vector2 bulletPos = new Vector2(parent.transform.position.x, parent.transform.position.y - 1);
+            Vector2 bulletPos = new Vector2(parent.transform.position.x, parent.transform.position.y - 0.3f);
 
             Instantiate(bullet, bulletPos, Quaternion.identity);
             actualCooldownAttack = cooldownAttack;

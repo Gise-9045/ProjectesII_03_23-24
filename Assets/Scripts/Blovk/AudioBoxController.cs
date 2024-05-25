@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 
 public class AudioBoxController : MonoBehaviour
 {
@@ -9,22 +10,23 @@ public class AudioBoxController : MonoBehaviour
     private bool isPlayingSound = false;
     private Coroutine soundCoroutine;
 
-    private PlayerMovement player;
+    private InputController controller;
+
     // Start is called before the first frame update
     void Start()
     {
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        controller = GameObject.FindWithTag("Player").GetComponent<InputController>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag == "Ground")
         {
-            audioManager.PlaySFX(audioManager.boxSurface); 
+            audioManager.PlaySFX(audioManager.boxSurface);
         }
 
-        if(collision.gameObject.tag == "Player" && player.isWalking)
+        if(collision.gameObject.tag == "Player" && (controller.GetMovement().x < 0 || controller.GetMovement().x > 0))
         {
             if (!isPlayingSound )
             {
@@ -32,7 +34,7 @@ public class AudioBoxController : MonoBehaviour
             }
         }
 
-        if (!player.isWalking && isPlayingSound)
+        if ((controller.GetMovement().x >= 0 || controller.GetMovement().x <= 0) && isPlayingSound)
         {
             if (soundCoroutine != null)
             {

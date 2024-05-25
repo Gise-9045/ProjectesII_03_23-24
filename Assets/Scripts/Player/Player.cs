@@ -1,14 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-//using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
-    private float knockbackVel;
-    private bool knockback;
-
     [SerializeField] private int life;
     [SerializeField] int speed;
 
@@ -20,12 +17,17 @@ public class Player : MonoBehaviour
 
     private AudioManager audioManager;
     [SerializeField] private GameObject crownGodMode;
+
+    private InputController controller;
+    private PlayerMovement playerMovement;
     
     void Start()
     {
         direction= new Vector2(1, 1);
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-        canDie = true; 
+        canDie = true;
+        controller = GetComponent<InputController>();
+        playerMovement = GetComponent<PlayerMovement>();
 
     }
 
@@ -44,24 +46,23 @@ public class Player : MonoBehaviour
         }
 
 
-        if(Input.GetKeyDown(KeyCode.R)) { SceneArguments.SceneManager.LoadScene(SceneManager.GetActiveScene().name, "NoTransition"); }
+        if(controller.GetRestart()) { SceneArguments.SceneManager.LoadScene(SceneManager.GetActiveScene().name, "NoTransition"); }
     }
 
     public void SetLife(int l) { life = l; }
     public int GetLife() { return life; }
     public void SetSpeed(int s) { speed = s; }
     public int GetSpeed() { return speed; }
-    public bool GetDead() { return dead; }
-
-    public void SetStop(bool s) { stop = s; }
-    public bool GetStop() { return stop; }
 
     public void TakeDamage()
     {
         if(canDie && !dead)
         {
-
-            dead = true;
+            playerMovement.SetActualState(PlayerMovement.PlayerStates.STOP);
+            playerMovement.Death();
+            //CameraShake.Instance.ShakeCamera(5f, 0.5f);
+            
+            //DeathPaintManager.Instance.CreateDeathPaint(new Vector3(transform.position.x, transform.position.y - 0.5f, transform.position.z));
             StartCoroutine(Death());
 
         }
@@ -82,18 +83,16 @@ public class Player : MonoBehaviour
         return direction;
     }
 
-    private IEnumerator KnockBack()
-    {
-        yield return new WaitForSecondsRealtime(0.1f);
-        knockback = false;
-    }
+    
 
     private IEnumerator Death()
     {
         audioManager.PlaySFX(audioManager.death);
-        yield return new WaitForSecondsRealtime(1f);
+
+        yield return new WaitForSecondsRealtime(0.5f);
+
         SceneArguments.SceneManager.LoadScene(SceneManager.GetActiveScene().name, "NoTransition");
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        dead = false;
+
+        playerMovement.SetActualState(PlayerMovement.PlayerStates.IDLE);
     }
 }
