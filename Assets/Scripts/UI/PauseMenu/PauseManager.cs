@@ -80,7 +80,10 @@ public class PauseManager : MonoBehaviour
     #endregion
 
     #region button manager
-    
+    public void RestartScene()
+    {
+        SceneArguments.SceneManager.LoadScene(SceneManager.GetActiveScene().name, "NoTransition");
+    }
     public void ShowScene(GameObject sceneToChange)
     {
         sceneToChange.SetActive(true);
