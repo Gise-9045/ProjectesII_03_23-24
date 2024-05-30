@@ -45,16 +45,19 @@ public class LvlTransitionWithoutKey : MonoBehaviour
                 yield return new WaitForSecondsRealtime(0.3f);
                 doorAnim.SetBool("CloseDoor", true);
 
-                yield return new WaitForSecondsRealtime(0.5f);
 
                 if (activeSound)
                 {
                     audioManager.PlaySFX(audioManager.doorOpens);
                 }
 
+                yield return new WaitForSecondsRealtime(0.5f);
+
                 horizontal.SetActive(true);
                 horizontalAnim.SetBool("LeftAnimation", true);
+
                 yield return new WaitForSecondsRealtime(0.7f);
+
 
                 break;
         }

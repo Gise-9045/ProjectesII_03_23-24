@@ -54,7 +54,6 @@ public class lvlTransition : MonoBehaviour
 
                 yield return new WaitForSecondsRealtime(0.5f);
 
-                audioManager.PlaySFX(audioManager.doorOpens);
                 
 
                 horizontal.SetActive(true);
@@ -76,6 +75,7 @@ public class lvlTransition : MonoBehaviour
     public void OpenDoor()
     {
         doorAnim.SetBool("OpenDoor", true);
+        audioManager.PlaySFX(audioManager.doorOpens);
     }
 
     public void ShowBlackSquare(float pos, bool flip)

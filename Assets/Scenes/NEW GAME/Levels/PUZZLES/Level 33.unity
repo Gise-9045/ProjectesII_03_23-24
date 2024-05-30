@@ -2251,46 +2251,6 @@ Tilemap:
       m_TileObjectToInstantiateIndex: 65535
       dummyAlignment: 0
       m_AllTileFlags: 1073741825
-  - first: {x: 12, y: 0, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 15
-      m_TileSpriteIndex: 15
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: 14, y: 0, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 15
-      m_TileSpriteIndex: 15
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: 12, y: 1, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 16
-      m_TileSpriteIndex: 16
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
-  - first: {x: 14, y: 1, z: 0}
-    second:
-      serializedVersion: 2
-      m_TileIndex: 16
-      m_TileSpriteIndex: 16
-      m_TileMatrixIndex: 0
-      m_TileColorIndex: 0
-      m_TileObjectToInstantiateIndex: 65535
-      dummyAlignment: 0
-      m_AllTileFlags: 1073741825
   - first: {x: -17, y: 2, z: 0}
     second:
       serializedVersion: 2
@@ -2593,10 +2553,10 @@ Tilemap:
     m_Data: {fileID: 11400000, guid: feff5c1fc25ef3940afb7ffd1595d087, type: 2}
   - m_RefCount: 3
     m_Data: {fileID: 11400000, guid: 88781fcfa7eb92442b2a42a282a3fb41, type: 2}
-  - m_RefCount: 2
-    m_Data: {fileID: 11400000, guid: 63d8bcdb93375b04c923c517d0f19e4c, type: 2}
-  - m_RefCount: 2
-    m_Data: {fileID: 11400000, guid: 5800b302d1be621468426b5de7608da6, type: 2}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 2
     m_Data: {fileID: 11400000, guid: 7fdf5e87c4e18094eb1898ff70c0f4ce, type: 2}
   - m_RefCount: 4
@@ -2636,10 +2596,10 @@ Tilemap:
     m_Data: {fileID: -869693600, guid: 2c75636cce5424540b395f76e9009cd4, type: 3}
   - m_RefCount: 3
     m_Data: {fileID: -875623341, guid: 2c75636cce5424540b395f76e9009cd4, type: 3}
-  - m_RefCount: 2
-    m_Data: {fileID: -50332813, guid: 2c75636cce5424540b395f76e9009cd4, type: 3}
-  - m_RefCount: 2
-    m_Data: {fileID: 572691361, guid: 2c75636cce5424540b395f76e9009cd4, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 2
     m_Data: {fileID: 1429279132, guid: 2c75636cce5424540b395f76e9009cd4, type: 3}
   - m_RefCount: 4
@@ -2649,7 +2609,7 @@ Tilemap:
   - m_RefCount: 4
     m_Data: {fileID: -1787371345, guid: 2c75636cce5424540b395f76e9009cd4, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 45
+  - m_RefCount: 41
     m_Data:
       e00: 1
       e01: 0
@@ -2704,7 +2664,7 @@ Tilemap:
       e32: 2.96e-43
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 47
+  - m_RefCount: 43
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
@@ -3132,6 +3092,10 @@ PrefabInstance:
       propertyPath: velocity
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 954235245722053424, guid: 7cf4c4ae751abc44c89f0992d6577a9e, type: 3}
+      propertyPath: leverFlip
+      value: 
+      objectReference: {fileID: 1211455530}
     - target: {fileID: 954235245722053424, guid: 7cf4c4ae751abc44c89f0992d6577a9e, type: 3}
       propertyPath: flipConveyor
       value: 
@@ -6607,6 +6571,17 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1211455530 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8964758888983186092, guid: ca4fad75f2edd208f8282277f9ce30e0, type: 3}
+  m_PrefabInstance: {fileID: 1883821483}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 460532b145b3f92c482a460292b3b3c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1256386998 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1344661898102543509, guid: 90877c543b25da74f8d321d10bf81583, type: 3}
@@ -7810,6 +7785,10 @@ PrefabInstance:
       value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 954235245722053424, guid: 7cf4c4ae751abc44c89f0992d6577a9e, type: 3}
+      propertyPath: leverFlip
+      value: 
+      objectReference: {fileID: 1211455530}
+    - target: {fileID: 954235245722053424, guid: 7cf4c4ae751abc44c89f0992d6577a9e, type: 3}
       propertyPath: flipConveyor
       value: 
       objectReference: {fileID: 1051088738}
@@ -7939,6 +7918,67 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e48e924d4c9643e43916eb95f4103005, type: 3}
+--- !u!1001 &1883821483
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 7034575723563551806, guid: ca4fad75f2edd208f8282277f9ce30e0, type: 3}
+      propertyPath: m_Name
+      value: Lever
+      objectReference: {fileID: 0}
+    - target: {fileID: 8596767265473504703, guid: ca4fad75f2edd208f8282277f9ce30e0, type: 3}
+      propertyPath: m_RootOrder
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8596767265473504703, guid: ca4fad75f2edd208f8282277f9ce30e0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 14.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 8596767265473504703, guid: ca4fad75f2edd208f8282277f9ce30e0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -8.494833
+      objectReference: {fileID: 0}
+    - target: {fileID: 8596767265473504703, guid: ca4fad75f2edd208f8282277f9ce30e0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.051728405
+      objectReference: {fileID: 0}
+    - target: {fileID: 8596767265473504703, guid: ca4fad75f2edd208f8282277f9ce30e0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8596767265473504703, guid: ca4fad75f2edd208f8282277f9ce30e0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8596767265473504703, guid: ca4fad75f2edd208f8282277f9ce30e0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8596767265473504703, guid: ca4fad75f2edd208f8282277f9ce30e0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8596767265473504703, guid: ca4fad75f2edd208f8282277f9ce30e0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8596767265473504703, guid: ca4fad75f2edd208f8282277f9ce30e0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8596767265473504703, guid: ca4fad75f2edd208f8282277f9ce30e0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: ca4fad75f2edd208f8282277f9ce30e0, type: 3}
 --- !u!1 &2038010579
 GameObject:
   m_ObjectHideFlags: 0
@@ -7954,7 +7994,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2038010580
 Transform:
   m_ObjectHideFlags: 0
@@ -8089,6 +8129,10 @@ PrefabInstance:
       propertyPath: velocity
       value: 300
       objectReference: {fileID: 0}
+    - target: {fileID: 954235245722053424, guid: 7cf4c4ae751abc44c89f0992d6577a9e, type: 3}
+      propertyPath: leverFlip
+      value: 
+      objectReference: {fileID: 1211455530}
     - target: {fileID: 954235245722053424, guid: 7cf4c4ae751abc44c89f0992d6577a9e, type: 3}
       propertyPath: flipConveyor
       value: 
