@@ -2,7 +2,7 @@ using System;
     using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerJump : MonoBehaviour
+public class OldPlayerJump : MonoBehaviour
 {
     [SerializeField] private InputActionReference jumps;
     [SerializeField] private float jumpPower;

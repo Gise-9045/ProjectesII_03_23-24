@@ -14,7 +14,8 @@ public class ConveyerLogic : MonoBehaviour
 
     //Buttons
     [SerializeField] private StopConveyor stopConveyor;
-    [SerializeField] private FlipConveyor flipConveyor;
+    [SerializeField] private LeverLogic leverFlip;
+    [SerializeField] private FlipConveyor buttonFlip;
     [SerializeField] private Animator animator;
 
     void Start()
@@ -29,15 +30,25 @@ public class ConveyerLogic : MonoBehaviour
 
     private void Update()
     {
-        if (flipConveyor != null && flipConveyor.GetIsToggled())
+        if (leverFlip != null && leverFlip.GetIsEnabled() && goesLeft)
         {
             Flip();
-            if(flipConveyor.GetIsToggled() )
-            {
-                flipConveyor.SetisToggled(false);
+        }
+        else if (leverFlip != null && !leverFlip.GetIsEnabled()&& !goesLeft)
+        {
+            Flip();
+        }
 
+        if(buttonFlip != null && buttonFlip.GetIsToggled())
+        {
+            Flip();
+            if(buttonFlip.GetIsToggled() )
+            {
+                buttonFlip.SetisToggled(false);
             }
         }
+
+
         if (stopConveyor != null && stopConveyor.GetIsACtive())
         {
             StopMoving();

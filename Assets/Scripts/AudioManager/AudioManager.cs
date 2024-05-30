@@ -49,14 +49,20 @@ public class AudioManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null)
+
+        AudioManager[] audioManagers = FindObjectsOfType<AudioManager>();
+        if (audioManagers.Length > 1)
         {
-            DontDestroyOnLoad(gameObject);
-            Instance = this;
+            Destroy(gameObject);
+            return;
         }
-        else
-            Destroy(this.gameObject);
+
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
+
+
+
 
     private void Start()
     {
@@ -84,7 +90,12 @@ public class AudioManager : MonoBehaviour
         {
             if (SceneManager.GetSceneByName("Level 0").isLoaded)
             {
-                ChangeMusic();
+                
+                
+                    ChangeMusic();
+
+                
+
             }
             isMenu = false; 
         }
@@ -143,8 +154,18 @@ public class AudioManager : MonoBehaviour
             {
                 musicSource.Stop();
                 musicSource.clip = music[countMusic];
-                countMusic += 1; 
-                musicSource.Play();
+                if(countMusic >= 5)
+                {
+                    countMusic = 1;
+                    musicSource.Play();
+
+                }
+                else
+                {
+                    countMusic += 1;
+                    musicSource.Play();
+                }
+               
             }
         }
 

@@ -14,12 +14,18 @@ public class LvlTransitionWithoutKey : MonoBehaviour
     private Animator verticalAnim;
     private Animator horizontalAnim;
 
+    private Animator doorAnim;
+
     private enum Transition { NONE, LEFT };
     [SerializeField] private Transition transition;
 
     private AudioManager audioManager;
 
-    public bool activeSound = true; 
+    public bool activeSound = true;
+
+    [SerializeField] private GameObject doorFrame;
+    [SerializeField] private GameObject door;
+    [SerializeField] private GameObject blackSquare;
 
 
     void Start()
@@ -27,27 +33,7 @@ public class LvlTransitionWithoutKey : MonoBehaviour
         verticalAnim = vertical.GetComponentInChildren<Animator>();
         horizontalAnim = horizontal.GetComponentInChildren<Animator>();
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
-
-    }
-
-    
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        
-        if (collision.CompareTag("Player"))
-        {
-            if (activeSound)
-            {
-                audioManager.PlaySFX(audioManager.doorOpens);
-            }
-            
-
-            Time.timeScale = 0.0f;
-           
-            StartCoroutine(LevelTransition());
- 
-        }
-
+        doorAnim = GetComponentInChildren<Animator>();
     }
 
     IEnumerator LevelTransition()
@@ -55,16 +41,50 @@ public class LvlTransitionWithoutKey : MonoBehaviour
         switch (transition)
         {
             case Transition.LEFT:
+
+                yield return new WaitForSecondsRealtime(0.3f);
+                doorAnim.SetBool("CloseDoor", true);
+
+
+                if (activeSound)
+                {
+                    audioManager.PlaySFX(audioManager.doorOpens);
+                }
+
+                yield return new WaitForSecondsRealtime(0.5f);
+
                 horizontal.SetActive(true);
                 horizontalAnim.SetBool("LeftAnimation", true);
+
                 yield return new WaitForSecondsRealtime(0.7f);
+
 
                 break;
         }
 
-
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         //Debug.Log("LvlPassed");
+    }
 
+    public void CloseDoor()
+    {
+        StartCoroutine(LevelTransition());
+    }
+
+    public void ShowBlackSquare(float pos, bool flip)
+    {
+        blackSquare.transform.localPosition = new Vector2(pos, blackSquare.transform.localPosition.y);
+
+        if(flip)
+        {
+            blackSquare.transform.localRotation = Quaternion.Euler(0, 180, 0);
+        }
+        else
+        {
+            blackSquare.transform.localRotation = Quaternion.Euler(0, 0, 0);
+
+        }
+
+        blackSquare.SetActive(true);
     }
 }
