@@ -3346,15 +3346,11 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 954235245722053424, guid: 7cf4c4ae751abc44c89f0992d6577a9e, type: 3}
-      propertyPath: goesLeft
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 954235245722053424, guid: 7cf4c4ae751abc44c89f0992d6577a9e, type: 3}
       propertyPath: velocity
       value: 350
       objectReference: {fileID: 0}
     - target: {fileID: 954235245722053424, guid: 7cf4c4ae751abc44c89f0992d6577a9e, type: 3}
-      propertyPath: flipConveyor
+      propertyPath: buttonFlip
       value: 
       objectReference: {fileID: 2142193063}
     - target: {fileID: 3135102474056121716, guid: 7cf4c4ae751abc44c89f0992d6577a9e, type: 3}
@@ -8174,7 +8170,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6160633015726105801, guid: a526f4774217c414987f9866154e0633, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -15.87
+      value: -13.16
       objectReference: {fileID: 0}
     - target: {fileID: 6160633015726105801, guid: a526f4774217c414987f9866154e0633, type: 3}
       propertyPath: m_LocalPosition.y
