@@ -213,6 +213,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1388313651334440561, guid: e48e924d4c9643e43916eb95f4103005, type: 3}
+      propertyPath: m_Size.y
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1388313651334440561, guid: e48e924d4c9643e43916eb95f4103005, type: 3}
       propertyPath: m_SortingOrder
       value: 3
       objectReference: {fileID: 0}
@@ -3341,12 +3345,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 2.9012814, z: 14.880962, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 1075524713}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 1075524713}
+  m_maskType: 0
 --- !u!23 &1075524713
 MeshRenderer:
   m_ObjectHideFlags: 0

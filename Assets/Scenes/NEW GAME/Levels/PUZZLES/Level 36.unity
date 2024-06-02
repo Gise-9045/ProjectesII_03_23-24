@@ -3346,6 +3346,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 954235245722053424, guid: 7cf4c4ae751abc44c89f0992d6577a9e, type: 3}
+      propertyPath: goesLeft
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 954235245722053424, guid: 7cf4c4ae751abc44c89f0992d6577a9e, type: 3}
       propertyPath: velocity
       value: 350
       objectReference: {fileID: 0}
@@ -7980,12 +7984,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 2.9012814, z: 14.880962, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
-  m_renderer: {fileID: 1734074697}
-  m_maskType: 0
   _SortingLayer: 0
   _SortingLayerID: 0
   _SortingOrder: 0
+  m_hasFontAssetChanged: 0
+  m_renderer: {fileID: 1734074697}
+  m_maskType: 0
 --- !u!23 &1734074697
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -8170,7 +8174,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6160633015726105801, guid: a526f4774217c414987f9866154e0633, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.16
+      value: -15.83
       objectReference: {fileID: 0}
     - target: {fileID: 6160633015726105801, guid: a526f4774217c414987f9866154e0633, type: 3}
       propertyPath: m_LocalPosition.y
